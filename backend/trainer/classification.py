@@ -5,6 +5,7 @@ from sqlalchemy import select, update
 
 from trainer.chess_core import digest, position_key, valid_board
 from trainer.continuations import ContinuationEnd
+from trainer.defensive_probes import DefenseCheck
 from trainer.diagnosis_types import Finding, Outcome
 from trainer.errors import EvidenceIntegrityError, NotFound
 from trainer.imports import decision_board
@@ -29,7 +30,7 @@ class Classification(BaseModel):
     model_config = ConfigDict(extra="forbid")
     parameters: dict[str, int] = Field(default_factory=dict)
     continuations: dict[str, ContinuationEnd] = Field(default_factory=dict)
-    defense_checks: list[dict] = Field(default_factory=list)
+    defense_checks: list[DefenseCheck] = Field(default_factory=list)
     findings: list[Finding] = Field(default_factory=list)
     outcomes: list[Outcome] = Field(default_factory=list)
     abstention_reasons: list[str] = Field(default_factory=list)
@@ -129,7 +130,6 @@ def verified_payload(db, decision):
             "mate_lost": decision.mate_lost,
             "allows_mate": decision.allows_mate,
         },
-        "deterministic_facts": decision.facts,
         "available_skill_ids": list(SKILLS),
     }
 

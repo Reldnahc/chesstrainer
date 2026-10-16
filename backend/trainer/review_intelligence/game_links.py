@@ -1,6 +1,7 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
+from trainer.review_intelligence.events_types import report_events
 from trainer.review_scores import is_mistake, is_poor
 
 
@@ -127,11 +128,11 @@ def repeated_links(nodes, reports, emit):
     occurrences = {}
     for node in nodes:
         seen = set()
-        for event in reports[node.ply]["intelligence"]["events"]:
-            if event["kind"] != "tactic" or event["facts"]["role"] == "alternative":
+        for event in report_events(reports[node.ply]):
+            if event.kind != "tactic" or event.facts.role == "alternative":
                 continue
-            fact = event["facts"]
-            key = (node.actor, fact["motif"], fact["role"])
+            fact = event.facts
+            key = (node.actor, fact.motif, fact.role)
             if key in seen:
                 continue
             seen.add(key)
@@ -142,9 +143,9 @@ def repeated_links(nodes, reports, emit):
                     "repeated_motif",
                     node.actor,
                     [n for n, _ in earlier[-2:]],
-                    event_ids=[e["id"] for _, e in earlier[-2:]],
-                    motif=fact["motif"],
-                    role=fact["role"],
+                    event_ids=[e.id for _, e in earlier[-2:]],
+                    motif=fact.motif,
+                    role=fact.role,
                     occurrence=len(earlier),
                     first_ply=earlier[0][0].ply,
                     scope="observed_reviewed_plies",

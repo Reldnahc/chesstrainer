@@ -4,7 +4,6 @@ import pytest
 from trainer.chess_core import (
     Candidate,
     Score,
-    board_facts,
     engine_context,
     evaluation_loss,
     legal_move,
@@ -71,11 +70,11 @@ def test_history_not_lost_in_engine_key():
     assert engine_context(board) != engine_context(chess.Board(board.fen()))
 
 
-def test_rules_special_moves_and_facts():
+def test_rules_special_moves():
     castle = valid_board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
     move = legal_move(castle, "e1g1")
     assert castle.san(move) == "O-O"
-    assert board_facts(castle, move, ["e1g1"])["castling_move"]
+    assert castle.is_castling(move)
     promote = valid_board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1")
     assert promote.san(legal_move(promote, "a7a8n")) == "a8=N"
     ep = valid_board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")

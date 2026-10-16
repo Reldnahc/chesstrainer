@@ -7,7 +7,7 @@ from typing import Literal
 from trainer.chess_core import digest
 from trainer.contracts.common import Contract
 from trainer.recent_cache import RecentCache
-from trainer.review_intelligence.events_types import EvidenceReference
+from trainer.review_intelligence.events_types import EvidenceReference, report_events
 from trainer.taxonomy import SKILLS
 from trainer.weaknesses import active_groups, recurrence
 
@@ -41,13 +41,12 @@ def cross_game_context(db, settings, game, reports, context):
     for node in context.nodes:
         if node.actor != learner:
             continue
-        for event in reports[node.ply]["intelligence"]["events"]:
-            fact = event["facts"]
+        for event in report_events(reports[node.ply]):
             skill = None
-            if event["kind"] == "tactic" and fact["role"] in {"allowed", "caused", "missed"}:
-                skill = fact["motif"]
-            elif event["kind"] == "mate":
-                skill = "allowed_mate" if fact["transition"] == "allowed" else "missed_mate"
+            if event.kind == "tactic" and event.facts.role in {"allowed", "caused", "missed"}:
+                skill = event.facts.motif
+            elif event.kind == "mate":
+                skill = "allowed_mate" if event.facts.transition == "allowed" else "missed_mate"
             if skill in SKILLS:
                 relevant[skill].add(node.ply)
     items = []

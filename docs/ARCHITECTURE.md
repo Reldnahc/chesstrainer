@@ -44,7 +44,7 @@ saved game then queues its own analysis job. See
 | accounts.py | Account registry and the offline administration CLI (`create-admin`, `promote`, `reset-password`, `disable`, `enable`, `claim-local`, `open-signups`, `close-signups`) |
 | site_settings.py / restart.py | Server settings stored in `site_settings` (env seeds missing rows once; `ENV_ONLY` stays in the environment) and the in-place restart `python -m trainer` serves in a loop for |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
-| job_lifecycle.py | Job kinds and statuses as enums, the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
+| job_kinds.py / job_lifecycle.py | Job kinds and statuses as enums (`job_kinds.py`; the API's `Job.kind` and `status` are typed from them), the fetch lane, and every state change: queue-unless-active, requeue, retry, cancel, start, complete, fail |
 | jobs.py / job_queue.py / job_execution.py / job_context.py | Bounded host workers, scheduling metadata, account-bound job execution dispatched by kind, and the one context every job step receives |
 | backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback; `lan.py` holds the host-name and same-origin rules it shares with account mode |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
@@ -559,7 +559,7 @@ Every upgrade, from the server start or from `alembic upgrade head`, runs throug
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
 | review_refinements | Account-owned deeper searches planned for chosen plies of a completed review, with their status, reason and the refined report that may be adopted |
 | human_analyses | Shared Maia policy cache, unique by versioned key (see below) |
-| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
+| decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |

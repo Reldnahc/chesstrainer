@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 import chess
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from trainer.chess_core import Candidate, digest, position_key, valid_board
 from trainer.continuations import continuation_end, replay
@@ -39,7 +39,38 @@ class DefenseHypothesis(BaseModel):
 
     @property
     def key(self):
-        return digest({"hypothesis_version": "1", **self.model_dump()})
+        """The saved probe's identity: what is tested, never how ``roles`` are labelled,
+        so renaming a role keeps every saved probe."""
+        return digest({"hypothesis_version": "2", **self.model_dump(exclude={"roles"})})
+
+    def matches(self, query_key):
+        """Whether a saved probe answers this hypothesis. Probes saved before version
+        2 carry the old key, which hashed the role labels too."""
+        return query_key in {self.key, digest({"hypothesis_version": "1", **self.model_dump()})}
+
+
+DefenseStatus = Literal[
+    "pending",
+    "confirmed",
+    "outcome_unverified",
+    "unsettled",
+    "defense_not_refuted",
+    "rear_piece_not_collected",
+    "escaping_piece_not_collected",
+]
+
+
+class DefenseCheck(BaseModel):
+    """One defensive hypothesis and what its probe showed, as a classification reports it."""
+
+    model_config = ConfigDict(extra="forbid")
+    hypothesis_key: str
+    kind: Literal["fork_capture", "relative_pin", "relative_pin_escape", "trapped_piece"]
+    root_analysis_id: str
+    at_ply: int
+    root_moves: list[str]
+    status: DefenseStatus
+    analysis_id: str | None
 
 
 @dataclass(frozen=True)
@@ -273,7 +304,7 @@ def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
     request = hypothesis
     position = boards[request.at_ply]
     if (
-        probe["query_key"] != request.key
+        not request.matches(probe["query_key"])
         or probe["root_analysis_id"] != request.root_analysis_id
         or probe["at_ply"] != request.at_ply
         or probe["kind"] != request.kind

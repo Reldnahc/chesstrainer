@@ -7,7 +7,7 @@ import chess
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
 from trainer.config import Settings
 from trainer.continuations import ContinuationEnd, continuation_end, extended_line
-from trainer.defensive_probes import hypotheses, verify_defense
+from trainer.defensive_probes import DefenseCheck, hypotheses, verify_defense
 from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
 from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
@@ -47,7 +47,7 @@ class EvidenceLine:
 class LineDiagnosis:
     findings: list[Finding] = field(default_factory=list)
     outcomes: list[Outcome] = field(default_factory=list)
-    defense_checks: list[dict] = field(default_factory=list)
+    defense_checks: list[DefenseCheck] = field(default_factory=list)
 
 
 def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
@@ -166,7 +166,7 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
         line.direction,
         parameters["tactic_plies"],
     ):
-        probe = next((p for p in probes if p["query_key"] == hypothesis.key), None)
+        probe = next((p for p in probes if hypothesis.matches(p["query_key"])), None)
         finding, status = (
             (None, "pending")
             if probe is None
@@ -177,15 +177,15 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
         elif finding:
             status = "outcome_unverified"
         result.defense_checks.append(
-            {
-                "hypothesis_key": hypothesis.key,
-                "kind": hypothesis.kind,
-                "root_analysis_id": line.analysis_id,
-                "at_ply": hypothesis.at_ply,
-                "root_moves": hypothesis.root_moves,
-                "status": status,
-                "analysis_id": probe["analysis_id"] if probe else None,
-            }
+            DefenseCheck(
+                hypothesis_key=hypothesis.key,
+                kind=hypothesis.kind,
+                root_analysis_id=line.analysis_id,
+                at_ply=hypothesis.at_ply,
+                root_moves=hypothesis.root_moves,
+                status=status,
+                analysis_id=probe["analysis_id"] if probe else None,
+            )
         )
     return result
 
@@ -370,7 +370,7 @@ def abstention_reasons(best, actual, found, outcomes, defense_checks):
     reasons = []
     if best.endpoint.material_delta is None or actual.endpoint.material_delta is None:
         reasons.append("continuation_unsettled")
-    if any(check["status"] == "pending" for check in defense_checks):
+    if any(check.status == "pending" for check in defense_checks):
         reasons.append("defense_probe_pending")
     if not outcomes:
         reasons.append("no_verified_material_or_mate_outcome")

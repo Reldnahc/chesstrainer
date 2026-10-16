@@ -266,7 +266,6 @@ def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(sett
         assert played.config["depth"] == 22 and played.config["root_moves"] == ["e2e4"]
         assert played.config["view_of"] == root.id
         assert decision.loss_cp == 5 and decision.deep
-        assert decision.facts["verified_line"][1]["san"] == "e5"
         # Analysed again (the saved decision no longer matches the report's root
         # search), the same view is reused rather than saved twice.
         other = EngineAnalysis(

@@ -1695,6 +1695,47 @@ export interface components {
         ActivePlay: {
             game: components["schemas"]["PlayState"] | null;
         };
+        /** AdvantageRunFacts */
+        AdvantageRunFacts: {
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "converted" | "maintained";
+            /** Own Error Plies */
+            own_error_plies: number[];
+            /** Result Source */
+            result_source: "pgn" | null;
+            /** Reviewed Plies */
+            reviewed_plies: number;
+            /**
+             * Threshold
+             * @constant
+             */
+            threshold: "200cp_or_searched_mate";
+        };
+        /** AdvantageRunRelationship */
+        AdvantageRunRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["AdvantageRunFacts"];
+            /** Id */
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "advantage_run";
+            /** Plies */
+            plies: number[];
+        };
         /**
          * AnalysisQueue
          * @description Per-game analysis: one job per saved game, run one at a time per account.
@@ -1756,6 +1797,37 @@ export interface components {
              * @default 0.35
              */
             volume: number;
+        };
+        /** BishopPairFacts */
+        BishopPairFacts: {
+            /** After */
+            after: number;
+            /** Before */
+            before: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "bishop_pair";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
         };
         /** BoardArrow */
         BoardArrow: {
@@ -1837,6 +1909,71 @@ export interface components {
             score: components["schemas"]["Score"];
             /** Uci */
             uci: string;
+        };
+        /** CastlingFacts */
+        CastlingFacts: {
+            /** Adjacent Pawns */
+            adjacent_pawns: string[];
+            /** After */
+            after: string;
+            /** Before */
+            before: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "castling";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
+        /** CheckEvent */
+        CheckEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["CheckFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "check";
+        };
+        /** CheckFacts */
+        CheckFacts: {
+            /** Escapes Check */
+            escapes_check: boolean;
+            /** Gives Check */
+            gives_check: boolean;
         };
         /** ClassificationAudit */
         ClassificationAudit: {
@@ -1954,6 +2091,55 @@ export interface components {
              * @constant
              */
             version: "clock-1";
+        };
+        /** ClockObservationEvent */
+        ClockObservationEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["ClockObservationFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "clock_observation";
+        };
+        /** ClockObservationFacts */
+        ClockObservationFacts: {
+            /** Accompanied Error */
+            accompanied_error: boolean | null;
+            /**
+             * Before Band
+             * @enum {string}
+             */
+            before_band: "critical" | "low" | "ample" | "unknown";
+            /** Before Seconds */
+            before_seconds: number | null;
+            /**
+             * Causation
+             * @constant
+             */
+            causation: "not_inferred";
+            /** Elapsed Seconds */
+            elapsed_seconds: number | null;
+            /**
+             * Tempo
+             * @enum {string}
+             */
+            tempo: "fast_with_time" | "long_think" | "ordinary" | "unknown";
         };
         /** ClockStory */
         ClockStory: {
@@ -2160,6 +2346,43 @@ export interface components {
             /** Id */
             id: string;
         };
+        /** CriticalResourceEvent */
+        CriticalResourceEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["CriticalResourceFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "critical_resource";
+        };
+        /** CriticalResourceFacts */
+        CriticalResourceFacts: {
+            /** Difficult */
+            difficult: boolean;
+            /** Only Good At Depth */
+            only_good_at_depth: number;
+            /**
+             * Purpose
+             * @enum {string}
+             */
+            purpose: "decisive_resource" | "defense";
+        };
         /** CrossGameContext */
         CrossGameContext: {
             /** Input Digest */
@@ -2244,6 +2467,41 @@ export interface components {
             /** Time Control */
             time_control: string | null;
         };
+        /** DoubledFilesFacts */
+        DoubledFilesFacts: {
+            /** Added */
+            added: string[];
+            /** After */
+            after: string[];
+            /** Before */
+            before: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "doubled_files";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /** Removed */
+            removed: string[];
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
         /** EditorPosition */
         EditorPosition: {
             /** Fen */
@@ -2299,6 +2557,37 @@ export interface components {
             /** Win */
             win: components["schemas"]["Ending"][];
         };
+        /** ErosionFacts */
+        ErosionFacts: {
+            /** Net Deterioration Cp */
+            net_deterioration_cp: number;
+            /** Own Mistake Plies */
+            own_mistake_plies: number[];
+            /** Total Conceded Cp */
+            total_conceded_cp: number;
+        };
+        /** ErosionRelationship */
+        ErosionRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["ErosionFacts"];
+            /** Id */
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "erosion";
+            /** Plies */
+            plies: number[];
+        };
         /** Escapes */
         Escapes: {
             /** Drawn */
@@ -2312,6 +2601,50 @@ export interface components {
             /** Won */
             won: number;
         };
+        /** EvaluationChangeEvent */
+        EvaluationChangeEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["EvaluationChangeFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "evaluation_change";
+        };
+        /** EvaluationChangeFacts */
+        EvaluationChangeFacts: {
+            /** Decisive */
+            decisive: boolean;
+            /**
+             * From Band
+             * @enum {string}
+             */
+            from_band: "forced_win" | "forced_loss" | "advantage" | "disadvantage" | "balanced" | "edge";
+            /** Loss Cp */
+            loss_cp: number | null;
+            /** Lost Advantage */
+            lost_advantage: boolean;
+            /**
+             * To Band
+             * @enum {string}
+             */
+            to_band: "forced_win" | "forced_loss" | "advantage" | "disadvantage" | "balanced" | "edge";
+        };
         /** Evidence */
         Evidence: {
             /** Allows Mate */
@@ -2320,10 +2653,6 @@ export interface components {
             candidates: components["schemas"]["Candidate"][];
             /** Classifications */
             classifications: components["schemas"]["EvidenceClassification"][];
-            /** Facts */
-            facts: {
-                [key: string]: components["schemas"]["JsonValue"];
-            };
             /** Fen */
             fen: string;
             /** Id */
@@ -2431,6 +2760,116 @@ export interface components {
             /** Verification Analysis Ids */
             verification_analysis_ids?: string[];
         };
+        /** FinishEvent */
+        FinishEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["FinishFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "finish";
+        };
+        /** FinishFacts */
+        FinishFacts: {
+            /** Result */
+            result: string;
+            /**
+             * Termination
+             * @enum {string}
+             */
+            termination: "checkmate" | "stalemate" | "insufficient_material";
+        };
+        /** FirstDevelopmentFacts */
+        FirstDevelopmentFacts: {
+            /** After */
+            after: string;
+            /** Before */
+            before: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "first_development";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /** Piece */
+            piece: string;
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
+        /** ForcedMateEvent */
+        ForcedMateEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["ForcedMateFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "forced_mate";
+        };
+        /** ForcedMateFacts */
+        ForcedMateFacts: {
+            actual: components["schemas"]["Score"];
+            best: components["schemas"]["Score"];
+            /** Mate In */
+            mate_in: number;
+            /**
+             * Stage
+             * @enum {string}
+             */
+            stage: "started" | "continued" | "next" | "slower" | "hastened" | "held";
+            /**
+             * Winner
+             * @enum {string}
+             */
+            winner: "mover" | "opponent";
+        };
         /** Frame */
         Frame: {
             /** Annotation */
@@ -2503,7 +2942,7 @@ export interface components {
             /** Nodes */
             nodes: components["schemas"]["ContextNode"][];
             /** Relationships */
-            relationships: components["schemas"]["GameRelationship"][];
+            relationships: (components["schemas"]["RepeatedMotifRelationship"] | components["schemas"]["PunishmentRelationship"] | components["schemas"]["RecoveryRelationship"] | components["schemas"]["AdvantageRunRelationship"] | components["schemas"]["ErosionRelationship"] | components["schemas"]["SupportRestoredRelationship"])[];
             /** Total Plies */
             total_plies: number;
             /** Turning Points */
@@ -2704,31 +3143,6 @@ export interface components {
             /** Time Classes */
             time_classes: string[];
         };
-        /** GameRelationship */
-        GameRelationship: {
-            /**
-             * Actor
-             * @enum {string}
-             */
-            actor: "white" | "black";
-            /** Event Ids */
-            event_ids: string[];
-            /** Evidence */
-            evidence: components["schemas"]["EvidenceReference"][];
-            /** Facts */
-            facts: {
-                [key: string]: components["schemas"]["JsonValue"];
-            };
-            /** Id */
-            id: string;
-            /**
-             * Kind
-             * @enum {string}
-             */
-            kind: "repeated_motif" | "punishment" | "recovery" | "advantage_run" | "erosion" | "support_restored";
-            /** Plies */
-            plies: number[];
-        };
         /** GameReviewReport */
         GameReviewReport: {
             actual: components["schemas"]["Candidate"];
@@ -2835,6 +3249,53 @@ export interface components {
             status: "provisional" | "supported";
             /** Title */
             title: string;
+        };
+        /** HumanContrastEvent */
+        HumanContrastEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["HumanContrastFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "human_contrast";
+        };
+        /** HumanContrastFacts */
+        HumanContrastFacts: {
+            /**
+             * Best Naturalness
+             * @enum {string}
+             */
+            best_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
+            conditioning: components["schemas"]["Conditioning"] | null;
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "structural" | "heuristic" | "limited" | "unavailable";
+            domain: components["schemas"]["Domain"] | null;
+            /** Observations */
+            observations: ("natural_error" | "unusual_strong_move" | "engine_human_disagreement")[];
+            /**
+             * Played Naturalness
+             * @enum {string}
+             */
+            played_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
         };
         /** HumanEvidence */
         HumanEvidence: {
@@ -3009,8 +3470,11 @@ export interface components {
             id: string;
             /** Import Id */
             import_id: string | null;
-            /** Kind */
-            kind: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "game_review" | "classification" | "enrichment" | "puzzle_generation" | "sync" | "chesscom_fetch" | "provider_fetch" | "level_fit" | "analysis" | "retired";
             /** Mistakes Identified */
             mistakes_identified: number;
             /** Positions Triaged */
@@ -3065,6 +3529,41 @@ export interface components {
             status: "queued" | "running" | "completed" | "failed" | "cancelled";
         };
         JsonValue: unknown;
+        /** KingFlightsFacts */
+        KingFlightsFacts: {
+            /** After */
+            after: string[];
+            /** Before */
+            before: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "king_flights";
+            /** King */
+            king: string;
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /** Opened */
+            opened: string[];
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
         /** LegalMove */
         LegalMove: {
             /** Capture */
@@ -3405,6 +3904,43 @@ export interface components {
             /** Tags */
             tags?: string[];
         };
+        /** MateEvent */
+        MateEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["MateFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "mate";
+        };
+        /** MateFacts */
+        MateFacts: {
+            actual: components["schemas"]["Score"];
+            best: components["schemas"]["Score"];
+            /** Mate In */
+            mate_in: number | null;
+            /**
+             * Transition
+             * @enum {string}
+             */
+            transition: "allowed" | "missed";
+        };
         /** ModelProvenance */
         ModelProvenance: {
             /** Adapter Version */
@@ -3500,7 +4036,7 @@ export interface components {
         MoveIntelligence: {
             clock: components["schemas"]["ClockFacts"] | null;
             /** Events */
-            events: components["schemas"]["ReviewEvent"][];
+            events: (components["schemas"]["MateEvent"] | components["schemas"]["ForcedMateEvent"] | components["schemas"]["EvaluationChangeEvent"] | components["schemas"]["CriticalResourceEvent"] | components["schemas"]["SacrificeEvent"] | components["schemas"]["TacticEvent"] | components["schemas"]["HumanContrastEvent"] | components["schemas"]["ClockObservationEvent"] | components["schemas"]["OpeningDepartureEvent"] | components["schemas"]["CheckEvent"] | components["schemas"]["FinishEvent"] | components["schemas"]["PositionalEvent"])[];
             /** Input Digest */
             input_digest: string;
             /** Limitations */
@@ -3555,6 +4091,40 @@ export interface components {
             name: string;
             /** Study Id */
             study_id: string;
+        };
+        /** OpeningDepartureEvent */
+        OpeningDepartureEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["OpeningDepartureFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "opening_departure";
+        };
+        /** OpeningDepartureFacts */
+        OpeningDepartureFacts: {
+            /** Catalogue */
+            catalogue: string;
+            /** Previous Book Ply */
+            previous_book_ply: number;
+            /** Previous Name */
+            previous_name: string | null;
         };
         /** OpeningEnrollment */
         OpeningEnrollment: {
@@ -3743,6 +4313,37 @@ export interface components {
             /** Source Version */
             source_version: string;
         };
+        /** PassedPawnAdvanceFacts */
+        PassedPawnAdvanceFacts: {
+            /** After */
+            after: string;
+            /** Before */
+            before: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "passed_pawn_advance";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
         /** PasswordChange */
         PasswordChange: {
             /** Current Password */
@@ -3757,6 +4358,41 @@ export interface components {
         PasswordReset: {
             /** Password */
             password: string;
+        };
+        /** PawnSetFacts */
+        PawnSetFacts: {
+            /** Added */
+            added: string[];
+            /** After */
+            after: string[];
+            /** Before */
+            before: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "isolated_pawns" | "passed_pawns";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /** Removed */
+            removed: string[];
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
         };
         /** PgnImportResult */
         PgnImportResult: {
@@ -3784,6 +4420,43 @@ export interface components {
              * @enum {string}
              */
             phase: "opening" | "middlegame" | "endgame";
+        };
+        /** PieceSupportFacts */
+        PieceSupportFacts: {
+            /** After */
+            after: string[];
+            /** Attacked */
+            attacked: boolean;
+            /** Before */
+            before: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "piece_support";
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /** Piece */
+            piece: string;
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Target */
+            target: string;
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
         };
         /**
          * PinArrow
@@ -3975,6 +4648,32 @@ export interface components {
             /** Ply */
             ply: number;
         };
+        /** PositionalEvent */
+        PositionalEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: components["schemas"]["FirstDevelopmentFacts"] | components["schemas"]["CastlingFacts"] | components["schemas"]["KingFlightsFacts"] | components["schemas"]["PawnSetFacts"] | components["schemas"]["DoubledFilesFacts"] | components["schemas"]["PassedPawnAdvanceFacts"] | components["schemas"]["RookFileFacts"] | components["schemas"]["PieceSupportFacts"] | components["schemas"]["BishopPairFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "positional";
+        };
         /** PracticalAssessment */
         PracticalAssessment: {
             /**
@@ -4097,8 +4796,14 @@ export interface components {
             /** Username */
             username: string;
         };
-        /** ProviderImportRequest */
+        /**
+         * ProviderImportRequest
+         * @description The body of a provider import or sync; like every request contract it
+         *     rejects fields it does not know instead of ignoring them.
+         */
         ProviderImportRequest: {
+            /** Analyze */
+            analyze?: boolean | null;
             /** End Date */
             end_date?: string | null;
             /**
@@ -4131,6 +4836,41 @@ export interface components {
             punished: number;
             /** Unpunished */
             unpunished: number;
+        };
+        /** PunishmentFacts */
+        PunishmentFacts: {
+            /**
+             * Opportunity
+             * @enum {string}
+             */
+            opportunity: "advantage" | "equality";
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "capitalized" | "missed";
+        };
+        /** PunishmentRelationship */
+        PunishmentRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["PunishmentFacts"];
+            /** Id */
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "punishment";
+            /** Plies */
+            plies: number[];
         };
         /** PuzzleCommand */
         PuzzleCommand: {
@@ -4384,6 +5124,38 @@ export interface components {
             /** Longest Win Streak */
             longest_win_streak: number;
         };
+        /** RecoveryFacts */
+        RecoveryFacts: {
+            /** Opponent Errors */
+            opponent_errors: number[];
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "winning_chances" | "playable_position";
+        };
+        /** RecoveryRelationship */
+        RecoveryRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["RecoveryFacts"];
+            /** Id */
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "recovery";
+            /** Plies */
+            plies: number[];
+        };
         /** RefinementInfo */
         RefinementInfo: {
             /** Adopted */
@@ -4421,38 +5193,51 @@ export interface components {
             /** Wins */
             wins: number;
         };
-        /** ReviewCount */
-        ReviewCount: {
-            /** Due */
-            due: number;
+        /** RepeatedMotifFacts */
+        RepeatedMotifFacts: {
+            /** First Ply */
+            first_ply: number;
+            /** Motif */
+            motif: string;
+            /** Occurrence */
+            occurrence: number;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "allowed" | "played" | "missed" | "alternative" | "caused";
+            /**
+             * Scope
+             * @constant
+             */
+            scope: "observed_reviewed_plies";
         };
-        /** ReviewEvent */
-        ReviewEvent: {
+        /** RepeatedMotifRelationship */
+        RepeatedMotifRelationship: {
             /**
              * Actor
              * @enum {string}
              */
             actor: "white" | "black";
-            /**
-             * Confidence
-             * @enum {string}
-             */
-            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Event Ids */
+            event_ids: string[];
             /** Evidence */
             evidence: components["schemas"]["EvidenceReference"][];
-            /** Facts */
-            facts: {
-                [key: string]: components["schemas"]["JsonValue"];
-            };
+            facts: components["schemas"]["RepeatedMotifFacts"];
             /** Id */
             id: string;
-            /** Importance */
-            importance: number;
             /**
-             * Kind
+             * @description discriminator enum property added by openapi-typescript
              * @enum {string}
              */
-            kind: "mate" | "forced_mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish" | "positional";
+            kind: "repeated_motif";
+            /** Plies */
+            plies: number[];
+        };
+        /** ReviewCount */
+        ReviewCount: {
+            /** Due */
+            due: number;
         };
         /** ReviewFeedback */
         ReviewFeedback: {
@@ -4477,10 +5262,6 @@ export interface components {
             explanation_summary_frame?: components["schemas"]["Frame"] | null;
             /** Explanation Summary Kind */
             explanation_summary_kind?: ("mate_for_mover" | "mate_against_mover" | "material_gain" | "material_loss" | "engine_accepted" | "engine_rejected" | "curated_accepted" | "curated_rejected" | "frame") | null;
-            /** Facts */
-            facts?: {
-                [key: string]: components["schemas"]["JsonValue"];
-            } | null;
             /** Fen */
             fen?: string | null;
             /** Grade */
@@ -4618,6 +5399,70 @@ export interface components {
             /** Wins */
             wins: number;
         };
+        /** RookFileFacts */
+        RookFileFacts: {
+            /**
+             * After
+             * @enum {string}
+             */
+            after: "closed" | "semi_open" | "open";
+            /**
+             * Before
+             * @enum {string}
+             */
+            before: "closed" | "semi_open" | "open";
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            feature: "rook_file";
+            /** File */
+            file: string;
+            /**
+             * Line
+             * @enum {string}
+             */
+            line: "actual" | "best";
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "white" | "black";
+            /** Squares */
+            squares: string[];
+            /** Uci */
+            uci: string;
+            /**
+             * Value Judgment
+             * @constant
+             */
+            value_judgment: "not_inferred";
+        };
+        /** SacrificeEvent */
+        SacrificeEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["SacrificeFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "sacrifice";
+        };
         /** SacrificeEvidence */
         SacrificeEvidence: {
             /** Analysis Id */
@@ -4625,6 +5470,14 @@ export interface components {
             /** Capture */
             capture: string;
             score: components["schemas"]["Score"];
+        };
+        /** SacrificeFacts */
+        SacrificeFacts: {
+            /** Acceptance Move */
+            acceptance_move: string;
+            acceptance_score: components["schemas"]["Score"];
+            /** Sound At Depth */
+            sound_at_depth: number;
         };
         /** Score */
         Score: {
@@ -4783,6 +5636,40 @@ export interface components {
             /** Reviews */
             reviews: number;
         };
+        /** SupportRestoredFacts */
+        SupportRestoredFacts: {
+            /**
+             * Causation
+             * @constant
+             */
+            causation: "support_change_only";
+            /** Piece */
+            piece: string;
+            /** Target */
+            target: string;
+        };
+        /** SupportRestoredRelationship */
+        SupportRestoredRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["SupportRestoredFacts"];
+            /** Id */
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "support_restored";
+            /** Plies */
+            plies: number[];
+        };
         /** SyncStatus */
         SyncStatus: {
             /** Checked At */
@@ -4802,6 +5689,76 @@ export interface components {
             status: string;
             /** Username */
             username: string;
+        };
+        /** TacticEvent */
+        TacticEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            facts: components["schemas"]["TacticFacts"];
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "tactic";
+        };
+        /** TacticFacts */
+        TacticFacts: {
+            /** Context Fen */
+            context_fen: string | null;
+            /** Context Move */
+            context_move: string | null;
+            /** Frame Ply */
+            frame_ply: number;
+            /** Motif */
+            motif: string;
+            /** Moves */
+            moves: string[];
+            /** Opportunity Actor */
+            opportunity_actor: ("white" | "black") | null;
+            /** Pieces */
+            pieces: {
+                [key: string]: components["schemas"]["WitnessPiece"];
+            };
+            /** Pinned Before */
+            pinned_before: boolean | null;
+            /** Plies */
+            plies: number[];
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "allowed" | "played" | "missed" | "alternative" | "caused";
+            /** Roles */
+            roles: {
+                [key: string]: string[];
+            };
+            /** Rule Id */
+            rule_id: string;
+            /** Settled Material Delta */
+            settled_material_delta: number | null;
+            /** Squares */
+            squares: string[];
+            /**
+             * Verification
+             * @enum {string}
+             */
+            verification: "engine_mate" | "verified_line" | "engine_defense";
+            /** Witness */
+            witness: components["schemas"]["WitnessMove"][];
         };
         /** Theory */
         Theory: {
@@ -4903,6 +5860,27 @@ export interface components {
         WelcomeBack: {
             /** Away Since */
             away_since: string | null;
+        };
+        /** WitnessMove */
+        WitnessMove: {
+            /** Capture */
+            capture: string | null;
+            /** Gives Check */
+            gives_check: boolean;
+            /** Ply */
+            ply: number;
+            /** San */
+            san: string;
+        };
+        /** WitnessPiece */
+        WitnessPiece: {
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Piece */
+            piece: string;
         };
         /** WorkerActivity */
         WorkerActivity: {

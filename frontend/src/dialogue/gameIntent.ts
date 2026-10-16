@@ -141,12 +141,11 @@ export function gameIntent({
     answer.uci?.slice(2, 4) === report.actual.uci.slice(2, 4) &&
     move.includes("x");
   for (const event of events) {
-    const f = event.facts;
     const add = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
       claims.push(claim(code, slots, priority, event.evidence, [event.id]));
     if (event.kind === "mate")
       add(
-        f.transition === "allowed" ? "allowed_mate" : "missed_mate",
+        event.facts.transition === "allowed" ? "allowed_mate" : "missed_mate",
         {
           best,
           opponent,
@@ -162,7 +161,7 @@ export function gameIntent({
     // and later moves of that stage speak their grade instead of repeating it.
     if (
       event.kind === "forced_mate" &&
-      isForcedMateStage(f.stage) &&
+      isForcedMateStage(event.facts.stage) &&
       !events.some(
         other =>
           other.kind === "tactic" &&
@@ -171,29 +170,33 @@ export function gameIntent({
       ) &&
       (variation ||
         !game.frames[ply - 2]?.report?.intelligence?.events.some(
-          other => other.kind === "forced_mate" && other.facts.stage === f.stage,
+          other => other.kind === "forced_mate" && other.facts.stage === event.facts.stage,
         ))
     )
-      add(`forced_mate_${f.stage}`, { move, best, opponent, mate: Number(f.mate_in) }, 97);
+      add(
+        `forced_mate_${event.facts.stage}`,
+        { move, best, opponent, mate: Number(event.facts.mate_in) },
+        97,
+      );
     if (event.kind === "tactic") {
       const item = tacticalClaim(event, move, best, opponent);
       if (item) claims.push(item);
     }
     if (event.kind === "sacrifice") add("sacrifice", {}, 90);
     if (event.kind === "critical_resource") {
-      add(f.purpose === "defense" ? "only_move" : "decisive_resource", {}, 93);
-      if (learnerMove) purpose = f.difficult ? "difficult_defense" : "only_move";
+      add(event.facts.purpose === "defense" ? "only_move" : "decisive_resource", {}, 93);
+      if (learnerMove) purpose = event.facts.difficult ? "difficult_defense" : "only_move";
     }
     if (event.kind === "positional") {
       // Positive explanations describe the played move. An error keeps only facts
       // that explain its cost, never a gain of the played move or a drawback of the better one.
-      if (poor ? !explainsCost(f, mover) : f.line !== "actual") continue;
+      if (poor ? !explainsCost(event.facts, mover) : event.facts.line !== "actual") continue;
       // A defender gained or lost by a piece that is simply traded off is not the story.
       if (
-        f.feature === "piece_support" &&
-        f.line === "actual" &&
+        event.facts.feature === "piece_support" &&
+        event.facts.line === "actual" &&
         recaptured &&
-        f.target === report.actual.uci.slice(2, 4)
+        event.facts.target === report.actual.uci.slice(2, 4)
       )
         continue;
       // "A bishop could have developed", "the alternative was to castle" or "another move
@@ -205,12 +208,12 @@ export function gameIntent({
           "passed_pawn_advance",
           "passed_pawns",
           "rook_file",
-        ].includes(String(f.feature)) &&
-        f.line !== "actual" &&
+        ].includes(String(event.facts.feature)) &&
+        event.facts.line !== "actual" &&
         events.some(
           other =>
             other.kind === "positional" &&
-            other.facts.feature === f.feature &&
+            other.facts.feature === event.facts.feature &&
             other.facts.line === "actual",
         )
       )
@@ -238,8 +241,7 @@ export function gameIntent({
   if (!variation && node && learnerMove && node.actor === game.orientation) {
     for (const relation of game.context?.relationships ?? []) {
       if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
-      const earlier = moveLabel(game, relation.plies[0]),
-        f = relation.facts;
+      const earlier = moveLabel(game, relation.plies[0]);
       const linked = (code: ClaimCode, slots: Claim["slots"], priority: number) =>
         claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
       // Each relationship is told only where its wording holds: a conversion
@@ -253,7 +255,7 @@ export function gameIntent({
           {
             earlier,
             help:
-              Array.isArray(f.opponent_errors) && f.opponent_errors.length
+              Array.isArray(relation.facts.opponent_errors) && relation.facts.opponent_errors.length
                 ? " The opponent's errors helped make that possible."
                 : "",
           },
@@ -264,15 +266,19 @@ export function gameIntent({
       }
       if (relation.kind === "punishment")
         linked(
-          f.outcome === "capitalized" ? "punishment" : "missed_punishment",
+          relation.facts.outcome === "capitalized" ? "punishment" : "missed_punishment",
           { earlier, side },
           81,
         );
       if (
         relation.kind === "repeated_motif" &&
-        ["allowed", "caused", "missed"].includes(String(f.role))
+        ["allowed", "caused", "missed"].includes(String(relation.facts.role))
       )
-        linked("repeated", { count: Number(f.occurrence), motif: words(f.motif) }, 74);
+        linked(
+          "repeated",
+          { count: Number(relation.facts.occurrence), motif: words(relation.facts.motif) },
+          74,
+        );
       // A restored defender matters only when this move's piece is under attack,
       // and is never good news on a move graded as an error. It replaces the plain
       // "gains a defender" fact from the same event rather than repeating it.
@@ -281,7 +287,11 @@ export function gameIntent({
         relation.kind === "support_restored" &&
         !poor &&
         report.intelligence?.events.some(
-          event => event.id === restored && event.facts.attacked === true,
+          event =>
+            event.id === restored &&
+            event.kind === "positional" &&
+            event.facts.feature === "piece_support" &&
+            event.facts.attacked,
         )
       ) {
         claims.splice(
@@ -291,12 +301,20 @@ export function gameIntent({
             item => !(item.code === "support" && !!restored && item.sourceIds.includes(restored)),
           ),
         );
-        linked("support_restored", { earlier, piece: words(f.piece) }, 75);
+        linked("support_restored", { earlier, piece: words(relation.facts.piece) }, 75);
       }
       // A run of concessions is only told on a move that is itself one.
-      if (relation.kind === "erosion" && report.label === "Inaccuracy" && none(f.own_mistake_plies))
+      if (
+        relation.kind === "erosion" &&
+        report.label === "Inaccuracy" &&
+        none(relation.facts.own_mistake_plies)
+      )
         linked("erosion", { earlier }, 71);
-      if (relation.kind === "advantage_run" && f.outcome === "converted" && none(f.own_error_plies))
+      if (
+        relation.kind === "advantage_run" &&
+        relation.facts.outcome === "converted" &&
+        none(relation.facts.own_error_plies)
+      )
         linked("conversion", { earlier, side }, 75);
     }
     for (const item of game.history?.weaknesses ?? [])

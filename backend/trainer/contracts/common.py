@@ -2,10 +2,11 @@ from typing import Annotated, Literal
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 
-from trainer.job_lifecycle import JobStatus as Status
+from trainer.job_kinds import JobKind, JobStatus
 
 Color = Literal["white", "black"]
-JobStatusName = Literal[tuple(status.value for status in Status)]
+JobStatusName = Literal[tuple(status.value for status in JobStatus)]
+JobKindName = Literal[tuple(kind.value for kind in JobKind)]
 
 
 class Contract(BaseModel):

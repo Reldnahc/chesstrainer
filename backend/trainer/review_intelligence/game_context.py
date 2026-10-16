@@ -3,7 +3,11 @@
 import chess
 
 from trainer.chess_core import Score, digest
-from trainer.review_intelligence.events_types import EvidenceReference
+from trainer.review_intelligence.events_types import (
+    EvidenceReference,
+    MoveIntelligence,
+    report_events,
+)
 from trainer.review_intelligence.game_links import (
     consistent,
     loss,
@@ -12,9 +16,9 @@ from trainer.review_intelligence.game_links import (
 )
 from trainer.review_intelligence.game_types import (
     GAME_CONTEXT_VERSION,
+    GAME_RELATIONSHIP,
     ContextNode,
     GameContext,
-    GameRelationship,
     TurningPoint,
 )
 from trainer.review_scores import is_mistake
@@ -30,11 +34,15 @@ def game_context(parsed, reports, *, completed=False):
     limitations = set()
     for ply, move in enumerate(moves, 1):
         report = reports.get(ply)
-        intel = report.get("intelligence") if report else None
+        intel = (
+            MoveIntelligence.model_validate(report["intelligence"])
+            if report and report.get("intelligence")
+            else None
+        )
         frames = report.get("actual_line", {}).get("frames", []) if report else []
         valid = (
             intel
-            and intel["ply"] == ply
+            and intel.ply == ply
             and frames
             and frames[0]["fen"] == board.fen()
             and report["actual"]["uci"] == move.uci()
@@ -45,8 +53,8 @@ def game_context(parsed, reports, *, completed=False):
             node = ContextNode(
                 ply=ply,
                 actor="white" if board.turn else "black",
-                input_digest=intel["input_digest"],
-                event_ids=[e["id"] for e in intel["events"]],
+                input_digest=intel.input_digest,
+                event_ids=[e.id for e in intel.events],
                 before=Score.model_validate(report["best"]["score"]),
                 after=Score.model_validate(report["actual"]["score"]),
                 evidence=[
@@ -92,18 +100,22 @@ def game_context(parsed, reports, *, completed=False):
     def emit(kind, actor, linked, *, event_ids=None, **facts):
         references = [ref for n in linked for ref in n.evidence]
         references.append(EvidenceReference(source="pgn", id=pgn_id, field="mainline"))
-        payload = dict(
-            kind=kind,
-            actor=actor,
-            plies=[n.ply for n in linked],
-            event_ids=event_ids or [e for n in linked for e in n.event_ids],
-            evidence=references,
-            facts=facts,
+        # Validated against the kind's typed facts (game_types).
+        relationship = GAME_RELATIONSHIP.validate_python(
+            dict(
+                id="",
+                kind=kind,
+                actor=actor,
+                plies=[n.ply for n in linked],
+                event_ids=event_ids or [e for n in linked for e in n.event_ids],
+                evidence=references,
+                facts=facts,
+            )
         )
         identity = digest(
-            {"version": VERSION, **payload, "evidence": [r.model_dump() for r in references]}
+            {"version": VERSION, **relationship.model_dump(mode="json", exclude={"id"})}
         )
-        relationships.append(GameRelationship(id=identity, **payload))
+        relationships.append(relationship.model_copy(update={"id": identity}))
 
     repeated_links(nodes, reports, emit)
     for segment in segments:
@@ -153,26 +165,26 @@ def support_links(segment, moves, reports, emit):
                 pending[(color, move.to_square)] = value
             elif color != node.actor and square == move.to_square:
                 del pending[key]
-        for event in reports[node.ply]["intelligence"]["events"]:
-            fact = event["facts"]
+        for event in report_events(reports[node.ply]):
             if (
-                event["kind"] != "positional"
-                or fact.get("line") != "actual"
-                or fact.get("feature") != "piece_support"
+                event.kind != "positional"
+                or event.facts.line != "actual"
+                or event.facts.feature != "piece_support"
             ):
                 continue
-            key = (fact["side"], chess.parse_square(fact["target"]))
-            if not fact["after"]:
+            fact = event.facts
+            key = (fact.side, chess.parse_square(fact.target))
+            if not fact.after:
                 pending[key] = (node, event)
             elif key in pending:
                 earlier, original = pending.pop(key)
                 if earlier.ply != node.ply:
                     emit(
                         "support_restored",
-                        fact["side"],
+                        fact.side,
                         [earlier, node],
-                        event_ids=[original["id"], event["id"]],
-                        piece=fact["piece"],
-                        target=fact["target"],
+                        event_ids=[original.id, event.id],
+                        piece=fact.piece,
+                        target=fact.target,
                         causation="support_change_only",
                     )

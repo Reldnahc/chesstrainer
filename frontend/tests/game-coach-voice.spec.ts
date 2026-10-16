@@ -15,6 +15,7 @@ import {
   selectGameSpeech,
 } from "../src/audio/speech/gameSelection";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
+import { reviewEvent, witness } from "./helpers/reviewEvents";
 import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with { type: "json" };
 
 const walterOpener = walterBank.recordings.some(recording => recording.id === "game-review-opened");
@@ -197,28 +198,29 @@ function reviewedTactics(
   const sans = ["Nc2+", "Kf3", "Qe3+", "Kg2", "Qe2+", "Kh1", "Qxd1+"];
   const score = { kind: "mate" as const, value: -7, mate_given: false };
   const actual = { uci: "d4c2", san: "Nc2+", score, depth: 20, pv: ["d4c2"] };
-  const tactic = ({ id, motif, plies, roles = {} }: Witness, index: number) => ({
-    id,
-    kind: "tactic" as const,
-    actor: "black" as const,
-    confidence: "line_witness" as const,
-    importance: 65,
-    facts: {
-      role: "played",
-      motif,
-      plies,
-      frame_ply: plies[0],
-      verification: "verified_line",
-      witness: plies.map(ply => ({ ply, san: sans[ply - 1], capture: null, gives_check: true })),
-      roles,
-      pieces: {},
-      squares: [],
-    },
-    evidence: [
-      { source: "stockfish" as const, id: "played", field: `actual_line/findings/${index}` },
-      { source: "rule" as const, id: `rule-${motif}`, field: "verified_witness" },
-    ],
-  });
+  const tactic = ({ id, motif, plies, roles = {} }: Witness, index: number) =>
+    reviewEvent(
+      "tactic",
+      {
+        role: "played",
+        motif,
+        plies,
+        frame_ply: plies[0],
+        verification: "verified_line",
+        witness: plies.map(ply => witness(ply, sans[ply - 1], { gives_check: true })),
+        roles,
+      },
+      {
+        id,
+        actor: "black",
+        confidence: "line_witness",
+        importance: 65,
+        evidence: [
+          { source: "stockfish", id: "played", field: `actual_line/findings/${index}` },
+          { source: "rule", id: `rule-${motif}`, field: "verified_witness" },
+        ],
+      },
+    );
   const report: Report = {
     label: "Best",
     engine_label: "Best",

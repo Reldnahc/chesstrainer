@@ -203,18 +203,16 @@ def tactical_events(report, emit, ref, fen, actor):
                 {
                     "motif": finding["skill_id"],
                     "role": role,
-                    **({"opportunity_actor": opponent} if causal else {}),
+                    "opportunity_actor": opponent if causal else None,
                     "rule_id": finding["rule_id"],
                     "frame_ply": finding["frame_ply"],
                     "plies": finding["plies"],
                     "moves": finding["moves"],
                     "squares": finding["squares"],
                     "roles": finding["roles"],
-                    **(
-                        {"pinned_before": pinned_before(fen, finding["roles"])}
-                        if finding["skill_id"] == "pin"
-                        else {}
-                    ),
+                    "pinned_before": pinned_before(fen, finding["roles"])
+                    if finding["skill_id"] == "pin"
+                    else None,
                     "verification": finding["verification"],
                     "context_fen": finding.get("context_fen"),
                     "context_move": finding.get("context_move"),

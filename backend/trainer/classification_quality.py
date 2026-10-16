@@ -9,6 +9,7 @@ from trainer.chess_core import Candidate, digest, valid_board
 from trainer.continuations import extended_line
 from trainer.coverage import MECHANISM_SKILLS
 from trainer.diagnosis_types import OUTCOME_SKILLS
+from trainer.taxonomy import UNCLASSIFIED
 
 FIELDS = [
     "decision_id",
@@ -57,7 +58,7 @@ def export_sample(report, path, size=60, *, blind=False):
             if motifs
             else "outcome_only"
             if labels & OUTCOME_SKILLS
-            else "unclassified"
+            else UNCLASSIFIED
         )
         buckets[stratum].append(row)
     for rows in buckets.values():

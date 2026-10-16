@@ -106,6 +106,115 @@
         "title": "ActivePlay",
         "type": "object"
       },
+      "AdvantageRunFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "outcome": {
+            "enum": [
+              "converted",
+              "maintained"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "own_error_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Own Error Plies",
+            "type": "array"
+          },
+          "result_source": {
+            "anyOf": [
+              {
+                "const": "pgn",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result Source"
+          },
+          "reviewed_plies": {
+            "title": "Reviewed Plies",
+            "type": "integer"
+          },
+          "threshold": {
+            "const": "200cp_or_searched_mate",
+            "title": "Threshold",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outcome",
+          "result_source",
+          "threshold",
+          "reviewed_plies",
+          "own_error_plies"
+        ],
+        "title": "AdvantageRunFacts",
+        "type": "object"
+      },
+      "AdvantageRunRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/AdvantageRunFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "advantage_run",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "AdvantageRunRelationship",
+        "type": "object"
+      },
       "AnalysisQueue": {
         "additionalProperties": false,
         "description": "Per-game analysis: one job per saved game, run one at a time per account.",
@@ -240,6 +349,68 @@
           }
         },
         "title": "AudioPreferences",
+        "type": "object"
+      },
+      "BishopPairFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "title": "After",
+            "type": "integer"
+          },
+          "before": {
+            "title": "Before",
+            "type": "integer"
+          },
+          "feature": {
+            "const": "bishop_pair",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after"
+        ],
+        "title": "BishopPairFacts",
         "type": "object"
       },
       "BoardArrow": {
@@ -459,6 +630,156 @@
           "pv"
         ],
         "title": "Candidate",
+        "type": "object"
+      },
+      "CastlingFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "adjacent_pawns": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Adjacent Pawns",
+            "type": "array"
+          },
+          "after": {
+            "title": "After",
+            "type": "string"
+          },
+          "before": {
+            "title": "Before",
+            "type": "string"
+          },
+          "feature": {
+            "const": "castling",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "adjacent_pawns"
+        ],
+        "title": "CastlingFacts",
+        "type": "object"
+      },
+      "CheckEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/CheckFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "check",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "CheckEvent",
+        "type": "object"
+      },
+      "CheckFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "escapes_check": {
+            "title": "Escapes Check",
+            "type": "boolean"
+          },
+          "gives_check": {
+            "title": "Gives Check",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "gives_check",
+          "escapes_check"
+        ],
+        "title": "CheckFacts",
         "type": "object"
       },
       "ClassificationAudit": {
@@ -769,6 +1090,140 @@
           }
         },
         "title": "ClockFacts",
+        "type": "object"
+      },
+      "ClockObservationEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/ClockObservationFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "clock_observation",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "ClockObservationEvent",
+        "type": "object"
+      },
+      "ClockObservationFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "accompanied_error": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accompanied Error"
+          },
+          "before_band": {
+            "enum": [
+              "critical",
+              "low",
+              "ample",
+              "unknown"
+            ],
+            "title": "Before Band",
+            "type": "string"
+          },
+          "before_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before Seconds"
+          },
+          "causation": {
+            "const": "not_inferred",
+            "title": "Causation",
+            "type": "string"
+          },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
+          },
+          "tempo": {
+            "enum": [
+              "fast_with_time",
+              "long_think",
+              "ordinary",
+              "unknown"
+            ],
+            "title": "Tempo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "before_band",
+          "tempo",
+          "before_seconds",
+          "elapsed_seconds",
+          "accompanied_error",
+          "causation"
+        ],
+        "title": "ClockObservationFacts",
         "type": "object"
       },
       "ClockStory": {
@@ -1416,6 +1871,95 @@
         "title": "CreatedId",
         "type": "object"
       },
+      "CriticalResourceEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/CriticalResourceFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "critical_resource",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "CriticalResourceEvent",
+        "type": "object"
+      },
+      "CriticalResourceFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "difficult": {
+            "title": "Difficult",
+            "type": "boolean"
+          },
+          "only_good_at_depth": {
+            "title": "Only Good At Depth",
+            "type": "integer"
+          },
+          "purpose": {
+            "enum": [
+              "decisive_resource",
+              "defense"
+            ],
+            "title": "Purpose",
+            "type": "string"
+          }
+        },
+        "required": [
+          "only_good_at_depth",
+          "difficult",
+          "purpose"
+        ],
+        "title": "CriticalResourceFacts",
+        "type": "object"
+      },
       "CrossGameContext": {
         "additionalProperties": false,
         "properties": {
@@ -1668,6 +2212,90 @@
         "title": "Domain",
         "type": "object"
       },
+      "DoubledFilesFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "added": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Added",
+            "type": "array"
+          },
+          "after": {
+            "items": {
+              "type": "string"
+            },
+            "title": "After",
+            "type": "array"
+          },
+          "before": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Before",
+            "type": "array"
+          },
+          "feature": {
+            "const": "doubled_files",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "removed": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Removed",
+            "type": "array"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "added",
+          "removed"
+        ],
+        "title": "DoubledFilesFacts",
+        "type": "object"
+      },
       "EditorPosition": {
         "additionalProperties": false,
         "properties": {
@@ -1833,6 +2461,92 @@
         "title": "Endings",
         "type": "object"
       },
+      "ErosionFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "net_deterioration_cp": {
+            "title": "Net Deterioration Cp",
+            "type": "integer"
+          },
+          "own_mistake_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Own Mistake Plies",
+            "type": "array"
+          },
+          "total_conceded_cp": {
+            "title": "Total Conceded Cp",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total_conceded_cp",
+          "net_deterioration_cp",
+          "own_mistake_plies"
+        ],
+        "title": "ErosionFacts",
+        "type": "object"
+      },
+      "ErosionRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/ErosionFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "erosion",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "ErosionRelationship",
+        "type": "object"
+      },
       "Escapes": {
         "additionalProperties": false,
         "properties": {
@@ -1870,6 +2584,124 @@
         "title": "Escapes",
         "type": "object"
       },
+      "EvaluationChangeEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/EvaluationChangeFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "evaluation_change",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "EvaluationChangeEvent",
+        "type": "object"
+      },
+      "EvaluationChangeFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "decisive": {
+            "title": "Decisive",
+            "type": "boolean"
+          },
+          "from_band": {
+            "enum": [
+              "forced_win",
+              "forced_loss",
+              "advantage",
+              "disadvantage",
+              "balanced",
+              "edge"
+            ],
+            "title": "From Band",
+            "type": "string"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "lost_advantage": {
+            "title": "Lost Advantage",
+            "type": "boolean"
+          },
+          "to_band": {
+            "enum": [
+              "forced_win",
+              "forced_loss",
+              "advantage",
+              "disadvantage",
+              "balanced",
+              "edge"
+            ],
+            "title": "To Band",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_band",
+          "to_band",
+          "loss_cp",
+          "lost_advantage",
+          "decisive"
+        ],
+        "title": "EvaluationChangeFacts",
+        "type": "object"
+      },
       "Evidence": {
         "additionalProperties": false,
         "properties": {
@@ -1890,13 +2722,6 @@
             },
             "title": "Classifications",
             "type": "array"
-          },
-          "facts": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            },
-            "title": "Facts",
-            "type": "object"
           },
           "fen": {
             "title": "Fen",
@@ -1938,7 +2763,6 @@
           "loss_cp",
           "mate_lost",
           "allows_mate",
-          "facts",
           "candidates",
           "classifications"
         ],
@@ -2240,6 +3064,263 @@
         "title": "Finding",
         "type": "object"
       },
+      "FinishEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/FinishFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "finish",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "FinishEvent",
+        "type": "object"
+      },
+      "FinishFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          },
+          "termination": {
+            "enum": [
+              "checkmate",
+              "stalemate",
+              "insufficient_material"
+            ],
+            "title": "Termination",
+            "type": "string"
+          }
+        },
+        "required": [
+          "termination",
+          "result"
+        ],
+        "title": "FinishFacts",
+        "type": "object"
+      },
+      "FirstDevelopmentFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "title": "After",
+            "type": "string"
+          },
+          "before": {
+            "title": "Before",
+            "type": "string"
+          },
+          "feature": {
+            "const": "first_development",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "piece": {
+            "title": "Piece",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "piece"
+        ],
+        "title": "FirstDevelopmentFacts",
+        "type": "object"
+      },
+      "ForcedMateEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/ForcedMateFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "forced_mate",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "ForcedMateEvent",
+        "type": "object"
+      },
+      "ForcedMateFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "actual": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "best": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "mate_in": {
+            "title": "Mate In",
+            "type": "integer"
+          },
+          "stage": {
+            "enum": [
+              "started",
+              "continued",
+              "next",
+              "slower",
+              "hastened",
+              "held"
+            ],
+            "title": "Stage",
+            "type": "string"
+          },
+          "winner": {
+            "enum": [
+              "mover",
+              "opponent"
+            ],
+            "title": "Winner",
+            "type": "string"
+          }
+        },
+        "required": [
+          "stage",
+          "winner",
+          "mate_in",
+          "best",
+          "actual"
+        ],
+        "title": "ForcedMateFacts",
+        "type": "object"
+      },
       "Frame": {
         "properties": {
           "annotation": {
@@ -2454,7 +3535,37 @@
           },
           "relationships": {
             "items": {
-              "$ref": "#/components/schemas/GameRelationship"
+              "discriminator": {
+                "mapping": {
+                  "advantage_run": "#/components/schemas/AdvantageRunRelationship",
+                  "erosion": "#/components/schemas/ErosionRelationship",
+                  "punishment": "#/components/schemas/PunishmentRelationship",
+                  "recovery": "#/components/schemas/RecoveryRelationship",
+                  "repeated_motif": "#/components/schemas/RepeatedMotifRelationship",
+                  "support_restored": "#/components/schemas/SupportRestoredRelationship"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/RepeatedMotifRelationship"
+                },
+                {
+                  "$ref": "#/components/schemas/PunishmentRelationship"
+                },
+                {
+                  "$ref": "#/components/schemas/RecoveryRelationship"
+                },
+                {
+                  "$ref": "#/components/schemas/AdvantageRunRelationship"
+                },
+                {
+                  "$ref": "#/components/schemas/ErosionRelationship"
+                },
+                {
+                  "$ref": "#/components/schemas/SupportRestoredRelationship"
+                }
+              ]
             },
             "title": "Relationships",
             "type": "array"
@@ -3205,76 +4316,6 @@
         "title": "GameProvider",
         "type": "object"
       },
-      "GameRelationship": {
-        "additionalProperties": false,
-        "properties": {
-          "actor": {
-            "enum": [
-              "white",
-              "black"
-            ],
-            "title": "Actor",
-            "type": "string"
-          },
-          "event_ids": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Event Ids",
-            "type": "array"
-          },
-          "evidence": {
-            "items": {
-              "$ref": "#/components/schemas/EvidenceReference"
-            },
-            "minItems": 1,
-            "title": "Evidence",
-            "type": "array"
-          },
-          "facts": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            },
-            "title": "Facts",
-            "type": "object"
-          },
-          "id": {
-            "title": "Id",
-            "type": "string"
-          },
-          "kind": {
-            "enum": [
-              "repeated_motif",
-              "punishment",
-              "recovery",
-              "advantage_run",
-              "erosion",
-              "support_restored"
-            ],
-            "title": "Kind",
-            "type": "string"
-          },
-          "plies": {
-            "items": {
-              "type": "integer"
-            },
-            "minItems": 2,
-            "title": "Plies",
-            "type": "array"
-          }
-        },
-        "required": [
-          "id",
-          "kind",
-          "actor",
-          "plies",
-          "event_ids",
-          "evidence",
-          "facts"
-        ],
-        "title": "GameRelationship",
-        "type": "object"
-      },
       "GameReviewReport": {
         "additionalProperties": false,
         "properties": {
@@ -3698,6 +4739,144 @@
           "game_ids"
         ],
         "title": "HistoricalWeakness",
+        "type": "object"
+      },
+      "HumanContrastEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/HumanContrastFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "human_contrast",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "HumanContrastEvent",
+        "type": "object"
+      },
+      "HumanContrastFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "best_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Best Naturalness",
+            "type": "string"
+          },
+          "conditioning": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Conditioning"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "structural",
+              "heuristic",
+              "limited",
+              "unavailable"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "domain": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Domain"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observations": {
+            "items": {
+              "enum": [
+                "natural_error",
+                "unusual_strong_move",
+                "engine_human_disagreement"
+              ],
+              "type": "string"
+            },
+            "title": "Observations",
+            "type": "array"
+          },
+          "played_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Played Naturalness",
+            "type": "string"
+          }
+        },
+        "required": [
+          "observations",
+          "played_naturalness",
+          "best_naturalness",
+          "confidence",
+          "domain",
+          "conditioning"
+        ],
+        "title": "HumanContrastFacts",
         "type": "object"
       },
       "HumanEvidence": {
@@ -4288,6 +5467,18 @@
             "title": "Import Id"
           },
           "kind": {
+            "enum": [
+              "game_review",
+              "classification",
+              "enrichment",
+              "puzzle_generation",
+              "sync",
+              "chesscom_fetch",
+              "provider_fetch",
+              "level_fit",
+              "analysis",
+              "retired"
+            ],
             "title": "Kind",
             "type": "string"
           },
@@ -4447,6 +5638,87 @@
         "type": "object"
       },
       "JsonValue": {},
+      "KingFlightsFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "items": {
+              "type": "string"
+            },
+            "title": "After",
+            "type": "array"
+          },
+          "before": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Before",
+            "type": "array"
+          },
+          "feature": {
+            "const": "king_flights",
+            "title": "Feature",
+            "type": "string"
+          },
+          "king": {
+            "title": "King",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "opened": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Opened",
+            "type": "array"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "opened",
+          "king"
+        ],
+        "title": "KingFlightsFacts",
+        "type": "object"
+      },
       "LegalMove": {
         "additionalProperties": false,
         "properties": {
@@ -5401,6 +6673,105 @@
         "title": "ManualRequest",
         "type": "object"
       },
+      "MateEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/MateFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "mate",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "MateEvent",
+        "type": "object"
+      },
+      "MateFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "actual": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "best": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "mate_in": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mate In"
+          },
+          "transition": {
+            "enum": [
+              "allowed",
+              "missed"
+            ],
+            "title": "Transition",
+            "type": "string"
+          }
+        },
+        "required": [
+          "transition",
+          "best",
+          "actual",
+          "mate_in"
+        ],
+        "title": "MateFacts",
+        "type": "object"
+      },
       "ModelProvenance": {
         "additionalProperties": false,
         "properties": {
@@ -5723,7 +7094,61 @@
           },
           "events": {
             "items": {
-              "$ref": "#/components/schemas/ReviewEvent"
+              "discriminator": {
+                "mapping": {
+                  "check": "#/components/schemas/CheckEvent",
+                  "clock_observation": "#/components/schemas/ClockObservationEvent",
+                  "critical_resource": "#/components/schemas/CriticalResourceEvent",
+                  "evaluation_change": "#/components/schemas/EvaluationChangeEvent",
+                  "finish": "#/components/schemas/FinishEvent",
+                  "forced_mate": "#/components/schemas/ForcedMateEvent",
+                  "human_contrast": "#/components/schemas/HumanContrastEvent",
+                  "mate": "#/components/schemas/MateEvent",
+                  "opening_departure": "#/components/schemas/OpeningDepartureEvent",
+                  "positional": "#/components/schemas/PositionalEvent",
+                  "sacrifice": "#/components/schemas/SacrificeEvent",
+                  "tactic": "#/components/schemas/TacticEvent"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/MateEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/ForcedMateEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/EvaluationChangeEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/CriticalResourceEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/SacrificeEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/TacticEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/HumanContrastEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/ClockObservationEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/OpeningDepartureEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/CheckEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/FinishEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/PositionalEvent"
+                }
+              ]
             },
             "title": "Events",
             "type": "array"
@@ -5887,6 +7312,98 @@
           "moves"
         ],
         "title": "OpeningContinuation",
+        "type": "object"
+      },
+      "OpeningDepartureEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/OpeningDepartureFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "opening_departure",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "OpeningDepartureEvent",
+        "type": "object"
+      },
+      "OpeningDepartureFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "catalogue": {
+            "title": "Catalogue",
+            "type": "string"
+          },
+          "previous_book_ply": {
+            "title": "Previous Book Ply",
+            "type": "integer"
+          },
+          "previous_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Name"
+          }
+        },
+        "required": [
+          "catalogue",
+          "previous_book_ply",
+          "previous_name"
+        ],
+        "title": "OpeningDepartureFacts",
         "type": "object"
       },
       "OpeningEnrollment": {
@@ -6430,6 +7947,68 @@
         "title": "OpeningStudyView",
         "type": "object"
       },
+      "PassedPawnAdvanceFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "title": "After",
+            "type": "string"
+          },
+          "before": {
+            "title": "Before",
+            "type": "string"
+          },
+          "feature": {
+            "const": "passed_pawn_advance",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after"
+        ],
+        "title": "PassedPawnAdvanceFacts",
+        "type": "object"
+      },
       "PasswordChange": {
         "additionalProperties": false,
         "properties": {
@@ -6468,6 +8047,93 @@
           "password"
         ],
         "title": "PasswordReset",
+        "type": "object"
+      },
+      "PawnSetFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "added": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Added",
+            "type": "array"
+          },
+          "after": {
+            "items": {
+              "type": "string"
+            },
+            "title": "After",
+            "type": "array"
+          },
+          "before": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Before",
+            "type": "array"
+          },
+          "feature": {
+            "enum": [
+              "passed_pawns",
+              "isolated_pawns"
+            ],
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "removed": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Removed",
+            "type": "array"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "added",
+          "removed"
+        ],
+        "title": "PawnSetFacts",
         "type": "object"
       },
       "PgnImportResult": {
@@ -6553,6 +8219,89 @@
           "blunders_per_100"
         ],
         "title": "PhaseRate",
+        "type": "object"
+      },
+      "PieceSupportFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "items": {
+              "type": "string"
+            },
+            "title": "After",
+            "type": "array"
+          },
+          "attacked": {
+            "title": "Attacked",
+            "type": "boolean"
+          },
+          "before": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Before",
+            "type": "array"
+          },
+          "feature": {
+            "const": "piece_support",
+            "title": "Feature",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "piece": {
+            "title": "Piece",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "target": {
+            "title": "Target",
+            "type": "string"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "piece",
+          "target",
+          "attacked"
+        ],
+        "title": "PieceSupportFacts",
         "type": "object"
       },
       "PinArrow": {
@@ -7154,6 +8903,111 @@
         "title": "PlyRequest",
         "type": "object"
       },
+      "PositionalEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "discriminator": {
+              "mapping": {
+                "bishop_pair": "#/components/schemas/BishopPairFacts",
+                "castling": "#/components/schemas/CastlingFacts",
+                "doubled_files": "#/components/schemas/DoubledFilesFacts",
+                "first_development": "#/components/schemas/FirstDevelopmentFacts",
+                "isolated_pawns": "#/components/schemas/PawnSetFacts",
+                "king_flights": "#/components/schemas/KingFlightsFacts",
+                "passed_pawn_advance": "#/components/schemas/PassedPawnAdvanceFacts",
+                "passed_pawns": "#/components/schemas/PawnSetFacts",
+                "piece_support": "#/components/schemas/PieceSupportFacts",
+                "rook_file": "#/components/schemas/RookFileFacts"
+              },
+              "propertyName": "feature"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FirstDevelopmentFacts"
+              },
+              {
+                "$ref": "#/components/schemas/CastlingFacts"
+              },
+              {
+                "$ref": "#/components/schemas/KingFlightsFacts"
+              },
+              {
+                "$ref": "#/components/schemas/PawnSetFacts"
+              },
+              {
+                "$ref": "#/components/schemas/DoubledFilesFacts"
+              },
+              {
+                "$ref": "#/components/schemas/PassedPawnAdvanceFacts"
+              },
+              {
+                "$ref": "#/components/schemas/RookFileFacts"
+              },
+              {
+                "$ref": "#/components/schemas/PieceSupportFacts"
+              },
+              {
+                "$ref": "#/components/schemas/BishopPairFacts"
+              }
+            ],
+            "title": "Facts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "positional",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "PositionalEvent",
+        "type": "object"
+      },
       "PracticalAssessment": {
         "additionalProperties": false,
         "properties": {
@@ -7480,7 +9334,20 @@
         "type": "object"
       },
       "ProviderImportRequest": {
+        "additionalProperties": false,
+        "description": "The body of a provider import or sync; like every request contract it\nrejects fields it does not know instead of ignoring them.",
         "properties": {
+          "analyze": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Analyze"
+          },
           "end_date": {
             "anyOf": [
               {
@@ -7565,6 +9432,92 @@
           "unpunished"
         ],
         "title": "Punishment",
+        "type": "object"
+      },
+      "PunishmentFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "opportunity": {
+            "enum": [
+              "advantage",
+              "equality"
+            ],
+            "title": "Opportunity",
+            "type": "string"
+          },
+          "outcome": {
+            "enum": [
+              "capitalized",
+              "missed"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outcome",
+          "opportunity"
+        ],
+        "title": "PunishmentFacts",
+        "type": "object"
+      },
+      "PunishmentRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/PunishmentFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "punishment",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "PunishmentRelationship",
         "type": "object"
       },
       "PuzzleCommand": {
@@ -8353,6 +10306,91 @@
         "title": "Records",
         "type": "object"
       },
+      "RecoveryFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "opponent_errors": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Opponent Errors",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "winning_chances",
+              "playable_position"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outcome",
+          "opponent_errors"
+        ],
+        "title": "RecoveryFacts",
+        "type": "object"
+      },
+      "RecoveryRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/RecoveryFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "recovery",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "RecoveryRelationship",
+        "type": "object"
+      },
       "RefinementInfo": {
         "additionalProperties": false,
         "properties": {
@@ -8467,6 +10505,107 @@
         "title": "Rematches",
         "type": "object"
       },
+      "RepeatedMotifFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "first_ply": {
+            "title": "First Ply",
+            "type": "integer"
+          },
+          "motif": {
+            "title": "Motif",
+            "type": "string"
+          },
+          "occurrence": {
+            "title": "Occurrence",
+            "type": "integer"
+          },
+          "role": {
+            "enum": [
+              "allowed",
+              "played",
+              "missed",
+              "alternative",
+              "caused"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "scope": {
+            "const": "observed_reviewed_plies",
+            "title": "Scope",
+            "type": "string"
+          }
+        },
+        "required": [
+          "motif",
+          "role",
+          "occurrence",
+          "first_ply",
+          "scope"
+        ],
+        "title": "RepeatedMotifFacts",
+        "type": "object"
+      },
+      "RepeatedMotifRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/RepeatedMotifFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "repeated_motif",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "RepeatedMotifRelationship",
+        "type": "object"
+      },
       "ReviewCount": {
         "additionalProperties": false,
         "properties": {
@@ -8479,84 +10618,6 @@
           "due"
         ],
         "title": "ReviewCount",
-        "type": "object"
-      },
-      "ReviewEvent": {
-        "additionalProperties": false,
-        "properties": {
-          "actor": {
-            "enum": [
-              "white",
-              "black"
-            ],
-            "title": "Actor",
-            "type": "string"
-          },
-          "confidence": {
-            "enum": [
-              "board_fact",
-              "searched",
-              "line_witness",
-              "model_signal",
-              "annotation"
-            ],
-            "title": "Confidence",
-            "type": "string"
-          },
-          "evidence": {
-            "items": {
-              "$ref": "#/components/schemas/EvidenceReference"
-            },
-            "minItems": 1,
-            "title": "Evidence",
-            "type": "array"
-          },
-          "facts": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            },
-            "title": "Facts",
-            "type": "object"
-          },
-          "id": {
-            "title": "Id",
-            "type": "string"
-          },
-          "importance": {
-            "maximum": 100.0,
-            "minimum": 0.0,
-            "title": "Importance",
-            "type": "integer"
-          },
-          "kind": {
-            "enum": [
-              "mate",
-              "forced_mate",
-              "evaluation_change",
-              "critical_resource",
-              "sacrifice",
-              "tactic",
-              "human_contrast",
-              "clock_observation",
-              "opening_departure",
-              "check",
-              "finish",
-              "positional"
-            ],
-            "title": "Kind",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "kind",
-          "actor",
-          "confidence",
-          "importance",
-          "facts",
-          "evidence"
-        ],
-        "title": "ReviewEvent",
         "type": "object"
       },
       "ReviewFeedback": {
@@ -8703,20 +10764,6 @@
               }
             ],
             "title": "Explanation Summary Kind"
-          },
-          "facts": {
-            "anyOf": [
-              {
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/JsonValue"
-                },
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Facts"
           },
           "fen": {
             "anyOf": [
@@ -9212,6 +11259,144 @@
         "title": "RhythmCell",
         "type": "object"
       },
+      "RookFileFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {
+            "enum": [
+              "closed",
+              "semi_open",
+              "open"
+            ],
+            "title": "After",
+            "type": "string"
+          },
+          "before": {
+            "enum": [
+              "closed",
+              "semi_open",
+              "open"
+            ],
+            "title": "Before",
+            "type": "string"
+          },
+          "feature": {
+            "const": "rook_file",
+            "title": "Feature",
+            "type": "string"
+          },
+          "file": {
+            "title": "File",
+            "type": "string"
+          },
+          "line": {
+            "enum": [
+              "actual",
+              "best"
+            ],
+            "title": "Line",
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          },
+          "value_judgment": {
+            "const": "not_inferred",
+            "title": "Value Judgment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "side",
+          "squares",
+          "line",
+          "uci",
+          "value_judgment",
+          "feature",
+          "before",
+          "after",
+          "file"
+        ],
+        "title": "RookFileFacts",
+        "type": "object"
+      },
+      "SacrificeEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/SacrificeFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "sacrifice",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "SacrificeEvent",
+        "type": "object"
+      },
       "SacrificeEvidence": {
         "additionalProperties": false,
         "properties": {
@@ -9233,6 +11418,29 @@
           "score"
         ],
         "title": "SacrificeEvidence",
+        "type": "object"
+      },
+      "SacrificeFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_move": {
+            "title": "Acceptance Move",
+            "type": "string"
+          },
+          "acceptance_score": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "sound_at_depth": {
+            "title": "Sound At Depth",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "acceptance_move",
+          "acceptance_score",
+          "sound_at_depth"
+        ],
+        "title": "SacrificeFacts",
         "type": "object"
       },
       "Score": {
@@ -9734,6 +11942,90 @@
         "title": "Stats",
         "type": "object"
       },
+      "SupportRestoredFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "causation": {
+            "const": "support_change_only",
+            "title": "Causation",
+            "type": "string"
+          },
+          "piece": {
+            "title": "Piece",
+            "type": "string"
+          },
+          "target": {
+            "title": "Target",
+            "type": "string"
+          }
+        },
+        "required": [
+          "piece",
+          "target",
+          "causation"
+        ],
+        "title": "SupportRestoredFacts",
+        "type": "object"
+      },
+      "SupportRestoredRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/SupportRestoredFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "const": "support_restored",
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "SupportRestoredRelationship",
+        "type": "object"
+      },
       "SyncStatus": {
         "additionalProperties": false,
         "properties": {
@@ -9797,6 +12089,228 @@
           "error"
         ],
         "title": "SyncStatus",
+        "type": "object"
+      },
+      "TacticEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/TacticFacts"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "const": "tactic",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "actor",
+          "confidence",
+          "importance",
+          "evidence",
+          "kind",
+          "facts"
+        ],
+        "title": "TacticEvent",
+        "type": "object"
+      },
+      "TacticFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "context_fen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Fen"
+          },
+          "context_move": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Move"
+          },
+          "frame_ply": {
+            "title": "Frame Ply",
+            "type": "integer"
+          },
+          "motif": {
+            "title": "Motif",
+            "type": "string"
+          },
+          "moves": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Moves",
+            "type": "array"
+          },
+          "opportunity_actor": {
+            "anyOf": [
+              {
+                "enum": [
+                  "white",
+                  "black"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opportunity Actor"
+          },
+          "pieces": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/WitnessPiece"
+            },
+            "title": "Pieces",
+            "type": "object"
+          },
+          "pinned_before": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pinned Before"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Plies",
+            "type": "array"
+          },
+          "role": {
+            "enum": [
+              "allowed",
+              "played",
+              "missed",
+              "alternative",
+              "caused"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "roles": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Roles",
+            "type": "object"
+          },
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "settled_material_delta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settled Material Delta"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "verification": {
+            "enum": [
+              "engine_mate",
+              "verified_line",
+              "engine_defense"
+            ],
+            "title": "Verification",
+            "type": "string"
+          },
+          "witness": {
+            "items": {
+              "$ref": "#/components/schemas/WitnessMove"
+            },
+            "title": "Witness",
+            "type": "array"
+          }
+        },
+        "required": [
+          "motif",
+          "role",
+          "opportunity_actor",
+          "rule_id",
+          "frame_ply",
+          "plies",
+          "moves",
+          "squares",
+          "roles",
+          "pinned_before",
+          "verification",
+          "context_fen",
+          "context_move",
+          "witness",
+          "pieces",
+          "settled_material_delta"
+        ],
+        "title": "TacticFacts",
         "type": "object"
       },
       "Theory": {
@@ -10114,6 +12628,65 @@
           "away_since"
         ],
         "title": "WelcomeBack",
+        "type": "object"
+      },
+      "WitnessMove": {
+        "additionalProperties": false,
+        "properties": {
+          "capture": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Capture"
+          },
+          "gives_check": {
+            "title": "Gives Check",
+            "type": "boolean"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ply",
+          "san",
+          "capture",
+          "gives_check"
+        ],
+        "title": "WitnessMove",
+        "type": "object"
+      },
+      "WitnessPiece": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "piece": {
+            "title": "Piece",
+            "type": "string"
+          }
+        },
+        "required": [
+          "piece",
+          "color"
+        ],
+        "title": "WitnessPiece",
         "type": "object"
       },
       "WorkerActivity": {

@@ -3,6 +3,7 @@ import { gameIntent } from "../src/dialogue/gameIntent";
 import type { Game, Position, Report } from "../src/gameReview/types";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 import { renderCoaches } from "./render-coaches";
+import { gameRelationship } from "../tests/helpers/reviewEvents";
 
 const fixtures = semanticFixtures<{ skill: string; black: boolean; report: Report }[]>(
   "review_cause_fixtures.py",
@@ -11,7 +12,9 @@ for (const { skill, black, report } of fixtures)
   test(`${skill} identifies the responsible ${black ? "black" : "white"} mover and opponent reply`, async ({
     page,
   }) => {
-    const events = report.intelligence!.events.filter(e => e.facts.motif === skill);
+    const events = report.intelligence!.events.filter(
+      e => e.kind === "tactic" && e.facts.motif === skill,
+    );
     expect(events).toHaveLength(1);
     const mover = black ? "Black" : "White",
       opponent = black ? "White" : "Black";
@@ -66,15 +69,16 @@ for (const { skill, black, report } of fixtures)
       ],
       turning_points: [],
       relationships: [
-        {
-          id: "repeated-cause",
-          kind: "repeated_motif",
-          actor: black ? "black" : "white",
-          plies: [0, 1],
-          event_ids: [events[0].id],
-          facts: { role: "caused", motif: skill, occurrence: 2 },
-          evidence: events[0].evidence,
-        },
+        gameRelationship(
+          "repeated_motif",
+          { role: "caused", motif: skill, occurrence: 2 },
+          {
+            id: "repeated-cause",
+            actor: black ? "black" : "white",
+            event_ids: [events[0].id],
+            evidence: events[0].evidence,
+          },
+        ),
       ],
     };
     const linked = gameIntent({

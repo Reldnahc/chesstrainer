@@ -166,6 +166,12 @@ dialogue and the developer laboratory, including the visible coach's supported c
 
 Each event has a deterministic ID, actor, confidence, importance, structured
 facts and evidence references (authority, ID, field and optional game ply).
+Each event kind has its own typed facts model (`events_types.py`: `TacticFacts`,
+`MateFacts`, positional facts per `feature`, and so on), and each game
+relationship kind its own (`game_types.py`). Producers validate against them,
+backend readers use the typed models rather than dictionary keys, and the
+generated frontend types narrow `facts` by `kind`, so a renamed or retyped fact
+fails at build time instead of as a missing key at run time.
 Event identity depends on those facts and references, not selected coach,
 explanation wording or unrelated model updates. The enclosing input digest also
 tracks evidence generation and PGN context. Original saved reports/PGNs remain

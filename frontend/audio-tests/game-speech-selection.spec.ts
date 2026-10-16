@@ -1,5 +1,6 @@
 import { test, expect } from "../tests/helpers/browserTest";
-import type { Schema } from "../src/api";
+import type { ReviewEventOf, Schema } from "../src/api";
+import { gameRelationship, positionalFacts, type FactsOf } from "../tests/helpers/reviewEvents";
 import type { Game, Position, Report } from "../src/gameReview/types";
 import { gameIntent } from "../src/dialogue/gameIntent";
 import { claim, makeIntent, type ClaimCode } from "../src/dialogue/model";
@@ -75,7 +76,7 @@ for (const fixture of causal)
   test(`Walter selects ${fixture.skill} for ${fixture.black ? "Black" : "White"} from the actual rendered causal claim`, () => {
     const report = structuredClone(fixture.report);
     report.intelligence!.events = report.intelligence!.events.filter(
-      event => event.facts.motif === fixture.skill,
+      event => event.kind === "tactic" && event.facts.motif === fixture.skill,
     );
     const current = context(report);
     const id = `cause-${fixture.skill.replaceAll("_", "-")}`;
@@ -89,8 +90,9 @@ for (const fixture of causal)
       }),
     ).toBe(id);
     const changed = structuredClone(current);
-    changed.report!.intelligence!.events.find(event => event.facts.motif === fixture.skill)!.actor =
-      fixture.black ? "white" : "black";
+    changed.report!.intelligence!.events.find(
+      event => event.kind === "tactic" && event.facts.motif === fixture.skill,
+    )!.actor = fixture.black ? "white" : "black";
     expect(selectGameRecording(changed)).toBeNull();
   });
 
@@ -103,7 +105,11 @@ for (const fixture of positional)
       if (line === "alternative" && fixture.feature === "doubled_files") {
         for (const side of ["white", "black"] as const) {
           for (const event of report.intelligence!.events)
-            if (event.facts.feature === "doubled_files" && event.facts.line === "best")
+            if (
+              event.kind === "positional" &&
+              event.facts.feature === "doubled_files" &&
+              event.facts.line === "best"
+            )
               event.facts.side = side;
           expect(context(report).intent.claims.some(item => item.code === fixture.code)).toBe(
             false,
@@ -316,11 +322,14 @@ test("explicit secondary selection cannot narrate hidden claims or context inher
 test("every tactical recording keeps its exact motif, actor and line role", () => {
   const scripts = inventory.scripts.filter(script => script.family === "tactics");
   for (const script of scripts) {
-    const role = "role" in script ? script.role : "";
-    const motif = "motif" in script ? script.motif : "";
+    const role = ("role" in script ? script.role : "") as FactsOf<"tactic">["role"];
+    const motif = String("motif" in script ? script.motif : "");
     const report = structuredClone(causal[0].report);
     if (role === "played") report.label = report.engine_label = "Best";
-    const original = report.intelligence!.events.find(event => event.facts.role === "allowed")!;
+    const original = report.intelligence!.events.find(
+      (event): event is ReviewEventOf<"tactic"> =>
+        event.kind === "tactic" && event.facts.role === "allowed",
+    )!;
     // Played and missed witnesses start on the move itself; allowed ones on the reply.
     const opening =
       role === "allowed"
@@ -365,20 +374,20 @@ test("same-code rendered claims retain distinct event identity and selected posi
   const report = structuredClone(causal[0].report);
   report.label = report.engine_label = "Best";
   const source = report.intelligence!.events.find(
-    event => event.kind === "positional" && event.facts.line === "actual",
+    (event): event is ReviewEventOf<"positional"> =>
+      event.kind === "positional" && event.facts.line === "actual",
   )!;
-  report.intelligence!.events = ["open", "semi_open"].map((after, index) => ({
+  report.intelligence!.events = (["open", "semi_open"] as const).map((after, index) => ({
     ...source,
     id: `file-event-${index}`,
-    facts: {
-      feature: "rook_file",
+    facts: positionalFacts("rook_file", {
       side: "white",
       before: "closed",
       after,
       file: index ? "d" : "e",
       line: "actual",
       uci: report.actual.uci,
-    },
+    }),
   }));
   const current = context(report);
   expect(current.utterance.renderedClaims).toHaveLength(2);
@@ -396,75 +405,87 @@ test("same-code rendered claims retain distinct event identity and selected posi
 });
 
 test("all positional speech branches validate their structured facts and keep alternative wording", () => {
-  const cases: { code: string; name: string; facts: Schema["ReviewEvent"]["facts"] }[] = [
+  const cases: { code: string; name: string; facts: FactsOf<"positional"> }[] = [
     {
       code: "development",
       name: "development",
-      facts: { feature: "first_development", piece: "knight", before: "c2", after: "e3" },
+      facts: positionalFacts("first_development", { piece: "knight", before: "c2", after: "e3" }),
     },
     {
       code: "rook_file",
       name: "rook-open",
-      facts: { feature: "rook_file", before: "closed", after: "open", file: "c" },
+      facts: positionalFacts("rook_file", { before: "closed", after: "open", file: "c" }),
     },
     {
       code: "rook_file",
       name: "rook-semi-open",
-      facts: { feature: "rook_file", before: "closed", after: "semi_open", file: "c" },
+      facts: positionalFacts("rook_file", { before: "closed", after: "semi_open", file: "c" }),
     },
-    { code: "passed", name: "passed", facts: { feature: "passed_pawns", added: ["c5"] } },
+    { code: "passed", name: "passed", facts: positionalFacts("passed_pawns", { added: ["c5"] }) },
     {
       code: "passer_advance",
       name: "passer-advance",
-      facts: { feature: "passed_pawn_advance", before: "c5", after: "c6" },
+      facts: positionalFacts("passed_pawn_advance", { before: "c5", after: "c6" }),
     },
-    { code: "isolated", name: "isolated", facts: { feature: "isolated_pawns", added: ["c5"] } },
+    {
+      code: "isolated",
+      name: "isolated",
+      facts: positionalFacts("isolated_pawns", { added: ["c5"] }),
+    },
     {
       code: "support",
       name: "support",
-      facts: {
-        feature: "piece_support",
+      facts: positionalFacts("piece_support", {
         before: [],
         after: ["c2"],
         piece: "rook",
         target: "a1",
         attacked: true,
-      },
+      }),
     },
     {
       code: "unsupported",
       name: "unsupported",
-      facts: {
-        feature: "piece_support",
+      facts: positionalFacts("piece_support", {
         before: ["c2"],
         after: [],
         piece: "rook",
         target: "a1",
         attacked: true,
-      },
+      }),
     },
-    { code: "flights", name: "king-flight", facts: { feature: "king_flights", opened: ["g2"] } },
-    { code: "castle", name: "castling", facts: { feature: "castling", before: "e1", after: "g1" } },
+    {
+      code: "flights",
+      name: "king-flight",
+      facts: positionalFacts("king_flights", { opened: ["g2"] }),
+    },
+    {
+      code: "castle",
+      name: "castling",
+      facts: positionalFacts("castling", { before: "e1", after: "g1" }),
+    },
     {
       code: "bishops",
       name: "bishop-pair",
-      facts: { feature: "bishop_pair", before: 2, after: 1, side: "black" },
+      facts: positionalFacts("bishop_pair", { before: 2, after: 1, side: "black" }),
     },
     {
       code: "doubled",
       name: "doubled",
-      facts: { feature: "doubled_files", before: [], after: ["c"], added: ["c"] },
+      facts: positionalFacts("doubled_files", { before: [], after: ["c"], added: ["c"] }),
     },
   ];
   for (const example of cases)
     for (const line of ["actual", "best"] as const) {
       const report = structuredClone(causal[0].report);
       if (line === "actual") report.label = report.engine_label = "Best";
-      const original = report.intelligence!.events.find(event => event.kind === "positional")!;
-      const event = {
+      const original = report.intelligence!.events.find(
+        (event): event is ReviewEventOf<"positional"> => event.kind === "positional",
+      )!;
+      const event: ReviewEventOf<"positional"> = {
         ...original,
         id: `position-${line}-${example.name}`,
-        facts: { side: "white", ...example.facts, line, uci: report[line].uci },
+        facts: { ...example.facts, line, uci: report[line].uci },
         evidence: [
           ...original.evidence,
           { source: "pgn" as const, id: "pgn-history", field: "original_minor_piece_history" },
@@ -485,10 +506,11 @@ test("all positional speech branches validate their structured facts and keep al
       expect(selectGameRecording(current), id).toBe(id);
       expect(inventory.scripts.some(script => script.id === id)).toBe(true);
       const invalid = structuredClone(current);
-      invalid.report!.intelligence!.events[0].facts.side = "unknown";
+      // A side outside the contract (a corrupt record) never selects a clip.
+      (invalid.report!.intelligence!.events[0].facts as { side: string }).side = "unknown";
       expect(selectGameRecording(invalid), id).toBeNull();
       const wrongLine = structuredClone(current);
-      wrongLine.report!.intelligence!.events[0].facts.uci = "h1h8";
+      (wrongLine.report!.intelligence!.events[0].facts as { uci: string }).uci = "h1h8";
       expect(selectGameRecording(wrongLine), id).toBeNull();
     }
 });
@@ -520,15 +542,7 @@ test("recorded-game recovery is tied to learner and current node generation", ()
       },
     ],
     relationships: [
-      {
-        id: "recovery-now",
-        kind: "recovery",
-        actor: "white",
-        plies: [0, 1],
-        facts: { opponent_errors: [1] },
-        evidence,
-        event_ids: [],
-      },
+      gameRelationship("recovery", { opponent_errors: [1] }, { id: "recovery-now", evidence }),
     ],
   };
   const recovered = rerender(current);
@@ -577,15 +591,11 @@ test("the chance-taken clip, some of whose takes call the reply exact, plays onl
         },
       ],
       relationships: [
-        {
-          id: "chance-now",
-          kind: "punishment",
-          actor,
-          plies: [0, 1],
-          facts: { outcome: "capitalized" },
-          evidence,
-          event_ids: [],
-        },
+        gameRelationship(
+          "punishment",
+          { outcome: "capitalized" },
+          { id: "chance-now", actor, evidence },
+        ),
       ],
     };
     return selectGameRecording(onlyClaim(rerender(changed), "punishment"));
@@ -623,15 +633,11 @@ test("the repeated-issue clip, whose takes never count occurrences, plays from t
         },
       ],
       relationships: [
-        {
-          id: "repeat-now",
-          kind: "repeated_motif",
-          actor,
-          plies: [0, 1],
-          facts: { role: "caused", motif: causal[0].skill, occurrence },
-          evidence,
-          event_ids: [],
-        },
+        gameRelationship(
+          "repeated_motif",
+          { role: "caused", motif: causal[0].skill, occurrence },
+          { id: "repeat-now", actor, evidence },
+        ),
       ],
     };
     return selectGameRecording(onlyClaim(rerender(changed), "repeated"));

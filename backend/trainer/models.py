@@ -380,7 +380,6 @@ class Decision(Owned, Base):
     allows_mate: Mapped[bool] = mapped_column(default=False)
     meaningful: Mapped[bool] = mapped_column(default=False, index=True)
     deep: Mapped[bool] = mapped_column(default=False)
-    facts: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=now)
 
 

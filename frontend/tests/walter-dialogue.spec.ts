@@ -1,5 +1,6 @@
 import { test, expect } from "./helpers/browserTest";
-import type { Schema } from "../src/api";
+import type { ReviewEventOf } from "../src/api";
+import { reviewEvent, witness, type FactsOf } from "./helpers/reviewEvents";
 import { tacticalClaim } from "../src/dialogue/eventClaims";
 import { claim, makeIntent, type Claim } from "../src/dialogue/model";
 import { renderDialogue } from "../src/dialogue/neutral";
@@ -15,33 +16,29 @@ import { tacticalPresentation } from "../src/dialogue/tacticalTemplates";
 const walter = { id: "classic", personality: classic };
 const ref = { source: "stockfish" as const, id: "search", field: "actual_line/findings/0" };
 function event(
-  role = "played",
-  changes: Schema["ReviewEvent"]["facts"] = {},
-): Schema["ReviewEvent"] {
+  role: FactsOf<"tactic">["role"] = "played",
+  changes: Partial<FactsOf<"tactic">> = {},
+): ReviewEventOf<"tactic"> {
   const ply = role === "allowed" ? 2 : 1;
-  return {
-    id: "fork-witness",
-    actor: "white",
-    confidence: "line_witness",
-    importance: 75,
-    kind: "tactic",
-    evidence: [ref],
-    facts: {
+  return reviewEvent(
+    "tactic",
+    {
       role,
       motif: "fork",
       frame_ply: ply,
       plies: [ply],
-      witness: [{ ply, san: "Ng5+", capture: null }],
+      witness: [witness(ply, "Ng5+")],
       roles: { targets: ["h7", "e4"] },
       pieces: { h7: { color: "black", piece: "king" }, e4: { color: "black", piece: "queen" } },
       ...changes,
     },
-  };
+    { id: "fork-witness", confidence: "line_witness", evidence: [ref] },
+  );
 }
 function render(item: Claim, subject: "learner" | "opponent" = "learner") {
   return renderDialogue(makeIntent("scope", "best", "game", "best", [item], [], subject), walter);
 }
-const build = (value: Schema["ReviewEvent"]) =>
+const build = (value: ReviewEventOf<"tactic">) =>
   tacticalClaim(value, "Ng5+", "Ng5+", value.actor === "white" ? "White" : "Black")!;
 
 const fixtures = semanticFixtures<{ scenario: string; black: boolean; report: Report }[]>(
@@ -95,17 +92,14 @@ test("Walter states a witnessed root fork without turning a future opportunity i
   const collected = build(
     event("played", {
       plies: [1, 3],
-      witness: [
-        { ply: 1, san: "Ng5+" },
-        { ply: 3, san: "Nxe4", capture: "queen" },
-      ],
+      witness: [witness(1, "Ng5+"), witness(3, "Nxe4", { capture: "queen" })],
     }),
   );
   expect(collected.tactic?.timing).toBe("immediate");
   expect(render(collected).text).toContain("king on h7 and queen on e4 are attacked together");
   // A fork whose witness starts later in the line is only a possibility from here.
   const future = build(
-    event("played", { plies: [3], frame_ply: 3, witness: [{ ply: 3, san: "Ng5+" }] }),
+    event("played", { plies: [3], frame_ply: 3, witness: [witness(3, "Ng5+")] }),
   );
   expect(current.tactic?.timing).toBe("immediate");
   expect(future.tactic?.timing).toBe("possible");
@@ -142,13 +136,13 @@ for (const actor of ["white", "black"] as const)
     expect(reply.text).toContain("would be attacked together");
   });
 
-for (const [name, changes] of Object.entries({
+for (const [name, changes] of Object.entries<Partial<FactsOf<"tactic">>>({
   "missing plies": { plies: undefined },
   "reference board alone": { plies: [], witness: [] },
   "wrong reference board": { frame_ply: 3 },
-  "mismatched witness": { witness: [{ ply: 2, san: "Ng5+" }] },
-  "wrong root move": { witness: [{ ply: 1, san: "Ng1" }] },
-  "non-integer ply": { plies: [1.1], frame_ply: 1.1, witness: [{ ply: 1.1, san: "Ng5+" }] },
+  "mismatched witness": { witness: [witness(2, "Ng5+")] },
+  "wrong root move": { witness: [witness(1, "Ng1")] },
+  "non-integer ply": { plies: [1.1], frame_ply: 1.1, witness: [witness(1.1, "Ng5+")] },
 }))
   test(`Walter does not assert immediate effects from ${name}`, () => {
     const value = render(build(event("played", changes)));
@@ -163,7 +157,7 @@ test("a pin witnessed on the current board is not claimed to have been created b
 });
 
 test("finite-PV material gains remain conditional, separate from motif causation or an overall material lead", () => {
-  for (const role of ["played", "allowed", "missed"]) {
+  for (const role of ["played", "allowed", "missed"] as const) {
     const value = render(build(event(role, { motif: "pin", settled_material_delta: 1 })));
     expect(value.text).toContain(
       "There may be a material gain, though both sides still have choices to make",
@@ -173,13 +167,13 @@ test("finite-PV material gains remain conditional, separate from motif causation
 });
 
 test("capture descriptions preserve actual, alternative, reply and uncertain timing", () => {
-  const capture = (role: string, ply: number) =>
+  const capture = (role: FactsOf<"tactic">["role"], ply: number) =>
     build(
       event(role, {
         motif: "hanging_piece",
         frame_ply: ply,
         plies: [ply],
-        witness: [{ ply, san: "Ng5+", capture: "queen" }],
+        witness: [witness(ply, "Ng5+", { capture: "queen" })],
       }),
     );
   expect(render(capture("played", 1)).text).toContain("Ng5+ captures a queen");
@@ -188,13 +182,13 @@ test("capture descriptions preserve actual, alternative, reply and uncertain tim
   expect(render(capture("played", 3)).text).toContain(
     "One possible follow-up is Ng5+, capturing a queen",
   );
-  for (const role of ["played", "missed", "allowed"]) {
+  for (const role of ["played", "missed", "allowed"] as const) {
     const ply = role === "allowed" ? 2 : 1;
     const item = build(
       event(role, {
         motif: "hanging_piece",
         frame_ply: ply - 1,
-        witness: [{ ply, san: "Ng5+", capture: "queen" }],
+        witness: [witness(ply, "Ng5+", { capture: "queen" })],
       }),
     );
     // The pre-capture reference board still makes the capture this move's.

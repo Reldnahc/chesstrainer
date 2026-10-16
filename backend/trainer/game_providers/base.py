@@ -5,7 +5,9 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from typing import Protocol
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import Field, field_validator, model_validator
+
+from trainer.contracts.common import Contract
 
 
 class ProviderError(RuntimeError):
@@ -22,13 +24,19 @@ class ImportCancelled(RuntimeError):
     pass
 
 
-class ProviderImportRequest(BaseModel):
+class ProviderImportRequest(Contract):
+    """The body of a provider import or sync; like every request contract it
+    rejects fields it does not know instead of ignoring them."""
+
     username: str = Field(min_length=1, max_length=50, pattern=r"^[a-zA-Z0-9_-]+$")
     time_class: str = "rapid"
     months: int = Field(default=3, ge=0, le=120)
     max_games: int = Field(default=100, ge=1, le=1000)
     start_date: date | None = None
     end_date: date | None = None
+    # Retired: every imported game is analyzed now. Older clients still send it,
+    # so it is accepted and ignored (never saved), unlike an unknown field.
+    analyze: bool | None = Field(default=None, exclude=True)
 
     @field_validator("username", mode="before")
     @classmethod
