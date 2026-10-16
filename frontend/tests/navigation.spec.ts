@@ -178,8 +178,9 @@ test('without the Navigation API, refusing a step after a save puts the editor b
   await page.getByRole('button', {name: 'Save course'}).click();
   await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
   await title.fill('Edited after saving');
-  page.once('dialog', dialog => dialog.dismiss());
+  const asked = page.waitForEvent('dialog');
   await page.evaluate(() => history.back());
+  await (await asked).dismiss();
   // The page comes back at the address it showed after the save, not the one it loaded at.
   await expect(page).toHaveURL(/\/settings\/courses\/editor\?course=saved-course&revision=r2$/);
   await expect(title).toHaveValue('Edited after saving');
