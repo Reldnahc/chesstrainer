@@ -14,7 +14,7 @@ import StatList from "../StatList";
 import { puzzleSessionPath, puzzleSourcePath, studyPaths, type PuzzleSource } from "../navigation";
 import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
 import { useSessionStart } from "../useSessionStart";
-import { shortDate } from "../format";
+import { shortDate, plural } from "../format";
 import { PUZZLE_BANDS, PUZZLE_GOALS, createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel, savePuzzleSelection, type PuzzleMode, type PuzzleSelection } from "./puzzleApi";
 
 type Generation = NonNullable<Schema["PuzzleLibrary"]["generation"]>;
@@ -73,7 +73,7 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
             <div className="button-row">
               <Button variant="secondary" disabled={!!search.busy || !!generation.job_status || generation.unsearched_games === 0} onClick={generate}><Search size={16} />
                 {generation.job_status ? "Searching your games…" : search.busy ? "Queuing…" : generation.unsearched_games
-                  ? `Search ${generation.unsearched_games} unsearched ${generation.unsearched_games === 1 ? "game" : "games"}` : "All analyzed games searched"}</Button>
+                  ? `Search ${plural(generation.unsearched_games, "unsearched game")}` : "All analyzed games searched"}</Button>
             </div>
           </section>}
           {available ? <section className="panel puzzle-start">
@@ -103,7 +103,7 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
               {puzzles.retry_available > 0 && <Button variant="secondary" disabled={!!start.busy} onClick={() => begin("retry")}><RotateCcw size={16} />{start.busy === "retry" ? "Opening puzzle…" : `Retry a failed puzzle (${puzzles.retry_available})`}</Button>}
             </div>
             {puzzles.sources.filter((item) => !source || item.source === source).map((item) => <SourceLine key={item.id} className="puzzle-pack-source"
-              text={`${item.name} · ${item.count} puzzles`} license={item.attribution} url={item.url} linkLabel="Source" />)}
+              text={`${item.name} · ${plural(item.count, "puzzle")}`} license={item.attribution} url={item.url} linkLabel="Source" />)}
           </section> : source === "games" ? null : <EmptyState title="No puzzles available yet." icon={<Puzzle />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>
             There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due.
           </EmptyState>}
@@ -121,12 +121,12 @@ export default function PuzzleLibrary({ source }: { source: PuzzleSource | null 
 
 function GenerationSummary({ generation }: { generation: Generation }) {
   if (generation.puzzles > 0) return <>
-    <p>{generation.puzzles} {generation.puzzles === 1 ? "puzzle comes" : "puzzles come"} from {generation.searched_games} of your {generation.analyzed_games} analyzed games. Each one is a moment where you had a single clear winning line, checked by Stockfish and played from your side.</p>
-    <p className="small muted">Last search {shortDate(generation.last_searched_at?.slice(0, 10)) ?? "date unknown"}: {generation.candidates} candidate positions checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
+    <p>{plural(generation.puzzles, "puzzle comes", "puzzles come")} from {generation.searched_games} of your {plural(generation.analyzed_games, "analyzed game")}. Each one is a moment where you had a single clear winning line, checked by Stockfish and played from your side.</p>
+    <p className="small muted">Last search {shortDate(generation.last_searched_at?.slice(0, 10)) ?? "date unknown"}: {plural(generation.candidates, "candidate position")} checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
   </>;
   if (generation.analyzed_games === 0)
     return <p>No analyzed games yet. Imported games are analyzed automatically; once some finish, search them here.</p>;
   if (generation.searched_games === 0)
-    return <p>Your {generation.analyzed_games} analyzed {generation.analyzed_games === 1 ? "game has" : "games have"} not been searched yet. A search keeps only moments with a single clear winning line of two or more moves, checked by Stockfish.</p>;
-  return <p>No puzzles yet from the {generation.searched_games} analyzed {generation.searched_games === 1 ? "game" : "games"} searched so far: {generation.candidates} candidate {generation.candidates === 1 ? "position" : "positions"} checked, none with a single clear winning line of two or more moves.</p>;
+    return <p>Your {plural(generation.analyzed_games, "analyzed game has", "analyzed games have")} not been searched yet. A search keeps only moments with a single clear winning line of two or more moves, checked by Stockfish.</p>;
+  return <p>No puzzles yet from the {plural(generation.searched_games, "analyzed game")} searched so far: {plural(generation.candidates, "candidate position")} checked, none with a single clear winning line of two or more moves.</p>;
 }
