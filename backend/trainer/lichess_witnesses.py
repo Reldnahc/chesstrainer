@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import chess
 import chess.pgn
 
-from trainer.chess_core import VALUES
+from trainer.chess_core import VALUES, material_balance
 from trainer.tactical_geometry import absolute_pinner
 
 
@@ -67,14 +67,9 @@ def pinned_from_start(puzzle, node, square) -> bool:
 
 def line_gains(puzzle) -> bool:
     """Whether the line's mover ends it with at least the material it started with."""
-
-    def balance(board):
-        return sum(
-            VALUES.get(p.piece_type, 0) * (1 if p.color == puzzle.pov else -1)
-            for p in board.piece_map().values()
-        )
-
-    return balance(puzzle.mainline[-1].board()) >= balance(puzzle.mainline[0].board())
+    return material_balance(puzzle.mainline[-1].board(), puzzle.pov) >= material_balance(
+        puzzle.mainline[0].board(), puzzle.pov
+    )
 
 
 def pin_used(puzzle, square):

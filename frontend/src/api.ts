@@ -125,6 +125,9 @@ export type Feedback = Schema["ReviewFeedback"];
 export type Job = Schema["Job"];
 export type ProviderImportProgress = Schema["ProviderImportProgress"];
 export type Evidence = Schema["Evidence"];
+/** A review event; each kind carries its own typed facts. Narrow on `kind` first. */
+export type ReviewEvent = Schema["MoveIntelligence"]["events"][number];
+export type ReviewEventOf<K extends ReviewEvent["kind"]> = Extract<ReviewEvent, { kind: K }>;
 export type MoveExplanation = Schema["MoveExplanation"];
 export type PatternFinding = Schema["Finding"];
 export type Health = Schema["Health"];

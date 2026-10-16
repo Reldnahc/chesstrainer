@@ -3,6 +3,7 @@
 import json
 from types import SimpleNamespace
 
+import pytest
 from fastapi.testclient import TestClient
 from trainer import restart, site_settings
 from trainer.accounts import Accounts
@@ -147,3 +148,29 @@ def test_only_administrators_manage_server_settings_with_accounts(settings):
         assert client.get("/api/server-settings").status_code == 200
         assert client.put("/api/server-settings", json=change, headers=ORIGIN).status_code == 403
         assert client.put("/api/server-settings", json=change, headers=headers).status_code == 200
+
+
+@pytest.mark.pristine_database
+def test_a_real_start_migrates_once_and_reading_settings_never_migrates(settings, monkeypatch):
+    from trainer import api, db
+
+    with pytest.raises(RuntimeError, match="database is behind"):
+        site_settings.load(Settings(_env_file=None, database_path=settings.database_path))
+    assert db.migrations_pending(database(settings.database_path)[0])
+
+    calls = []
+    real = api.migrate
+
+    def counted(engine):
+        calls.append(engine)
+        return real(engine)
+
+    monkeypatch.setattr(api, "migrate", counted)
+    monkeypatch.setenv("DATABASE_PATH", str(settings.database_path))
+    monkeypatch.setenv("STOCKFISH_PATH", "missing-stockfish-test")
+    monkeypatch.setenv("ACCOUNTS_ENABLED", "false")
+    monkeypatch.setattr(api, "Settings", lambda: Settings(_env_file=None))
+    with TestClient(api.create_app(workers=False, start_engine=False)) as client:
+        assert client.get("/api/health").status_code == 200
+    assert len(calls) == 1
+    assert not db.migrations_pending(database(settings.database_path)[0])

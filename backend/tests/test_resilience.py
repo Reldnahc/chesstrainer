@@ -48,7 +48,7 @@ class FixtureClassifier(FixtureClassifierBase):
             confidence=self.confidence,
             explanation="Verified mate threat.",
             findings=findings_for(evidence, "king_safety"),
-        ), {"input_tokens": 10, "output_tokens": 5}
+        )
 
 
 @pytest.fixture
@@ -83,7 +83,6 @@ def decision(sessions):
             played_analysis_id=analysis.id,
             loss_cp=200,
             meaningful=True,
-            facts={"verified_line": []},
         )
         db.add(item)
         db.commit()

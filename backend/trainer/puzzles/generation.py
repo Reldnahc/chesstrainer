@@ -27,7 +27,6 @@ from trainer.models import (
     Game,
     GamePuzzle,
     GamePuzzleSearch,
-    GameReviewMove,
 )
 from trainer.puzzles.definitions import PuzzleDefinition
 from trainer.puzzles.verification import (
@@ -41,7 +40,7 @@ from trainer.puzzles.verification import (
     rival_verdict,
     score_int,
 )
-from trainer.review_reports import saved_report
+from trainer.review_reports import reports_for
 from trainer.search_limits import SearchLimits, SearchProfile
 
 # v2: a rival that mates or still wins makes a step ambiguous; review reports are
@@ -108,10 +107,7 @@ def _score(payload) -> int:
 def shown_reports(db, game):
     """Each reviewed ply's report as the review shows it: refined when a deeper search
     was adopted, else the baseline."""
-    rows = db.scalars(
-        select(GameReviewMove).where(GameReviewMove.game_id == game.id).order_by(GameReviewMove.ply)
-    )
-    return {row.ply: saved_report(db, row) for row in rows}
+    return reports_for(db, game.id)[0]
 
 
 def decision_prospects(db, game, reports=None):

@@ -79,8 +79,8 @@ def opponent_threat(c: Capture, previous):
     if not c.target_stood_still or not previous or c.victim.piece_type == chess.PAWN:
         return
     before, reply, target = c.before, c.reply, c.target
-    earlier = valid_board(previous["fen"])
-    opponent_move = legal_move(earlier, previous["uci"])
+    earlier = valid_board(previous.fen)
+    opponent_move = legal_move(earlier, previous.uci)
     earlier_after = earlier.copy()
     earlier_after.push(opponent_move)
     if position_key(earlier_after) != position_key(before):

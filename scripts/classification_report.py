@@ -33,7 +33,7 @@ def report(path, settings):
                 total += 1
                 try:
                     payload = verified_payload(db, decision)
-                    result, _ = classifier.classify(payload)
+                    result = classifier.classify(payload)
                     skills = {f.skill_id for f in result.findings}
                     outcome_count += bool(skills & OUTCOME_SKILLS)
                     mechanism_count += bool(skills & MECHANISM_SKILLS)
@@ -50,7 +50,7 @@ def report(path, settings):
                             "continuations": {
                                 k: v.model_dump() for k, v in result.continuations.items()
                             },
-                            "defense_checks": result.defense_checks,
+                            "defense_checks": [c.model_dump() for c in result.defense_checks],
                             "abstention_reasons": result.abstention_reasons,
                             "findings": [f.model_dump() for f in result.findings],
                         }

@@ -15,13 +15,16 @@ export type IdleFrame = {
   active: readonly ActiveIdle[];
   started: readonly ActiveIdle[];
   nextAt: number | null;
-  diagnostics: {
-    recent: readonly string[];
-    blinkDueAt: number | null;
-    cooldowns: readonly { id: string; readyAt: number }[];
-    rejected: readonly { id: string; reason: string }[];
-    issues: readonly string[];
-  };
+  /** Why each gesture is or is not available, built only for an observer
+   * (the studio and tests); a production coach's frames carry null. */
+  diagnostics: IdleDiagnostics | null;
+};
+export type IdleDiagnostics = {
+  recent: readonly string[];
+  blinkDueAt: number | null;
+  cooldowns: readonly { id: string; readyAt: number }[];
+  rejected: readonly { id: string; reason: string }[];
+  issues: readonly string[];
 };
 
 function validGesture(value: IdleGesture): boolean {
@@ -58,8 +61,19 @@ function validGesture(value: IdleGesture): boolean {
 /** One event-driven clock per portrait. CSS owns frames; this owns reservations. */
 export function createIdleCoordinator(
   catalogue: readonly IdleGesture[],
-  { random = Math.random, now = 0 }: { random?: () => number; now?: number } = {},
+  {
+    random = Math.random,
+    now = 0,
+    diagnostics = true,
+  }: {
+    random?: () => number;
+    now?: number;
+    /** Build each frame's diagnostics; off for a coach nobody observes, and
+     * switched later with observe() so an observer can come and go. */
+    diagnostics?: boolean;
+  } = {},
 ) {
+  let observed = diagnostics;
   const issues = new Set<string>();
   const ids = new Set<string>();
   const gestures = catalogue.filter(entry => {
@@ -188,26 +202,34 @@ export function createIdleCoordinator(
       active: [...active],
       started,
       nextAt: deadline,
-      diagnostics: {
-        recent: [...recent],
-        blinkDueAt,
-        cooldowns: gestures.map(entry => ({
-          id: entry.id,
-          readyAt: gestureReady.get(entry.id) ?? time,
-        })),
-        rejected: gestures.flatMap(entry => {
-          const reason =
-            conflict(entry) ??
-            (due && !entry.blink ? "baseline blink due" : null) ??
-            (readyAt(entry) > time ? "cooldown or cadence deadline" : null);
-          return reason ? [{ id: entry.id, reason }] : [];
-        }),
-        issues: [...issues],
-      },
+      diagnostics: observed ? explain(due) : null,
+    };
+  }
+
+  function explain(due: boolean): IdleDiagnostics {
+    return {
+      recent: [...recent],
+      blinkDueAt,
+      cooldowns: gestures.map(entry => ({
+        id: entry.id,
+        readyAt: gestureReady.get(entry.id) ?? time,
+      })),
+      rejected: gestures.flatMap(entry => {
+        const reason =
+          conflict(entry) ??
+          (due && !entry.blink ? "baseline blink due" : null) ??
+          (readyAt(entry) > time ? "cooldown or cadence deadline" : null);
+        return reason ? [{ id: entry.id, reason }] : [];
+      }),
+      issues: [...issues],
     };
   }
 
   return {
+    /** Starts or stops building diagnostics for later frames. */
+    observe(on: boolean): void {
+      observed = on;
+    },
     advance(value: number): IdleFrame {
       tick(value);
       if (pausedAt !== null) return frame();

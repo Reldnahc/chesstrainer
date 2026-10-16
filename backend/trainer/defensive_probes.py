@@ -8,15 +8,17 @@ from dataclasses import dataclass
 from typing import Literal
 
 import chess
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from trainer.chess_core import Candidate, digest, position_key, valid_board
 from trainer.continuations import continuation_end, replay
 from trainer.errors import EvidenceIntegrityError
 from trainer.tactical_geometry import (
     TACTIC_PLIES,
+    attacker_collection,
     effective_attacks,
     names,
+    new_targets,
     piece_capture_ply,
     relative_pinners,
     tactical_plies,
@@ -39,7 +41,38 @@ class DefenseHypothesis(BaseModel):
 
     @property
     def key(self):
-        return digest({"hypothesis_version": "1", **self.model_dump()})
+        """The saved probe's identity: what is tested, never how ``roles`` are labelled,
+        so renaming a role keeps every saved probe."""
+        return digest({"hypothesis_version": "2", **self.model_dump(exclude={"roles"})})
+
+    def matches(self, query_key):
+        """Whether a saved probe answers this hypothesis. Probes saved before version
+        2 carry the old key, which hashed the role labels too."""
+        return query_key in {self.key, digest({"hypothesis_version": "1", **self.model_dump()})}
+
+
+DefenseStatus = Literal[
+    "pending",
+    "confirmed",
+    "outcome_unverified",
+    "unsettled",
+    "defense_not_refuted",
+    "rear_piece_not_collected",
+    "escaping_piece_not_collected",
+]
+
+
+class DefenseCheck(BaseModel):
+    """One defensive hypothesis and what its probe showed, as a classification reports it."""
+
+    model_config = ConfigDict(extra="forbid")
+    hypothesis_key: str
+    kind: Literal["fork_capture", "relative_pin", "relative_pin_escape", "trapped_piece"]
+    root_analysis_id: str
+    at_ply: int
+    root_moves: list[str]
+    status: DefenseStatus
+    analysis_id: str | None
 
 
 @dataclass(frozen=True)
@@ -88,15 +121,9 @@ def fork_capture(m: Moment):
         for x in m.after.legal_moves
         if x.to_square == move.to_square and m.after.is_capture(x)
     )
-    collection = None
-    for follow in [p for p in plies if p > ply]:
-        action = boards[follow].peek()
-        if boards[follow - 1].piece_at(move.to_square) != piece:
-            break
-        if action.from_square == move.to_square:
-            if action.to_square in targets and boards[follow - 1].is_capture(action):
-                collection = follow
-            break
+    collection = attacker_collection(
+        boards, move.to_square, piece, [p for p in plies if p > ply], targets
+    )
     if collection is None and ply + 2 in plies and takes:
         reply, follow = boards[ply + 1].peek(), boards[ply + 2].peek()
         if (
@@ -117,7 +144,7 @@ def fork_capture(m: Moment):
         and collection is not None
         and len(targets) >= 2
         and piece.piece_type != chess.KING
-        and not targets <= effective_attacks(m.before, move.from_square)
+        and new_targets(m.before, move.from_square, targets)
     ):
         yield DefenseHypothesis(
             kind="fork_capture",
@@ -273,17 +300,17 @@ def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
     request = hypothesis
     position = boards[request.at_ply]
     if (
-        probe["query_key"] != request.key
-        or probe["root_analysis_id"] != request.root_analysis_id
-        or probe["at_ply"] != request.at_ply
-        or probe["kind"] != request.kind
-        or position_key(valid_board(probe["fen"])) != position_key(position)
-        or sorted(probe["config"].get("root_moves") or []) != request.root_moves
+        not request.matches(probe.query_key)
+        or probe.root_analysis_id != request.root_analysis_id
+        or probe.at_ply != request.at_ply
+        or probe.kind != request.kind
+        or position_key(valid_board(probe.fen)) != position_key(position)
+        or sorted(probe.config.get("root_moves") or []) != request.root_moves
     ):
         raise EvidenceIntegrityError(
             "Defensive probe does not match its hypothesis or legal position"
         )
-    candidate = Candidate.model_validate(probe["candidate"])
+    candidate = Candidate.model_validate(probe.candidate)
     if candidate.uci not in request.root_moves:
         raise EvidenceIntegrityError("Defensive probe contains an unrequested move")
     branch = replay(position, candidate)
@@ -338,7 +365,7 @@ def verify_defense(hypothesis, boards, root_candidate, probe, parameters):
         request.roles,
         text,
         frame=request.at_ply - 1 if request.kind == "relative_pin" else request.at_ply,
-        verification_analysis_ids=[probe["analysis_id"]],
+        verification_analysis_ids=[probe.analysis_id],
     )
     finding.verification = "engine_defense"
     return finding, "confirmed"

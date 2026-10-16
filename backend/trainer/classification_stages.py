@@ -6,9 +6,24 @@ import chess
 
 from trainer.chess_core import Candidate, Loss, evaluation_loss, position_key, valid_board
 from trainer.config import Settings
-from trainer.continuations import ContinuationEnd, continuation_end, extended_line
-from trainer.defensive_probes import hypotheses, verify_defense
-from trainer.diagnosis_types import OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome, make_finding
+from trainer.continuations import (
+    ContinuationEnd,
+    continuation_end,
+    extended_line,
+    replay,
+    settled_delta,
+)
+from trainer.defensive_probes import DefenseCheck, hypotheses, verify_defense
+from trainer.diagnosis_types import (
+    OUTCOME_SKILLS,
+    RULE_VERSION,
+    Finding,
+    Outcome,
+    PreviousMove,
+    evidence_previous,
+    evidence_probes,
+    make_finding,
+)
 from trainer.errors import EvidenceIntegrityError
 from trainer.move_causes import move_causes
 from trainer.tactical_geometry import TACTIC_PLIES
@@ -47,7 +62,7 @@ class EvidenceLine:
 class LineDiagnosis:
     findings: list[Finding] = field(default_factory=list)
     outcomes: list[Outcome] = field(default_factory=list)
-    defense_checks: list[dict] = field(default_factory=list)
+    defense_checks: list[DefenseCheck] = field(default_factory=list)
 
 
 def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
@@ -63,7 +78,7 @@ def read_lines(evidence, parameters) -> tuple[EvidenceLine, EvidenceLine, Loss]:
     if actual.uci != evidence["user_move"]["uci"]:
         raise EvidenceIntegrityError("Actual analysis does not match learner move")
     best_id, actual_id = evidence["evidence_ids"]
-    probes = evidence.get("probes", [])
+    probes = evidence_probes(evidence)
 
     def line(candidate, analysis_id, direction, first):
         candidate, boards = extended_line(board, candidate, analysis_id, probes)
@@ -166,7 +181,7 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
         line.direction,
         parameters["tactic_plies"],
     ):
-        probe = next((p for p in probes if p["query_key"] == hypothesis.key), None)
+        probe = next((p for p in probes if hypothesis.matches(p.query_key)), None)
         finding, status = (
             (None, "pending")
             if probe is None
@@ -177,15 +192,15 @@ def defensive_findings(line: EvidenceLine, probes, parameters, outcome_supported
         elif finding:
             status = "outcome_unverified"
         result.defense_checks.append(
-            {
-                "hypothesis_key": hypothesis.key,
-                "kind": hypothesis.kind,
-                "root_analysis_id": line.analysis_id,
-                "at_ply": hypothesis.at_ply,
-                "root_moves": hypothesis.root_moves,
-                "status": status,
-                "analysis_id": probe["analysis_id"] if probe else None,
-            }
+            DefenseCheck(
+                hypothesis_key=hypothesis.key,
+                kind=hypothesis.kind,
+                root_analysis_id=line.analysis_id,
+                at_ply=hypothesis.at_ply,
+                root_moves=hypothesis.root_moves,
+                status=status,
+                analysis_id=probe.analysis_id if probe else None,
+            )
         )
     return result
 
@@ -258,13 +273,25 @@ def line_rules(parameters=None, *, annotate=False, causes_first=True):
     )
 
 
+def read_line(board, candidate, rules):
+    """A saved line's boards and where its material settles, as review and
+    explanations both read it: one board past the horizon, so the last ply sees
+    the saved next move as the classifier does; ``rules.shown`` limits the moves
+    shown. Returns ``(boards, delta, end)``."""
+    boards = replay(board, candidate)[: rules.shown_plies + 2]
+    delta, end = settled_delta(
+        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
+    )
+    return boards, delta, end
+
+
 def previous_move(board):
     """The move before ``board`` as line evidence reads it, or None at the start."""
     if not board.move_stack:
         return None
     earlier = board.copy(stack=True)
     preceding = earlier.pop()
-    return {"fen": earlier.fen(), "uci": preceding.uci()}
+    return PreviousMove(fen=earlier.fen(), uci=preceding.uci())
 
 
 DIRECTIONS = {1: "missed_opportunity", 2: "allowed_opponent_tactic"}
@@ -328,11 +355,11 @@ def diagnose_line(
             end=line.endpoint.end_ply,
             material_supported=supports,
             mate_supported=mate_support,
-            previous=evidence.get("previous_move"),
+            previous=evidence_previous(evidence),
         )
     )
     defense = defensive_findings(
-        line, evidence.get("probes", []), parameters, supports or mate_support
+        line, evidence_probes(evidence), parameters, supports or mate_support
     )
     result.findings.extend(defense.findings)
     result.defense_checks.extend(defense.defense_checks)
@@ -344,9 +371,9 @@ def attach_provenance(found, outcomes, probes):
 
     def supporting(analysis_id, end):
         return [
-            p["analysis_id"]
+            p.analysis_id
             for p in probes
-            if p["kind"] == "tail" and p["root_analysis_id"] == analysis_id and end > p["at_ply"]
+            if p.kind == "tail" and p.root_analysis_id == analysis_id and end > p.at_ply
         ]
 
     for finding in found:
@@ -370,7 +397,7 @@ def abstention_reasons(best, actual, found, outcomes, defense_checks):
     reasons = []
     if best.endpoint.material_delta is None or actual.endpoint.material_delta is None:
         reasons.append("continuation_unsettled")
-    if any(check["status"] == "pending" for check in defense_checks):
+    if any(check.status == "pending" for check in defense_checks):
         reasons.append("defense_probe_pending")
     if not outcomes:
         reasons.append("no_verified_material_or_mate_outcome")

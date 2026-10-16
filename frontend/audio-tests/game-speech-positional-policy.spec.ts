@@ -186,7 +186,7 @@ for (const coach of coaches) {
       const { context } = presentation(fixture, coach, game);
       expect(
         context.report!.intelligence!.events.some(
-          event => event.facts.feature === "first_development",
+          event => event.kind === "positional" && event.facts.feature === "first_development",
         ),
       ).toBe(false);
       expect(context.intent.claims.some(item => item.code === "development")).toBe(false);

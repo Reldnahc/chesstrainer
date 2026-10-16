@@ -1,6 +1,5 @@
 """Finite, resumable optional investigation after every baseline move is saved."""
 
-from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 from threading import Event
 
@@ -21,6 +20,7 @@ from trainer.review_intelligence.refinement_search import (
 )
 from trainer.review_reports import touch_report
 from trainer.search_limits import EngineCancelled
+from trainer.work_pool import WorkPool
 
 TERMINAL = {"completed", "budget_limited", "unavailable"}
 
@@ -114,9 +114,16 @@ def run_refinement(context, parsed, game_id):
 
     try:
         if pending:
-            with ThreadPoolExecutor(workers, thread_name_prefix="review-refinement") as executor:
-                for future in [executor.submit(investigate, task_id) for task_id in pending]:
-                    future.result()
+            pool = WorkPool(
+                workers, "review-refinement", lambda: stop.is_set() or context.cancelled()
+            )
+            try:
+                futures = [pool.submit(investigate, task_id) for task_id in pending]
+                for future in futures:
+                    if future is not None:
+                        future.result()
+            finally:
+                pool.close()
         else:
             record_progress(context, game_id, plan)
     finally:

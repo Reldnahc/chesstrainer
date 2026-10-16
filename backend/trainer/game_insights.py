@@ -14,7 +14,7 @@ import sys
 import zlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field, fields
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import get_args
 
@@ -22,6 +22,7 @@ import chess
 import chess.pgn
 import pydantic
 
+from trainer import timeutil
 from trainer.chess_core import DECISIVE_CP, Score, digest, evaluation_loss, game_phase
 from trainer.contracts.insights import Speed
 from trainer.game_accuracy import STARTING_CP, accuracy_cp, mover_accuracy
@@ -375,7 +376,7 @@ def example(game, ply=None):
 def recent_examples(games, limit=4, ply_of=None):
     ordered = sorted(
         games,
-        key=lambda game: game.played_at or datetime.min.replace(tzinfo=timezone.utc),
+        key=lambda game: game.played_at or timeutil.EARLIEST,
         reverse=True,
     )
     return [example(game, ply_of(game) if ply_of else None) for game in ordered[:limit]]
@@ -426,7 +427,7 @@ def endings(games):
 def chronological(games):
     return sorted(
         (game for game in games if game.result is not None),
-        key=lambda game: (game.played_at or datetime.min.replace(tzinfo=timezone.utc), game.id),
+        key=lambda game: (game.played_at or timeutil.EARLIEST, game.id),
     )
 
 

@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from trainer.contracts.common import Contract, JobStatusName
+from trainer.contracts.common import Contract, JobKindName, JobStatusName
 
 
 class ImportError(Contract):
@@ -52,7 +52,7 @@ class JobActivity(Contract):
 class Job(Contract):
     id: str
     user_id: str
-    kind: str
+    kind: JobKindName
     import_id: str | None
     status: JobStatusName
     games_total: int

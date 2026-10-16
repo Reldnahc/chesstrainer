@@ -16,9 +16,9 @@ from trainer.classification_stages import (
     line_parameters,
     line_rules,
     previous_move,
+    read_line,
 )
 from trainer.config import Settings
-from trainer.continuations import replay, settled_delta
 from trainer.errors import InvalidInput
 from trainer.explanation_types import replay_line
 from trainer.game_library import parsed_game
@@ -40,6 +40,7 @@ from trainer.review_scores import (
     is_mistake,
     is_only_good_move,
     is_poor,
+    numeric,
     strongest_alternative,
 )
 from trainer.search_limits import DEEP, SearchLimits, SearchProfile
@@ -75,11 +76,6 @@ def position(board, *, final=False):
         "result": outcome.result() if outcome else None,
         "termination": outcome.termination.name.replace("_", " ").lower() if outcome else None,
     }
-
-
-def numeric(score):
-    """Only for category boundaries; mate remains a separate type in all payloads."""
-    return score.value if score.kind == "cp" else score.outcome() * 10000
 
 
 def blunder_kind(best, actual, rating):
@@ -204,12 +200,7 @@ def line_evidence(board, candidate, analysis_id, first, previous=None, parameter
     """
     parameters = without_reading(parameters or line_parameters())
     rules = line_rules(parameters, annotate=True)
-    # One board past the horizon, so the last ply sees the saved next move as the
-    # classifier does; the moves shown are limited by rules.shown.
-    boards = replay(board, candidate)[: rules.shown_plies + 2]
-    delta, end = settled_delta(
-        boards, board.turn, max_plies=rules.settle_plies, extra_plies=rules.extension_plies
-    )
+    boards, delta, end = read_line(board, candidate, rules)
     gain = delta if first == 1 else -delta if delta is not None else None
     mate = candidate.score.kind == "mate" and candidate.score.outcome() == (1 if first == 1 else -1)
     findings = line_findings(

@@ -8,7 +8,8 @@ from collections import Counter, defaultdict
 from trainer.chess_core import Candidate, digest, valid_board
 from trainer.continuations import extended_line
 from trainer.coverage import MECHANISM_SKILLS
-from trainer.diagnosis_types import OUTCOME_SKILLS
+from trainer.diagnosis_types import OUTCOME_SKILLS, evidence_probes
+from trainer.taxonomy import UNCLASSIFIED
 
 FIELDS = [
     "decision_id",
@@ -57,7 +58,7 @@ def export_sample(report, path, size=60, *, blind=False):
             if motifs
             else "outcome_only"
             if labels & OUTCOME_SKILLS
-            else "unclassified"
+            else UNCLASSIFIED
         )
         buckets[stratum].append(row)
     for rows in buckets.values():
@@ -91,18 +92,19 @@ def export_sample(report, path, size=60, *, blind=False):
             payload, labels = row["evidence"], predicted(row)
             best_pv = payload["best_candidates"][0]["pv"]
             actual_pv = payload["played_candidate"]["pv"]
-            if any(p["kind"] == "tail" for p in payload.get("probes", [])):
+            probes = evidence_probes(payload)
+            if any(p.kind == "tail" for p in probes):
                 best_pv = extended_line(
                     valid_board(payload["fen"]),
                     Candidate.model_validate(payload["best_candidates"][0]),
                     payload["evidence_ids"][0],
-                    payload["probes"],
+                    probes,
                 )[0].pv
                 actual_pv = extended_line(
                     valid_board(payload["fen"]),
                     Candidate.model_validate(payload["played_candidate"]),
                     payload["evidence_ids"][1],
-                    payload["probes"],
+                    probes,
                 )[0].pv
             writer.writerow(
                 {
@@ -122,18 +124,17 @@ def export_sample(report, path, size=60, *, blind=False):
                     # verified position, move constraints and continuation belong here.
                     "verified_probes": json.dumps(
                         [
-                            {
-                                k: p[k]
-                                for k in (
+                            p.model_dump(
+                                include={
                                     "root_analysis_id",
                                     "at_ply",
                                     "analysis_id",
                                     "fen",
                                     "candidate",
-                                )
-                            }
-                            | {"root_moves": p["config"].get("root_moves")}
-                            for p in payload.get("probes", [])
+                                }
+                            )
+                            | {"root_moves": p.config.get("root_moves")}
+                            for p in probes
                         ]
                     ),
                     "best_pv": " ".join(best_pv),
