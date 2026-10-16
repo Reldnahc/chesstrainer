@@ -9,7 +9,7 @@ import {selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/game
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {humanGames} from "../tests/human-fixtures";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import {meanings} from "../src/audio/speech/meaningCatalog";
 
 // A coach never says or shows a Maia (human-move model) reading. Maia lives only
 // in the badge and its popup; the coach's line carries the objective facts, and
@@ -58,8 +58,8 @@ const maia = (codes: {code: string}[]) => codes.filter(item => humanInsightLabel
 const silent = {primaryId: null, recordingId: null, variants: {primaryId: null, recordingId: null, squares: new Map()}};
 
 test("the speech catalogue has no Maia meanings or combinations", () => {
-  expect(catalogue.meanings.map(item => item.id).filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
-  expect(catalogue.meanings.filter(item => "primary" in item || "secondary" in item)).toEqual([]);
+  expect(meanings.map(item => item.id).filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
+  expect(meanings.filter(item => "primary" in item || "secondary" in item)).toEqual([]);
 });
 
 for (const coach of coaches) {

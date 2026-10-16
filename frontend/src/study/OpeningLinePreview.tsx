@@ -17,9 +17,10 @@ import ReviewCoach from "../ReviewCoach";
 import Reveal from "../Reveal";
 import ReviewWorkspace from "../ReviewWorkspace";
 import SourceLine from "../SourceLine";
-import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, openingStudiesPath, studyPaths } from "../navigation";
+import { lessonCoursePath, lessonSessionPath, openingCataloguePath, openingStudiesPath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
-import { QueryResult, useCommand, useQuery } from "../useQuery";
+import { CommandError, QueryResult, useCommand, useQuery } from "../useQuery";
+import { useSessionStart } from "../useSessionStart";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
@@ -28,9 +29,10 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   const [color, setColor] = useState<"white" | "black">(courseLine?.color ?? "white");
   const [ply, setPly] = useState(0);
   const command = useCommand();
+  // Adding the line and practising it share one guard, so only one runs at a time.
+  const starting = useSessionStart(createPracticeStarter, (session) => lessonSessionPath(session.id), command);
   const busy = !!command.busy;
   const [saved, setSaved] = useState(false);
-  const [practiceStudy] = useState(createPracticeStarter);
   const audio = useAudioScope(`opening-preview:${catalogueKey || `${courseLine?.courseId}:${courseLine?.lineId}:${courseLine?.revision}`}`);
   const navigationId = useRef(0);
   function seek(next: number) {
@@ -66,9 +68,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     });
   }
   function practice() {
-    if (!selectedStudy) return;
-    void command.run(true, (signal) => practiceStudy(selectedStudy.id, signal),
-      (result) => { if (result) navigate(lessonSessionPath(result.id)); });
+    if (selectedStudy) void starting.start(true, selectedStudy.id);
   }
   const back = courseLine ? lessonCoursePath(courseLine.courseId, courseLine.revision) : openingCataloguePath();
   const recordingId = line ? selectedStudy?.active ? "opening-preview-active" : "opening-preview-inactive" : null;
@@ -97,7 +97,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
       actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
     ><p>{spoken ?? (selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.")}</p></ReviewCoach>
-    {command.error && <Banner tone="error" onDismiss={command.dismiss}>{command.error}</Banner>}
+    <CommandError command={command} />
     {saved && <Banner tone="success" onDismiss={() => setSaved(false)}>Study saved. Eligible positions are now included in Due.</Banner>}
     <section className="panel opening-preview-details">
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>

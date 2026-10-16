@@ -99,7 +99,8 @@ function BannerCard({ entry }: { entry: Entry }) {
 
 /**
  * Shows its children in the page's banner slot while it is mounted:
- * `{error && <Banner tone="error" onDismiss={() => setError("")}>{error}</Banner>}`.
+ * `{message && <Banner tone="success" onDismiss={() => setMessage("")}>{message}</Banner>}`.
+ * Errors render through CommandError or QueryError (useQuery.tsx), which use this.
  * The caller owns the message state; closing (or a confirmation timing out)
  * calls onDismiss.
  */

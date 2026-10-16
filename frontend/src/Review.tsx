@@ -8,22 +8,23 @@ import ReviewWorkspace from "./ReviewWorkspace";
 import ReviewPanel from "./srsReview/ReviewPanel";
 import { useReviewSession } from "./srsReview/useReviewSession";
 import { useReviewPlayback } from "./srsReview/useReviewPlayback";
+import { CommandError, useCommand } from "./useQuery";
 
 
 export default function ReviewScreen({
   requested,
   requestedSession,
   focusSkill,
-  fail,
   onEvidence,
 }: {
   requested: string | null;
   requestedSession?: string | null;
   focusSkill: string | null;
-  fail: (e: unknown) => void;
   onEvidence: (id: string) => void;
 }) {
-  const session = useReviewSession({ requested, requestedSession, focusSkill, fail });
+  // Practice's command failures (a lost answer, a stale due count) show here.
+  const errors = useCommand();
+  const session = useReviewSession({ requested, requestedSession, focusSkill, fail: errors.fail });
   const playback = useReviewPlayback(session.feedback, session.audio, session.feedbackEventId);
   const { position, due, loading, busy, feedback, submittedMove, done } =
     session;
@@ -71,6 +72,7 @@ export default function ReviewScreen({
   );
   return (
     <>
+      <CommandError command={errors} />
       {loading ? (
         <div className="review-loading">
           <div className="review-workspace-heading">{heading}</div>

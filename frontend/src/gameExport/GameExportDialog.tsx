@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Check, Copy, Download, X } from "lucide-react";
-import { api, read, type Schema } from "../api";
+import { api, errorMessage, read, type Schema } from "../api";
 import Button, { IconButton } from "../Button";
 import { download } from "../download";
 import Notice from "../Notice";
@@ -32,7 +32,7 @@ async function copy(text: string, from: HTMLElement) {
   if (!copied) throw new Error("Copying is blocked here; select the text instead.");
 }
 
-function CopyButton({ text, label, onError }: { text: string; label: string; onError: (message: string) => void }) {
+function CopyButton({ text, label, onError }: { text: string; label: string; onError: (e: unknown) => void }) {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!copied) return;
@@ -41,7 +41,7 @@ function CopyButton({ text, label, onError }: { text: string; label: string; onE
   }, [copied]);
   return (
     <Button size="compact" aria-label={label} onClick={(event) => copy(text, event.currentTarget).then(() => setCopied(true),
-      (e) => onError(e instanceof Error ? e.message : "Copying failed."))}>
+      onError)}>
       {copied ? <Check size={15} /> : <Copy size={15} />}
       {copied ? "Copied" : "Copy"}
     </Button>
@@ -61,7 +61,9 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
   const ids = useId();
   const exported = useQuery(signal => read(api.GET("/api/games/{game_id}/export", { signal, params: { path: { game_id: id } } })), [id]);
   const game = exported.data;
+  // The dialog shows its own failures inline: a page banner would sit behind the modal.
   const [error, setError] = useState("");
+  const fail = (e: unknown) => setError(errorMessage(e));
   const [gif, setGif] = useState<{ url: string; blob: Blob } | null>(null);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   useEffect(() => () => { if (gif) URL.revokeObjectURL(gif.url); }, [gif]);
@@ -99,7 +101,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
           <div className="row-between">
             <h3 id={`${ids}-pgn`}>PGN</h3>
             <div className="cluster">
-              <CopyButton text={game.pgn} label="Copy PGN" onError={setError} />
+              <CopyButton text={game.pgn} label="Copy PGN" onError={fail} />
               <Button size="compact" onClick={() => download(new Blob([game.pgn], { type: "application/x-chess-pgn" }), fileName(game, "pgn"))}>
                 <Download size={15} />Download
               </Button>
@@ -110,7 +112,7 @@ export default function GameExportDialog({ id, fen, orientation, onClose }: {
         <section className="game-export-section" aria-labelledby={`${ids}-fen`}>
           <div className="row-between">
             <h3 id={`${ids}-fen`}>FEN <span className="muted">Position on the board</span></h3>
-            <CopyButton text={fen} label="Copy FEN" onError={setError} />
+            <CopyButton text={fen} label="Copy FEN" onError={fail} />
           </div>
           <input readOnly value={fen} aria-labelledby={`${ids}-fen`} spellCheck={false} />
         </section>
