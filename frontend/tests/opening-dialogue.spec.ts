@@ -669,6 +669,8 @@ test("no recorded take repeats the claims the Oct 15 rewrites removed", () => {
     // The issue can recur a third time or more.
     [/^repeated-issue$/, /\bonce\b|second|twice|\btwo\b|\bboth\b|earlier moments/i],
     [/^draw$/, /could force more/i],
+    // A fork can sometimes be met with one reply that saves everything.
+    [/^tactic-fork-/, /rescue only one|only one of them able/i],
   ];
   for (const bank of registry.banks)
     for (const take of recordedTakes(bank.manifestPath))
