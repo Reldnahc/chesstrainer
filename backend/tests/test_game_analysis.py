@@ -142,7 +142,7 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
     monkeypatch.setitem(runner.providers.factories, "chesscom", FakeClient)
     monkeypatch.setitem(runner.providers.factories, "lichess", FakeClient)
     with TestClient(app):
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert FakeClient.calls == [] and syncs(app) == {}
         connect(app, ("chesscom", "learner"), ("lichess", "learner2"))
         # A new connection has no saved marker, so the providers report a change.
@@ -150,7 +150,7 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
             "learner": (True, {"etag": "same"}),
             "learner2": (True, {"etag": "same"}),
         }
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         FakeClient.answers = {}
         assert syncs(app) == {
             ("chesscom", "learner"): ("queued", 10, 0),
@@ -161,17 +161,17 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
                 job.status = "completed"
             db.commit()
         # Unchanged providers queue nothing; the saved markers are sent back.
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert {status for status, *_ in syncs(app).values()} == {"completed"}
         assert FakeClient.calls[-1][1]["learner2"]["etag"] == "same"
         FakeClient.answers = {"learner2": (True, {"signature": 2})}
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert syncs(app)[("lichess", "learner2")][0] == "queued"
         assert syncs(app)[("chesscom", "learner")][0] == "completed"
         # A rate-limited provider is skipped until its cooldown ends.
         calls = len(FakeClient.calls)
         runner.providers.retry_at["chesscom"] = time.monotonic() + 60
-        poll(runner, ["local"])
+        poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert len(FakeClient.calls) == calls + 1
 
 

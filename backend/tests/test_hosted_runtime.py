@@ -122,9 +122,10 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
     observed = []
     guard = threading.Lock()
 
-    def review(execution, job_id, _engine=None):
-        with execution.sessions() as db:
-            owner = db.info["user_id"]
+    def review(context, _engine=None):
+        job_id = context.job_id
+        with context.read() as db:
+            owner = context.user_id
             assert db.get(AnalysisJob, job_id).user_id == owner
             assert {job.id for job in db.scalars(select(AnalysisJob))} <= set(
                 jobs[owner] + ["fetch"]
@@ -263,8 +264,8 @@ def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(
         def close(self):
             self.closed = True
 
-    def review(execution, job_id, _engine=None):
-        engine = execution.engine_factory(settings, execution.sessions)
+    def review(context, _engine=None):
+        engine = context.engine_factory(settings, context.sessions)
         try:
             engine.analyze(None)
         finally:
@@ -304,11 +305,11 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
         db.commit()
     started = threading.Event()
 
-    def interrupted(execution, job_id, _engine=None):
-        with execution.write() as db:
-            db.get(AnalysisJob, job_id).positions_triaged = 3
+    def interrupted(context, _engine=None):
+        with context.write() as db:
+            db.get(AnalysisJob, context.job_id).positions_triaged = 3
         started.set()
-        assert execution.runner.stop_event.wait(8)
+        wait_for(context.stopping)
 
     monkeypatch.setattr("trainer.job_execution.run_review", interrupted)
     app = create_app(settings, engine_factory=forbidden_engine)
@@ -321,9 +322,9 @@ def test_shutdown_drains_jobs_and_restart_resumes_without_login(settings, sessio
         assert job.status == "queued" and job.positions_triaged == 3
     finished = threading.Event()
 
-    def resumed(execution, job_id, _engine=None):
-        with execution.sessions() as db:
-            assert db.info["user_id"] == owner
+    def resumed(context, _engine=None):
+        with context.read() as db:
+            assert db.info["user_id"] == context.user_id == owner
         finished.set()
 
     monkeypatch.setattr("trainer.job_execution.run_review", resumed)

@@ -365,8 +365,13 @@ other accounts from free workers. The fetch lane remains independent of analysis
 Disabled accounts are excluded in hosted mode, including the reserved local user.
 
 The scheduler reads only scheduling metadata across accounts. Each claimed job's
-owner is captured before creating its short-lived account scope; that session
-factory is explicitly passed into every pipeline worker and engine handle. There
+owner is captured before creating its short-lived account scope. The runner then
+builds the job's one `job_context.JobContext`: its id and owner, the account's
+sessions, `read()` and `write()` units and Maia models, and the host's settings,
+scheduler, classifier, engine factory, provider gateway and cancellation checks.
+Every job step (pipeline, review, refinement, fetch, level fit) takes that context
+and nothing else of the runner or the workspace; the sync poller takes the
+workspaces and the provider gateway it uses. There
 is no mutable global/current-account identity. Startup recovers unfinished jobs
 without login or creating per-user runtimes. Shutdown signals all active work,
 drains coordinators and their child pools, then closes the shared engines.

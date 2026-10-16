@@ -12,14 +12,15 @@ from trainer.review_refinement import run_refinement
 from trainer.review_reports import touch_report
 
 
-def run_review(runner, job_id, engine_override=None):
-    parsed, game_id = run_baseline(runner, job_id, engine_override)
-    if not runner.cancelled(job_id):
-        run_refinement(runner, job_id, parsed, game_id)
+def run_review(context, engine_override=None):
+    parsed, game_id = run_baseline(context, engine_override)
+    if not context.cancelled():
+        run_refinement(context, parsed, game_id)
 
 
-def run_baseline(runner, job_id, engine_override=None):
-    with runner.read() as db:
+def run_baseline(context, engine_override=None):
+    job_id = context.job_id
+    with context.read() as db:
         review = db.scalar(select(GameReview).where(GameReview.job_id == job_id))
         game = db.get(Game, review.game_id)
         parsed = game_review.parsed_game(game)
@@ -33,13 +34,13 @@ def run_baseline(runner, job_id, engine_override=None):
     workers = (
         1
         if engine_override
-        else min(runner.settings.stockfish_workers, runner.settings.engine_slots, max(1, missing))
+        else min(context.settings.stockfish_workers, context.settings.engine_slots, max(1, missing))
     )
     engines = (
         [engine_override]
         if engine_override
         else [
-            runner.engine_factory(runner.settings, runner.sessions)
+            context.engine_factory(context.settings, context.sessions)
             for _ in range(workers)
             if missing
         ]
@@ -48,10 +49,10 @@ def run_baseline(runner, job_id, engine_override=None):
     for engine in engines:
         available.put(engine)
 
-    human = runner.human_models
+    human = context.human_models
 
     def analyze(board, move, cached):
-        if runner.cancelled(job_id):
+        if context.cancelled():
             return None
         if cached is None:
             engine = available.get()
@@ -64,17 +65,17 @@ def run_baseline(runner, job_id, engine_override=None):
             report = dict(cached)
         if human:
             report["human"] = human.evidence(
-                runner.sessions,
+                context.sessions,
                 parsed,
                 board,
                 move.uci(),
                 report["best"].get("uci"),
                 rating,
-                lambda: runner.cancelled(job_id),
+                context.cancelled,
             )
         return report
 
-    if human and runner.settings.human_model_device == "cuda":
+    if human and context.settings.human_model_device == "cuda":
         # A GPU scores a whole game in one batch far faster than move by move. On
         # CPU the per-move path is kept: it overlaps Maia with the Stockfish
         # searches, and CPU batching saves little (about 1.5x) since the
@@ -87,7 +88,7 @@ def run_baseline(runner, job_id, engine_override=None):
             ):
                 boards.append(board.copy(stack=True))
             board.push(move)
-        human.prefetch(runner.sessions, parsed, boards, rating, lambda: runner.cancelled(job_id))
+        human.prefetch(context.sessions, parsed, boards, rating, context.cancelled)
 
     executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
     try:
@@ -100,7 +101,7 @@ def run_baseline(runner, job_id, engine_override=None):
             # Bound both running work and queued boards. Cancellation never leaves
             # a whole game's searches waiting in the executor.
             while next_ply <= len(moves) and len(pending) < workers:
-                if runner.cancelled(job_id):
+                if context.cancelled():
                     break
                 move = moves[next_ply - 1]
                 cached = saved.get(next_ply)
@@ -122,7 +123,7 @@ def run_baseline(runner, job_id, engine_override=None):
             report = future.result() if future else saved[ply]
             if report is None:
                 break
-            with runner.write() as db:
+            with context.write() as db:
                 if future:
                     row = db.get(GameReviewMove, (game.id, ply))
                     if row is None:
