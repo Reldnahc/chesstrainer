@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from sqlalchemy import select
 
-from trainer.chess_core import Candidate, legal_move, position_key, valid_board
+from trainer.chess_core import Candidate, legal_move, position_key, side_name, valid_board
 from trainer.classification_stages import line_findings, line_rules, previous_move
 from trainer.continuations import replay, settled_delta
 from trainer.errors import EvidenceIntegrityError, InvalidInput, NotFound
@@ -115,7 +115,7 @@ def _curated_explanation(exercise, board, resolved, accepted, san):
         + ([exercise.explanation] if explained else []),
         note_kinds=["curated_authority"] + ([None] if explained else []),
         frames=replay_line(board, [resolved.uci]),
-        orientation=exercise.orientation,
+        orientation=side_name(exercise.learner_color),
     )
 
 
@@ -257,7 +257,7 @@ def explain_review(db, session_id, attempt_id=None, solution=False, parameters=N
         notes=notes,
         note_kinds=note_kinds,
         frames=frames,
-        orientation=exercise.orientation,
+        orientation=side_name(exercise.learner_color),
         analysis_id=analysis.id,
         engine_version=analysis.engine_version,
         score=candidate.score,

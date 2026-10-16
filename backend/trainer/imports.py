@@ -162,7 +162,6 @@ def import_games(
                 pgn=parsed.accept(
                     chess.pgn.StringExporter(headers=True, variations=False, comments=True)
                 ),
-                played_on=parsed.headers.get("Date"),
                 played_at=played_at(parsed),
                 move_count=sum(1 for _ in parsed.mainline_moves()),
                 rated=rated_from_headers(parsed.headers),

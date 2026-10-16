@@ -17,7 +17,6 @@ from trainer.game_sync import poll
 from trainer.imports import import_games
 from trainer.models import (
     AnalysisJob,
-    ChessComImport,
     Decision,
     EngineAnalysis,
     Game,
@@ -25,6 +24,7 @@ from trainer.models import (
     GameReviewMove,
     ImportGame,
     ProviderConnection,
+    ProviderImport,
     User,
 )
 from trainer.presence import active_cutoff
@@ -128,8 +128,8 @@ def syncs(app):
         return {
             (source.provider, source.username): (job.status, source.max_games, source.months)
             for job, source in db.execute(
-                select(AnalysisJob, ChessComImport).join(
-                    ChessComImport, ChessComImport.job_id == AnalysisJob.id
+                select(AnalysisJob, ProviderImport).join(
+                    ProviderImport, ProviderImport.job_id == AnalysisJob.id
                 )
             )
         }

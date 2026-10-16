@@ -34,7 +34,7 @@ def seed_accounts(sessions, count):
     with Session(sessions.kw["bind"]) as db:
         identities = [f"account-{index}" for index in range(count)]
         db.add_all(
-            User(id=identity, username=identity, password="unused-test-hash", created=0)
+            User(id=identity, username=identity, password="unused-test-hash")
             for identity in identities
         )
         db.commit()
