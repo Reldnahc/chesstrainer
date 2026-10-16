@@ -1,13 +1,5 @@
 # Testing
 
-Backend tests share one database migrated to head per test run
-(`conftest.migrated_database`); the `settings` fixture gives each test its own
-page-for-page copy, so running every revision is paid once, not per test. A test
-of an upgrade from an older revision, or of what happens before a database
-exists, marks itself `@pytest.mark.pristine_database` and starts from no file.
-`test_migrations.py` builds its own databases and always runs the real upgrade
-and downgrade path.
-
 `dashboard.spec.ts` covers the Home route, account-scoped metadata summaries,
 bounded recent games/practice priorities, empty states, independent retry/loading,
 late response disposal and desktop/tablet/phone layout. Home must never start a
@@ -547,6 +539,16 @@ backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 
 ## Migrations and data preservation
+
+Backend tests share one database migrated to head per test run
+(`conftest.migrated_database`); the `settings` fixture gives each test its own
+page-for-page copy, so running every revision is paid once, not per test. A test
+of an upgrade from an older revision, or of what happens before a database
+exists, marks itself `@pytest.mark.pristine_database` and starts from no file;
+an unmarked test that upgrades its copy to an older revision fails, since that
+upgrade would silently do nothing.
+`test_migrations.py` builds its own databases and always runs the real upgrade
+and downgrade path.
 
 Use a disposable database for verification, never the live database by accident. From the root, POSIX shell:
 

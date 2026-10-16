@@ -278,6 +278,7 @@ def test_unknown_stored_voice_mode_falls_back_without_overwriting(sessions):
         assert db.scalar(select(UserPreferences)).audio_voice == "future-mode"
 
 
+@pytest.mark.pristine_database
 def test_voice_migration_retains_existing_sound_and_coach_preferences(settings):
     from alembic import command
     from alembic.config import Config

@@ -5,6 +5,9 @@ from contextlib import closing
 from pathlib import Path
 
 import pytest
+from alembic import command
+from alembic.runtime.migration import MigrationContext
+from alembic.script import ScriptDirectory
 from trainer import presence
 from trainer.accounts import Accounts
 from trainer.config import Settings
@@ -51,11 +54,35 @@ def copy_database(source, destination):
         original.backup(copy)
 
 
+def refuse_old_upgrades(monkeypatch):
+    """Fail a test that upgrades its migrated copy to an older revision.
+
+    On a database already at head such an upgrade does nothing, so the test
+    would check head's schema while appearing to test the old revision's path.
+    """
+    upgrade = command.upgrade
+
+    def guarded(config, revision, *args, **kwargs):
+        connection = config.attributes.get("connection")
+        if revision != "head" and connection is not None:
+            current = MigrationContext.configure(connection).get_current_revision()
+            head = ScriptDirectory.from_config(config).get_current_head()
+            if current == head:
+                pytest.fail(
+                    f"Upgrading a migrated copy to {revision} does nothing; mark the test "
+                    "@pytest.mark.pristine_database so it starts from no database file."
+                )
+        return upgrade(config, revision, *args, **kwargs)
+
+    monkeypatch.setattr(command, "upgrade", guarded)
+
+
 @pytest.fixture
-def settings(tmp_path, request, migrated_database):
+def settings(tmp_path, request, migrated_database, monkeypatch):
     path = tmp_path / "test.sqlite3"
     if request.node.get_closest_marker("pristine_database") is None:
         copy_database(migrated_database, path)
+        refuse_old_upgrades(monkeypatch)
     return Settings(
         _env_file=None,
         database_path=path,
