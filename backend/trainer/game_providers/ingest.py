@@ -13,8 +13,9 @@ from trainer.job_lifecycle import JobKind
 from trainer.models import AnalysisJob, ImportBatch, ImportGame, ProviderCheckpoint, ProviderImport
 
 
-def fetch_import(job_id, units, settings, client: GameProviderClient, cancelled):
-    """``units`` opens the account's ``read()`` and ``write()`` units (a job execution)."""
+def fetch_import(context, client: GameProviderClient):
+    """Fetch the provider import of ``context``, the fetch job's ``JobContext``."""
+    job_id, units, cancelled = context.job_id, context, context.cancelled
     with units.write() as db:
         request = db.get(ProviderImport, job_id)
         job = db.get(AnalysisJob, job_id)

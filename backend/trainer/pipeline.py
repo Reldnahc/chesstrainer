@@ -16,11 +16,12 @@ from trainer.work_pool import GameCompletion, WorkPool
 
 
 class JobPipeline:
-    def __init__(self, runner, job_id, engine_override=None, *, counters=True):
-        self.runner, self.job_id = runner, job_id
+    def __init__(self, context, engine_override=None, *, counters=True):
+        """``context`` is the job's ``JobContext``; its units are passed on as is."""
+        self.context, self.job_id = context, context.job_id
         # A game review job reuses this pipeline; its counters describe the review.
         self.counters = counters
-        self.sessions, self.settings = runner.sessions, runner.settings
+        self.sessions, self.settings = context.sessions, context.settings
         self.engine_override = engine_override
         self.local = threading.local()
         self.engines = []
@@ -34,13 +35,13 @@ class JobPipeline:
         )
 
     def cancelled(self):
-        return self.failed.is_set() or self.runner.cancelled(self.job_id)
+        return self.failed.is_set() or self.context.cancelled()
 
     def bump(self, **increments):
         # SQL increments and a short shared write lock prevent lost progress updates.
         if not self.counters:
             return
-        with self.runner.write() as db:
+        with self.context.write() as db:
             db.execute(
                 update(AnalysisJob)
                 .where(AnalysisJob.id == self.job_id)
@@ -56,7 +57,7 @@ class JobPipeline:
         if self.engine_override:
             return self.engine_override
         if not hasattr(self.local, "engine"):
-            engine = self.runner.engine_factory(self.settings, self.sessions)
+            engine = self.context.engine_factory(self.settings, self.sessions)
             self.local.engine = engine
             with self.engines_lock:
                 self.engines.append(engine)
@@ -67,7 +68,7 @@ class JobPipeline:
         try:
             if self.cancelled():
                 return
-            classified = classify_decision(self.runner, decision_id, self.runner.classifier)
+            classified = classify_decision(self.context, decision_id, self.context.classifier)
             self.bump(classifications_completed=int(classified))
             success = True
         except Exception:
@@ -78,8 +79,8 @@ class JobPipeline:
 
     def process_decision(self, decision, completion, ensure_exercise=True):
         if decision.meaningful and ensure_exercise:
-            with self.runner.write() as db:
-                exercise_from_decision(db, decision, self.settings, self.runner.scheduler)
+            with self.context.write() as db:
+                exercise_from_decision(db, decision, self.settings, self.context.scheduler)
         self.bump(
             positions_triaged=1,
             deep_completed=int(decision.deep),
@@ -96,7 +97,7 @@ class JobPipeline:
         try:
             if self.cancelled():
                 return
-            with self.runner.read() as db:
+            with self.context.read() as db:
                 if classification_only:
                     # Saved decision records suffice: no PGN replay or Stockfish process.
                     decisions = db.scalars(
@@ -114,7 +115,7 @@ class JobPipeline:
                     if self.cancelled():
                         return
                     decision = analyze_decision(
-                        self.runner, self.engine, self.settings, game, ply, board, move
+                        self.context, self.engine, self.settings, game, ply, board, move
                     )
                     self.process_decision(decision, completion)
                 if self.settings.puzzle_generation:
@@ -130,7 +131,7 @@ class JobPipeline:
 
     def mine(self, game_id):
         result = generate_for_game(
-            self.runner,
+            self.context,
             EngineSearch(self.engine(), self.settings),
             self.settings,
             game_id,
@@ -185,14 +186,14 @@ class JobPipeline:
     def probe(self, task):
         if self.cancelled():
             return
-        if not enrich_decision(self.runner, task, self.engine(), self.cancelled):
+        if not enrich_decision(self.context, task, self.engine(), self.cancelled):
             return
-        classified = classify_decision(self.runner, task.decision_id, self.runner.classifier)
+        classified = classify_decision(self.context, task.decision_id, self.context.classifier)
         self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))
 
     def run_enrichment(self):
         with self._drain():
-            tasks = plan_probes(self.runner, self.job_id, self.settings, self.engine())
+            tasks = plan_probes(self.context, self.engine())
             for task in tasks:
                 if not self.games.submit(self.probe, task):
                     break

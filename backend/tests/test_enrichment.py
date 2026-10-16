@@ -1,6 +1,7 @@
 import copy
 
 import pytest
+from account_units import job_context
 from explanation_fixtures import seed_review
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
@@ -49,7 +50,7 @@ def test_bounded_probes_cache_resume_and_preserve_grading(settings, stockfish_pa
         engine = Stockfish(settings, app.state.sessions)
         try:
             units = Units(app.state.sessions, app.state.workspaces.local_mutation_lock)
-            tasks = plan_probes(units, job_id, settings, engine)
+            tasks = plan_probes(job_context(app.state.sessions, job_id, settings), engine)
             assert len(tasks) == 1
             settings.classification_probe_depth += 1
             with pytest.raises(EngineUnavailable, match="settings changed"):

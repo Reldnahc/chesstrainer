@@ -43,7 +43,7 @@ def analyze_decision(units, engine, settings, game, ply, board, move):
             units.sessions, engine, board, move, before, played
         )
     else:
-        before, played, deep = triaged_searches(engine(), settings, board, move)
+        before, played, deep = triaged_searches(engine, settings, board, move)
     best = Candidate.model_validate(before.candidates[0])
     actual = Candidate.model_validate(played.candidates[0])
     loss = evaluation_loss(best.score, actual.score)
@@ -214,6 +214,9 @@ def restricted_view(sessions, analysis, uci):
 
 
 def triaged_searches(engine, settings, board, move):
+    """``engine`` is a zero-argument getter, as in ``analyze_decision`` and
+    ``reviewed_searches``, so no engine starts before a search needs one."""
+    engine = engine()
     before = engine.analyze(board)
     # Search the actual move at the SAME root and learner perspective. This avoids
     # child-position sign mistakes and compares moves under identical analysis limits.
