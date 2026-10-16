@@ -16,8 +16,8 @@ GRADE_BOUNDARIES = (INACCURACY_CP, MISTAKE_CP, BLUNDER_CP, BLUNDER_CP_LOW_RATED)
 # Evaluation bands the rules read, in the mover's centipawns.
 HOLDING_CP = -50  # At least this: not losing (-0.50 or better).
 LEVEL_CP = 150  # Strictly inside plus or minus this: roughly level.
-WINNING_CP = 200  # At least this: winning; at most -WINNING_CP: losing.
-LOST_CP = -150  # At most this: a runner-up that is lost.
+CLEAR_EDGE_CP = 200  # At least this: clearly better; at most -CLEAR_EDGE_CP: clearly worse.
+LOSING_ALTERNATIVE_CP = -150  # At most this: a runner-up that loses.
 ONLY_GOOD_GAP_CP = 150  # At least this between best and runner-up for an only move.
 
 
@@ -49,7 +49,9 @@ def is_only_good(best, second):
     """
     gap = evaluation_loss(best, second)
     safe_best = best.outcome() == 1 or (best.kind == "cp" and best.value >= HOLDING_CP)
-    losing_second = second.outcome() == -1 or (second.kind == "cp" and second.value <= LOST_CP)
+    losing_second = second.outcome() == -1 or (
+        second.kind == "cp" and second.value <= LOSING_ALTERNATIVE_CP
+    )
     return safe_best and losing_second and (mate_changed(gap) or (gap.cp or 0) >= ONLY_GOOD_GAP_CP)
 
 
@@ -77,7 +79,7 @@ def numeric(score):
 def is_decisive_swing(best, actual):
     """The mover was not losing (-0.50 or better, or winning by mate) and now is
     (-2.00 or worse, or mated). Mates count, so the review and its events agree."""
-    return numeric(best) >= HOLDING_CP and numeric(actual) <= -WINNING_CP
+    return numeric(best) >= HOLDING_CP and numeric(actual) <= -CLEAR_EDGE_CP
 
 
 def blunder_cp(rating):

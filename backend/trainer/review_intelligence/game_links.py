@@ -1,7 +1,7 @@
 """Relationships require contiguous actual play, never adjacent rows across gaps."""
 
 from trainer.chess_core import evaluation_loss
-from trainer.review_scores import WINNING_CP, is_mistake, is_poor
+from trainer.review_scores import CLEAR_EDGE_CP, is_mistake, is_poor
 
 # An erosion: a side's recent moves each conceding at least EROSION_STEP_CP but
 # less than EROSION_STEP_LIMIT_CP, while its evaluation falls EROSION_TOTAL_CP or
@@ -9,6 +9,10 @@ from trainer.review_scores import WINNING_CP, is_mistake, is_poor
 EROSION_STEP_CP = 30
 EROSION_STEP_LIMIT_CP = 150
 EROSION_TOTAL_CP = 150
+# A side still playable: at least this, or winning by mate.
+PLAYABLE_CP = -100
+# Two searches of one position agree when within this.
+CONSISTENT_CP = 100
 
 
 def loss(node):
@@ -16,11 +20,11 @@ def loss(node):
 
 
 def strong(score):
-    return score.outcome() == 1 or (score.kind == "cp" and score.value >= WINNING_CP)
+    return score.outcome() == 1 or (score.kind == "cp" and score.value >= CLEAR_EDGE_CP)
 
 
 def playable(score):
-    return score.outcome() == 1 or (score.kind == "cp" and score.value >= -100)
+    return score.outcome() == 1 or (score.kind == "cp" and score.value >= PLAYABLE_CP)
 
 
 def good(node):
@@ -36,7 +40,7 @@ def mistake(node):
 def consistent(left, right):
     expected = left.after.negate()
     if expected.kind == right.before.kind == "cp":
-        return abs(expected.value - right.before.value) <= 100
+        return abs(expected.value - right.before.value) <= CONSISTENT_CP
     return (
         expected.kind == right.before.kind == "mate"
         and expected.outcome() == right.before.outcome()

@@ -32,12 +32,12 @@ from trainer.review_sacrifices import (
     supported_sacrifice,
 )
 from trainer.review_scores import (
+    CLEAR_EDGE_CP,
     HOLDING_CP,
     INACCURACY_CP,
     LEVEL_CP,
     MISTAKE_CP,
     NEAR_BEST_CP,
-    WINNING_CP,
     blunder_cp,
     is_decisive_swing,
     is_mistake,
@@ -156,10 +156,10 @@ def classify(report, rating):
             and (
                 (
                     -LEVEL_CP < numeric(Score.model_validate(previous)) < LEVEL_CP
-                    and numeric(actual) >= WINNING_CP
+                    and numeric(actual) >= CLEAR_EDGE_CP
                 )
                 or (
-                    numeric(Score.model_validate(previous)) <= -WINNING_CP
+                    numeric(Score.model_validate(previous)) <= -CLEAR_EDGE_CP
                     and numeric(actual) >= HOLDING_CP
                 )
             )
