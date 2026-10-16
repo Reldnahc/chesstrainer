@@ -37,7 +37,7 @@ Rules separate three things: an observable material/mate outcome, a supported ta
 |---|---|
 | Allowed / missed mate | Explicit learner-perspective mate transition versus the best alternative |
 | Material loss / missed material gain | Meaningful relative evaluation loss plus different material balances at usable endpoints of both saved lines |
-| Hanging piece / missed tactical capture | Initial undefended non-pawn capture from Lichess with real setup context, or existing immediate/retained-gain witness; mistake outcome gates still apply |
+| Hanging piece / missed tactical capture | Initial undefended non-pawn capture from Lichess with real setup context, or existing immediate/retained-gain witness; never when the capturing side is checkmated later in the shown line (a poisoned piece); mistake outcome gates still apply |
 | Fork | Lichess valuable-target/safe-forker predicate, existing detailed collection witness, or separately confirmed native defensive test; connected episode and outcome gates still apply |
 | Pin | Lichess absolute pin prevents capture or escape; existing pinned-defender/victim witnesses and native-confirmed relative-pin extensions remain |
 | Skewer | Lichess aligned front-target/rear-capture sequence, including front targets other than kings; existing king-skewer collection witnesses remain |
@@ -162,7 +162,7 @@ The executable source of truth is [themes.py](../scripts/lichess_benchmark/theme
 | discoveredAttack | discovered_attack | approximate | Yes | Pinned Lichess uncovered single check or discovered line capture, plus existing collection witnesses. Quiet threats without collection may miss. Fieldwork outcome/episode gates remain. |
 | discoveredCheck | discovered_attack | approximate | Yes | Only the uncovered-single-check witness qualifies, not a nonchecking discovery or double check. This theme may not be exported separately. |
 | doubleCheck | double_attack | exact | Yes | Exact double-check event, selected from Fieldwork's broader double_attack skill. A nonchecking double attack cannot earn agreement. Adapter outcome gates still apply. |
-| hangingPiece | missed_tactical_capture | approximate | Yes | First solver capture, the positive-side counterpart of hanging_piece: upstream undefended-piece capture with real setup context or existing retained-gain witness. Fieldwork outcome gates remain; insufficiently defended pieces are broader. |
+| hangingPiece | missed_tactical_capture | approximate | Yes | First solver capture, the positive-side counterpart of hanging_piece: upstream undefended-piece capture with real setup context or existing retained-gain witness, declined when the capturer is mated later in the line. Fieldwork outcome gates remain; insufficiently defended pieces are broader. |
 | deflection | deflection | approximate | Yes | Pinned Lichess deflection sequences plus existing check/recapture and collection witnesses. Broader attraction is not substituted. Fieldwork outcome/episode gates remain. |
 | trappedPiece | trapped_piece | unsupported | No | Production requires native counterfactual escape/capture searches, absent from CSV. |
 | attraction | No equivalent | unsupported | No | Luring a piece to a square is not equivalent to removing its defensive duty. |
