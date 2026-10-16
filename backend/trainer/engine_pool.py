@@ -6,12 +6,18 @@ from trainer.lazy_pool import LazyPool, PoolClosed
 from trainer.search_limits import EngineCancelled
 
 
+def engine_broken(engine):
+    """Stockfish closes its own process when an error leaves it unusable, so a failed
+    engine with its process still open is sound. One with no process is rebuilt:
+    that costs nothing until the next search starts one."""
+    return getattr(engine, "process", None) is None
+
+
 class EnginePool:
-    """Stockfish engines on one LazyPool: a call that raises discards its engine and
-    the slot starts a fresh one, the rule Maia workers follow too."""
+    """Stockfish engines on one LazyPool, with its one failure rule."""
 
     def __init__(self, factory, slots):
-        self.engines = LazyPool(slots, factory)
+        self.engines = LazyPool(slots, factory, engine_broken)
 
     def handle(self, settings, sessions):
         pool = self

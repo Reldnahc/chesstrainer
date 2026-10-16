@@ -1,16 +1,22 @@
 """A fixed number of costly native resources, each built on first use and reused.
 
 Stockfish engines and Maia workers share this pool and its one failure rule: a
-lease that raises discards its resource (closed, never handed out again) and the
-slot builds a fresh one on its next lease. A lease refused before the resource is
-used hands it back untouched.
+lease that raises discards its resource when ``broken(resource)`` says the failure
+left it unusable (closed, never handed out again) and the slot builds a fresh one
+on its next lease; a resource that is still sound goes back for reuse. A Maia
+worker is always broken by a failed exchange; a Stockfish engine is broken once it
+has closed its own process, which it does on every engine error and cancellation.
+A lease refused before the resource is used hands it back untouched.
 """
 
+import logging
 import threading
 from contextlib import contextmanager
 from queue import Queue
 
 from trainer.cancellation import taking, wait_until
+
+log = logging.getLogger(__name__)
 
 
 class PoolClosed(Exception):
@@ -18,8 +24,9 @@ class PoolClosed(Exception):
 
 
 class LazyPool:
-    def __init__(self, slots, build):
+    def __init__(self, slots, build, broken=lambda resource: True):
         self.build = build
+        self.broken = broken
         self.available = Queue(maxsize=slots)
         for _ in range(slots):
             self.available.put(None)
@@ -60,19 +67,21 @@ class LazyPool:
                     self.live.add(resource)
             yield resource
         except BaseException:
-            if resource is not None:
-                self._discard(resource)
-                resource = None
+            if resource is not None and self.broken(resource):
+                doomed, resource = resource, None
+                self._discard(doomed)
             raise
         finally:
             self.available.put(resource)
 
     def _discard(self, resource):
+        with self._guard:
+            self.live.discard(resource)
         try:
             resource.close()
-        finally:
-            with self._guard:
-                self.live.discard(resource)
+        except Exception:
+            # The lease's own error is the one to report; this one is only logged.
+            log.warning("pooled_resource_close_failed", exc_info=True)
 
     def close(self):
         """Close every resource, leased or idle; no lease builds another."""

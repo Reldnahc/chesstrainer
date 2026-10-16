@@ -68,3 +68,25 @@ def test_close_closes_every_resource_and_builds_no_more():
     with pytest.raises(PoolClosed):
         with pool.lease():
             pass
+
+
+def test_a_failure_that_leaves_the_resource_sound_keeps_it():
+    pool = LazyPool(1, Resource, broken=lambda resource: resource.closed)
+    with pytest.raises(ValueError):
+        with pool.lease() as sound:
+            raise ValueError("bad input, process fine")
+    with pool.lease() as again:
+        assert again is sound and not sound.closed
+
+
+def test_a_close_that_fails_still_reports_the_lease_error_and_frees_the_slot():
+    class Stuck(Resource):
+        def close(self):
+            raise TimeoutError("would not exit")
+
+    pool = LazyPool(1, Stuck)
+    with pytest.raises(RuntimeError, match="process died"):
+        with pool.lease() as failed:
+            raise RuntimeError("process died")
+    with pool.lease() as fresh:
+        assert fresh is not failed

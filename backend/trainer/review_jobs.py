@@ -1,13 +1,15 @@
 """Ordered baseline work followed by a finite independent refinement pass."""
 
 from collections import deque
-from queue import Queue
+from contextlib import nullcontext
 
 from sqlalchemy import select
 
 from trainer import game_review
 from trainer.classification_stages import line_parameters
+from trainer.engine_pool import engine_broken
 from trainer.game_library import board_before
+from trainer.lazy_pool import LazyPool
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.review_refinement import run_refinement
 from trainer.review_reports import stale_adopted, touch_report
@@ -51,18 +53,16 @@ def run_baseline(context, engine_override=None):
         if engine_override
         else min(context.settings.stockfish_workers, context.settings.engine_slots, max(1, missing))
     )
+    # The caller owns an override engine; the job builds and closes its own.
     engines = (
-        [engine_override]
+        None
         if engine_override
-        else [
-            context.engine_factory(context.settings, context.sessions)
-            for _ in range(workers)
-            if missing
-        ]
+        else LazyPool(
+            workers,
+            lambda: context.engine_factory(context.settings, context.sessions),
+            engine_broken,
+        )
     )
-    available = Queue()
-    for engine in engines:
-        available.put(engine)
 
     human = context.human_models
 
@@ -70,14 +70,11 @@ def run_baseline(context, engine_override=None):
         if context.cancelled():
             return None
         if cached is None:
-            engine = available.get()
-            try:
+            with nullcontext(engine_override) if engines is None else engines.lease() as engine:
                 # Preceding score is attached in game order below.
                 report = game_review.analyze_move(
                     engine, board, move, parameters=parameters, mate_limits=mate_limits
                 )
-            finally:
-                available.put(engine)
         elif game_review.lines_current(cached, parameters):
             report = dict(cached)
         else:
@@ -163,8 +160,7 @@ def run_baseline(context, engine_override=None):
             fill()
     finally:
         searches.close(cancel_waiting=True)
-        if not engine_override:
-            for engine in engines:
-                engine.close()
+        if engines is not None:
+            engines.close()
 
     return parsed, game.id
