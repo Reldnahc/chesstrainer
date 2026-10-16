@@ -727,3 +727,17 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(weakness).toBeVisible();
   expect(fixture.exercise_id).toBeTruthy();
 });
+
+test('a failed answer check speaks through the coach panel\'s one live region', async ({page}, testInfo) => {
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/grading-${testInfo.project.name}`)).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  const liveRegions = page.locator('.review-coach').locator('[aria-live]:not([aria-live="off"]), [role="status"], [role="alert"]');
+  await expect(liveRegions).toHaveCount(1);
+  await page.locator('.review-coach .move-status').evaluate(element => { element.dataset.probe = 'kept'; });
+  await page.route('**/api/review/sessions/*/move', route => route.fulfill({status: 503, json: {detail: 'Grading is unavailable.'}}));
+  const board = page.getByRole('region', {name: 'Chess position'});
+  await board.locator('[data-square="g1"]').click();
+  await board.locator('[data-square="f1"]').click();
+  await expect(page.locator('.review-coach [data-probe="kept"] [data-utterance]')).toBeVisible();
+  await expect(liveRegions).toHaveCount(1);
+});
