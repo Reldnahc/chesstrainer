@@ -385,3 +385,20 @@ def test_a_null_tactic_fact_move_events_4_omitted_stays_out_of_the_event_id():
     assert event_identity(
         plain.model_copy(update={"facts": plain.facts.model_copy(update={"pinned_before": False})})
     ) != event_identity(plain)
+
+
+def test_tactic_event_ids_match_those_recorded_before_the_facts_were_typed():
+    report = cause_report(CAUSES[0], False)
+    tactics = events(report, kind="tactic")
+    # Recorded at c9a565625, the audit-leftovers commit just before typed facts
+    # merged (c4374ef72), where the null facts were absent rather than null. A deliberate
+    # VERSION or fact-shape change breaks these ids on purpose; record them again then.
+    assert [e.id for e in tactics] == [
+        "9bbcd552a122b8964220db00078091e3ac1259fc0862a3cded5a12a2af891198",
+        "49e5c6331d90d1640b027864370397b4acabc6a05e6ca406fb93d58919c0b846",
+        "f8b74e32f630ad9f8a933ad7ea11aaf615fa66ba6e66ae500fb44dc51351d3a0",
+    ]
+    # The fixture covers the rule: these events now carry the omitted facts as null.
+    assert all(
+        e.facts.opportunity_actor is None and e.facts.pinned_before is None for e in tactics[1:]
+    )
