@@ -344,6 +344,10 @@ def test_account_migration_preserves_existing_learning_history(settings):
             ]
             for table in tables
         }
+        columns_before = {
+            table: {row[1] for row in connection.exec_driver_sql(f'PRAGMA table_info("{table}")')}
+            for table in tables
+        }
     migrate(engine)
     # Columns later migrations removed on purpose, by table; every other saved
     # value must come through unchanged.
@@ -352,17 +356,21 @@ def test_account_migration_preserves_existing_learning_history(settings):
         "review_sessions": {"lesson_item_id"},
         "exercises": {"repertoire_id", "orientation"},
         # One representation per concept (values checked in test_migrations).
-        "opening_studies": {"color"},
-        "opening_recall_snapshots": {"orientation"},
-        "users": {"created", "chesscom_username"},
-        "auth_sessions": {"expires"},
         "games": {"played_on"},
         # Hosted-model fields of classification runs.
         "classification_runs": {"prompt_version", "input_tokens", "output_tokens"},
         # Replayed board facts nothing read (backend audit 43, 3b3c1b0317ee).
         "decisions": {"facts"},
     }
-    current = set(sqlalchemy.inspect(engine).get_table_names())
+    inspector = sqlalchemy.inspect(engine)
+    current = set(inspector.get_table_names())
+    # Exactly the listed columns went, even from tables this fixture leaves empty.
+    assert {
+        table: columns - {column["name"] for column in inspector.get_columns(table)}
+        for table, columns in columns_before.items()
+        if table in current
+        and columns - {column["name"] for column in inspector.get_columns(table)}
+    } == dropped
     with engine.connect() as connection:
         for table, rows in before.items():
             if table not in current:
