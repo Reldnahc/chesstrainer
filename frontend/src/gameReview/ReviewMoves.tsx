@@ -154,6 +154,7 @@ export default function ReviewMoves({
                     <Button
                       key={index}
                       size="dense"
+                      mono
                       aria-pressed={
                         branch?.id === b.id && cursor.step === index + 1
                       }

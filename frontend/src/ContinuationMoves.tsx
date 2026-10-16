@@ -15,8 +15,8 @@ export default function ContinuationMoves({ label, moves, selectedIndex, startSe
   onSelect: (index: number) => void;
 }) {
   return <div className="continuation-moves" role="group" aria-label={label}>
-    <Button size="compact" disabled={disabled} aria-current={startSelected ? "step" : undefined} onClick={onStart}>Start</Button>
-    {moves.map((move, index) => <Button size="compact" key={index} disabled={disabled} aria-current={selectedIndex === index ? "step" : undefined}
+    <Button size="compact" mono disabled={disabled} aria-current={startSelected ? "step" : undefined} onClick={onStart}>Start</Button>
+    {moves.map((move, index) => <Button size="compact" mono key={index} disabled={disabled} aria-current={selectedIndex === index ? "step" : undefined}
       onClick={() => onSelect(index)}>{numbered ? numberedSan(move.before_fen, move.san) : move.san}</Button>)}
   </div>;
 }

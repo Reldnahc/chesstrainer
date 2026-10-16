@@ -23,6 +23,7 @@ export default function ReviewCoach({
   voice,
   compactLabel = false,
   fit = "fixed",
+  portrait = "responsive",
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -45,6 +46,9 @@ export default function ReviewCoach({
   /** "content": the bubble fits one short line that never changes (Play setup on
    * phones) instead of the review's fixed height. */
   fit?: "fixed" | "content";
+  /** "roomy" keeps the desktop portrait (92.8px wide, 136px tall) at every width;
+   * the coach studio's roomy preview uses it on phones. */
+  portrait?: "responsive" | "roomy";
 }) {
   const message = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -53,7 +57,7 @@ export default function ReviewCoach({
     if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
   }, [messageResetKey]);
   return (
-    <section className={["review-coach", compactLabel && "review-coach--compact-label", fit === "content" && "review-coach--fit-content"].filter(Boolean).join(" ")}
+    <section className={["review-coach", compactLabel && "review-coach--compact-label", fit === "content" && "review-coach--fit-content", portrait === "roomy" && "review-coach--roomy-portrait"].filter(Boolean).join(" ")}
       aria-label="Chess coach">
       <div className="coach-portrait">
         {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}

@@ -132,9 +132,10 @@ function GameRecallPanel({
             </p>
           </div>
           <div className="practice-actions">
-            {!focusSkill && <ActionLink variant="primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
+            {!focusSkill && <ActionLink variant="primary" spread href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
             <ActionLink
               variant={focusSkill ? "primary" : "secondary"}
+              spread={!!focusSkill}
               href={focusSkill ? studyPaths.due : pagePaths.Settings}
             >
               {focusSkill ? "Return to mixed review" : "Import games"}{" "}

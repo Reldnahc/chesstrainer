@@ -172,7 +172,7 @@ look comes only from Button in `action-controls.css`) and common form/surface ut
 `base.css` owns application chrome and page-specific layout. `board.css` owns the shared
 board, legal-move markers, tactical highlights, rating animation and retry effects;
 `review-presentation.css` owns shared SRS/game workspace geometry, while
-`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors.
+`coach-presentation.css` owns the coach bubble, actions, evaluation and rating colors. Both are shared components, so they sit in the `components` layer.
 SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
 History, imports, account/sync forms and evidence each have their own stylesheet.
 Keep a component's normal and responsive rules together, with one block per
