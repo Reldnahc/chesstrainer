@@ -168,14 +168,16 @@ stands in. Re-recording them with true wording would let them play again.
   Their other chance-taken takes still play.
 - **Book takes saying the opening has a name** (felix, pip, reka, tala, tamar) give
   way to the coach's next take of the same kind where our catalogue has no name.
-- Left playing, because they are false only rarely: the castling "shelter" takes
-  (false only when castling into an attack).
-
 The back-rank, recovery, opening-departure, repeated-issue and Orin draw takes that
 were false were rewritten and re-recorded on Oct 15; each bank's
 `revisions/false-takes-v1.json` (Walter's `bank/revisions/walter-false-takes-v1.json`)
-holds the previous text, the new text and the reason, and a spec checks no recorded
-take brings those claims back.
+holds the previous text, the new text and the reason. Orin's fork takes (which
+promised only one target escapes) and the Orin and Tamar castling takes (which
+called castling shelter or safety) followed on Oct 16, in `revisions/fork-takes-v1.json`
+and `revisions/castling-safety-v1.json`. A spec checks no recorded take brings
+those claims back. Back-rank takes saying the king is hemmed in or trapped by its
+own pieces (tala, percy, pickle) are true of the pattern and stay, by Chandler's
+ruling; only the claim that every escape square holds the king's own piece was false.
 
 ## Personality boundary
 
