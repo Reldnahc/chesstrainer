@@ -10,6 +10,7 @@ from trainer.api import create_app
 from trainer.config import Settings
 
 
+@pytest.mark.pristine_database
 @pytest.mark.parametrize(
     "origin",
     [

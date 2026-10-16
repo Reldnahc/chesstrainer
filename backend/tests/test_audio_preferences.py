@@ -154,6 +154,7 @@ def legacy_users(connection, before):
     return [{column: row[column] for column in kept} for row in rows]
 
 
+@pytest.mark.pristine_database
 def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(settings):
     from alembic import command
     from alembic.config import Config
@@ -198,6 +199,7 @@ def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(set
     engine.dispose()
 
 
+@pytest.mark.pristine_database
 def test_removing_rating_audio_preserves_saved_account_preferences(settings):
     from alembic import command
     from alembic.config import Config

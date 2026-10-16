@@ -1,5 +1,7 @@
 import os
 import shutil
+import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 import pytest
@@ -23,11 +25,40 @@ def open_signups(monkeypatch):
     monkeypatch.setattr(Accounts, "signups_open", lambda self: True)
 
 
+@pytest.fixture(scope="session")
+def migrated_database(tmp_path_factory):
+    """A database migrated to head once per test run, for each test to copy.
+
+    Running every revision costs a second or two, and almost every test starts
+    from an empty current database. Copying this file gives each test the same
+    schema at a fraction of that. Tests marked ``pristine_database`` (old-revision
+    upgrades, migration paths) start from no file instead, as do the migration
+    tests in test_migrations, which build their own databases.
+    """
+    path = tmp_path_factory.mktemp("template") / "migrated.sqlite3"
+    engine, _ = database(path)
+    migrate(engine)
+    engine.dispose()
+    return path
+
+
+def copy_database(source, destination):
+    """A page-for-page copy through SQLite's backup API, WAL contents included."""
+    with (
+        closing(sqlite3.connect(source)) as original,
+        closing(sqlite3.connect(destination)) as copy,
+    ):
+        original.backup(copy)
+
+
 @pytest.fixture
-def settings(tmp_path):
+def settings(tmp_path, request, migrated_database):
+    path = tmp_path / "test.sqlite3"
+    if request.node.get_closest_marker("pristine_database") is None:
+        copy_database(migrated_database, path)
     return Settings(
         _env_file=None,
-        database_path=tmp_path / "test.sqlite3",
+        database_path=path,
         # Fallback tests must not discover a developer's installed model. Native tests opt in.
         human_model_path=tmp_path / "unconfigured-maia.pt",
         triage_depth=8,

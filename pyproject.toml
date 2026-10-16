@@ -26,7 +26,11 @@ where = ["backend"]
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
-markers = ["stockfish: requires native Stockfish", "maia: requires opt-in pinned Maia runtime and cached checkpoint"]
+markers = [
+    "stockfish: requires native Stockfish",
+    "maia: requires opt-in pinned Maia runtime and cached checkpoint",
+    "pristine_database: start from no database file instead of a copy of the migrated one",
+]
 
 [tool.ruff]
 extend-exclude = ["backend/trainer/_vendor/lichess_puzzler", "backend/trainer/_vendor/maia3"]

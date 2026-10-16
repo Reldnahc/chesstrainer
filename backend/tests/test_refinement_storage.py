@@ -58,6 +58,7 @@ def test_same_account_wrong_position_or_generation_is_not_promoted(sessions):
         assert effective_report(db, row, task) == baseline
 
 
+@pytest.mark.pristine_database
 def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
     sql, sessions = database(settings.database_path)
     config = Config("alembic.ini")
