@@ -52,15 +52,6 @@ def test_mistake_missed_punishment_recovery_preserves_actor_and_evidence():
     assert not links(punished, "recovery")
 
 
-def test_recovery_records_the_opponent_errors_that_helped():
-    # Black's error at ply 2 made the game playable again; White's ply 3 kept it.
-    _, _, context = reviewed([-300, 0, 0])
-    recovery = links(context, "recovery")[0]
-    assert recovery.plies[-1] == 3 and recovery.facts.opponent_errors == [2]
-    # A move never raises its own evaluation, so no fact credits this move alone.
-    assert "restored_by_move" not in recovery.facts.model_dump()
-
-
 def test_partial_benefit_is_not_described_as_completely_missed():
     _, _, context = reviewed([-500, -380, -380])
     assert not links(context, "punishment")

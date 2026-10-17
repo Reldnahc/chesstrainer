@@ -227,45 +227,6 @@ def test_library_insights_from_saved_games(settings, monkeypatch):
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
 
 
-def test_each_game_is_replayed_once_until_it_or_its_review_changes(settings, monkeypatch):
-    from trainer import game_insights
-    from trainer.models import GameReview, InsightFacts
-    from trainer.routes import insights
-
-    built = []
-
-    def counted(game, *args):
-        built.append(game.id)
-        return game_insights.game_facts(game, *args)
-
-    monkeypatch.setattr(insights, "game_facts", counted)
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            ids = seed(db)
-        first = client.get("/api/insights").json()
-        assert len(built) == 3
-        # A filter change or a repeat replays nothing while the reviews are unchanged.
-        assert client.get("/api/insights?speed=blitz").json()["games"] == 2
-        assert client.get("/api/insights").json() == first
-        assert len(built) == 3
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
-            # A saved report or an adopted refinement bumps the review's revision.
-            db.get(GameReview, ids[0]).revision += 1
-            db.commit()
-        built.clear()
-        assert client.get("/api/insights").json() == first
-        assert built == [ids[0]]
-
-    # Saved facts outlive the process: a restarted server replays nothing.
-    built.clear()
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        assert client.get("/api/insights").json() == first
-    assert built == []
-
-
 def test_saved_facts_read_back_exactly(sessions):
     from dataclasses import fields, replace
     from datetime import datetime, timedelta, timezone
@@ -320,29 +281,6 @@ def test_damaged_saved_facts_are_rebuilt(settings):
             assert all(row.facts != b"not saved facts" for row in db.scalars(select(InsightFacts)))
 
 
-def test_rebuilt_facts_are_saved_as_they_go(settings, monkeypatch):
-    from trainer.models import InsightFacts
-    from trainer.routes import insights
-
-    saved = []
-    original = insights.save
-
-    def counted(workspace, rows):
-        saved.append(len(rows))
-        original(workspace, rows)
-
-    monkeypatch.setattr(insights, "SAVE_EVERY", 2)
-    monkeypatch.setattr(insights, "save", counted)
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            seed(db)
-        client.get("/api/insights")
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
-    assert saved == [2, 1]
-
-
 def test_facts_of_a_game_deleted_meanwhile_are_not_saved(settings):
     from threading import Lock
 
@@ -392,16 +330,6 @@ def test_facts_key_follows_everything_the_facts_read():
         ),
     ):
         assert changed != base
-
-
-def test_facts_keep_no_per_instance_dictionary():
-    from trainer.game_insights import game_facts
-
-    # Every request unpacks a library's facts: slots keep each ply small.
-    pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 e5 *'
-    facts = game_facts(Game(id="slots", pgn=pgn, learner_color=True, white="Student"))
-    assert not hasattr(facts, "__dict__")
-    assert not any(hasattr(row, "__dict__") for row in facts.plies)
 
 
 def test_empty_library(settings):

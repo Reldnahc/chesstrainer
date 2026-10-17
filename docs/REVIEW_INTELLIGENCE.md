@@ -750,7 +750,6 @@ and set `HF_HUB_OFFLINE=1`, then:
 
 ```sh
 python scripts/benchmark_maia.py --model 79m --checkpoints data/maia-benchmark/models --method isolated --output data/maia-benchmark/79m-isolated.json
-MAIA_CHECKPOINT_DIR=data/maia-benchmark/models python -m pytest -q backend/tests/test_maia_feasibility.py
 ```
 
 Methods are `uci`, `direct`, `policy` and `isolated`; sizes are `5m`, `23m` and

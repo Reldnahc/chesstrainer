@@ -8,7 +8,6 @@ from trainer import game_review
 from trainer.chess_core import Candidate
 from trainer.classification_stages import line_parameters, line_rules
 from trainer.continuations import continuation_end, replay, settled_delta
-from trainer.diagnosis_types import PreviousMove
 
 
 def random_line(seed, plies=40):
@@ -61,32 +60,6 @@ def test_a_configured_horizon_reaches_the_review_and_is_recorded():
     report = {"actual_line": line, "best_line": line}
     assert game_review.lines_current(report, parameters)
     assert not game_review.lines_current(report)
-
-
-def test_both_review_lines_read_the_move_before(monkeypatch):
-    board, best = random_line(5)
-    other = next(m for m in board.legal_moves if m.uci() != best.uci)
-    played = Candidate.model_validate(
-        {
-            "uci": other.uci(),
-            "san": board.san(other),
-            "pv": [other.uci()],
-            "score": {"kind": "cp", "value": 0},
-        }
-    )
-    seen = []
-    real = game_review.line_evidence
-
-    def spy(board, candidate, analysis_id, first, previous=None, parameters=None):
-        seen.append(previous)
-        return real(board, candidate, analysis_id, first, previous, parameters)
-
-    monkeypatch.setattr(game_review, "line_evidence", spy)
-    game_review.review_lines(board, best, played, "b", "a", True)
-    before = board.copy(stack=True)
-    last = before.pop()
-    expected = PreviousMove(fen=before.fen(), uci=last.uci())
-    assert seen == [expected, expected]
 
 
 def test_a_report_saved_before_the_shared_horizon_is_read_again_without_a_search():

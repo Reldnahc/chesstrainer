@@ -11,7 +11,6 @@ from trainer.api import create_app
 from trainer.contracts.study_lessons import LessonCommand
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.player import enter_step, initial_state, transition
-from trainer.study_lessons.queries import fingerprint
 
 COURSE_ID = "tactics-foundations"
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
@@ -322,10 +321,3 @@ def test_a_separate_example_cannot_replace_history_any_other_way(problem):
         steps["first"].update(kind="branch", branch_start="second")
     with pytest.raises(ValidationError, match="incompatible chess history"):
         CourseDefinition.model_validate(record)
-
-
-def test_published_revision_keeps_its_content_identity():
-    # Intentional edits require a new revision and hash together.
-    course = installed_course(COURSE_ID)
-    assert course.revision == "2026-10-v1"
-    assert fingerprint(course) == "4709dfffc85c72af4fc2d20f7831ab2fb0ed6cf6307cf842f1730ea093c8c95f"

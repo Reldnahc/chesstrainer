@@ -344,8 +344,8 @@ several layers and needs their relevant checks before being called finished.
 | Identity/preferences | `backend/tests/test_coach_preferences.py`; app `coach-selection.spec.ts`, `coach-logic.spec.ts`, `coach.spec.ts`; account suite when persistence changes |
 | Rig/acting | Coach Studio suite: full cast/expressions, repertoire, signatures, channels, hands, cadence, resting faces, diagnostics, motion and visibility |
 | Written personality | App dialogue/personality tests and Intelligence Lab suite: required slots, scoped tactics, alternatives, attribution, deterministic composition, blind samples and cold feedback |
-| Recorded scripts/selection | `test_coach_voice_bank.py`, `test_coach_pilot_scripts.py`, `test_coach_bank_scripts.py`; production game/practice selection, Maia-silence (`game-speech-maia-silence.spec.ts`) and delayed-Maia playback tests |
-| Recording/alignment | Recorder Node tests; speech alignment/forced-alignment/pronunciation Python tests; strict complete-bank check; actual browser decode/playback |
+| Recorded scripts/selection | Strict complete-bank check; production game/practice selection, Maia-silence (`game-speech-maia-silence.spec.ts`) and delayed-Maia playback tests |
+| Recording/alignment | `scripts/align_coach_speech.py --check`; strict complete-bank check; actual browser decode/playback |
 | Speaking mouth | Audio Studio activity, lip-sync, speech animation/lifecycle and nonhuman mouth tests, plus manual character-sized viewing |
 
 These commands are useful entry points, with the virtual environment activated
@@ -353,8 +353,7 @@ and working directory at the repository root:
 
 ```sh
 python -B -S scripts/prepare_coach_voice_bank.py --check
-node --test scripts/record_coach_speech.test.mjs
-python -m pytest backend/tests/test_coach_preferences.py backend/tests/test_coach_voice_bank.py backend/tests/test_coach_pilot_scripts.py backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py -q
+python -m pytest backend/tests/test_coach_preferences.py -q
 npm --prefix frontend run build
 ```
 

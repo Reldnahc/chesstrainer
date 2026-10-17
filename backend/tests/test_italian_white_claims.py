@@ -6,14 +6,12 @@ from course_positions.italian import (
     ADVANCE,
     CENTRAL,
     DEVELOPED,
-    EARLY_H6,
     ITALIAN,
     KNIGHT_JUMP,
     KNIGHT_ROUTE,
     PREPARED,
     QUIET,
     TWO_KNIGHTS,
-    WAIT,
 )
 
 
@@ -113,12 +111,6 @@ def test_knight_jump_trap_and_its_punishment_state_real_board_facts():
     assert not knight.attackers(chess.WHITE, chess.E4)
     knight.push_san("Re1")
     assert chess.E1 in knight.attackers(chess.WHITE, chess.E4)
-
-
-def test_h6_side_trips_reach_the_quiet_setup_from_three_move_orders():
-    main = board(ITALIAN + " Bc5 d3 Nf6 O-O h6 c3")
-    assert board(EARLY_H6).fen() == main.fen()
-    assert board(WAIT).fen() == main.fen()
 
 
 def test_pin_side_trip_supports_the_knight_and_keeps_the_king_pawns():

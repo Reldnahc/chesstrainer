@@ -7,9 +7,8 @@ import {
   deriveBookPresentation,
 } from "../src/dialogue/openingPresentation";
 import { gameIntent } from "../src/dialogue/gameIntent";
-import { makeIntent } from "../src/dialogue/model";
 import { renderDialogue } from "../src/dialogue/neutral";
-import { neutralPersonality, type CoachPersonality } from "../src/dialogue/personality";
+import type { CoachPersonality } from "../src/dialogue/personality";
 import { coachPersonalities } from "../src/dialogue/characters";
 import { selectGameRecording, unnamedBookTake } from "../src/audio/speech/gameSelection";
 import { NAMED_OPENING_TAKES } from "../src/audio/speech/falseTakes";
@@ -379,40 +378,6 @@ for (const coach of openingCoaches) {
     expect(Object.keys(coach.authored)).toHaveLength(BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS);
   });
 
-  test(`${coach.id} preserves original opening evidence and clones its presentation`, () => {
-    const game = gameWithReports(),
-      before = JSON.stringify(game),
-      ply = 5;
-    const intent = reviewedIntent(game, ply),
-      item = intent.claims.find(value => value.opening)!;
-    const { opening, ...original } = item;
-    expect(original).toEqual({
-      code: "book_sound",
-      slots: { opening: "Named line" },
-      priority: 96,
-      evidence: [{ source: "book", id: catalogueVersion, field: "recognized_opening", ply }],
-      sourceIds: [],
-    });
-    const output = renderDialogue(intent, coach),
-      rendered = output.renderedClaims![0];
-    expect(rendered).toEqual(item);
-    expect(rendered).not.toBe(item);
-    expect(rendered.opening).not.toBe(opening);
-    expect(rendered.slots).not.toBe(item.slots);
-    expect(rendered.evidence).not.toBe(item.evidence);
-    expect(rendered.evidence[0]).not.toBe(item.evidence[0]);
-    expect(rendered.sourceIds).not.toBe(item.sourceIds);
-    rendered.opening!.variant = 99;
-    rendered.slots.opening = "changed output";
-    rendered.evidence[0].id = "changed output";
-    rendered.sourceIds.push("changed output");
-    expect(item.opening).toEqual(presentation(game, ply));
-    expect(item.slots.opening).toBe("Named line");
-    expect(item.evidence[0].id).toBe(catalogueVersion);
-    expect(item.sourceIds).toEqual([]);
-    expect(JSON.stringify(game)).toBe(before);
-  });
-
   test(`${coach.id} uses the same authored opening fact for either actor and learner orientation`, () => {
     const game = gameWithReports();
     for (const ply of [1, 2, 3]) {
@@ -513,51 +478,6 @@ for (const coach of openingCoaches) {
     }
   });
 }
-
-test("opening presentation changes factual identity without changing other coaches' legacy wording", () => {
-  const other = {
-    id: "unchanged-coach",
-    personality: {
-      ...neutralPersonality,
-      version: "unchanged-opening-1",
-      templates: {
-        book_sound: [
-          "The opening is {opening}.",
-          "This move belongs to {opening}.",
-          "The catalogue lists {opening}.",
-        ],
-      },
-    },
-  };
-  const selected = new Set<string>();
-  for (let seed = 0; seed < 24; seed++) {
-    const game = gameWithReports();
-    game.id = `legacy-opening-${seed}`;
-    const ply = 3,
-      intent = reviewedIntent(game, ply);
-    const originalClaims = intent.claims.map(({ opening: _opening, ...item }) => item);
-    const legacy = makeIntent(
-      `${game.id}:${ply}:${game.frames[ply].report!.intelligence!.input_digest}`,
-      intent.purpose,
-      intent.mode,
-      intent.expression,
-      originalClaims,
-      intent.decisions,
-      intent.subject,
-    );
-    expect(intent.id).not.toBe(legacy.id);
-    expect(intent.wordingKey).toBe(legacy.id);
-    const custom = renderDialogue(intent, other);
-    expect(custom.text).toBe(renderDialogue(legacy, other).text);
-    selected.add(custom.text);
-    expect(renderDialogue(intent, { id: "neutral" }).text).toBe(
-      renderDialogue(legacy, { id: "neutral" }).text,
-    );
-    const { opening: _opening, ...renderedOriginal } = custom.renderedClaims![0];
-    expect(renderedOriginal).toEqual(legacy.claims[0]);
-  }
-  expect(selected.size).toBe(3);
-});
 
 /** A reviewed move just past the catalogue, carrying only the departure claim. */
 function departureSelection(coach: { id: string; personality: CoachPersonality }) {

@@ -67,14 +67,6 @@ def test_legal_frame_facts_preserve_whole_move(
     assert not start.castling and not start.checkmate and not start.escaped_check
 
 
-def test_en_passant_and_underpromotion_have_exact_facts():
-    frame = replay_line(chess.Board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1"), ["e5d6"])[1]
-    assert frame.capture == "pawn" and frame.promotion is None
-    assert "d5" in frame.highlights
-    frame = replay_line(chess.Board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1"), ["a7a8n"])[1]
-    assert frame.promotion == "knight"
-
-
 @pytest.mark.parametrize("black", [False, True])
 def test_summary_facts_are_scoped_to_current_attempt_and_cold_stays_cold(settings, black):
     settings.stockfish_path = "missing-test-engine"

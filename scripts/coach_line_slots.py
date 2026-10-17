@@ -30,7 +30,7 @@ PLAN = SPEECH / "planned-meanings.json"
 CATALOGUE = SPEECH / "meanings.json"
 PILOT = SPEECH / "banks/pilot-additions.json"
 PILOT_FIELDS = {"walter": "walterText", "rivet": "rivetText"}
-# Coaches whose personality asks no questions (see test_coach_bank_scripts.QUESTIONLESS).
+# Coaches whose personality asks no questions.
 QUESTIONLESS = {"ziggy", "orin", "felix", "ember", "scout", "juniper", "waffles", "celeste"}
 QUESTIONLESS |= {"jun", "fergus", "marisol", "monty", "ingrid", "tamar"}
 
@@ -344,7 +344,7 @@ def check_text(voice, key, text):
         problems.append(f"{voice}/{key}: must end with . ? or ! and have no outer spaces")
     if len(text) > 1000 or any(mark in text for mark in ("{", "}", "TODO", "TBD")):
         problems.append(f"{voice}/{key}: too long or has a placeholder")
-    # The same checks the bank tests make (backend/tests/test_coach_bank_scripts.py).
+    # Wording rules every recorded bank line follows.
     if re.search(r"\b[a-h][1-8]\b|\d", text):
         problems.append(f"{voice}/{key}: no squares, digits or move numbers")
     if re.search(

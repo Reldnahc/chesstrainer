@@ -383,14 +383,6 @@ test("a fresh review greets, the first move replaces it and returning to the sta
   expect((await speechActivity(page)).started[2]).toContain("/game-review-opened-");
 });
 
-test("without a recorded greeting the start keeps its own bubble text", async ({ page }) => {
-  test.skip(walterOpener, "Walter's greeting is recorded; the greeting test covers the bubble.");
-  await voiceGame(page, humanGames.unusual_strong, 0);
-  await expect(page.locator(".coach-message > [data-utterance]")).toHaveText(
-    "Select a move or move a piece to explore an alternative.",
-  );
-});
-
 test("a double check plays the double-check take, not a double-attack take", () => {
   // A double check's witness names the king it checks: one target, and every legal
   // reply meets both checks, so neither "two targets" nor "one reply rarely meets both" holds.

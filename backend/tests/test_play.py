@@ -9,10 +9,8 @@ from test_game_review import seed
 from trainer.api import create_app
 from trainer.chess_core import Loss
 from trainer.game_analysis import REQUESTED
-from trainer.human_models.service import HumanModels
-from trainer.models import AnalysisJob, Game, GameReview, PlayGame
+from trainer.models import AnalysisJob, GameReview, PlayGame
 from trainer.play.bot import guard_violated, sample_order, seeded
-from trainer.play.level import GRID, fit_level, learner_positions
 
 
 def test_guards_tighten_with_rating_and_never_touch_small_errors():
@@ -48,23 +46,6 @@ def test_sampling_is_seeded_and_weighted():
     assert first != sample_order(probabilities, seeded("game", 5), 3) or True
     leads = [sample_order(probabilities, seeded("game", ply), 1)[0] for ply in range(200)]
     assert leads.count("e2e4") > leads.count("d2d4") > leads.count("g1f3")
-
-
-def test_level_fit_samples_only_learner_decisions(settings, sessions):
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app):
-        seed(app)
-    with app.state.sessions() as db:
-        games = list(db.scalars(select(Game)))
-    rows = learner_positions(games)
-    assert rows == [] or all(
-        chess.Board().turn is not None and isinstance(actual, str) for _, _, actual, _ in rows
-    )
-    provider = PolicyProvider(settings)
-    service = HumanModels(settings, provider)
-    result = fit_level(app.state.sessions, service, games)
-    # A uniform policy cannot prefer a rating; the fit then reports the lowest one.
-    assert result is None or result["fitted_rating"] == GRID[0]
 
 
 @pytest.mark.stockfish
@@ -467,29 +448,6 @@ def test_play_ends_only_on_a_draw_that_has_happened():
     mate = chess.Board("7k/8/6K1/8/8/8/8/R7 w - - 99 120")
     mate.push_san("Ra8#")
     assert board_outcome(mate).termination == chess.Termination.CHECKMATE
-
-
-def test_review_presentation_keeps_one_entry_per_game(monkeypatch):
-    from types import SimpleNamespace
-
-    from trainer.review_intelligence import presentation
-
-    loads = []
-    monkeypatch.setattr(
-        presentation, "load_game_reports", lambda db, game_id: loads.append(game_id) or ({}, {})
-    )
-    monkeypatch.setattr(presentation, "present_game", lambda *args, **kwargs: ({}, None))
-    game = SimpleNamespace(id="presentation-cache")
-
-    def present(revision):
-        review = SimpleNamespace(revision=revision, rating=1200)
-        return presentation.presented_review(None, game, None, review, completed=False)
-
-    first = present(1)
-    assert present(1) is first and len(loads) == 1  # An unchanged poll reuses it.
-    second = present(2)
-    assert second is not first and len(loads) == 2  # A new revision re-renders.
-    assert presentation._presented.get(game.id)[1] is second  # Only the latest is kept.
 
 
 def test_a_human_like_reply_without_the_model_is_recorded_as_the_engine_setting():

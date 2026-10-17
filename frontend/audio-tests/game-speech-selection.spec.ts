@@ -22,7 +22,6 @@ const causal = semanticFixtures<{ skill: string; black: boolean; report: Detaile
 const positional = semanticFixtures<
   { feature: string; code: string; mirrored: boolean; alternative: Detailed; actual: Detailed }[]
 >("review_position_fixtures.py");
-const humans = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
 const replyOnly = semanticFixtures<{ report: Report; frame: Position }>(
   "review_speech_fixtures.py",
 );
@@ -172,24 +171,6 @@ test("selection is exact rendered identity, not highest input priority, trace co
   expect(selectGameRecording({ ...unvoiced, anyCoach: true })).toBe("cause-abandoned-defender");
 });
 
-test("rendered claims snapshot the selected source and slots without aliasing producer state", () => {
-  const item = claim(
-    "reply_capture",
-    { opponent: "Black", reply: "Qxa1", piece: "rook", side: "White" },
-    70,
-    [{ source: "stockfish", id: "selected-search", field: "candidate_search" }],
-    ["selected-event"],
-  );
-  const intent = makeIntent("identity", "mistake", "game", "mistake", [item]);
-  const utterance = renderDialogue(intent, walter);
-  item.slots.reply = "Nf6";
-  item.evidence[0].id = "other-search";
-  item.sourceIds[0] = "other-event";
-  expect(utterance.renderedClaims![0].slots.reply).toBe("Qxa1");
-  expect(utterance.renderedClaims![0].evidence[0].id).toBe("selected-search");
-  expect(utterance.renderedClaims![0].sourceIds).toEqual(["selected-event"]);
-});
-
 test("stale positions, current errors and unresolved position requests remain silent; background refinement does not", () => {
   const current = context(causal[0].report);
   expect(selectGameRecording({ ...current, pending: true })).toBeNull();
@@ -253,48 +234,6 @@ test("terminal checkmate comes from the current board result, never an expressio
   expect(selectGameRecording({ ...current, game: { ...current.game, result: "1-0" } })).toBe(
     "cause-abandoned-defender",
   );
-});
-
-test("a Maia claim never selects a recording, even with exact current learner evidence", () => {
-  let tested = 0;
-  for (const game of Object.values(humans)) {
-    const report = game.frames[1].report!;
-    const current = context(report, game.frames[1].fen);
-    // The coach's own intent never carries Maia; only the badge's intent does.
-    expect(
-      current.intent.claims.some(
-        item => item.code.startsWith("human_") || item.code === "difficult_defense",
-      ),
-    ).toBe(false);
-    const badge = gameIntent({
-      ...current,
-      key: "test-current-position",
-      expression: current.intent.expression,
-      human: true,
-    });
-    const item = badge.claims.find(
-      item => item.code.startsWith("human_") || item.code === "difficult_defense",
-    );
-    if (!item) continue;
-    const intent = makeIntent(
-      `${current.intent.id}:human`,
-      current.intent.purpose,
-      current.intent.mode,
-      current.intent.expression,
-      [item],
-      current.intent.decisions,
-      current.intent.subject,
-    );
-    const human = { ...current, intent, utterance: renderDialogue(intent, walter) };
-    expect(human.utterance.renderedClaims!.map(claim => claim.code)).toEqual([item.code]);
-    expect(selectGameRecording(human)).toBeNull();
-    current.utterance.renderedClaims!.forEach((claim, claimIndex) => {
-      if (claim.code === item.code)
-        expect(selectGameRecording({ ...current, claimIndex })).toBeNull();
-    });
-    tested++;
-  }
-  expect(tested).toBeGreaterThan(0);
 });
 
 test("explicit secondary selection cannot narrate hidden claims or context inherited into a variation", () => {

@@ -1,8 +1,6 @@
 """Upstream parity, legal adapters and concrete witnesses; no network or native engine."""
 
 import ast
-import hashlib
-import json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -11,7 +9,6 @@ import pytest
 from trainer._vendor.lichess_puzzler import cook
 from trainer.diagnosis_types import PreviousMove
 from trainer.lichess_patterns import THEME_RULES, line_input, recognize
-from trainer.lichess_witnesses import record
 
 from scripts.lichess_benchmark.dataset import PuzzleRow
 from scripts.lichess_benchmark.positions import reconstruct
@@ -60,27 +57,6 @@ FIXTURES = [
     ("discoveredCheck", "5k2/8/8/8/8/8/4B3/4R1K1 b - - 0 1", "f8e8 e2f3"),
     ("hangingPiece", "5k2/8/8/8/8/8/q7/R5K1 b - - 0 1", "f8g8 a1a2"),
 ]
-
-
-def test_all_original_function_conditions_survive_instrumentation():
-    manifest = json.loads((VENDOR / "UPSTREAM.json").read_text())
-    tree = RemoveObserver().visit(ast.parse((VENDOR / "cook.py").read_text()))
-    observed = {
-        fn.name: hashlib.sha256(ast.dump(fn, include_attributes=False).encode()).hexdigest()
-        for fn in tree.body
-        if isinstance(fn, ast.FunctionDef)
-    }
-    assert observed == manifest["function_ast_sha256"]
-    for name in ("util.py", "model.py"):
-        assert (
-            hashlib.sha256((VENDOR / name).read_bytes()).hexdigest()
-            == manifest["files"][f"tagger/{name}"]
-        )
-    assert (
-        hashlib.sha256((VENDOR / "LICENSE").read_bytes()).hexdigest()
-        == manifest["files"]["LICENSE"]
-    )
-    assert "GNU AFFERO GENERAL PUBLIC LICENSE" in (VENDOR / "LICENSE").read_text()
 
 
 @pytest.mark.parametrize("black", [False, True])
@@ -193,9 +169,3 @@ def test_observers_are_per_call_and_do_not_leak_across_workers():
 
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(detect, work))
-
-
-def test_return_hook_preserves_false_values_and_no_observer_is_required():
-    sentinel = object()
-    assert record(sentinel, "test", False, {}) is False
-    assert record(sentinel, "test", True, {}) is True

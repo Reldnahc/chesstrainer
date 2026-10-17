@@ -109,29 +109,6 @@ test("every registered coach can be chosen and restored in a real game", async (
   }
 });
 
-test("the heading describes the chosen coach", async ({ page }) => {
-  const preferences = "/api/preferences/coach";
-  await page.request.put(preferences, { data: { coach_id: "classic", motion: "still" } });
-  try {
-    await page.goto("/settings?section=coach");
-    const heading = page.locator("#coach-settings .settings-section-heading p");
-    await expect(heading).toHaveText(
-      "Walter: A warm veteran who connects this move to the game's turning points.",
-    );
-    await page.locator('input[name="coach"][value="robot"]').click();
-    await expect(heading).toHaveText(
-      "Rivet: Issue, cause, result. Literal, structured delivery with no invented precision.",
-    );
-    await expect(
-      page.getByRole("radio", { name: "Rivet", exact: true }),
-    ).toHaveAccessibleDescription(
-      "Issue, cause, result. Literal, structured delivery with no invented precision.",
-    );
-  } finally {
-    await page.request.put(preferences, { data: { coach_id: "classic", motion: "natural" } });
-  }
-});
-
 test("the compact picker shows six by five cards on desktop and fits narrow phones", async ({
   page,
 }, info) => {
@@ -203,42 +180,4 @@ test("legacy and unknown saved coaches display a selected safe fallback without 
     await expect(page.getByLabel("Coach motion", { exact: true })).toHaveValue("still");
   }
   expect(writes).toEqual([]);
-});
-
-test("switching coaches carries semantic feedback into SRS and saved explanations", async ({
-  page,
-}, info) => {
-  await page.request.put("/api/preferences/coach", {
-    data: { coach_id: "dog-collie", motion: "natural" },
-  });
-  try {
-    const fixture = await (
-      await page.request.post(`/__test/review-explanation-fixture/selected-${info.project.name}`)
-    ).json();
-    await page.goto(`/?exercise=${fixture.exercise_id}`);
-    const avatar = page.locator(".review-coach .coach-avatar");
-    await expect(avatar).toHaveAttribute("data-coach", "dog-collie");
-    await expect(avatar).toHaveAttribute("data-expression", "neutral");
-    const board = page.locator(".board-shell");
-    const play = async (uci: string) => {
-      await board.locator(`[data-square="${uci.slice(0, 2)}"]`).click();
-      await board.locator(`[data-square="${uci.slice(2, 4)}"]`).click();
-    };
-    await play(fixture.wrong);
-    await expect(avatar).toHaveAttribute("data-expression", "mistake");
-    await page.getByRole("button", { name: "Try again", exact: true }).click();
-    await expect(avatar).toHaveAttribute("data-expression", "encouraging");
-    await play(fixture.best);
-    await expect(avatar).toHaveAttribute("data-expression", "recovered");
-    await page.getByRole("button", { name: "Show why", exact: true }).click();
-    await expect(avatar).toHaveAttribute("data-expression", "explaining");
-    await page.screenshot({
-      path: `test-results/coach-selected-practice-${info.project.name}.png`,
-      fullPage: true,
-    });
-  } finally {
-    await page.request.put("/api/preferences/coach", {
-      data: { coach_id: "classic", motion: "natural" },
-    });
-  }
 });

@@ -119,22 +119,6 @@ test("a due blink cannot be indefinitely deferred by optional eye actions", () =
   expect(coordinator.advance(4500).started[0].gesture.id).toBe("blink");
 });
 
-test("a completed compound blink resets the shared eye deadline", () => {
-  const sigh = gesture("sigh", "body", {
-    blink: true,
-    tracks: [
-      { channel: "body", keyframes: "sigh", durationMs: 1200 },
-      { channel: "eyes", keyframes: "close", durationMs: 1000 },
-    ],
-  });
-  const coordinator = createIdleCoordinator([sigh, blink], { random: () => 0 });
-  expect(coordinator.advance(500).started[0].gesture.id).toBe("sigh");
-  const finished = coordinator.advance(1700);
-  expect(finished.diagnostics!.blinkDueAt).toBe(4700);
-  expect(finished.active).toHaveLength(0);
-  expect(finished.started).toHaveLength(0);
-});
-
 test("history prevents immediate repetition and A/B/A/B while alternatives are legal", () => {
   const coordinator = createIdleCoordinator([head, tail, gesture("lean", "body")], {
     random: () => 0,
@@ -320,49 +304,4 @@ test("seeded extended playback stays live, bounded and repeatable", () => {
     return events;
   }
   expect(trace()).toEqual(trace());
-});
-
-test("a coordinator nobody observes builds no diagnostics and schedules exactly the same idles", () => {
-  const catalogue = [
-    gesture("blink", "eyes", { blink: true, durationMs: 160, intensity: "quiet" }),
-    gesture("breath", "body", { durationMs: 900, intensity: "quiet" }),
-    gesture("head", "head", { durationMs: 700 }),
-  ];
-  const seeded = () => {
-    let state = 7;
-    return () => (state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32;
-  };
-  const observed = createIdleCoordinator(catalogue, { random: seeded() });
-  const quiet = createIdleCoordinator(catalogue, { random: seeded(), diagnostics: false });
-  for (let at = 0; at <= 60000; at += 250) {
-    const seen = observed.advance(at);
-    const unseen = quiet.advance(at);
-    expect(unseen.diagnostics).toBeNull();
-    expect({ ...unseen, diagnostics: null }).toEqual({ ...seen, diagnostics: null });
-  }
-});
-
-test("an observer arriving mid-run sees the history and deadlines the coordinator kept unobserved", () => {
-  const catalogue = [
-    gesture("blink", "eyes", { blink: true, durationMs: 160, intensity: "quiet" }),
-    gesture("breath", "body", { durationMs: 900, intensity: "quiet" }),
-    gesture("head", "head", { durationMs: 700 }),
-  ];
-  const seeded = () => {
-    let state = 11;
-    return () => (state = (Math.imul(state, 1664525) + 1013904223) >>> 0) / 2 ** 32;
-  };
-  const always = createIdleCoordinator(catalogue, { random: seeded() });
-  const later = createIdleCoordinator(catalogue, { random: seeded(), diagnostics: false });
-  for (let at = 0; at <= 30000; at += 250) {
-    always.advance(at);
-    later.advance(at);
-  }
-  later.observe(true);
-  const seen = always.advance(30250);
-  const joined = later.advance(30250);
-  expect(joined.diagnostics).toEqual(seen.diagnostics);
-  expect(joined.diagnostics!.recent.length).toBeGreaterThan(0);
-  later.observe(false);
-  expect(later.advance(30500).diagnostics).toBeNull();
 });

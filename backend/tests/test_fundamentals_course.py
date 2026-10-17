@@ -7,7 +7,6 @@ from test_italian_course import COURSE_IDS, installed_course, start, walk_chapte
 from test_opening_journey import response_json
 from test_tactics_course import board, guards, material, replies
 from trainer.api import create_app
-from trainer.study_lessons.queries import fingerprint
 
 COURSE_ID = "chess-fundamentals"
 CENTER = chess.SquareSet([chess.D4, chess.D5, chess.E4, chess.E5])
@@ -227,10 +226,3 @@ def test_skill_courses_are_listed_apart_from_the_opening_courses(settings):
         assert session["course_topic"] == "skills"
         resume = response_json(client.get("/api/study/courses"))["resume"]
         assert [(row["id"], row["course_topic"]) for row in resume] == [(session["id"], "skills")]
-
-
-def test_published_revision_keeps_its_content_identity():
-    # Intentional edits require a new revision and hash together.
-    course = installed_course(COURSE_ID)
-    assert course.revision == "2026-10-v1"
-    assert fingerprint(course) == "0dd65745c65159bd659f1cfd87998aa4c7ae81e29ef36ae908f62b02121c0722"

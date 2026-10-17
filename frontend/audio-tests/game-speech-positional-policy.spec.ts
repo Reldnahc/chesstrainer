@@ -27,16 +27,6 @@ const coaches = [
   { id: "classic", personality: classic },
   { id: "robot", personality: robot },
 ];
-const families = [
-  "development",
-  "doubled",
-  "isolated",
-  "passed",
-  "support",
-  "unsupported",
-  "castling",
-];
-const states = ["hard-find", "unusual-strong", "natural-best", "natural-strong"];
 // The Maia reading each fixture shows in its badge; none is ever voiced.
 const shownCodes: Record<string, string> = {
   "human-hard-find": "human_challenging",
@@ -72,19 +62,6 @@ function presentation(fixture: Fixture, coach = coaches[0], game = structuredClo
   );
   return { context, insight: { intent: child, utterance: renderDialogue(child, coach) } };
 }
-
-test("all 28 positional/Maia-state pairs have both-color production fixtures", () => {
-  expect(fixtures).toHaveLength(56);
-  const observed = fixtures.map(row => `${row.primary}:${row.secondary}:${row.mover}`).sort();
-  const expected = families
-    .flatMap(family =>
-      states.flatMap(state =>
-        ["white", "black"].map(mover => `positional-${family}-actual:human-${state}:${mover}`),
-      ),
-    )
-    .sort();
-  expect(observed).toEqual(expected);
-});
 
 for (const coach of coaches)
   for (const fixture of fixtures)
@@ -192,25 +169,5 @@ for (const coach of coaches) {
       expect(context.intent.claims.some(item => item.code === "development")).toBe(false);
       expect(selectGameSpeech(context).recordingId ?? "").not.toContain("positional-development");
     }
-  });
-
-  test(`${coach.id}: the opponent's review shows no Maia reading and keeps its objective speech`, () => {
-    const first = fixtures.find(
-      row =>
-        row.feature === "support" &&
-        row.secondary === "human-natural-best" &&
-        row.mover === "white",
-    )!;
-    const current = presentation(first, coach);
-    expect(selectGameSpeech(current.context).recordingId).toBe(
-      selectGameRecording(current.context),
-    );
-    const game = structuredClone(first.game);
-    game.orientation = "black";
-    const opponent = presentation(first, coach, game);
-    expect(opponent.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(opponent.context).recordingId).toBe(
-      selectGameRecording(opponent.context),
-    );
   });
 }

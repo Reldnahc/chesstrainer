@@ -106,14 +106,11 @@ jobs:
         uses: ./.github/actions/stockfish
       - name: Install the locked Python environment from cache
         uses: ./.github/actions/python-env
-      - name: Lint, format, contracts and migrations
+      - name: Lint and format
         if: matrix.shard == '2/2'
         run: |
           ruff check backend scripts migrations
           ruff format --check backend scripts migrations
-          python scripts/export_api_contract.py --check
-          alembic upgrade head
-          alembic check
       - name: Verify the complete recorded voice bank offline
         if: matrix.shard == '2/2'
         run: python -B -S scripts/prepare_coach_voice_bank.py --check

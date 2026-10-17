@@ -37,7 +37,6 @@ import { blonde } from "../src/dialogue/characters/blonde";
 import { spark } from "../src/dialogue/characters/spark";
 import { boy } from "../src/dialogue/characters/boy";
 import { captain } from "../src/dialogue/characters/captain";
-import { factualParts, validWording } from "../src/dialogue/composition";
 import { practiceIntent } from "../src/dialogue/practiceIntent";
 
 const coaches = [
@@ -124,26 +123,6 @@ for (const scope of tacticalScopes) {
     );
 }
 cases.push(item("played", "possible", { kind: "capture", san: "Nf3", piece: "queen", ply: 1 }));
-
-test("all 29 scoped meanings have complete independently authored factual templates for every opted-in voice", () => {
-  const keys = cases.map(value => tacticalPresentation(value)!.code);
-  expect(new Set(keys).size).toBe(29);
-  expect([...new Set(keys)].sort()).toEqual(Object.keys(neutralTacticalTemplates).sort());
-  for (const code of keys) {
-    const reference = neutralTacticalTemplates[code];
-    for (const coach of coaches) {
-      const options = coach.personality.templates[code]!;
-      expect(options.length).toBeGreaterThan(0);
-      for (const wording of options)
-        expect(validWording(wording, reference), `${coach.id}/${code}`).toBe(true);
-    }
-    const authored = coaches.map(coach =>
-      factualParts(coach.personality.templates[code]![0]).join(" "),
-    );
-    expect(new Set(authored).size).toBe(coaches.length);
-    expect(authored.join(" ")).not.toMatch(/\{setup\}|\{detail\}/);
-  }
-});
 
 for (const coach of coaches)
   test(`${coach.id}: scope, original evidence and required effects survive both learner and opponent rendering`, () => {

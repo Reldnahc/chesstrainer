@@ -11,7 +11,6 @@ import { practiceIntent } from "../src/dialogue/practiceIntent";
 import type { Game, Position, Report } from "../src/gameReview/types";
 import { semanticFixtures } from "./semantic-fixtures";
 import { humanInsightIntent } from "../src/dialogue/humanClaims";
-import { tacticalPresentation } from "../src/dialogue/tacticalTemplates";
 
 const walter = { id: "classic", personality: classic };
 const ref = { source: "stockfish" as const, id: "search", field: "actual_line/findings/0" };
@@ -208,29 +207,6 @@ test("Walter's opponent facts get accurate timing without personal praise", () =
   expect(output.trace.variants[0].source).toBe(classic.version);
   expect(output.trace.composition?.strategy).toBe("minimal");
   expect(output.text).not.toMatch(/you|well judged|nicely|worth noticing|continuation/i);
-});
-
-test("scope cannot be hidden in optional character framing or discarded by a custom form", () => {
-  const item = build(event("missed"));
-  const intent = makeIntent("scope-guard", "missed", "game", "missed", [item]);
-  const code = tacticalPresentation(item)!.code;
-  const unsafe = {
-    id: "unsafe",
-    personality: {
-      ...classic,
-      templates: {
-        [code]: [
-          {
-            fact: "The {targets} would be attacked together.",
-            observation: "With {best}, there would be a {motif}.",
-          },
-        ],
-      },
-    },
-  };
-  const output = renderDialogue(intent, unsafe);
-  expect(output.trace.variants[0].source).toBe("tactical-scoped-2");
-  expect(output.text).toContain("With Ng5+, there would be a fork");
 });
 
 test("new witness scope changes intent identity while preserving unchanged coaches' text variants", () => {

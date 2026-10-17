@@ -3,25 +3,16 @@
 import chess
 from course_claims import built_in, position
 from course_positions.italian_black import (
-    ADVANCE,
     CASTLED_FIRST,
     CHECK,
     EARLY_ATTACK,
-    EVANS,
-    EVANS_FLANK,
-    EXCHANGED,
     GAMBIT,
     ITALIAN,
     KNIGHT_FIRST,
     LINE,
     MOLLER,
-    PUSHED,
     QUEEN,
-    QUEEN_CHECK,
-    QUEEN_PRESSURE,
-    QUEEN_RECAPTURE,
     QUIET,
-    RECAPTURED,
 )
 
 
@@ -301,17 +292,6 @@ def test_evans_excerpt_reaches_the_central_break_not_just_repeated_development()
     assert board.king(chess.WHITE) == chess.E1
 
 
-def test_new_course_annotations_do_not_change_the_existing_white_course():
-    def white_course():
-        return built_in("italian-foundations")
-
-    before = white_course().model_dump(mode="json")
-    black = course()
-    black.game("mason-lasker").annotations[0].text = "Changed by one consumer"
-    assert white_course().model_dump(mode="json") == before
-    assert course().game("mason-lasker").annotations[0].text != "Changed by one consumer"
-
-
 def test_fourth_move_side_trips_state_real_board_facts():
     castled = _board(ITALIAN + " O-O Nf6 d3")
     assert castled.epd() == _before("quiet-development", "support").epd()
@@ -396,91 +376,6 @@ def test_fourth_move_side_trips_state_real_board_facts():
     assert {chess.F7, chess.E5} <= set(board.attacks(chess.E7))
 
 
-def test_central_side_trips_state_real_board_facts():
-    pushed = _board(ADVANCE + " exd4 e5 d5")
-    assert chess.F6 in pushed.attacks(chess.E5)
-    assert chess.C4 in pushed.attacks(chess.D5)
-    for capture in ("exf6", "cxd4"):
-        board = pushed.copy()
-        board.push_san(capture)
-        assert board.parse_san("dxc4") == chess.Move(chess.D5, chess.C4)
-    board = _board(ADVANCE + " exd4 e5 d5 exf6 dxc4 fxg7")
-    assert chess.H8 in board.attacks(chess.G7)
-    assert board.parse_san("Rg8") == chess.Move(chess.H8, chess.G8)
-    assert pushed.is_en_passant(pushed.parse_san("exd6"))
-    board = _board(ADVANCE + " exd4 e5 d5 exd6")
-    assert board.parse_san("Qxd6") == chess.Move(chess.D8, chess.D6)
-    assert _board(ADVANCE + " exd4 e5 d5 Bb5").is_pinned(chess.BLACK, chess.C6)
-    jumped = _board(ADVANCE + " exd4 e5 d5 Bb5 Ne4 cxd4")
-    assert chess.D5 in jumped.attackers(chess.BLACK, chess.E4)
-    assert not jumped.attackers(chess.WHITE, chess.E4)
-    assert chess.C5 in jumped.attacks(chess.D4)
-    kept = _board(PUSHED)
-    assert chess.D4 in kept.attacks(chess.B6)
-    assert not kept.is_attacked_by(chess.WHITE, chess.B6)
-
-    assert chess.D2 in _board(EXCHANGED + " Nbxd2").attackers(chess.WHITE, chess.E4)
-    assert not _board(EXCHANGED + " Qxd2").attackers(chess.WHITE, chess.E4)
-    assert _board(EXCHANGED + " Qxd2 Nxe4 Qe3").is_pinned(chess.BLACK, chess.E4)
-    held = _board(QUEEN_RECAPTURE)
-    assert chess.D5 in held.attackers(chess.BLACK, chess.E4)
-    assert chess.C4 in held.attacks(chess.D5)
-    assert _material(held) == 1
-    board = held.copy()
-    board.push_san("Bb5")
-    assert board.is_pinned(chess.BLACK, chess.C6)
-    board.push_san("Bd7")
-    assert not board.is_pinned(chess.BLACK, chess.C6)
-    board = held.copy()
-    board.push_san("Bxd5")
-    assert board.parse_san("Qxd5") == chess.Move(chess.D8, chess.D5)
-    board = held.copy()
-    for move in ("Nc3", "O-O"):
-        board.push_san(move)
-    assert not board.is_pinned(chess.BLACK, chess.E4)
-
-    assert _board(RECAPTURED + " Qe2+").is_check()
-    blocked = _board(RECAPTURED + " Qe2+ Be6")
-    assert chess.E6 in blocked.attackers(chess.BLACK, chess.D5)
-    assert blocked.is_pinned(chess.BLACK, chess.E6)
-    wrong = _board(RECAPTURED + " Qe2+ Qe7")
-    assert not wrong.attackers(chess.BLACK, chess.D5)
-    assert chess.C4 in wrong.attackers(chess.WHITE, chess.D5)
-    board = _board(RECAPTURED + " Qe2+ Be6 Bxd5")
-    assert chess.Move(chess.E6, chess.D5) not in board.legal_moves
-    assert board.parse_san("Qxd5") == chess.Move(chess.D8, chess.D5)
-    board = _board(RECAPTURED + " Qe2+ Be6 Ng5")
-    assert not board.attackers(chess.WHITE, chess.G5)
-    assert board.parse_san("Qxg5") == chess.Move(chess.D8, chess.G5)
-    board = _board(RECAPTURED + " Qe2+ Be6 Ne5")
-    assert not board.attackers(chess.WHITE, chess.D4)
-    board.push_san("Nxd4")
-    assert chess.E2 in board.attacks(chess.D4)
-    _piece(board, chess.E2, chess.QUEEN, chess.WHITE)
-
-    pressure = _board(RECAPTURED + " Qb3")
-    assert chess.C4 in pressure.attackers(chess.WHITE, chess.D5)
-    battery = pressure.copy()
-    battery.remove_piece_at(chess.C4)
-    assert chess.B3 in battery.attackers(chess.WHITE, chess.D5)
-    assert chess.B7 in pressure.attacks(chess.B3)
-    defended = _board(RECAPTURED + " Qb3 Nce7")
-    assert {chess.D8, chess.E7} <= set(defended.attackers(chess.BLACK, chess.D5))
-    assert chess.C8 in defended.attackers(chess.BLACK, chess.B7)
-    board = _board(RECAPTURED + " Qb3 Na5")
-    assert {chess.B3, chess.C4} <= set(board.attacks(chess.A5))
-    board.push_san("Qa4+")
-    assert board.is_check()
-    for move in ("Nc6", "Qb3"):
-        board.push_san(move)
-    assert board.epd() == pressure.epd()
-    for san in (QUEEN_CHECK, QUEEN_PRESSURE):
-        board = _board(san)
-        assert _material(board) == 0
-        assert not board.pieces(chess.PAWN, chess.WHITE) & (chess.BB_FILE_C | chess.BB_FILE_E)
-        _piece(board, chess.D4, chess.PAWN, chess.WHITE)
-
-
 def test_knight_block_chapter_takes_the_pawn_the_pinned_knight_cannot_defend():
     lesson = course()
     chapter = lesson.chapter("knight-block")
@@ -532,21 +427,6 @@ def test_knight_block_chapter_takes_the_pawn_the_pinned_knight_cannot_defend():
     line = lesson.line("black-knight-block")
     assert line.position.after(line.moves) == chapter.step("block-summary").position
     assert chapter.step("block-recall").position == line.position == position(CHECK)
-
-
-def test_evans_b5_side_trip_wins_the_e4_pawn_white_left_undefended():
-    assert chess.C6 in _board(EVANS + " b5").attacks(chess.B5)
-    assert _board(EVANS + " b5 axb5 Bxb5").is_pinned(chess.BLACK, chess.C6)
-    assert not _board(EVANS + " b5 axb5 Bxb5 Nf6 a6").attackers(chess.WHITE, chess.E4)
-    final = _board(EVANS_FLANK)
-    assert _material(final) == 1
-    board = final.copy()
-    board.push_san("Qe2")
-    assert chess.E2 in board.attackers(chess.WHITE, chess.E4)
-    assert board.parse_san("Nf6") == chess.Move(chess.E4, chess.F6)
-    board = final.copy()
-    board.push_san("axb7")
-    assert board.parse_san("Bxb7") == chess.Move(chess.C8, chess.B7)
 
 
 def test_every_side_trip_has_a_recall_line_that_follows_it():

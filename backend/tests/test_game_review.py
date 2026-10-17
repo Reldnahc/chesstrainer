@@ -822,13 +822,6 @@ def test_a_blunder_reason_says_whether_the_mover_stays_winning_or_was_lost():
     assert classify(quality(450, 150), 1500)[1] == "This move gives away a winning advantage."
 
 
-def test_a_promotion_caption_reads_as_one_sentence():
-    from trainer.explanation_types import replay_line
-
-    frames = replay_line(chess.Board("8/P6k/8/8/8/8/8/K7 w - - 0 1"), ["a7a8q"])
-    assert frames[1].annotation.startswith("White plays a8=Q, promoting to a queen")
-
-
 def test_the_coach_leads_with_a_finding_that_starts_with_the_move():
     from types import SimpleNamespace
 

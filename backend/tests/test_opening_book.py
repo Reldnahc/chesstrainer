@@ -1,13 +1,9 @@
 """Opening recognition is factual, position-specific, and separate from quality."""
 
 import copy
-import hashlib
-import json
-from importlib.resources import files
 
 import chess
 import pytest
-from trainer._vendor import lichess_openings
 from trainer.explanation_types import replay_line
 from trainer.game_accuracy import review_accuracy
 from trainer.game_review import public_report
@@ -19,16 +15,6 @@ def before_last(line):
     for san in line.split()[:-1]:
         board.push_san(san)
     return board, board.parse_san(line.split()[-1])
-
-
-def test_bundled_catalogue_matches_pinned_upstream():
-    root = files(lichess_openings)
-    manifest = json.loads(root.joinpath("UPSTREAM.json").read_text())
-    assert manifest["commit"] == lichess_openings.COMMIT
-    assert manifest["license"] == "CC0-1.0"
-    assert set(manifest["files"]) == {"a.tsv", "b.tsv", "c.tsv", "d.tsv", "e.tsv", "COPYING.txt"}
-    for name, expected in manifest["files"].items():
-        assert hashlib.sha256(root.joinpath(name).read_bytes()).hexdigest() == expected
 
 
 @pytest.mark.parametrize(

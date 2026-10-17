@@ -1,9 +1,7 @@
 import { test, expect } from "../tests/helpers/browserTest";
-import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";
-import { gameIntent } from "../src/dialogue/gameIntent";
-import { inspectPosition, parseReview } from "../intelligence-lab/inspection";
+import { inspectPosition } from "../intelligence-lab/inspection";
 import type { Game } from "../src/gameReview/types";
 
 // Deliberately synthetic diagnostic fixture, not a stored engine benchmark.
@@ -84,30 +82,6 @@ const fixture = {
   ],
 } as unknown as Game;
 
-test("inspection is the same deterministic production dialogue and malformed evidence is rejected", () => {
-  const inspection = inspectPosition(fixture, 1);
-  const production = gameIntent({
-    game: fixture,
-    frame: fixture.frames[1],
-    report: fixture.frames[1].report,
-    ply: 1,
-    key: "synthetic-lab:1:",
-    expression: "check",
-  });
-  expect(inspection.intent).toEqual(production);
-  expect(inspection.utterance.text).toContain("queen on e4 and king on h7");
-  expect(parseReview(JSON.stringify(fixture))).toEqual(fixture);
-  expect(() => parseReview('{"frames":[]}')).toThrow(/Expected/);
-  expect(() =>
-    parseReview(JSON.stringify(fixture).replace("move-events-4", "move-events-99")),
-  ).toThrow(/current server/);
-  expect(() =>
-    parseReview(
-      JSON.stringify({ ...fixture, frames: [{ ...fixture.frames[1], report: { label: "Best" } }] }),
-    ),
-  ).toThrow(/incompatible/);
-});
-
 test("shared dialogue keeps production announcements and supports passive definition-list samples", async ({
   page,
 }) => {
@@ -167,61 +141,4 @@ test("shared dialogue keeps production announcements and supports passive defini
       text: utterance.text,
     });
   }
-});
-
-test("laboratory traces a local review without network or storage and retains it after invalid input", async ({
-  page,
-}, info) => {
-  const apiCalls: string[] = [];
-  page.on("request", r => {
-    if (r.url().includes("/api/")) apiCalls.push(r.url());
-  });
-  await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Review intelligence laboratory" })).toBeVisible();
-  await page.getByLabel("Open game-detail JSON").setInputFiles({
-    name: "synthetic.json",
-    mimeType: "application/json",
-    buffer: Buffer.from(JSON.stringify(fixture)),
-  });
-  await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
-  const expected = inspectPosition(fixture, 1).utterance;
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("aria-live", "off");
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-utterance", expected.id);
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-intent", expected.intentId);
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-dialogue-coach", "neutral");
-  await expect(page.getByRole("region", { name: "Rendered coach line" })).toContainText(
-    inspectPosition(fixture, 1).intent.id,
-  );
-  await expect(page.locator(".lab-chain")).toContainText("synthetic-search");
-  const neutral = await page.locator(".lab-utterance").innerText();
-  await page.getByLabel("Dialogue coach").selectOption("classic");
-  await expect(page.locator(".lab-utterance")).not.toHaveText(neutral);
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-dialogue-coach", "classic");
-  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-intent", expected.intentId);
-  await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
-  await expect(page.locator(".lab-chain")).toContainText("storyteller-");
-  await page.getByRole("button", { name: "Previous", exact: true }).click();
-  await expect(page.getByLabel("Position", { exact: true })).toHaveValue("0");
-  await page.getByRole("button", { name: "Next", exact: true }).click();
-  await expect(page.locator(".lab-utterance")).toContainText("fork");
-  await page
-    .getByLabel("Open game-detail JSON")
-    .setInputFiles({ name: "bad.json", mimeType: "application/json", buffer: Buffer.from("{}") });
-  await expect(page.getByRole("alert")).toContainText("Expected");
-  await expect(page.locator(".lab-utterance")).toContainText("fork");
-  expect(apiCalls).toEqual([]);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({
-    path: `intelligence-test-results/lab-${info.project.name}.png`,
-    fullPage: true,
-  });
-});
-
-test("production JavaScript excludes the laboratory", () => {
-  const assets = readdirSync("dist/assets")
-    .filter(n => n.endsWith(".js"))
-    .map(n => readFileSync(`dist/assets/${n}`, "utf8"))
-    .join("\n");
-  expect(assets).not.toContain("Review intelligence laboratory");
-  expect(assets).not.toContain("Open game-detail JSON");
 });

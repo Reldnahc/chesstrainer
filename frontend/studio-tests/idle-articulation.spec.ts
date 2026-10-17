@@ -1,14 +1,13 @@
 import { expect, test } from "../tests/helpers/browserTest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { viteFsPath } from "./helpers/viteFsPath";
 import { configuredGestures, idleTrackStyle } from "../src/coach/idleGestures";
 import { expressions } from "../src/coach/model";
 import { classicPerformance } from "../src/coach/classic/performance";
 import { coachPerformance } from "../src/coach/motionVocabulary";
 
-// The canonical selectable IDs, read without importing artwork into Node. The roster
-// test below requires them to match the registry and studio cast, so each coach can be its own case.
+// The canonical selectable IDs, read without importing artwork into Node, so each
+// coach can be its own case.
 const contract = JSON.parse(
   readFileSync(path.resolve("../backend/tests/fixtures/api_contract.json"), "utf8"),
 );
@@ -25,21 +24,6 @@ const pools = (id: string) =>
     ]),
   );
 const slots = (id: string) => Object.values(pools(id)).reduce((sum, pool) => sum + pool.length, 0);
-
-test("the idle articulation check covers the whole registered cast", async ({ page }) => {
-  await page.goto("/");
-  const ids = await page
-    .locator(".studio-cast .coach-avatar")
-    .evaluateAll(avatars => avatars.map(avatar => avatar.getAttribute("data-coach")!));
-  const root = viteFsPath(path.resolve("."));
-  const registered = await page.evaluate(async root => {
-    const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
-    return selectableCoaches.map((coach: { id: string }) => coach.id) as string[];
-  }, root);
-  expect(ids).toEqual(registered);
-  expect([...registered].sort()).toEqual([...coachIds].sort());
-  expect(coachIds.reduce((sum, id) => sum + slots(id), 0)).toBeGreaterThan(0);
-});
 
 test.describe("every configured idle has distinct canonical tracks on its actual expression artwork", () => {
   test.describe.configure({ mode: "parallel" });

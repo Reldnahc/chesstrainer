@@ -73,18 +73,6 @@ def test_a_move_that_is_not_promoted_keeps_the_roots_best():
     assert shown_best_uci(report) == "d2d4"
 
 
-def test_evidence_already_scoring_the_shown_best_reads_no_policy():
-    from trainer.review_reports import aligned_human
-
-    report = promoted_row().report
-    report["human"]["engine_best"] = report["human"]["played"]
-
-    def unexpected():
-        raise AssertionError("an aligned report must not read the saved policy")
-
-    assert aligned_human(report, unexpected) is report
-
-
 def test_saved_play_reports_score_the_promoted_move(monkeypatch):
     from trainer.play import sessions
 

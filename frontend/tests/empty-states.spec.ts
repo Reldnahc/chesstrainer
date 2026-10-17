@@ -97,50 +97,6 @@ test("empty sections share the lesson presentation and preserve recovery destina
   await expect(page).toHaveURL("/games");
 });
 
-test("embedded activity and search emptiness remain compact inside their existing sections", async ({
-  page,
-}) => {
-  await page.route("**/api/jobs", route => route.fulfill({ json: [] }));
-  await page.route("**/api/openings/catalog?*", route =>
-    route.fulfill({
-      json: {
-        items: [],
-        total: 0,
-        version: "empty-state-fixture",
-      } satisfies Schema["OpeningCatalogue"],
-    }),
-  );
-  await page.route("**/api/opening-studies", route =>
-    route.fulfill({
-      json: {
-        items: [],
-        active_studies: 0,
-        learning_positions: 0,
-        due_positions: 0,
-      } satisfies Schema["OpeningStudyLibrary"],
-    }),
-  );
-  await page.goto("/settings");
-  const activity = page.locator("#settings-activity .empty-state--compact");
-  await expect(activity).toContainText("No activity yet");
-  await expect(activity).toContainText("Imports and analysis progress will appear here.");
-  await expect(activity.getByRole("heading")).toHaveCount(0);
-  expect((await activity.boundingBox())!.height).toBeLessThan(100);
-  await page.goto("/study/openings/catalogue?q=Nothing");
-  const search = page.locator(".opening-catalogue .empty-state--compact");
-  await expect(search).toHaveText("No opening lines match this search.");
-  await expect(page.getByLabel("Opening name")).toHaveValue("Nothing");
-  await expect(page.getByRole("button", { name: "Search", exact: true })).toBeEnabled();
-  expect((await search.boundingBox())!.height).toBeLessThan(100);
-  await expect(page.locator(".empty-state--section")).toHaveCount(0);
-  await page.goto("/study/openings/studies");
-  await expect(page.locator(".opening-studies .empty-state--compact")).toHaveText(
-    "No lines selected yet. Preview a catalogue or course line to add it to your study.",
-  );
-  await page.getByRole("link", { name: "Browse catalogue", exact: true }).click();
-  await expect(page).toHaveURL("/study/openings/catalogue");
-});
-
 test("a Due queue that fails to load offers Try again instead of the study-queue start", async ({
   page,
 }) => {

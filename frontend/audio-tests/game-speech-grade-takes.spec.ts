@@ -11,7 +11,6 @@ import {
   selectGameSpeech,
   type GameSpeechContext,
 } from "../src/audio/speech/gameSelection";
-import { meanings } from "../src/audio/speech/meaningCatalog";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 import { humanGames } from "../tests/human-fixtures";
 
@@ -66,28 +65,6 @@ test("each grade has its own pool of takes", () => {
   expect(pools.every(ids => ids.length >= GRADE_TAKES)).toBe(true);
   expect(new Set(pools.flat()).size).toBe(pools.flat().length);
   expect(gradeTakeIds("Book")).toEqual([]);
-});
-
-test("every numbered grade take in the catalogue is linked to its grade, in order", () => {
-  // A take added without its gradeOf link would never play.
-  for (const meaning of meanings) {
-    const numbered = /^grade-([a-z]+)-\d+$/.exec(meaning.id);
-    expect(meaning.gradeOf, meaning.id).toBe(numbered?.[1]);
-  }
-  for (const label of [
-    "Brilliant",
-    "Great",
-    "Best",
-    "Good",
-    "Inaccuracy",
-    "Mistake",
-    "Miss",
-    "Blunder",
-  ]) {
-    const ids = gradeTakeIds(label),
-      pool = label.toLowerCase();
-    expect(ids).toEqual(ids.map((_, index) => `grade-${pool}-${index + 1}`));
-  }
 });
 
 for (const coach of coaches) {

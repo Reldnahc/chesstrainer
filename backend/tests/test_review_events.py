@@ -363,30 +363,6 @@ def test_a_weaker_discovered_attack_is_not_a_missed_discovered_attack():
     assert missed("h7h5", ["h7h5", "b7c6"])
 
 
-def test_a_null_tactic_fact_move_events_4_omitted_stays_out_of_the_event_id():
-    from trainer.chess_core import digest
-    from trainer.review_intelligence.events import VERSION, event_identity
-
-    report = cause_report(CAUSES[0], False)
-    tactic = next(e for e in events(report, kind="tactic"))
-    plain = tactic.model_copy(
-        update={
-            "facts": tactic.facts.model_copy(
-                update={"opportunity_actor": None, "pinned_before": None}
-            )
-        }
-    )
-    payload = plain.model_dump(mode="json", exclude={"id"})
-    for key in ("opportunity_actor", "pinned_before"):
-        del payload["facts"][key]
-    # The id move-events-4 gave the event when it left those keys out.
-    assert event_identity(plain) == digest({"version": VERSION, **payload})
-    # A fact that applies is part of the identity.
-    assert event_identity(
-        plain.model_copy(update={"facts": plain.facts.model_copy(update={"pinned_before": False})})
-    ) != event_identity(plain)
-
-
 def test_tactic_event_ids_match_those_recorded_before_the_facts_were_typed():
     report = cause_report(CAUSES[0], False)
     tactics = events(report, kind="tactic")

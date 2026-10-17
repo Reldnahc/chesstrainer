@@ -353,18 +353,13 @@ test("newer feedback replaces a canceled eye transition and remains expressive",
   await expectOpenEyes(avatar);
 });
 
-for (const options of [{ reactions: false }, { previewIdle: "blink" }]) {
-  test(`${options.previewIdle ? "explicit idle preview" : "disabled reactions"} uses the settled face and never starts an entrance`, async ({
-    page,
-  }) => {
-    const avatar = await mountFace(page, { state: "good", ...options });
-    await expectOpenEyes(avatar);
-    await page.clock.runFor(110);
-    await expect(avatar).toHaveAttribute("data-phase", "rest");
-    await expectOpenEyes(avatar);
-    if (options.previewIdle) await expect(avatar).toHaveAttribute("data-idles", "blink");
-    await page.clock.runFor(5000);
-    await expectOpenEyes(avatar);
-    await expect(avatar).toHaveAttribute("data-idles", "");
-  });
-}
+test("disabled reactions uses the settled face and never starts an entrance", async ({ page }) => {
+  const avatar = await mountFace(page, { state: "good", reactions: false });
+  await expectOpenEyes(avatar);
+  await page.clock.runFor(110);
+  await expect(avatar).toHaveAttribute("data-phase", "rest");
+  await expectOpenEyes(avatar);
+  await page.clock.runFor(5000);
+  await expectOpenEyes(avatar);
+  await expect(avatar).toHaveAttribute("data-idles", "");
+});

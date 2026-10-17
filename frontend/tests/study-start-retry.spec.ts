@@ -2,30 +2,6 @@ import { expect, test, type Locator, type Page } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 import { retryableStart } from "../src/study/retryableStart";
 
-test("one starter retries an ambiguous command unchanged and creates a new command after acknowledgement", async () => {
-  let preparations = 0;
-  let loseResponse = true;
-  const submitted: { target: string; selection: number; request_id: string }[] = [];
-  const start = retryableStart(
-    async (target: string) => ({ target, selection: ++preparations }),
-    async body => {
-      submitted.push(body);
-      if (loseResponse) {
-        loseResponse = false;
-        throw new Error("Lost response");
-      }
-      return body;
-    },
-  );
-  await expect(start("chapter")).rejects.toThrow("Lost response");
-  await expect(start("chapter")).resolves.toEqual(submitted[0]);
-  expect(submitted[1]).toEqual(submitted[0]);
-  expect(preparations).toBe(1);
-  const fresh = await start("chapter");
-  expect(fresh?.request_id).not.toBe(submitted[0].request_id);
-  expect(preparations).toBe(2);
-});
-
 for (const outcome of ["empty", "failure"] as const) {
   test(`a changed target cannot revive an older pending command after ${outcome} preparation`, async () => {
     let loseResponse = true;

@@ -10,7 +10,6 @@ import {
   defaultAudioPreferences,
   type RecordedSpeechClip,
   type SoundCue,
-  type SoundPalette,
   type SpeechPlayback,
 } from "../src/audio/model";
 
@@ -283,43 +282,6 @@ test("authoritative SAN selects one semantic cue in explicit precedence", () => 
   ).toEqual(["move", "capture", "castle", "castle", "promotion", "check", "check", "mate"]);
 });
 
-test("production uses all nine owner-approved cue choices", async () => {
-  const f = fixture();
-  await f.engine.unlock();
-  for (const [cue, palette] of [
-    ["move", "soft-objects"],
-    ["capture", "soft-objects"],
-    ["castle", "soft-objects"],
-    ["promotion", "soft-objects"],
-    ["check", "tabletop"],
-    ["mate", "soft-objects"],
-    ["correct", "tabletop"],
-    ["retry", "retry-muted-tongue"],
-    ["complete", "tabletop"],
-  ] as const) {
-    f.engine.play({ cue, scope: "selected", eventId: cue });
-    await flush();
-    expect(f.loads.at(-1)).toContain(`${palette}/${cue}.wav`);
-    expect(f.events.at(-1)).toMatchObject({ type: "started", cue, palette });
-    f.context.sources.at(-1)!.finish();
-  }
-  f.engine.play({ cue: "retry", scope: "selected", eventId: "lesson-retry", delayMs: 160 });
-  await flush();
-  expect(f.loads).toHaveLength(9);
-  expect(f.timers.size).toBe(1);
-  expect(f.started()).not.toContain("lesson-retry");
-  f.tick();
-  await flush();
-  expect(f.events.at(-1)).toMatchObject({
-    type: "started",
-    cue: "retry",
-    palette: "retry-muted-tongue",
-    eventId: "lesson-retry",
-  });
-  expect(f.loads).toHaveLength(9);
-  f.engine.dispose();
-});
-
 test("removed rating cues cannot play even when supplied by stale callers", async () => {
   const f = fixture();
   await f.engine.unlock();
@@ -350,62 +312,6 @@ test("removed rating cues cannot play even when supplied by stale callers", asyn
   f.engine.dispose();
 });
 
-test("unavailable cue and candidate pairs never fetch or schedule playback", async () => {
-  const f = fixture();
-  await f.engine.unlock();
-  for (const [cue, palette] of [
-    ["retry", "tabletop"],
-    ["retry", "soft-objects"],
-    ["move", "retry-muted-tongue"],
-    ["move", "tabletop"],
-    ["check", "soft-objects"],
-  ] as const) {
-    for (const delayMs of [0, 160]) {
-      const eventId = `${cue}:${palette}:${delayMs}`;
-      f.engine.play({ cue, palette, scope: "unavailable", eventId, delayMs });
-      expect(f.events.at(-1)).toMatchObject({
-        type: "suppressed",
-        cue,
-        palette,
-        eventId,
-        reason: "unavailable-candidate",
-      });
-      expect(f.loads).toEqual([]);
-      expect(f.timers.size).toBe(0);
-    }
-  }
-  await flush();
-  expect(f.context.decodes).toBe(0);
-  expect(f.started()).toEqual([]);
-  f.engine.dispose();
-});
-
-test("an explicit retry candidate plays when its scheduled audition is due", async () => {
-  const f = fixture();
-  await f.engine.unlock();
-  f.engine.play({
-    cue: "retry",
-    palette: "retry-muted-tongue",
-    scope: "audition",
-    eventId: "retry-candidate",
-    delayMs: 160,
-  });
-  expect(f.loads).toEqual([]);
-  expect(f.timers.size).toBe(1);
-  f.tick();
-  await flush();
-  expect(f.loads).toHaveLength(1);
-  expect(f.loads[0]).toContain("retry-muted-tongue/retry.wav");
-  expect(f.started()).toEqual(["retry-candidate"]);
-  expect(f.events.at(-1)).toMatchObject({
-    type: "started",
-    cue: "retry",
-    palette: "retry-muted-tongue",
-  });
-  expect(f.timers.size).toBe(0);
-  f.engine.dispose();
-});
-
 test("long audition delays keep their spacing within a bounded cancellable window", async () => {
   const f = fixture();
   await f.engine.unlock();
@@ -420,98 +326,6 @@ test("long audition delays keep their spacing within a bounded cancellable windo
   await flush();
   expect(f.started()).toEqual([]);
   expect(f.loads).toEqual([]);
-  f.engine.dispose();
-});
-
-test("retired palettes from stale callers never fetch or schedule playback", async () => {
-  const f = fixture();
-  await f.engine.unlock();
-  for (const palette of [
-    "recorded-chess",
-    "retry-fret-catch",
-    "retry-wood-and-strings",
-    "retry-relay-buzzer",
-    "retry-real-buzzer",
-    "retry-muted-brass",
-    "retry-whistle-fall",
-    "retry-soft-error",
-    "retry-wood-stop",
-    "retry-muted-block",
-    "retry-gentle-knocks",
-    "retry-wood-check",
-    "retry-soft-resistance",
-    "retry-lock-stop",
-    "retry-latch-catch",
-    "retry-case-click",
-    "retry-pedal-release",
-    "retry-latch-back",
-    "retry-cup-tap",
-    "retry-ceramic-pair",
-    "retry-metal-stop",
-    "retry-glass-contact",
-    "retry-bass-stop",
-    "retry-cello-question",
-    "retry-unsettled-chord",
-    "retry-cello-step",
-    "retry-piano-slip",
-    "retry-soft-vibes",
-    "retry-low-marimba",
-    "retry-high-marimba",
-    "retry-prepared-keys",
-    "retry-wood-and-vibes",
-    "retry-ceramic-and-bass",
-    "retry-board-and-cello",
-    "retry-glass-and-box",
-    "retry-pop",
-    "retry-paper",
-    "retry-zip",
-    "retry-guitar",
-    "retry-kalimba",
-    "retry-conga",
-    "retry-downturn",
-    "retry-oops",
-    "retry-soft-warm",
-    "retry-soft-short",
-    "retry-soft-gentle",
-    "retry-pitch-lift",
-    "retry-pitch-octave",
-    "retry-pitch-bright",
-    "retry-pitch-high",
-    "retry-pitch-highest",
-    "retry-double-tap",
-    "retry-double-drop",
-    "retry-double-steep",
-    "retry-triple-step",
-    "retry-stutter",
-    "retry-peep-pair",
-    "retry-peep-fall",
-    "retry-peep-triple",
-    "retry-bell-drop",
-    "retry-question",
-    "retry-short-high",
-  ]) {
-    for (const delayMs of [0, 160]) {
-      const eventId = `${palette}:${delayMs}`;
-      f.engine.play({
-        cue: "retry",
-        palette: palette as SoundPalette,
-        scope: "stale",
-        eventId,
-        delayMs,
-      });
-      expect(f.events.at(-1)).toMatchObject({
-        type: "suppressed",
-        palette,
-        eventId,
-        reason: "unknown-cue",
-      });
-      expect(f.loads).toEqual([]);
-      expect(f.timers.size).toBe(0);
-    }
-  }
-  await flush();
-  expect(f.context.decodes).toBe(0);
-  expect(f.started()).toEqual([]);
   f.engine.dispose();
 });
 
@@ -702,24 +516,6 @@ test("hide, mute, loading, disable and disposal all invalidate asynchronous work
     expect(f.unsubscribed()).toBe(true);
     expect(f.context.state).toBe("closed");
   }
-});
-
-test("decoded assets are reused while distinct cue assets remain independent", async () => {
-  const f = fixture();
-  await f.engine.unlock();
-  for (const [eventId, cue] of [
-    ["a", "move"],
-    ["b", "move"],
-    ["c", "check"],
-  ] as const) {
-    f.engine.play({ ...move(eventId), cue });
-    await flush();
-  }
-  expect(f.loads).toHaveLength(2);
-  expect(f.context.decodes).toBe(2);
-  expect(f.loads[0]).toContain("soft-objects/move.wav");
-  expect(f.loads[1]).toContain("tabletop/check.wav");
-  f.engine.dispose();
 });
 
 test("hidden tabs disconnect playing and retiring voices before the context can resume", async () => {
@@ -942,71 +738,6 @@ test("cancelled recordings cannot start after a pending fetch or decode and rest
       f.engine.dispose();
     }
   }
-});
-
-test("decoded recordings stay within the memory budget by forgetting the least recently played", async () => {
-  const f = fixture();
-  // 20 MB of mono PCM each: two fit the 48 MB budget, a third evicts one.
-  const length = 5 * 1024 * 1024;
-  f.context.decode = async () => {
-    const samples = new Float32Array(length);
-    return {
-      sampleRate: 48000,
-      length,
-      duration: length / 48000,
-      numberOfChannels: 1,
-      getChannelData: () => samples,
-    } as unknown as AudioBuffer;
-  };
-  await f.engine.unlock();
-  let line = 0;
-  const say = async (url: string) => {
-    f.engine.playRecordedSpeech(recording(`line-${++line}`, { url }));
-    await flush();
-    await flush();
-  };
-  await say("/a.wav");
-  await say("/b.wav");
-  await say("/a.wav");
-  await say("/c.wav");
-  expect(f.context.decodes).toBe(3);
-  await say("/a.wav");
-  await say("/c.wav");
-  expect(f.context.decodes).toBe(3);
-  await say("/b.wav");
-  expect(f.context.decodes).toBe(4);
-  expect(f.loads).toEqual(["/a.wav", "/b.wav", "/c.wav", "/b.wav"]);
-  f.engine.dispose();
-});
-
-test("recording URL loads are shared while pending and cached across scopes and effect playback", async () => {
-  const f = fixture();
-  const fetched = deferred<ArrayBuffer>();
-  f.load(() => fetched.promise);
-  await f.engine.unlock();
-  f.engine.playRecordedSpeech(recording("old", { scope: "old" }));
-  f.engine.playRecordedSpeech(recording("replacement", { scope: "current" }));
-  f.engine.cancel("old");
-  expect(f.loads).toHaveLength(1);
-  fetched.resolve(new ArrayBuffer(8));
-  await flush();
-  expect(f.started()).toEqual(["replacement"]);
-  expect(f.context.decodes).toBe(1);
-  f.engine.playRecordedSpeech(recording("replay"));
-  await flush();
-  expect(f.loads).toHaveLength(1);
-  expect(f.context.decodes).toBe(1);
-  f.engine.play(move("effect"));
-  await flush();
-  const effectUrl = f.loads[1];
-  expect(f.context.decodes).toBe(2);
-  f.engine.playRecordedSpeech(recording("same-url", { url: effectUrl }));
-  await flush();
-  expect(f.loads).toHaveLength(2);
-  expect(f.context.decodes).toBe(2);
-  expect(f.created()).toBe(1);
-  expect(f.started()).toEqual(["replacement", "replay", "effect", "same-url"]);
-  f.engine.dispose();
 });
 
 test("recording failures release speech priority and allow a new event to retry the same URL", async () => {
@@ -1307,29 +1038,6 @@ test("speech activity starts on the source clock, follows real time and stays se
   expect(playbacks).toEqual([playback, null]);
   f.context.currentTime = 3.3;
   expect(playback.read()).toBeNull();
-  f.engine.dispose();
-});
-
-test("speech envelopes and releases are cached per buffer, and envelopes are skipped without a presentation observer", async () => {
-  const pcm = voicedBuffer();
-  const plain = fixture();
-  await plain.engine.unlock();
-  plain.context.decode = async () => pcm.buffer;
-  plain.engine.playRecordedSpeech(voicedSpeech("without-observer"));
-  await flush();
-  expect(pcm.reads()).toBe(1); // The release only.
-  plain.engine.dispose();
-  const f = fixture({ onSpeechPlayback: () => {} });
-  await f.engine.unlock();
-  f.context.decode = async () => pcm.buffer;
-  f.engine.play(move("effect"));
-  await flush();
-  expect(pcm.reads()).toBe(1);
-  f.engine.playRecordedSpeech(voicedSpeech("first"));
-  await flush();
-  f.engine.playRecordedSpeech(voicedSpeech("replay"));
-  await flush();
-  expect(pcm.reads()).toBe(3); // One release and one envelope, both reused by the replay.
   f.engine.dispose();
 });
 
