@@ -18,9 +18,10 @@ SUITES = {
 }
 API_SUITES = {"local", "accounts"}
 # Jobs per viewport. The application suite balances whole files by recorded
-# duration; the coach studio shares its independent cases evenly (see
-# frontend/playwright.shared.ts). Keep the total near GitHub's concurrent-job limit.
-SHARDS = {"local": 4, "coach-studio": 3}
+# duration; the audio studio shares its independent cases evenly (see
+# frontend/playwright.shared.ts). The coach studio runs in under a minute, so one
+# job each. Keep the total at or under GitHub's 20 concurrent jobs.
+SHARDS = {"local": 4, "audio-studio": 2}
 APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
 # Intelligence and audio selection regressions execute Python semantic fixtures
 # without starting an API server. Keep this separate from application consumers.

@@ -208,7 +208,7 @@ artwork matrix. The shared studio player selects both studios;
 the production audio engine also retains application and intelligence consumers.
 
 The application suite runs in eight isolated jobs (desktop/mobile, four shards each)
-and the coach studio in six (three shards each); `SHARDS` in `scripts/ci_plan.py`
+and the audio studio in four (two shards each); `SHARDS` in `scripts/ci_plan.py`
 sets the counts. Each config reads its shard from `TEST_SHARD`
 (`frontend/playwright.shared.ts`). The application and coach studio suites keep
 whole files together and assign them to shards greedily by recorded duration from
