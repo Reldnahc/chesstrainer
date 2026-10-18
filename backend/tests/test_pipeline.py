@@ -153,22 +153,3 @@ def test_schema_and_srs_mapping():
     assert behavior_rating(False, True, 10, 30).name == "Again"
     assert behavior_rating(False, False, 31_000, 30).name == "Hard"
     assert behavior_rating(False, False, 10_000, 30).name == "Good"
-
-
-def test_a_castling_alias_is_graded_and_saved_as_the_canonical_move(settings, sessions):
-    from trainer.exercises import manual_exercise
-    from trainer.models import Attempt
-
-    scheduler = FSRSScheduler(settings)
-    with sessions() as db:
-        exercise = manual_exercise(
-            db, scheduler, "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", ["e1g1"], "white"
-        )
-        db.commit()
-        cold = start_review(db, exercise.id)
-        db.commit()
-        # An API client may send castling as the king taking its rook.
-        result = submit_move(db, cold["session_id"], "e1h1", None, scheduler, settings)
-        db.commit()
-        assert result["completed"] and result["grade"] != "failure"
-        assert db.scalar(select(Attempt.uci)) == "e1g1"

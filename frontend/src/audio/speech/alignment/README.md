@@ -1,10 +1,9 @@
 # Automatic lip-sync preview data
 
 Two offline generators use the same existing Walter **Sound sacrifice** and
-**Allowed checkmate** recordings. They are kept as fixtures for the lip-sync spec
-(`frontend/audio-tests/fixtures/previewTracks.ts` reads them). These are development
-experiments, not approved timing for the full voice library. No script, recording
-or individual mouth-cue boundary was manually corrected.
+**Allowed checkmate** recordings. These are development experiments, not
+approved timing for the full voice library. No script, recording or individual
+mouth-cue boundary was manually corrected.
 
 - `sound-sacrifice.json` / `allowed-mate.json`: the unchanged first Rhubarb output.
 - `*-forced.json`: exact-transcript phone alignment and a shared automatic mapping.
@@ -70,7 +69,6 @@ From the repository root, after the optional packages are locally installed:
 ```powershell
 .venv/Scripts/python.exe scripts/align_coach_speech.py --generate
 .venv/Scripts/python.exe -S scripts/align_coach_speech.py --check
-.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py -q
 ```
 
 `--generate` defaults to `--method forced`. The committed Opus recording is decoded without

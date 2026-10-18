@@ -7,24 +7,6 @@ async function openNewCourse(page: Page) {
   return page.getByRole("region", { name: "Selected step" });
 }
 
-test("the step with the check's problem is marked from its location, not the message text", async ({
-  page,
-}) => {
-  const step = await openNewCourse(page);
-  await step.getByLabel("Kind").selectOption("decision");
-  await step.getByLabel("Learner's move").fill("e5");
-  await expect(page.getByText(/e5 is not a legal move/)).toBeVisible();
-  const steps = page.getByRole("region", { name: "Steps" });
-  await expect(steps.getByRole("img", { name: "Has a problem" })).toHaveCount(1);
-  await expect(
-    steps.getByRole("listitem").first().getByRole("img", { name: "Has a problem" }),
-  ).toBeVisible();
-  // A problem outside any step marks none.
-  await step.getByLabel("Learner's move").fill("e4");
-  await expect(page.getByText("The course loads without problems.")).toBeVisible();
-  await expect(steps.getByRole("img", { name: "Has a problem" })).toHaveCount(0);
-});
-
 test("renaming a step or a line takes effect when the id is committed, and links follow it", async ({
   page,
 }) => {

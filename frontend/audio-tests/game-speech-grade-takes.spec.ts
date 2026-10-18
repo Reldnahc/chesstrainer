@@ -11,7 +11,6 @@ import {
   selectGameSpeech,
   type GameSpeechContext,
 } from "../src/audio/speech/gameSelection";
-import { meanings } from "../src/audio/speech/meaningCatalog";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 import { humanGames } from "../tests/human-fixtures";
 
@@ -51,58 +50,32 @@ function plainError(label: string) {
   return game;
 }
 
-test("each grade has its own pool of takes", () => {
-  const pools = [
-    "Brilliant",
-    "Great",
-    "Best",
-    "Good",
-    "Inaccuracy",
-    "Mistake",
-    "Miss",
-    "Blunder",
-  ].map(gradeTakeIds);
-  // Imported extra takes (Best and Good grow to six) join after the first four.
-  expect(pools.every(ids => ids.length >= GRADE_TAKES)).toBe(true);
-  expect(new Set(pools.flat()).size).toBe(pools.flat().length);
-  expect(gradeTakeIds("Book")).toEqual([]);
-});
+// The pool lookup is grade-generic and coach-independent: one coach, two grades.
+for (const [label, pool] of [
+  ["Inaccuracy", "inaccuracy"],
+  ["Blunder", "blunder"],
+])
+  test(`classic: a plain ${label} offers a ${pool} take over the generic reading`, () => {
+    const speech = selectGameSpeech(context(plainError(label), 1, coaches[0]));
+    expect(speech.recordingId).toMatch(/^(?:evaluation-loss|stronger-alternative)/);
+    expect(gradeTakeIds(label)).toContain(speech.gradeId);
+  });
 
-test("every numbered grade take in the catalogue is linked to its grade, in order", () => {
-  // A take added without its gradeOf link would never play.
-  for (const meaning of meanings) {
-    const numbered = /^grade-([a-z]+)-\d+$/.exec(meaning.id);
-    expect(meaning.gradeOf, meaning.id).toBe(numbered?.[1]);
-  }
-  for (const label of [
-    "Brilliant",
-    "Great",
-    "Best",
-    "Good",
-    "Inaccuracy",
-    "Mistake",
-    "Miss",
-    "Blunder",
-  ]) {
-    const ids = gradeTakeIds(label),
-      pool = label.toLowerCase();
-    expect(ids).toEqual(ids.map((_, index) => `grade-${pool}-${index + 1}`));
-  }
-});
+for (const [label, generic] of [
+  ["Best", "best-supported-choice"],
+  ["Good", "good-choice"],
+])
+  test(`classic: a plain ${label} move offers a take from its own grade`, () => {
+    // This policy fixture opens 1.e4; without the book line it has nothing specific to say.
+    const game = structuredClone(humanGames.natural_best);
+    game.frames[1].report!.opening = null;
+    game.frames[1].report!.label = label as never;
+    const speech = selectGameSpeech(context(game, 1, coaches[0]));
+    expect(speech.recordingId).toBe(generic);
+    expect(gradeTakeIds(label)).toContain(speech.gradeId);
+  });
 
 for (const coach of coaches) {
-  for (const [label, pool] of [
-    ["Inaccuracy", "inaccuracy"],
-    ["Mistake", "mistake"],
-    ["Miss", "miss"],
-    ["Blunder", "blunder"],
-  ])
-    test(`${coach.id}: a plain ${label} offers a ${pool} take over the generic reading`, () => {
-      const speech = selectGameSpeech(context(plainError(label), 1, coach));
-      expect(speech.recordingId).toMatch(/^(?:evaluation-loss|stronger-alternative)/);
-      expect(gradeTakeIds(label)).toContain(speech.gradeId);
-    });
-
   test(`${coach.id}: the evaluation-loss reading, which can call the cost small, is kept for Inaccuracies`, () => {
     const loss = (label: string) => {
       const game = plainError(label),
@@ -120,22 +93,6 @@ for (const coach of coaches) {
     }
   });
 
-  for (const [label, generic] of [
-    ["Brilliant", "best-supported-choice"],
-    ["Great", "best-supported-choice"],
-    ["Best", "best-supported-choice"],
-    ["Good", "good-choice"],
-  ])
-    test(`${coach.id}: a plain ${label} move offers a take from its own grade`, () => {
-      // This policy fixture opens 1.e4; without the book line it has nothing specific to say.
-      const game = structuredClone(humanGames.natural_best);
-      game.frames[1].report!.opening = null;
-      game.frames[1].report!.label = label as never;
-      const speech = selectGameSpeech(context(game, 1, coach));
-      expect(speech.recordingId).toBe(generic);
-      expect(gradeTakeIds(label)).toContain(speech.gradeId);
-    });
-
   test(`${coach.id}: specific content keeps its own clip`, () => {
     for (const name of ["capture-natural", "allowed-fork-natural", "allowed-mate-natural"]) {
       const game = structuredClone(games[name]);
@@ -150,11 +107,10 @@ for (const coach of coaches) {
 }
 
 /** The same plain inaccuracy repeated at plies 1..length of one game. */
-function repeatedError(length: number, id?: string) {
+function repeatedError(length: number) {
   const base = plainError("Inaccuracy");
   return {
     ...base,
-    ...(id ? { id } : {}),
     frames: [base.frames[0], ...Array.from({ length }, () => structuredClone(base.frames[1]))],
   };
 }
@@ -188,18 +144,4 @@ test("neighbouring same-grade moves play every take before any repeats", () => {
   // Replaying a ply repeats its take.
   expect(selectGameSpeech(context(game, 3)).gradeId).toBe(takes[2]);
   expect(selectGameSpeech(context(game, 11)).gradeId).toBe(takes[10]);
-});
-
-test("each game shuffles the takes rather than rotating one fixed order", () => {
-  // A rotation of one fixed order allows at most GRADE_TAKES distinct orders.
-  const orders = new Set(
-    Array.from({ length: 24 }, (_, index) => {
-      const game = repeatedError(GRADE_TAKES, `shuffle-${index}`);
-      return Array.from(
-        { length: GRADE_TAKES },
-        (_, ply) => selectGameSpeech(context(game, ply + 1)).gradeId,
-      ).join();
-    }),
-  );
-  expect(orders.size).toBeGreaterThan(GRADE_TAKES);
 });

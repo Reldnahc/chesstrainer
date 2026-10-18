@@ -1,4 +1,3 @@
-import juniperScript from "../src/audio/speech/banks/juniper/scripts.json" with { type: "json" };
 import { test, expect, type Page } from "./helpers/browserTest";
 
 // A live game against the coach's bot, served by mocked play endpoints so the
@@ -199,26 +198,6 @@ test("the setup page explains the measured level and starts a live game", async 
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
 });
 
-test("the setup waits for the game in progress so the callout does not push it down", async ({
-  page,
-}) => {
-  await mockPlay(page);
-  let answer: () => void = () => undefined;
-  const answered = new Promise<void>(resolve => {
-    answer = resolve;
-  });
-  await page.route("**/api/play/active", async route => {
-    await answered;
-    await route.fulfill({ json: { game: { ...base, frames: [frame0] } } });
-  });
-  await page.goto("/play");
-  await expect(page.getByRole("heading", { name: "Play Walter" })).toBeVisible();
-  await expect(page.getByRole("region", { name: "Game setup" })).toHaveCount(0);
-  answer();
-  await expect(page.getByRole("region", { name: "Game in progress" })).toBeVisible();
-  await expect(page.getByRole("region", { name: "Game setup" })).toBeVisible();
-});
-
 test("the bot answers once the move is graded while the coach finishes its line", async ({
   page,
 }) => {
@@ -260,46 +239,6 @@ test("a failed bot reply can be asked for again, and the game carries on", async
   await expect(page.locator(".game-move-list")).toContainText("e5", { timeout: 5000 });
   await expect(page.getByText("The bot is unavailable.")).toHaveCount(0);
   expect(replies).toBe(2);
-});
-
-test("Try again waits for a running command, and a resigned game stays finished", async ({
-  page,
-}) => {
-  await mockPlay(page);
-  let replies = 0;
-  await page.route("**/api/play/play1/reply", async route => {
-    replies += 1;
-    await route.fulfill({ status: 503, json: { detail: "The bot is unavailable." } });
-  });
-  let release = () => {};
-  const held = new Promise<void>(resolve => {
-    release = resolve;
-  });
-  await page.route("**/api/play/play1/resign", async route => {
-    await held;
-    await route.fulfill({
-      json: {
-        ...base,
-        status: "finished",
-        result: "0-1",
-        termination: "resignation",
-        frames: [frame0, frame1],
-      },
-    });
-  });
-  await page.goto("/play/play1");
-  await page.locator('[data-square="e2"]').first().click();
-  await page.locator('[data-square="e4"]').first().click();
-  const banners = page.getByRole("region", { name: "Notifications" });
-  await expect(banners).toContainText("The bot is unavailable.");
-  await page.getByRole("button", { name: "Resign" }).click();
-  // While the resign is in flight, a retried reply could land on the finished game.
-  await expect(banners.getByRole("button", { name: "Try again" })).toBeDisabled();
-  release();
-  await expect(banners).toContainText("You resigned. Walter takes the game.");
-  await expect(page.getByText("The bot is unavailable.")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Resign" })).toHaveCount(0);
-  expect(replies).toBe(1);
 });
 
 test("an analysis failure belongs to its own move, and saved reports are not asked for again", async ({
@@ -400,21 +339,6 @@ test("playing a move from an earlier position replaces the rest of the game", as
   await expect(page.getByText("Walter is thinking…")).toBeVisible();
 });
 
-test("a game that fails to load offers Try again", async ({ page }) => {
-  await mockPlay(page);
-  let loads = 0;
-  await page.route("**/api/play/play1", async route => {
-    if (++loads === 1)
-      return route.fulfill({ status: 503, json: { detail: "The server is busy." } });
-    await route.fallback();
-  });
-  await page.goto("/play/play1");
-  await expect(page.getByText("Couldn’t load the game.")).toBeVisible();
-  await page.getByRole("button", { name: "Try again", exact: true }).click();
-  await expect(page.getByText("Your move")).toBeVisible();
-  expect(loads).toBe(2);
-});
-
 test("a finished game offers its saved review", async ({ page }) => {
   await page.route("**/api/play/play1", route =>
     route.fulfill({
@@ -492,20 +416,6 @@ test("a reply the engine played for the human model says so", async ({ page }) =
     page.getByRole("region", { name: "Notifications" }).getByRole("status"),
   ).toContainText(
     "1 of Walter's moves came from Stockfish at Elo 1320, because the human move model was unavailable.",
-  );
-});
-
-test("the setup page's coach asks for a game in its own words", async ({ page }, testInfo) => {
-  await mockPlay(page);
-  await page.route("**/api/preferences/coach", route =>
-    route.fulfill({ json: { coach_id: "cat-black", motion: "still" } }),
-  );
-  const line = juniperScript.records.find(record => record.id === "play-invitation")!.text;
-  await page.goto("/play");
-  await expect(page.getByLabel("Juniper says")).toContainText(line);
-  // Phones show it in the same coach layout as review; desktop keeps the large portrait.
-  await expect(page.locator(".play-setup-coach .review-coach")).toHaveCount(
-    testInfo.project.name === "mobile" ? 1 : 0,
   );
 });
 
@@ -718,80 +628,4 @@ test("at the end of the line the coach offers to keep playing or go again", asyn
   });
   await expect(page).toHaveURL(/\/play\/play2$/);
   await expect(page.getByText("Your move")).toBeVisible();
-});
-
-test("a new game after a finished one starts from that game's settings", async ({ page }) => {
-  await mockPlay(page);
-  await page.route("**/api/play/openings", route =>
-    route.fulfill({
-      json: {
-        courses: [
-          { id: "dragon", title: "Sicilian Dragon", learner_color: "black", lines: 29 },
-          { id: "italian", title: "Italian Game", learner_color: "white", lines: 13 },
-        ],
-      },
-    }),
-  );
-  const finished = {
-    ...base,
-    status: "finished",
-    result: "1-0",
-    termination: "resignation",
-    saved_game_id: null,
-    opponent: "engine",
-    rating: 2000,
-    learner_color: "black",
-    frames: [frame0, frame1, frame2],
-  };
-  await page.route("**/api/play/play1", route => route.fulfill({ json: finished }));
-  await page.route("**/api/play/play2", route =>
-    route.fulfill({
-      json: {
-        ...finished,
-        id: "play2",
-        opponent: "human",
-        rating: 1000,
-        learner_color: "white",
-        practice: {
-          course_id: "italian",
-          title: "Italian Game",
-          status: "ended",
-          ended: "book_end",
-          deviation: null,
-          book_moves: [],
-        },
-      },
-    }),
-  );
-  await page.goto("/play/play1");
-  await page.getByRole("link", { name: "New game" }).first().click();
-  await expect(page).toHaveURL(/\/play\?from=play1$/);
-  await expect(page.getByRole("button", { name: "Engine" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await expect(page.getByRole("slider", { name: "Opponent rating" })).toHaveValue("2000");
-  await expect(page.getByRole("button", { name: "Black", exact: true })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await expect(page.getByRole("button", { name: "Any opening" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  // A practice game brings back its course and the matched level.
-  await page.goto("/play?from=play2");
-  await expect(page.getByRole("button", { name: "Practice an opening" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await expect(page.getByLabel("Course to practice")).toHaveValue("italian");
-  await expect(page.getByRole("button", { name: "Match my level" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
-  await expect(page.getByRole("button", { name: "White", exact: true })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
 });

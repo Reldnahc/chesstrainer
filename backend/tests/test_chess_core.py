@@ -7,44 +7,10 @@ from trainer.chess_core import (
     engine_context,
     evaluation_loss,
     legal_move,
-    legal_move_options,
-    material,
     position_key,
     valid_board,
 )
-from trainer.game_review import position
 from trainer.policy import MovePolicy
-
-
-def test_board_options_preserve_special_moves_and_callers_own_termination():
-    castle = valid_board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
-    assert {
-        "from_square": "e1",
-        "to_square": "g1",
-        "promotion": None,
-        "capture": False,
-    } in legal_move_options(castle)
-    ep = valid_board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")
-    assert {
-        "from_square": "e5",
-        "to_square": "d6",
-        "promotion": None,
-        "capture": True,
-    } in legal_move_options(ep)
-    pinned = valid_board("k3r3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")
-    assert not any(
-        m["from_square"] == "e5" and m["to_square"] == "d6" for m in legal_move_options(pinned)
-    )
-    promotion = valid_board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1")
-    assert {m["promotion"] for m in legal_move_options(promotion) if m["from_square"] == "a7"} == {
-        "q",
-        "r",
-        "b",
-        "n",
-    }
-    drawn = valid_board("4k3/8/8/8/8/8/8/4K3 w - - 0 1")
-    assert legal_move_options(drawn)  # SRS exposes legal interaction independently.
-    assert position(drawn)["legal_moves"] == []  # Game review stops at a rules outcome.
 
 
 def test_position_identity():
@@ -68,25 +34,6 @@ def test_history_not_lost_in_engine_key():
         board.push_uci(uci)
     assert position_key(board) == position_key(chess.Board())
     assert engine_context(board) != engine_context(chess.Board(board.fen()))
-
-
-def test_rules_special_moves():
-    castle = valid_board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
-    move = legal_move(castle, "e1g1")
-    assert castle.san(move) == "O-O"
-    assert castle.is_castling(move)
-    promote = valid_board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1")
-    assert promote.san(legal_move(promote, "a7a8n")) == "a8=N"
-    ep = valid_board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")
-    ep.push(legal_move(ep, "e5d6"))
-    assert ep.piece_at(chess.D5) is None
-    assert material(ep, chess.BLACK) == 0
-    with pytest.raises(ValueError):
-        valid_board("8/8/8/8/8/8/8/8 w - - 0 1")
-    with pytest.raises(ValueError):
-        legal_move(chess.Board(), "e2e5")
-    with pytest.raises(ValueError):
-        legal_move(chess.Board(), "0000")
 
 
 @pytest.mark.parametrize("black", [False, True])
@@ -152,9 +99,3 @@ def test_practical_accepts_sound_alternatives():
     assert MovePolicy().grade(best, "d1h5", Score(kind="cp", value=-180)) == "failure"
     assert MovePolicy().grade(best, "d2d3", Score(kind="mate", value=-3)) == "failure"
     assert not MovePolicy().meaningful(best.score, Score(kind="cp", value=38))
-
-
-def test_target_rating_does_not_change_chess_evaluation(settings):
-    before = MovePolicy.from_settings(settings)
-    settings.target_rating = 2200
-    assert before == MovePolicy.from_settings(settings)

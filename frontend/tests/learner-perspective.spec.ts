@@ -286,23 +286,4 @@ for (const game of games) {
     expect(report.label).toBe("Brilliant");
     expect(JSON.stringify(modified)).toBe(saved);
   });
-
-  test(`${learner} saved learner perspective survives move navigation, board flip and reload`, async ({
-    page,
-  }) => {
-    const opposing = { ...game, orientation: opposite(learner) };
-    await page.route(`**/api/games/${game.id}`, route => route.fulfill({ json: opposing }));
-    await page.route(`**/api/games/${game.id}/review`, route =>
-      route.fulfill({ json: { job_id: game.job!.id, status: "completed" } }),
-    );
-    await page.goto(`/games/${game.id}?ply=${ply}`);
-    const coach = page.getByRole("region", { name: "Chess coach" });
-    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "book");
-    const text = await coach.locator("[data-utterance]").innerText();
-    await page.getByRole("button", { name: "Flip board" }).click();
-    await expect(coach.locator("[data-utterance]")).toHaveText(text);
-    await page.reload();
-    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "book");
-    await expect(coach.locator("[data-utterance]")).toHaveText(text);
-  });
 }

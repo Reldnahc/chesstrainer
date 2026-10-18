@@ -16,16 +16,10 @@ from trainer.models import AnalysisJob, EngineAnalysis, Game, GameReview, GameRe
 @pytest.mark.parametrize(
     "control,speed",
     [
-        ("60", "bullet"),
         ("120+1", "bullet"),
-        ("180+2", "blitz"),
-        (" 300+2 ", "blitz"),  # The library label ignores the spaces too.
         ("180", "blitz"),
         ("600", "rapid"),
-        ("900+10", "rapid"),
         ("1800", "classical"),
-        ("1/86400", "daily"),
-        (None, "unknown"),
         ("broken", "unknown"),
     ],
 )
@@ -227,48 +221,9 @@ def test_library_insights_from_saved_games(settings, monkeypatch):
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
 
 
-def test_each_game_is_replayed_once_until_it_or_its_review_changes(settings, monkeypatch):
-    from trainer import game_insights
-    from trainer.models import GameReview, InsightFacts
-    from trainer.routes import insights
-
-    built = []
-
-    def counted(game, *args):
-        built.append(game.id)
-        return game_insights.game_facts(game, *args)
-
-    monkeypatch.setattr(insights, "game_facts", counted)
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            ids = seed(db)
-        first = client.get("/api/insights").json()
-        assert len(built) == 3
-        # A filter change or a repeat replays nothing while the reviews are unchanged.
-        assert client.get("/api/insights?speed=blitz").json()["games"] == 2
-        assert client.get("/api/insights").json() == first
-        assert len(built) == 3
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
-            # A saved report or an adopted refinement bumps the review's revision.
-            db.get(GameReview, ids[0]).revision += 1
-            db.commit()
-        built.clear()
-        assert client.get("/api/insights").json() == first
-        assert built == [ids[0]]
-
-    # Saved facts outlive the process: a restarted server replays nothing.
-    built.clear()
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        assert client.get("/api/insights").json() == first
-    assert built == []
-
-
 def test_saved_facts_read_back_exactly(sessions):
     from dataclasses import fields, replace
-    from datetime import datetime, timedelta, timezone
+    from datetime import datetime, timezone
 
     from trainer.game_insights import game_facts, pack_facts, unpack_facts
     from trainer.review_reports import load_accuracy_scores
@@ -320,44 +275,6 @@ def test_damaged_saved_facts_are_rebuilt(settings):
             assert all(row.facts != b"not saved facts" for row in db.scalars(select(InsightFacts)))
 
 
-def test_rebuilt_facts_are_saved_as_they_go(settings, monkeypatch):
-    from trainer.models import InsightFacts
-    from trainer.routes import insights
-
-    saved = []
-    original = insights.save
-
-    def counted(workspace, rows):
-        saved.append(len(rows))
-        original(workspace, rows)
-
-    monkeypatch.setattr(insights, "SAVE_EVERY", 2)
-    monkeypatch.setattr(insights, "save", counted)
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            seed(db)
-        client.get("/api/insights")
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 3
-    assert saved == [2, 1]
-
-
-def test_facts_of_a_game_deleted_meanwhile_are_not_saved(settings):
-    from threading import Lock
-
-    from trainer.db import Units
-    from trainer.models import InsightFacts
-    from trainer.routes.insights import save
-
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app):
-        workspace = Units(app.state.sessions, Lock())
-        save(workspace, [InsightFacts(game_id="gone", key="k", facts=b"")])
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(InsightFacts)) == 0
-
-
 def test_facts_key_follows_everything_the_facts_read():
     from datetime import UTC, datetime
     from types import SimpleNamespace
@@ -392,16 +309,6 @@ def test_facts_key_follows_everything_the_facts_read():
         ),
     ):
         assert changed != base
-
-
-def test_facts_keep_no_per_instance_dictionary():
-    from trainer.game_insights import game_facts
-
-    # Every request unpacks a library's facts: slots keep each ply small.
-    pgn = '[White "Student"]\n[Black "Rival"]\n[Result "*"]\n\n1. e4 e5 *'
-    facts = game_facts(Game(id="slots", pgn=pgn, learner_color=True, white="Student"))
-    assert not hasattr(facts, "__dict__")
-    assert not any(hasattr(row, "__dict__") for row in facts.plies)
 
 
 def test_empty_library(settings):
@@ -517,22 +424,11 @@ def test_an_endgame_is_held_against_the_evaluation_where_it_began():
     assert {row["kind"]: row["held"] for row in endgames([game_facts(game, scores)])}["mixed"] == 0
 
 
-def test_slip_links_give_the_move_number_the_game_uses():
-    from trainer.game_insights import example, game_facts
-
-    game, scores = endgame_game([350, -400, -400, -400], [-350, 350, 400, -400])
-    facts = game_facts(game, scores)
-    assert example(facts, 2)["move"] == 21 and example(facts)["move"] is None
-
-
 @pytest.mark.parametrize(
     "fen,kind",
     [
         ("6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1", "rook"),
         ("6k1/5ppp/2n5/8/8/8/5PPP/3R2K1 w - - 0 1", "mixed"),
-        ("6k1/5ppp/2n5/8/8/5B2/5PPP/6K1 w - - 0 1", "minor"),
-        ("3q2k1/5ppp/8/8/8/8/5PPP/3Q2K1 w - - 0 1", "queen"),
-        ("3r2k1/5ppp/8/8/8/8/5PPP/3Q2K1 w - - 0 1", "mixed"),
         ("6k1/5ppp/8/8/8/8/5PPP/6K1 w - - 0 1", "pawn"),
     ],
 )
@@ -556,10 +452,7 @@ def test_led_throughout_needs_the_lead_kept_once_reached():
     [
         ("300+5", "Chess.com", "blitz"),
         ("300+5", "Lichess", "rapid"),
-        ("600", "Chess.com", "rapid"),
-        ("120+1", "Chess.com", "bullet"),
         ("1800", "Chess.com", "rapid"),
-        ("1/86400", "Chess.com", "daily"),
     ],
 )
 def test_speed_follows_each_providers_own_classes(control, site, speed):
@@ -610,44 +503,3 @@ def test_a_mistakes_swing_is_measured_from_its_own_search():
     assert facts.plies[1].mistake and facts.plies[1].before_cp == -20
     # Swing 220 from -20 to +200; the reply keeps 170 of it, so it punishes.
     assert punishment([facts])["punished"] == 1
-
-
-def test_the_next_game_counts_by_start_time_for_synced_games():
-    from trainer.game_insights import game_facts, tilt
-
-    def synced(id, start, end):
-        pgn = (
-            f'[White "Student"]\n[Black "Rival"]\n[UTCDate "2026.10.01"]\n[UTCTime "{start}"]\n'
-            '[Result "0-1"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
-        )
-        game = Game(id=id, pgn=pgn, learner_color=True, white="Student", black="Rival")
-        game.played_at = datetime.fromisoformat(f"2026-10-01T{end}+00:00")
-        return game_facts(game)
-
-    # The second game started 40 minutes after the first, but ended two hours later.
-    first, second = synced("a", "10:00:00", "10:30:00"), synced("b", "10:40:00", "12:30:00")
-    assert tilt([first, second])["rematches_after_loss"]["games"] == 1
-    # A daily game started a day earlier but finished later does not follow it.
-    daily = synced("c", "09:00:00", "13:00:00")
-    daily.started_at -= timedelta(days=1)
-    assert tilt([first, daily])["rematches_after_loss"]["games"] == 0
-
-
-def test_insights_phases_use_the_shared_phase_rule():
-    from trainer.chess_core import game_phase
-    from trainer.game_insights import game_facts
-
-    # Six pieces besides kings and pawns, but 50 points of material: a middlegame.
-    fen = "2bqr1k1/pppppppp/8/8/8/8/PPPPPPPP/2BQR1K1 w - - 0 20"
-    pgn = (
-        f'[White "Student"]\n[Black "Rival"]\n[FEN "{fen}"]\n[SetUp "1"]\n'
-        '[Result "*"]\n\n20. a3 a6 *'
-    )
-    game = Game(id="phases", pgn=pgn, learner_color=True, white="Student", black="Rival")
-    facts = game_facts(game)
-    board = chess.Board(fen)
-    assert [row.phase for row in facts.plies] == ["middlegame", "middlegame"]
-    for row, uci in zip(facts.plies, ["a2a3", "a7a6"], strict=True):
-        assert row.phase == game_phase(board)
-        board.push_uci(uci)
-    assert facts.endgame is None

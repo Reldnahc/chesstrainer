@@ -66,10 +66,7 @@ reworded for that, with their previous text.
 Forced alignment accepts the weak form of "have" in "would have" as recorded
 `reducedForms` evidence. Interjections the dictionary lacks go in the short
 reviewed lexicon `speech_pronunciation.LEXICON`; new inflections and compounds go
-in the morphology rules. `backend/tests/test_coach_bank_scripts.py` checks
-catalogue coverage, the spoken-text rules (including that the question-free
-personalities ask none aloud) and that each registered manifest matches its
-scripts.
+in the morphology rules.
 
 A character review approving scripts for recording is not the owner's recording
 approval.
@@ -204,18 +201,11 @@ complete word coverage establish reproducibility, not perfect pronunciation or
 perceptual lip sync. The shared artwork/playback system handles expression and
 interpolation separately from the generated evidence.
 
-Focused validation:
+Focused validation: from `frontend`, use the checked-in desktop/mobile audio
+configuration, with port 5176 free for its managed studio:
 
 ```powershell
-.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py backend/tests/test_coach_pilot_scripts.py -q
-node --test scripts/record_coach_speech.test.mjs
-```
-
-From `frontend`, use the checked-in desktop/mobile audio configuration, with
-port 5176 free for its managed studio:
-
-```powershell
-npx playwright test --config playwright.audio.config.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts coach-speech.spec.ts game-speech-maia-silence.spec.ts
+npx playwright test --config playwright.audio.config.ts voice-registry.spec.ts coach-speech.spec.ts game-speech-maia-silence.spec.ts
 ```
 
 Add the producer-level `game-speech-*-policy.spec.ts` coverage when meanings or

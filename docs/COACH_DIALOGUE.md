@@ -732,8 +732,8 @@ different existing application.
 
 ```sh
 npx playwright test dialogue-logic.spec.ts personality.spec.ts walter-dialogue.spec.ts scoped-dialogue.spec.ts opening-dialogue.spec.ts
-npx playwright test --config playwright.intelligence.config.ts corpus.spec.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts walter-dialogue.spec.ts
-npm run test:audio -- game-speech-maia-silence.spec.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts
+npx playwright test --config playwright.intelligence.config.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts
+npm run test:audio -- game-speech-maia-silence.spec.ts voice-registry.spec.ts
 ```
 
 The first two commands cover production rendering and the writing laboratory;
@@ -742,7 +742,6 @@ interface.
 For script changes, from repository root:
 
 ```sh
-.venv/Scripts/python.exe -m pytest backend/tests/test_coach_pilot_scripts.py backend/tests/test_walter_language_revision.py backend/tests/test_coach_voice_bank.py -q
 .venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check
 ```
 

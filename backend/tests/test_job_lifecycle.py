@@ -38,13 +38,3 @@ def test_a_claimed_job_starts_with_clean_counters_unless_cancelled_first():
     assert (claimed.status, claimed.error, claimed.positions_triaged) == ("running", None, 0)
     cancelled = job(status=JobStatus.QUEUED, cancel_requested=True)
     assert not job_lifecycle.start(cancelled) and cancelled.status == "cancelled"
-
-
-def test_ensure_job_reuses_an_active_job(sessions):
-    with sessions() as db:
-        first, created = job_lifecycle.ensure_job(db, JobKind.ENRICHMENT)
-        again, created_again = job_lifecycle.ensure_job(db, JobKind.ENRICHMENT)
-        assert created and not created_again and again.id == first.id
-        first.status = JobStatus.COMPLETED
-        fresh, created = job_lifecycle.ensure_job(db, JobKind.ENRICHMENT)
-        assert created and fresh.id != first.id

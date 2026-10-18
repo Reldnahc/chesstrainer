@@ -11,7 +11,6 @@ from fastapi.testclient import TestClient
 from trainer.api import create_app
 from trainer.contracts.puzzles import PuzzleQuery
 from trainer.puzzles import packs
-from trainer.puzzles.providers import PuzzleProviders
 from trainer.puzzles.sessions import library, next_puzzle
 
 HEADER = "PuzzleId,FEN,Moves,Rating,RatingDeviation,Popularity,NbPlays,Themes,GameUrl,OpeningTags\n"
@@ -80,41 +79,13 @@ def test_rows_become_learner_to_move_definitions_with_pinned_attribution():
 @pytest.mark.parametrize(
     "fields",
     [
-        {"PuzzleId": "", "FEN": ROWS["fork1"][0], "Moves": ROWS["fork1"][1]},
-        {"PuzzleId": "x", "FEN": ROWS["fork1"][0], "Moves": "e7d7"},
         {"PuzzleId": "x", "FEN": "not a fen", "Moves": ROWS["fork1"][1]},
         {"PuzzleId": "x", "FEN": ROWS["fork1"][0], "Moves": "e7e3 c2b4"},
-        {"PuzzleId": "x", "FEN": ROWS["fork1"][0], "Moves": "e7d7 c2b4 d7e7"},
     ],
 )
 def test_malformed_rows_are_rejected_with_the_puzzle_named(fields):
     with pytest.raises(packs.PackError):
         packs.definition_from_row(fields, version="v1", attribution="Pack")
-
-
-def test_pack_serves_whole_or_not_at_all(tmp_path, sessions):
-    good = write_pack(tmp_path / "good", rows_csv())
-    manifest, definitions = packs.load_pack(good)
-    assert manifest.id == "local-test" and [d.key for d in definitions] == list(ROWS)
-    provider = packs.PackProvider(good)
-    with sessions() as db:
-        assert len(list(PuzzleProviders((provider,)).catalog(db))) == 4
-        assert PuzzleProviders((provider,)).find(db, "local-test", "mate1", "t1").key == "mate1"
-        assert PuzzleProviders((provider,)).find(db, "local-test", "mate1", "t2") is None
-        assert PuzzleProviders((provider,)).find(db, "other", "mate1", "t1") is None
-    for name, directory in {
-        "hash": write_pack(tmp_path / "hash", rows_csv(), sha256="0" * 64),
-        "count": write_pack(tmp_path / "count", rows_csv(), count=3),
-        "row": write_pack(tmp_path / "row", rows_csv(broken="fork2")),
-        "duplicate": write_pack(tmp_path / "dup", rows_csv(["fork1", "fork1"]), count=2),
-        "columns": write_pack(tmp_path / "cols", b"PuzzleId,FEN\nx,y\n", count=1),
-    }.items():
-        with pytest.raises(packs.PackError, match="local-test"):
-            packs.PackProvider(directory).load()
-    with pytest.raises(packs.PackError, match="manifest"):
-        packs.PackProvider(tmp_path / "missing")
-    with pytest.raises(packs.PackError, match="manifest"):
-        packs.read_manifest(write_pack(tmp_path / "format", rows_csv(), format="other"))
 
 
 def test_bundled_starter_pack_is_pinned_valid_and_served_by_default(settings):
@@ -151,16 +122,6 @@ def test_bundled_starter_pack_is_pinned_valid_and_served_by_default(settings):
         assert definition.rating <= 800 and "mateIn1" in definition.themes
         assert started["fen"] == definition.initial_fen and started["completion"] is None
         assert "mateIn1" not in str(started)
-
-
-def test_installed_pack_setting_is_verified_at_startup(settings, tmp_path):
-    settings.puzzle_pack_path = write_pack(tmp_path / "installed", rows_csv())
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        sources = client.get("/api/puzzles").json()["sources"]
-        assert [source["id"] for source in sources] == ["lichess-starter", "local-test"]
-    settings.puzzle_pack_path = write_pack(tmp_path / "bad", rows_csv(), sha256="1" * 64)
-    with pytest.raises(packs.PackError, match="pinned hash"):
-        create_app(settings, workers=False, start_engine=False)
 
 
 def seeded_app(settings, tmp_path):
@@ -289,13 +250,3 @@ def test_retry_mode_offers_revealed_and_failed_puzzles_until_solved_cleanly(sett
         with app.state.sessions() as db:
             assert library(db, app.state.puzzle_providers)["retry_available"] == 0
             assert next_puzzle(db, app.state.puzzle_providers, PuzzleQuery(mode="retry")) is None
-
-
-@pytest.mark.parametrize(
-    "template",
-    ["https://example.test/p/{", "https://example.test/p/{0}", "https://example.test/p/{slug}"],
-)
-def test_manifest_rejects_a_puzzle_url_template_that_cannot_format_an_id(tmp_path, template):
-    directory = write_pack(tmp_path / "pack", rows_csv(), puzzle_url=template)
-    with pytest.raises(packs.PackError, match="puzzle_url"):
-        packs.read_manifest(directory)

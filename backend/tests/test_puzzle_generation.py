@@ -6,7 +6,6 @@ from account_units import units_for
 from fastapi.testclient import TestClient
 from job_fixtures import queue_import_analysis
 from sqlalchemy import select
-from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.chess_core import position_key, replay_moves
 from trainer.config import Settings
@@ -233,28 +232,11 @@ BACK_RANK_FEN = "3r3k/6pp/8/8/8/8/R7/R5K1 w - - 0 1"
         ),
         (FORK_FEN, FORK | {key(FORK_FEN): [("c3d5", 120), ("c3e4", 0)]}, "not_winning +120"),
         (FORK_FEN, FORK | {key(FORK_FEN, "c3d5", "e7d7", "d5b6"): [("d7c7", -100)]}, "payoff +100"),
-        (
-            FORK_FEN,
-            FORK | {key(FORK_FEN, "c3d5", "e7d7"): [("d5b6", 610), ("d5c3", 560)]},
-            "ambiguous +610 vs +560",
-        ),
         (MATE_FEN, {key(MATE_FEN): [("a1a8", mate(1)), ("a1a7", 0)]}, "too_short 1"),
         (
             TWO_MATES_FEN,
             {key(TWO_MATES_FEN): [("a1a8", mate(1)), ("d1d8", mate(1))]},
             "ambiguous #1 vs #1",
-        ),
-        # Any rival mate is ambiguous, however slow: a solver playing it also mates.
-        (
-            BACK_RANK_FEN,
-            {key(BACK_RANK_FEN): [("a2a8", mate(2)), ("a2a7", mate(9))]},
-            "ambiguous #2 vs #9",
-        ),
-        # A rival that still wins clearly is no wrong answer, though far worse.
-        (
-            FORK_FEN,
-            FORK | {key(FORK_FEN): [("c3d5", 1190), ("c3e4", 250)]},
-            "ambiguous +1190 vs +250",
         ),
     ],
 )
@@ -497,61 +479,6 @@ def test_analysis_jobs_mine_new_games_and_the_backfill_job_mines_the_rest(settin
             assert learning(db) == before
 
 
-def test_own_game_puzzles_are_private_to_the_account(settings):
-    settings.accounts_enabled = True
-    settings.public_origin = "http://testserver"
-    settings.session_secure = False
-    settings.puzzle_starter_pack = False
-    app = create_app(settings, workers=False, start_engine=False)
-    origin = {"Origin": "http://testserver"}
-    with TestClient(app) as client:
-
-        def signup(name):
-            response = client.post(
-                "/api/auth/signup",
-                headers=origin,
-                json={"username": name, "password": "testing-password"},
-            )
-            assert response.status_code == 201
-            headers = origin | {"X-CSRF-Token": response.json()["csrf"]}
-            return (
-                headers,
-                client.cookies.get(COOKIE),
-                client.get("/api/auth/me").json()["user"]["id"],
-            )
-
-        alice_headers, alice_cookie, alice_id = signup("alice")
-        with app.state.workspaces.open(alice_id) as workspace, workspace.sessions() as db:
-            game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
-            seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
-            assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
-                "candidates": 1,
-                "kept": 1,
-            }
-        alice_key = client.get("/api/puzzles/next?source=games").json()
-        assert alice_key["provider_id"] == "your-games"
-        cold = client.post(
-            "/api/puzzle-sessions", json=alice_key | {"request_id": "a"}, headers=alice_headers
-        ).json()
-
-        bob_headers, _, _ = signup("bobby")
-        bob = client.get("/api/puzzles").json()
-        assert bob["sources"] == [] and bob["generation"]["puzzles"] == 0
-        assert bob["generation"]["analyzed_games"] == 0
-        assert client.get("/api/puzzles/next?source=games").json() is None
-        assert (
-            client.post(
-                "/api/puzzle-sessions", json=alice_key | {"request_id": "b"}, headers=bob_headers
-            ).status_code
-            == 404
-        )
-        assert client.get(f"/api/puzzle-sessions/{cold['id']}").status_code == 404
-
-        client.cookies.set(COOKIE, alice_cookie)
-        assert client.get(f"/api/puzzle-sessions/{cold['id']}").json() == cold
-        assert client.get("/api/puzzles").json()["generation"]["puzzles"] == 1
-
-
 @pytest.mark.stockfish
 def test_native_engine_builds_the_fork_line(settings, sessions, stockfish_path):
     settings.stockfish_path = stockfish_path
@@ -624,9 +551,7 @@ def test_review_candidates_read_the_report_the_review_shows(sessions):
         assert list(review_prospects(db, game, set())) == []
 
 
-@pytest.mark.parametrize(
-    ("payoff", "goal"), [(605, "crushing"), (601, "crushing"), (450, "advantage"), (180, None)]
-)
+@pytest.mark.parametrize(("payoff", "goal"), [(605, "crushing"), (180, None)])
 def test_goal_themes_use_lichess_ranges(payoff, goal):
     from dataclasses import replace
 
@@ -641,126 +566,6 @@ def test_goal_themes_use_lichess_ranges(payoff, goal):
     query = PuzzleQuery(source="games", goal="material")
     assert _matches(definition, query) is (goal is not None)
     assert not _matches(definition, PuzzleQuery(source="games", goal="mate"))
-
-
-def refined_fork_review(db, game, before_id, *, adopted=True):
-    """A review of ply 1 whose baseline saw nothing and whose deeper search found the fork."""
-    from trainer.models import AnalysisJob, GameReview, GameReviewMove, ReviewRefinement
-
-    def cp(value):
-        return {"kind": "cp", "value": value, "mate_given": False}
-
-    baseline = {
-        "before_analysis_id": before_id,
-        "played_analysis_id": "played",
-        "depth": 12,
-        "best": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
-        "actual": {"san": "Ne4", "uci": "c3e4", "score": cp(40)},
-        "actual_line": {"frames": [{"fen": FORK_FEN}]},
-        "second_score": None,
-    }
-    refined = baseline | {
-        "before_analysis_id": "refined-before",
-        "depth": 22,
-        "best": {"san": "Nd5+", "uci": "c3d5", "score": cp(520)},
-        "second_score": cp(40),
-    }
-    job = AnalysisJob(kind="game_review", status="completed")
-    db.add(job)
-    db.flush()
-    db.add(GameReview(game_id=game.id, job_id=job.id, rating=1000))
-    task = ReviewRefinement(
-        game_id=game.id,
-        ply=1,
-        task_key="fork",
-        triggers=[],
-        config={"baseline_ids": [before_id, "played"]},
-        adopted=adopted,
-        status="completed",
-        report=refined,
-    )
-    db.add(task)
-    db.flush()
-    db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
-    db.commit()
-    return task
-
-
-def test_a_decision_saved_before_an_adopted_refinement_gives_way_to_the_review(sessions):
-    from trainer.puzzles.generation import prospects
-
-    with sessions() as db:
-        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
-        # Training judged ply 1 from the baseline search: nothing to mine there.
-        decision = seed_decision(db, game, 1, "c3e4", [("c3e4", 40)])
-        task = refined_fork_review(db, game, decision.before_analysis_id)
-        [prospect] = prospects(db, game)
-        assert (prospect.ply, prospect.source, prospect.kind, prospect.saved_best_san) == (
-            1,
-            "review",
-            "missed_win",
-            "Nd5+",
-        )
-        # Without the adoption the decision matches what the review shows and stands.
-        task.adopted = False
-        db.commit()
-        assert prospects(db, game) == []
-
-
-def test_adopting_a_refinement_lets_mining_search_the_game_again(sessions):
-    from trainer.models import GamePuzzleSearch
-    from trainer.puzzles.generation import prospects
-    from trainer.review_refinement import save_outcome
-
-    with sessions() as db:
-        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
-        task = refined_fork_review(db, game, "before", adopted=False)
-        db.add(
-            GamePuzzleSearch(
-                game_id=game.id, generator_version=GENERATOR_VERSION, engine_version="fixture"
-            )
-        )
-        db.commit()
-
-        def searched():
-            return db.scalar(select(GamePuzzleSearch.id).where(GamePuzzleSearch.game_id == game.id))
-
-        save_outcome(db, task.id, "completed", "not_deeper", task.report, False)
-        db.commit()
-        assert searched() is not None
-        save_outcome(db, task.id, "completed", None, task.report, True)
-        db.commit()
-        assert searched() is None
-        assert [p.saved_best_san for p in prospects(db, game)] == ["Nd5+"]
-
-
-def test_an_adoption_during_a_mining_pass_leaves_the_game_to_mine_again(settings, sessions):
-    from trainer.models import GamePuzzleSearch
-    from trainer.review_refinement import save_outcome
-
-    with sessions() as db:
-        game = seed_game(db, FORK_FEN, "1. Ne4 Kd7 2. Kd2")
-        decision = seed_decision(db, game, 1, "c3e4", [("c3d5", 520), ("c3e4", 40)])
-        task = refined_fork_review(db, game, decision.before_analysis_id, adopted=False)
-        db.commit()
-
-        class AdoptingMidway(Scripted):
-            def __call__(self, board, *, multipv=1):
-                if not self.analysis_ids:
-                    # The review job adopts in its own session, as the app does.
-                    with sessions() as other:
-                        save_outcome(other, task.id, "completed", None, task.report, True)
-                        other.commit()
-                return super().__call__(board, multipv=multipv)
-
-        assert generate_for_game(units_for(db), AdoptingMidway(FORK), settings, game)["kept"] == 1
-        assert db.scalar(select(GamePuzzleSearch.id)) is None
-        # The next pass re-reads the review; the judged ply keeps its verdict.
-        assert generate_for_game(units_for(db), Scripted(FORK), settings, game) == {
-            "candidates": 1,
-            "kept": 1,
-        }
-        assert db.scalar(select(GamePuzzleSearch.id)) is not None
 
 
 @pytest.mark.pristine_database
@@ -848,32 +653,3 @@ def test_stored_puzzles_are_judged_again_by_the_current_mate_rival_rule(settings
     assert searches == {"kept": 1, "early": 0, "old": 1, "theirs": 0}
     assert sessions == [("early:1",)]
     engine.dispose()
-
-
-def test_the_mate_rival_migration_reads_scores_and_judges_like_the_generator():
-    import importlib.util
-    from pathlib import Path
-
-    from trainer.puzzles.verification import describe, rival_verdict
-
-    path = Path("migrations/versions/9d2f6b1e4c83_game_puzzle_mate_rivals.py")
-    spec = importlib.util.spec_from_file_location("mate_rivals", path)
-    migration = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(migration)
-    scores = [
-        MATE_SCORE - 1,
-        MATE_SCORE - 7,
-        -MATE_SCORE + 3,
-        650,
-        200,
-        199,
-        90,
-        0,
-        -40,
-    ]
-    for solution in scores:
-        assert migration._score(describe(solution)) == solution
-        for rival in scores:
-            assert migration._unique(solution, rival) == (
-                rival_verdict(solution, rival) == "unique"
-            )

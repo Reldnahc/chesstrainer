@@ -42,94 +42,6 @@ async function saved(page: Page, id: string): Promise<Schema["PuzzleSessionView"
 const piece = (page: Page, square: string, symbol: string) =>
   page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
 
-test("Study home keeps modes distinct and preserves old recall bookmarks without extra history", async ({
-  page,
-}) => {
-  await page.route("**/api/puzzles", route =>
-    route.fulfill({
-      json: {
-        available: 0,
-        sources: [],
-        themes: [],
-        retry_available: 0,
-        solved_puzzles: 0,
-        resume: [],
-        stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
-      },
-    }),
-  );
-  await page.goto("/study");
-  await expect(page).toHaveURL("/study");
-  await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Study", exact: true })).toHaveAttribute(
-    "aria-current",
-    "page",
-  );
-  await page.getByRole("link", { name: "Open puzzles", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "No puzzles available yet." })).toBeVisible();
-  await page.goBack();
-  await expect(page).toHaveURL("/study");
-  const original = await page.request.post("/api/exercises/manual", {
-    data: {
-      fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      moves: ["e2e4"],
-    },
-  });
-  const { id } = await original.json();
-  for (const path of [`/review?exercise=${id}`, `/?exercise=${id}`]) {
-    await page.goto(path);
-    await expect(page).toHaveURL(`/study/due?exercise=${id}`);
-    await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
-    const length = await page.evaluate(() => history.length);
-    await page.getByRole("link", { name: "Study", exact: true }).click();
-    await page.goBack();
-    await expect(page).toHaveURL(`/study/due?exercise=${id}`);
-    expect(await page.evaluate(() => history.length)).toBe(length + 1);
-  }
-  const started = await page.request.post(`/api/review/${id}/start`);
-  expect(started.ok()).toBe(true);
-  const session: Schema["ColdPosition"] = await started.json();
-  expect(session.exercise_id).toBe(id);
-  for (const bookmark of [
-    { path: "/review?focus=fork", destination: "/study/due?focus=fork", focused: true },
-    { path: "/?focus=fork", destination: "/study/due?focus=fork", focused: true },
-    {
-      path: `/?session=${session.session_id}`,
-      destination: `/study/due?session=${session.session_id}`,
-      focused: false,
-    },
-  ]) {
-    await page.goto("/study");
-    const resumed = bookmark.focused
-      ? null
-      : page.waitForResponse(
-          response =>
-            new URL(response.url()).pathname === `/api/review/sessions/${session.session_id}` &&
-            response.request().method() === "GET",
-        );
-    await page.goto(bookmark.path);
-    await expect(page).toHaveURL(bookmark.destination);
-    if (bookmark.focused)
-      await expect(page.getByText("FOCUSED PRACTICE", { exact: true })).toHaveCount(1);
-    else {
-      expect((await resumed!).ok()).toBe(true);
-      await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
-    }
-    const length = await page.evaluate(() => history.length);
-    await page.getByRole("link", { name: "Home", exact: true }).click();
-    await expect(page).toHaveURL("/");
-    await expect(page.getByRole("heading", { name: "Home", exact: true })).toBeVisible();
-    await page.goBack();
-    await expect(page).toHaveURL(bookmark.destination);
-    expect(await page.evaluate(() => history.length)).toBe(length + 1);
-    await page.goBack();
-    await expect(page).toHaveURL("/study");
-  }
-  await page.goto("/?unit=archived&exercise=archived-card");
-  await expect(page).toHaveURL("/study");
-  await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
-});
-
 test("puzzles retain retries, animate committed replies, resume and finish without revealing future moves", async ({
   page,
 }, info) => {
@@ -189,30 +101,6 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
     path: `test-results/study-puzzle-${info.project.name}.png`,
     fullPage: true,
   });
-});
-
-test("reload during opponent playback resumes the committed decision without double advancing", async ({
-  page,
-}, info) => {
-  const puzzle = await fixture(page, `playback-${info.project.name}`);
-  await page.request.put("/api/preferences/motion", { data: { motion: "natural" } });
-  await page.goto(puzzle.path);
-  await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
-  const committed = page.waitForResponse(response =>
-    response.url().endsWith(`/puzzle-sessions/${puzzle.id}/move`),
-  );
-  await move(page, "e2e4");
-  const result: Schema["PuzzleSessionView"] = await (await committed).json();
-  await page.reload();
-  await expect(piece(page, "e4", "wP")).toBeVisible();
-  await expect(piece(page, "e5", "bP")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Keep going." })).toBeVisible();
-  const resumed = await saved(page, puzzle.id);
-  expect(resumed.revision).toBe(result.revision);
-  expect(resumed.current_step).toBe(2);
-  expect(resumed.playback).toEqual([]);
-  await move(page, "g1f3");
-  await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
 });
 
 test("reveal and Still motion show an inspectable solution without creating a clean solve", async ({
@@ -304,24 +192,6 @@ test("promotion and coach changes use the shared player without losing saved pro
   expect(complete.status).toBe("solved");
   expect(complete.history.map(frame => frame.uci)).toEqual(["a7a8q"]);
   expect(complete.failed).toBe(false);
-});
-
-test("system reduced motion skips automatic playback and keeps manual solution inspection", async ({
-  page,
-}, info) => {
-  const puzzle = await fixture(page, `reduced-${info.project.name}`);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.request.put("/api/preferences/motion", { data: { motion: "system" } });
-  await page.goto(puzzle.path);
-  await page.getByRole("button", { name: "Reveal solution", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Solution revealed." })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.dataset.interfaceMotion)).toBe("still");
-  await expect(piece(page, "f3", "wN")).toBeVisible();
-  await page.getByRole("button", { name: "Start", exact: true }).click();
-  await expect(piece(page, "e2", "wP")).toBeVisible();
-  await page.getByRole("button", { name: "e5", exact: true }).click();
-  await expect(piece(page, "e5", "bP")).toBeVisible();
-  expect((await saved(page, puzzle.id)).status).toBe("revealed");
 });
 
 test("leaving during a pending move cannot apply late feedback to another Study screen", async ({

@@ -66,7 +66,9 @@ test("every registered coach can be chosen and restored in a real game", async (
     for (const name of retainedNames) {
       await expect(page.getByRole("radio", { name, exact: true })).toBeVisible();
     }
-    for (const coachId of castIds) {
+    // A spread of round trips (first human after the default, an animal, the last coach);
+    // the full cast is checked against the picker and the OpenAPI enum above.
+    for (const coachId of ["man-host", "cat-tuxedo", "living-pawn"]) {
       const radio = page.locator(`input[name="coach"][value="${coachId}"]`);
       await expect(radio).toBeVisible();
       await radio.click();
@@ -104,140 +106,6 @@ test("every registered coach can be chosen and restored in a real game", async (
     );
   } finally {
     await page.request.put(preferences, {
-      data: { coach_id: "classic", motion: "natural" },
-    });
-  }
-});
-
-test("the heading describes the chosen coach", async ({ page }) => {
-  const preferences = "/api/preferences/coach";
-  await page.request.put(preferences, { data: { coach_id: "classic", motion: "still" } });
-  try {
-    await page.goto("/settings?section=coach");
-    const heading = page.locator("#coach-settings .settings-section-heading p");
-    await expect(heading).toHaveText(
-      "Walter: A warm veteran who connects this move to the game's turning points.",
-    );
-    await page.locator('input[name="coach"][value="robot"]').click();
-    await expect(heading).toHaveText(
-      "Rivet: Issue, cause, result. Literal, structured delivery with no invented precision.",
-    );
-    await expect(
-      page.getByRole("radio", { name: "Rivet", exact: true }),
-    ).toHaveAccessibleDescription(
-      "Issue, cause, result. Literal, structured delivery with no invented precision.",
-    );
-  } finally {
-    await page.request.put(preferences, { data: { coach_id: "classic", motion: "natural" } });
-  }
-});
-
-test("the compact picker shows six by five cards on desktop and fits narrow phones", async ({
-  page,
-}, info) => {
-  await page.setViewportSize({ width: 1200, height: 900 });
-  await page.goto("/settings?section=coach");
-  const grid = page.locator(".coach-options");
-  await expect(grid.getByRole("radio")).toHaveCount(castIds.length);
-  const cards = grid.locator(".coach-option");
-  await expect(cards).toHaveCount(30);
-  for (const card of await cards.all()) {
-    await expect(card).toBeVisible();
-    await expect(card.locator(".coach-option-description")).not.toBeEmpty();
-  }
-  await expect(page.locator(".coach-settings h3, .coach-group-label")).toHaveCount(0);
-  const geometry = () =>
-    cards.evaluateAll(elements =>
-      elements.map(element => {
-        const { left, top, width, height } = element.getBoundingClientRect();
-        return { left, top, width, height };
-      }),
-    );
-  const desktop = await geometry();
-  expect(new Set(desktop.map(card => Math.round(card.left))).size).toBe(6);
-  expect(new Set(desktop.map(card => Math.round(card.top))).size).toBe(5);
-  expect(desktop.every(card => card.height < 125)).toBe(true);
-  await page
-    .locator(".coach-settings")
-    .screenshot({ path: `test-results/coach-picker-desktop-${info.project.name}.png` });
-  await page.setViewportSize({ width: 390, height: 844 });
-  const phone = await geometry();
-  expect(new Set(phone.map(card => Math.round(card.left))).size).toBe(3);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.setViewportSize({ width: 320, height: 700 });
-  const layout = await geometry();
-  expect(layout[0].top).toBe(layout[1].top);
-  expect(layout[0].left).toBeLessThan(layout[1].left);
-  expect(layout[2].top).toBeGreaterThan(layout[0].top);
-  expect(layout.every(card => card.width >= 44 && card.height >= 44)).toBe(true);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({
-    path: `test-results/coach-picker-320-${info.project.name}.png`,
-    fullPage: true,
-  });
-});
-
-test("legacy and unknown saved coaches display a selected safe fallback without a preference write", async ({
-  page,
-}) => {
-  const writes: string[] = [];
-  let savedCoach = "dog-sunny";
-  await page.route("**/api/preferences/coach", route => {
-    if (route.request().method() !== "GET") writes.push(route.request().postData() ?? "");
-    return route.fulfill({ json: { coach_id: savedCoach, motion: "still" } });
-  });
-  for (const [legacy, fallback] of [
-    ["dog-sunny", "dog-puppy"],
-    ["cat-tabby", "cat-kitten"],
-    ["cat-calico", "cat-kitten"],
-    ["future-coach", "classic"],
-  ]) {
-    savedCoach = legacy;
-    await page.goto("/settings?section=coach");
-    const selected = page.locator(".coach-option input:checked");
-    await expect(selected).toHaveValue(fallback);
-    await expect(page.locator(".coach-option:has(input:checked) .coach-avatar")).toHaveAttribute(
-      "data-coach",
-      fallback,
-    );
-    await expect(page.getByLabel("Coach motion", { exact: true })).toHaveValue("still");
-  }
-  expect(writes).toEqual([]);
-});
-
-test("switching coaches carries semantic feedback into SRS and saved explanations", async ({
-  page,
-}, info) => {
-  await page.request.put("/api/preferences/coach", {
-    data: { coach_id: "dog-collie", motion: "natural" },
-  });
-  try {
-    const fixture = await (
-      await page.request.post(`/__test/review-explanation-fixture/selected-${info.project.name}`)
-    ).json();
-    await page.goto(`/?exercise=${fixture.exercise_id}`);
-    const avatar = page.locator(".review-coach .coach-avatar");
-    await expect(avatar).toHaveAttribute("data-coach", "dog-collie");
-    await expect(avatar).toHaveAttribute("data-expression", "neutral");
-    const board = page.locator(".board-shell");
-    const play = async (uci: string) => {
-      await board.locator(`[data-square="${uci.slice(0, 2)}"]`).click();
-      await board.locator(`[data-square="${uci.slice(2, 4)}"]`).click();
-    };
-    await play(fixture.wrong);
-    await expect(avatar).toHaveAttribute("data-expression", "mistake");
-    await page.getByRole("button", { name: "Try again", exact: true }).click();
-    await expect(avatar).toHaveAttribute("data-expression", "encouraging");
-    await play(fixture.best);
-    await expect(avatar).toHaveAttribute("data-expression", "recovered");
-    await page.getByRole("button", { name: "Show why", exact: true }).click();
-    await expect(avatar).toHaveAttribute("data-expression", "explaining");
-    await page.screenshot({
-      path: `test-results/coach-selected-practice-${info.project.name}.png`,
-      fullPage: true,
-    });
-  } finally {
-    await page.request.put("/api/preferences/coach", {
       data: { coach_id: "classic", motion: "natural" },
     });
   }

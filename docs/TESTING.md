@@ -44,28 +44,22 @@ and course fingerprints; opening tests also preserve scheduling across equivalen
 answer spellings. `test_opening_lifecycle.py` bounds SQL query counts as stale
 unfinished recalls accumulate, while retaining active-session queue precedence.
 
-`test_italian_course.py` walks every bundled course chapter, accepted decision,
-branch, source-game endpoint and rehearsal through the production paths. It
-verifies that completion leaves existing reviews, FSRS and weakness evidence
-untouched, and enrollment remains explicit. `test_italian_native.py` uses native
-Stockfish for a bounded gross-error check of guided decisions, not as the lesson
-grader or a certification of instructional quality. Course changes also require
+`test_italian_course.py` walks the Italian course's chapters, branches,
+source-game endpoints and rehearsal through the production paths, and checks
+every bundled course's accepted decisions with the player. It verifies that
+completion leaves existing reviews, FSRS and weakness evidence untouched, and
+enrollment remains explicit. Course changes also require
 the [authored-content review](STUDY.md#reviewing-authored-course-quality): independent
 source comparison, critical opponent replies and the plans at each line's end.
-`test_italian_white_claims.py`, `test_italian_black_claims.py`,
-`test_kings_gambit_claims.py`, `test_dragon_claims.py` and `test_vienna_claims.py` verify
-concrete teaching claims against legal positions and historical endpoints.
-The Dragon and Vienna claims tests build each taught board with
+`test_dragon_claims.py` and `test_vienna_claims.py` verify concrete teaching
+claims against legal positions. They build each taught board with
 `course_claims.Boards`, which fails if that position never occurs in the course.
-`opening-courses.spec.ts` exercises the Black Italian, King's Gambit, Sicilian Dragon and
-Vienna Gambit courses on desktop and mobile,
+`opening-courses.spec.ts` plays one White chapter (King's Gambit pawn chain)
+and one Black chapter (Italian quiet bishop plan) on desktop and mobile,
 including Black orientation, source-game exploration, rehearsal, reload and
-side-appropriate explicit enrollment. It also plays the post-castling Black plan
-and Falkbeer chapter, including their anchored rehearsals and comparison branches.
-`italian-course.spec.ts` exercises the installed White course on both
-viewports, including central decisions, exact returns, reload and optional enrollment.
-It also checks legal destinations during the first drag after lesson input is
-enabled, with both Natural and Still motion, across consecutive guided moves.
+side-appropriate explicit enrollment. `italian-course.spec.ts` checks legal
+destinations during the first drag after lesson input is enabled, across
+consecutive guided moves.
 
 The account browser suite resumes lessons, puzzle attempts, selected lines and
 the chosen coach on a second device, then confirms another account cannot read
@@ -140,11 +134,7 @@ Run the complete local suite only when the project owner asks for it (see [AGENT
 
 ## Study frameworks
 
-`test_verify_puzzle_pack.py` drives the pack verifier with scripted engine
-answers: best-move tolerance, uniqueness margin, equal versus slower alternative
-mates, forced single moves, losing endings, hash-checked input, and manifest
-recording with pruning; one `stockfish`-marked case runs the native engine on a
-real fork. `test_puzzle_packs.py` covers Lichess-layout row conversion for both colors,
+`test_puzzle_packs.py` covers Lichess-layout row conversion for both colors,
 hash-pinned pack loading that rejects a changed file, bad row, duplicate or wrong
 count, the bundled starter pack's validity and rating weighting, the installed
 pack setting's startup verification, and selection: unseen first, difficulty and
@@ -308,9 +298,9 @@ formatting and parallel backend tests, the build or type checks, and the selecte
 browser suites. The build runs first and alone; then the backend tests, every
 browser suite and the static checks run at once, and the application suite spreads
 over half the machine's threads (at least 4) the way CI spreads it over shards, each
-worker with its own server and database. When backend checks are selected, the API contract,
-migration and voice-bank checks run beside everything else; the migration check
-upgrades a throwaway database, never `data/trainer.sqlite3`. `--dry-run` prints the selection only, `--base` changes the
+worker with its own server and database. When backend checks are selected, the
+voice-bank check runs beside everything else (the API contract and migration checks
+are backend tests). `--dry-run` prints the selection only, `--base` changes the
 comparison and `--project desktop` limits the browser viewports.
 
 ### Full local run
@@ -334,7 +324,6 @@ python scripts/ci_plan.py --paths frontend/src/coach/usePerformance.ts
 python scripts/ci_plan.py --paths frontend/src/game-history.css
 python scripts/ci_plan.py --base origin/main --head HEAD
 python scripts/ci_plan.py --full
-python -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q
 ```
 
 The exhaustive browser-matrix collection check should continue to cover every
@@ -385,23 +374,14 @@ mobile, and the full correctness plan always includes this suite.
 Speech articulation has three complementary layers in `audio-tests`:
 `speech-activity.spec.ts` verifies PCM normalization, stereo/noise handling and
 absolute clock sampling; `engine.spec.ts` verifies handle lifetime, cache reuse,
-observer reentrancy and cancellation; `speech-animation.spec.ts` and
-`speech-lifecycle.spec.ts` exercise the real portrait with native recorded audio
+observer reentrancy and cancellation; `speech-lifecycle.spec.ts` exercises the real portrait with native recorded audio
 and controlled component transitions. These cover quiet pauses, authored-mouth
 restoration, device/Still/Animated motion, offscreen/hidden behavior, coach identity,
 unsupported rigs, source replacement and unmount cleanup on desktop and mobile.
 Inspect the audio studio at normal portrait sizes as well: automated envelope
 and lifecycle checks do not establish that the speaking face looks convincing.
 
-`lip-sync.spec.ts` compares both real Walter recordings on desktop/mobile. It
-checks cue boundaries and gaps, malformed imports, exact voice/script matching,
-one shared native audio source, correct mouth artwork, natural ending, interruption,
-mode/example changes, motion policy and side-by-side phone layout. Offline
-authoring coverage runs with `.venv/Scripts/python.exe -m pytest
-backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py -q`.
-The forced-alignment tests cover English phone mappings, exact transcript coverage,
-time bounds, source/model/config fingerprints and rederivation of mouth cues from
-stored word/phone evidence. `scripts/align_coach_speech.py --check` validates both
+`scripts/align_coach_speech.py --check` validates both
 generators' committed tracks using only the standard library. Native
 generation is an optional developer step, not a CI or installation requirement.
 
@@ -409,9 +389,8 @@ The backend CI job also runs `python -B -S scripts/prepare_coach_voice_bank.py -
 to verify every recording in the complete production bank, its provenance and
 alignment archive, and the generated runtime tracks. This strict offline check
 needs no provider key or native aligner; missing, stale or mismatched artifacts
-fail. Focused authoring tests run with `python -m pytest
-backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
-checks even when no Python source changes.
+fail. Speech asset edits select these backend checks even when no Python source
+changes.
 
 Coaches never speak or show a Maia (human-move model) reading. `game-speech-policy.spec.ts`
 projects legal positions, synthetic search/policy evidence and real game-context
@@ -474,23 +453,16 @@ verify the same preference survives another browser session and remains private.
 Backend preference tests cover every ID, restart, unknown IDs and explicit
 retired mappings without rewriting stored rows during reads.
 
-`studio-tests/motion-vocabulary.spec.ts` and `idle-repertoire.spec.ts` enumerate
-the live registry: every expression needs at least eight compatible choices in
-three groups, and every coach has two authored signatures. Seeded coordinator
+`studio-tests/idle-repertoire.spec.ts` plays every registered repertoire through
+the seeded coordinator. Seeded coordinator
 traces verify cooldowns, fairness, independent blinking and channel ownership.
-`idle-articulation.spec.ts` and `idle-rig.spec.ts` inspect actual SVG targets,
-CSS tracks, delays and authored durations. `handedness.spec.ts` checks opposite
+`handedness.spec.ts` checks opposite
 hand/finger orientation and wrist-to-sleeve attachment across the registered
 human, animal, sci-fi, wizard and dragon rigs in Still, reaction and idle poses.
 `idle-cadence.spec.ts` checks repeated
 500–1000ms empty gaps, expression changes, reaction isolation, motion preferences
 and hidden/offscreen pausing with controlled time. `resting-faces.spec.ts` checks
 eye reopening without loss of emotion, stale transitions or artwork remounts.
-`idle-diagnostics.spec.ts` covers observer lifecycle and seeded resets;
-`studio-diagnostics.spec.ts` checks opt-in playback and diagnostic controls.
-`idle-visual.spec.ts` captures signatures at four animation times and both actual
-portrait sizes. `full-cast.spec.ts` exercises the complete expression collection,
-independent replay, same-expression comparisons and the tablet singleton layout.
 Screenshots supplement sustained live viewing; they do not prove smooth timing.
 
 The intelligence suite compares ten shared situations across the full cast,
@@ -541,7 +513,7 @@ must satisfy the same generated API contracts as the application. Both frontend
 checks run as part of `npm run build`, which `frontend/scripts/build.mjs` runs side by
 side with the lint, the formatting check, the style-boundary and symbol checks and the Vite build itself (the build
 waits only for the API contract check and the public-source archive);
-backend contract tests and the export check run in correctness CI. Browser tests
+backend contract tests (`test_api_contract.py`) run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 
 ## Migrations and data preservation
@@ -636,13 +608,7 @@ Passing tests establish implementation contracts, not population classifier accu
 
 ### Offline Lichess benchmark
 
-Use [Lichess benchmark](LOCAL_CLASSIFICATION.md#lichess-positive-theme-benchmark) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. Its [results](LOCAL_CLASSIFICATION.md#results) are a separate measurement from passing synthetic tests.
-
-```sh
-python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py
-```
-
-These tests use tiny synthetic CSV/position fixtures, including deliberately incorrect tags for the miss path. They cover both colors, setup-versus-solver replay, special moves, detector/subtype invocation, initial versus later episodes, per-theme sample independence, reproducibility, positive denominators, corpus context and corrupt/truncated input. No full dataset is checked in or downloaded by tests. The Zstandard tests skip with a clear reason if its optional developer dependency is absent; all other harness tests still run.
+Use [Lichess benchmark](LOCAL_CLASSIFICATION.md#lichess-positive-theme-benchmark) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. Its [results](LOCAL_CLASSIFICATION.md#results) are its own measurement.
 
 Missing tags are never negatives, and the adapter's observed material gains are not native engine truth. Blinded human precision and full-classifier recall remain separate validation tasks.
 
@@ -650,9 +616,9 @@ Record host/tool versions, skipped tests and warnings with results. Do not hide 
 
 ### Pinned Lichess reuse and source availability
 
-test_lichess_reuse.py checks predicate AST parity against original upstream fingerprints, unchanged supporting files, legal replay, both colors, missing setup context, witness coordinates and concurrent observer isolation. test_lichess_integration.py checks newly recognized pin exploitation and separates a visible motif from an unsupported mistake diagnosis. Existing wrong-label regressions remain unchanged.
+test_lichess_reuse.py checks legal replay, both colors, missing setup context, witness coordinates and concurrent observer isolation. test_lichess_integration.py checks newly recognized pin exploitation and separates a visible motif from an unsupported mistake diagnosis. Existing wrong-label regressions remain unchanged.
 
-test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. Browser tests verify the Settings source link points at the public GitHub repository.
+Browser tests verify the Settings source link points at the public GitHub repository.
 
 Raw upstream parity across the frozen sample is a compatibility test, not an accuracy estimate. Source packaging does not add a runtime network dependency.
 ## Shared-hosting checks

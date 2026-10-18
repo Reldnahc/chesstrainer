@@ -1,21 +1,3 @@
 """Positions from the italian course, for its claims tests."""
 
-ITALIAN = "e4 e5 Nf3 Nc6 Bc4"
-QUIET = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6"
-PREPARED = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6"
 KNIGHT_ROUTE = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8"
-DEVELOPED = (
-    "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8 Be3 Bxe3 Nxe3"
-)
-CENTRAL = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8 Ng3 Be6 d4 exd4 Bxe6 fxe6 cxd4 Qe7 Be3"
-ADVANCE = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 O-O Re1 a6 Bb3 Ba7 Nbd2 h6 Nf1 Re8 Ng3 Be6 d4"
-TWO_KNIGHTS = "e4 e5 Nf3 Nc6 Bc4 Nf6"
-DEFENDED = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3"
-STRIKE = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 d5"
-TRADE = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 d5 exd5 Nxd5"
-LINE = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 d5 exd5 Nxd5 O-O Be6 Re1"
-WAIT = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 h6 O-O Bc5 c3"
-CHECK = "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bb4+ c3 Ba5 O-O"
-KNIGHT_JUMP = "e4 e5 Nf3 Nc6 Bc4 Nd4 Nxd4 exd4 O-O Bc5 Bxf7+ Kxf7 Qh5+ Kf8 Qxc5+"
-EARLY_H6 = "e4 e5 Nf3 Nc6 Bc4 h6 O-O Nf6 d3 Bc5 c3"
-PIN = "e4 e5 Nf3 Nc6 Bc4 Bc5 d3 Nf6 O-O d6 c3 Bg4 h3 Bh5 Nbd2"

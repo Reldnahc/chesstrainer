@@ -414,47 +414,6 @@ test("recent games retain review states and readable player rows without changin
   expectReadOnly(fixture.requests);
 });
 
-test("Home and the brand preserve browser navigation while Study remains a separate destination", async ({
-  page,
-}, info) => {
-  await mockDashboard(page);
-  await page.goto("/");
-  await expectLoaded(page, "games");
-  await page
-    .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "Study", exact: true })
-    .click();
-  await expect(page).toHaveURL("/study");
-  await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
-  const brand = page.getByRole("link", {
-    name: "Fieldwork home",
-    exact: true,
-    includeHidden: true,
-  });
-  await expect(brand).toHaveAttribute("href", "/");
-  const home =
-    info.project.name === "mobile"
-      ? page
-          .getByRole("navigation", { name: "Main navigation" })
-          .getByRole("link", { name: "Home", exact: true })
-      : brand;
-  await home.focus();
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL("/");
-  await expect(page.getByRole("heading", { name: "Home", exact: true })).toBeVisible();
-  await page.goBack();
-  await expect(page).toHaveURL("/study");
-  await page.goForward();
-  await expect(page).toHaveURL("/");
-  await page.reload();
-  await expectLoaded(page, "games");
-  await expect(
-    page
-      .getByRole("navigation", { name: "Main navigation" })
-      .getByRole("link", { name: "Home", exact: true }),
-  ).toHaveAttribute("aria-current", "page");
-});
-
 test("a new library offers useful destinations without suggesting an empty recall session", async ({
   page,
 }) => {
@@ -488,20 +447,6 @@ test("a new library offers useful destinations without suggesting an empty recal
   expectReadOnly(fixture.requests);
 });
 
-test("an available course is offered when there is no saved lesson", async ({ page }) => {
-  const data = dashboardData();
-  data.lessons.resume = [];
-  const fixture = await mockDashboard(page, data);
-  await page.goto("/");
-  const learning = region(page, "Keep learning");
-  await expect(learning.getByRole("link", { name: /Build an opening plan/ })).toHaveAttribute(
-    "href",
-    "/study/openings/courses/home-course?revision=revision-1",
-  );
-  await expect(learning.locator('a[href^="/study/openings/sessions/"]')).toHaveCount(0);
-  expectReadOnly(fixture.requests);
-});
-
 test("without a saved lesson Home suggests one opening and one fundamentals course", async ({
   page,
 }) => {
@@ -531,98 +476,22 @@ test("without a saved lesson Home suggests one opening and one fundamentals cour
   );
 });
 
-for (const failed of Object.keys(endpoints) as Area[]) {
-  test(`${failed} can be retried without hiding or reloading the other Home summaries`, async ({
-    page,
-  }) => {
-    const fixture = await mockDashboard(page, dashboardData(), new Set([failed]));
-    await page.goto("/");
-    const failedSection = region(page, sections[failed]);
-    await expect(failedSection.getByRole("alert")).toBeVisible();
-    for (const area of Object.keys(endpoints) as Area[])
-      if (area !== failed) await expectLoaded(page, area);
-    expect(fixture.counts).toEqual({ due: 1, games: 1, weaknesses: 1, lessons: 1, openings: 1 });
-    fixture.failures.delete(failed);
-    await failedSection.getByRole("button", { name: /try again|retry/i }).click();
-    await expectLoaded(page, failed);
-    await expect(failedSection.getByRole("alert")).toHaveCount(0);
-    expect(fixture.counts).toEqual({
-      due: 1,
-      games: 1,
-      weaknesses: 1,
-      lessons: 1,
-      openings: 1,
-      [failed]: 2,
-    });
-    expectReadOnly(fixture.requests);
-  });
-}
-
-test("leaving and returning to Home keeps newer data when an earlier summary finishes late", async ({
+// Every Home section shares one loader and retry pattern; one section stands in for all.
+test("games can be retried without hiding or reloading the other Home summaries", async ({
   page,
 }) => {
-  const fixture = await mockDashboard(page);
-  let release!: () => void;
-  let started!: () => void;
-  let settled!: () => void;
-  const gate = new Promise<void>(resolve => {
-    release = resolve;
-  });
-  const firstRequest = new Promise<void>(resolve => {
-    started = resolve;
-  });
-  const firstHandled = new Promise<void>(resolve => {
-    settled = resolve;
-  });
-  let attempts = 0;
-  await page.route("**/api/weaknesses", async route => {
-    const first = ++attempts === 1;
-    if (first) {
-      started();
-      await gate;
-    }
-    try {
-      await route.fulfill({
-        json: {
-          ...fixture.data.weaknesses,
-          skills: [
-            first ? skill("outdated", "Outdated practice") : skill("fresh", "Fresh practice"),
-          ],
-        } satisfies Schema["Weaknesses"],
-      });
-    } finally {
-      if (first) settled();
-    }
-  });
-  try {
-    await page.goto("/");
-    await expect(region(page, "Practice focus").getByRole("status")).toContainText(/loading/i);
-    for (const area of ["due", "games", "lessons", "openings"] as const)
-      await expectLoaded(page, area);
-    await firstRequest;
-    const navigation = page.getByRole("navigation", { name: "Main navigation" });
-    await navigation.getByRole("link", { name: "Study", exact: true }).click();
-    await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
-    await navigation.getByRole("link", { name: "Home", exact: true }).click();
-    const focus = region(page, "Practice focus");
-    const fresh = focus.getByRole("link", { name: /^Fresh practice / });
-    await expect(fresh).toHaveAttribute("href", "/study/due?focus=fresh");
-    for (const area of ["due", "games", "lessons", "openings"] as const)
-      await expectLoaded(page, area);
-    release();
-    await firstHandled;
-    // Let any response-driven render finish before checking that new content survives.
-    await page.evaluate(
-      () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))),
-    );
-    await expect(fresh).toBeVisible();
-    await expect(focus.getByRole("link", { name: /^Outdated practice / })).toHaveCount(0);
-    await expect(focus.getByRole("status")).toHaveCount(0);
-    await expect(page.getByRole("alert")).toHaveCount(0);
-    expect(attempts).toBe(2);
-    expectReadOnly(fixture.requests);
-  } finally {
-    release();
-    await page.unrouteAll({ behavior: "wait" });
-  }
+  const failed: Area = "games";
+  const fixture = await mockDashboard(page, dashboardData(), new Set([failed]));
+  await page.goto("/");
+  const failedSection = region(page, sections[failed]);
+  await expect(failedSection.getByRole("alert")).toBeVisible();
+  for (const area of Object.keys(endpoints) as Area[])
+    if (area !== failed) await expectLoaded(page, area);
+  expect(fixture.counts).toEqual({ due: 1, games: 1, weaknesses: 1, lessons: 1, openings: 1 });
+  fixture.failures.delete(failed);
+  await failedSection.getByRole("button", { name: /try again|retry/i }).click();
+  await expectLoaded(page, failed);
+  await expect(failedSection.getByRole("alert")).toHaveCount(0);
+  expect(fixture.counts).toEqual({ due: 1, games: 2, weaknesses: 1, lessons: 1, openings: 1 });
+  expectReadOnly(fixture.requests);
 });

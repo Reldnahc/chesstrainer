@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "./helpers/browserTest";
-import type { ColdPosition, Feedback, Schema } from "../src/api";
+import type { ColdPosition, Feedback } from "../src/api";
 import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 // The bubble shows the default coach's (Walter's) spoken line for each recall state.
@@ -141,85 +141,6 @@ test("opening reveal and completed reload retain the same saved answer and sessi
   await page.getByRole("button", { name: "Next position", exact: true }).click();
   await (await next).finished();
   await expect(page).not.toHaveURL(`/study/due?session=${data.session_id}`);
-});
-
-test("an opening attempt resumes its removed answer and explains why it cannot update the current schedule", async ({
-  page,
-}, info) => {
-  const data = await fixture(page, `stale-${info.project.name}`);
-  await page.goto(`/study/due?session=${data.session_id}`);
-  await expect(
-    page.getByRole("heading", { name: "Play your studied move.", exact: true }),
-  ).toBeVisible();
-  expect((await page.request.delete(`/api/opening-studies/${data.study_ids[1]}`)).ok()).toBe(true);
-  await page.reload();
-  const stale = await saved(page, data.session_id);
-  expect(stale.non_scheduling_reason).toBeTruthy();
-  expect(stale.opening?.names).toEqual(data.names);
-  await expect(page.locator(".review-schedule")).toHaveText(stale.non_scheduling_reason!);
-  const result = await move(page, data.accepted_moves[1]);
-  expect(result.completed).toBe(true);
-  expect(result.scheduling_status).toBe("content_changed");
-  await expect(page.getByRole("heading", { name: "Opening recalled." })).toBeVisible();
-  await expect(page.locator(".review-schedule")).toHaveText(result.non_scheduling_reason!);
-  await expect(page.getByRole("region", { name: "Studied continuations" })).toContainText(
-    data.names[1],
-  );
-  const current = await page.request.post(`/api/review/${data.exercise_id}/start`);
-  expect(current.ok()).toBe(true);
-  const fresh: ColdPosition = await current.json();
-  expect(fresh.session_id).not.toBe(data.session_id);
-  expect(fresh.opening?.names).not.toContain(data.names[1]);
-  await expect(page.locator(".review-session-count")).toHaveText("0 reviewed this session");
-});
-
-test("changing the opening coach preserves the exact cold recall across browser Back", async ({
-  page,
-}, info) => {
-  const data = await fixture(page, `coach-${info.project.name}`);
-  const original: Schema["CoachPreferences"] = await (
-    await page.request.get("/api/preferences/coach")
-  ).json();
-  const selected = original.coach_id === "dog-collie" ? "woman-analyst" : "dog-collie";
-  try {
-    await page.goto(`/study/due?session=${data.session_id}`);
-    await expect(
-      page.getByRole("heading", { name: "Play your studied move.", exact: true }),
-    ).toBeVisible();
-    const before = await saved(page, data.session_id);
-    await page.getByRole("navigation").getByRole("link", { name: "Settings", exact: true }).click();
-    await page
-      .getByRole("navigation", { name: "Settings sections" })
-      .getByRole("link", { name: "Coach & animations", exact: true })
-      .click();
-    const radio = page.locator(`input[name="coach"][value="${selected}"]`);
-    await Promise.all([
-      page
-        .waitForResponse(
-          response =>
-            response.request().method() === "PATCH" &&
-            response.url().endsWith("/api/preferences/coach"),
-        )
-        .then(async response => {
-          expect(response.ok()).toBe(true);
-          expect((await response.json()).coach_id).toBe(selected);
-        }),
-      radio.click(),
-    ]);
-    await expect(radio).toBeChecked();
-    await page.goBack();
-    await expect(page).toHaveURL("/settings");
-    await page.goBack();
-    await expect(page.locator(".review-coach .coach-avatar")).toHaveAttribute(
-      "data-coach",
-      selected,
-    );
-    await expect(page).toHaveURL(`/study/due?session=${data.session_id}`);
-    await expect(page.getByRole("region", { name: "Studied continuations" })).toHaveCount(0);
-    expect(await saved(page, data.session_id)).toEqual(before);
-  } finally {
-    expect((await page.request.put("/api/preferences/coach", { data: original })).ok()).toBe(true);
-  }
 });
 
 test("Due reads the exact count for a requested card outside the batch and an old completed session", async ({

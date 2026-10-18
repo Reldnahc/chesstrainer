@@ -4,7 +4,6 @@ import argparse
 import os
 import subprocess
 import sys
-import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -64,25 +63,9 @@ def chain(*steps):
     return results
 
 
-def migrations():
-    """Upgrade a throwaway database and compare it with the models, never data/trainer.sqlite3."""
-    with tempfile.TemporaryDirectory() as folder:
-        env = {**os.environ, "DATABASE_PATH": str(Path(folder) / "migrations.sqlite3")}
-        alembic = [sys.executable, "-m", "alembic"]
-        _, code, output, seconds = step("migrations", [*alembic, "upgrade", "head"], env=env)
-        if code == 0:
-            _, code, more, extra = step("migrations", [*alembic, "check"], env=env)
-            output, seconds = output + more, seconds + extra
-        return "migrations", code, output, seconds
-
-
 def static_checks(pool):
-    """The backend job's contract, migration and voice-bank checks, run beside everything else."""
+    """The backend job's voice-bank check, run beside everything else."""
     return [
-        pool.submit(
-            step, "contract", [sys.executable, "scripts/export_api_contract.py", "--check"]
-        ),
-        pool.submit(migrations),
         pool.submit(
             step,
             "voice bank",

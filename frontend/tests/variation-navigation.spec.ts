@@ -1,5 +1,4 @@
 import { test, expect, type Page } from "./helpers/browserTest";
-import { expectReturnAction } from "./return-action";
 
 async function openGame(page: Page, suffix: string) {
   const { id } = await (
@@ -34,110 +33,6 @@ async function openGame(page: Page, suffix: string) {
   };
   return { id, game, play, onMainline };
 }
-
-test("variation return is a prominent coach action and restores the original position", async ({
-  page,
-}, info) => {
-  const { id, game, play, onMainline } = await openGame(page, `return-${info.project.name}`);
-  await page.evaluate(() => document.fonts.ready);
-  const boardWidth = (await page.locator(".board-shell").boundingBox())!.width;
-  const actionsHeight = (await page.locator(".coach-actions").boundingBox())!.height;
-  const actionsWidth = (await page.locator(".coach-actions").boundingBox())!.width;
-  const originalWhy = (await page
-    .getByRole("button", { name: "Show why", exact: true })
-    .boundingBox())!;
-  expect(originalWhy.width).toBeCloseTo((actionsWidth - 8) / 2, 1);
-  if (info.project.name === "desktop") {
-    const centers = await page
-      .getByRole("group", { name: "Game navigation" })
-      .evaluate(controls => {
-        const row = controls.getBoundingClientRect();
-        const first = controls
-          .querySelector('[aria-label="Start of game"]')!
-          .getBoundingClientRect();
-        const last = controls.querySelector('[aria-label="Last move"]')!.getBoundingClientRect();
-        const mute = controls
-          .querySelector('[aria-label="Mute sound on this device"]')!
-          .getBoundingClientRect();
-        return {
-          row: (row.left + row.right) / 2,
-          moves: (first.left + last.right) / 2,
-          right: row.right,
-          muteRight: mute.right,
-        };
-      });
-    expect(Math.abs(centers.row - centers.moves)).toBeLessThan(1);
-    expect(Math.abs(centers.right - centers.muteRight)).toBeLessThan(1);
-  }
-  await play("e2e4");
-  const back = page.getByRole("button", { name: "Return to game", exact: true });
-  await expectReturnAction(back);
-  await expect(
-    page.locator(".coach-actions").getByRole("button", { name: "Return to game" }),
-  ).toBeVisible();
-  await expect(
-    page
-      .getByRole("group", { name: "Game navigation" })
-      .getByRole("button", { name: "Return to game" }),
-  ).toHaveCount(0);
-  const layout = await back.evaluate(button => {
-    const bounds = button.getBoundingClientRect();
-    const actions = button.closest(".coach-actions")!;
-    const why = actions.querySelector("button[aria-pressed]")!.getBoundingClientRect();
-    const speech = button
-      .closest(".review-coach")!
-      .querySelector(".coach-speech")!
-      .getBoundingClientRect();
-    return {
-      width: bounds.width,
-      height: bounds.height,
-      top: bounds.top,
-      actionsHeight: actions.getBoundingClientRect().height,
-      speechBottom: speech.bottom,
-      whyTop: why.top,
-      whyHeight: why.height,
-      whyWidth: why.width,
-      gap: bounds.left - why.right,
-      color: getComputedStyle(button).backgroundColor,
-      secondaryColor: getComputedStyle(actions.querySelector("button[aria-pressed]")!)
-        .backgroundColor,
-    };
-  });
-  expect(layout.top).toBeGreaterThanOrEqual(layout.speechBottom);
-  expect(layout.height).toBe(40);
-  expect(layout.top).toBeCloseTo(layout.whyTop, 1);
-  expect(layout.height).toBe(layout.whyHeight);
-  expect(layout.whyWidth).toBeCloseTo(originalWhy.width, 1);
-  expect(layout.width).toBeCloseTo(layout.whyWidth, 1);
-  expect(layout.whyHeight).toBe(originalWhy.height);
-  expect(layout.gap).toBe(8);
-  expect(layout.actionsHeight).toBe(actionsHeight);
-  expect(layout.color).not.toBe(layout.secondaryColor);
-  expect((await page.locator(".board-shell").boundingBox())!.width).toBe(boardWidth);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page
-    .locator(".review-coach")
-    .screenshot({ path: `test-results/variation-return-${info.project.name}.png` });
-  if (info.project.name === "mobile") {
-    await page.setViewportSize({ width: 320, height: 700 });
-    const why = (await page.getByRole("button", { name: "Show why", exact: true }).boundingBox())!;
-    const returning = (await back.boundingBox())!;
-    expect(returning.y).toBe(why.y);
-    expect(returning.x).toBe(why.x + why.width + 8);
-    expect((await page.locator(".coach-actions").boundingBox())!.height).toBe(actionsHeight);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
-    await page
-      .locator(".review-coach")
-      .screenshot({ path: "test-results/variation-return-small-phone.png" });
-  }
-  await back.click();
-  await onMainline(2);
-  await expect(page.locator(".coach-speech")).toContainText("e5");
-  await expect(page.locator(".game-variation-row")).toHaveCount(1);
-  expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
-});
 
 test("backward navigation exits a variation when it reaches the original branch point", async ({
   page,

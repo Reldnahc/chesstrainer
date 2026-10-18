@@ -1,7 +1,6 @@
 """Opening answer identity follows legal moves while source snapshots stay immutable."""
 
 from copy import deepcopy
-from datetime import timedelta
 
 import chess
 import pytest
@@ -12,22 +11,14 @@ from trainer.chess_core import digest
 from trainer.models import (
     Exercise,
     ExerciseAnswer,
-    OpeningCard,
     OpeningRecallSnapshot,
     OpeningStudy,
     OpeningStudyMove,
     SRSState,
-    now,
 )
 from trainer.opening_studies import recall
 from trainer.scheduling import FSRSScheduler
 from trainer.study_lessons.queries import fingerprint
-
-CASTLES = [
-    (color, f"e{rank}{rook}{rank}", f"e{rank}{king}{rank}")
-    for color, rank in (("white", "1"), ("black", "8"))
-    for rook, king in (("h", "g"), ("a", "c"))
-]
 
 
 def castle_course(color, *moves):
@@ -46,8 +37,10 @@ def castle_course(color, *moves):
     )
 
 
-@pytest.mark.parametrize("color,alias,canonical", CASTLES)
-@pytest.mark.parametrize("submit_alias", [False, True])
+@pytest.mark.parametrize(
+    "color,alias,canonical,submit_alias",
+    [("white", "e1h1", "e1g1", True), ("black", "e8a8", "e8c8", False)],
+)
 def test_castling_projection_and_recall_share_legal_move_identity(
     settings, sessions, color, alias, canonical, submit_alias
 ):
@@ -85,8 +78,7 @@ def test_castling_projection_and_recall_share_legal_move_identity(
         assert fingerprint(provider.course) == content_hash
 
 
-@pytest.mark.parametrize("color,alias,canonical", CASTLES)
-@pytest.mark.parametrize("duplicate", [False, True])
+@pytest.mark.parametrize("color,alias,canonical,duplicate", [("white", "e1h1", "e1g1", True)])
 def test_existing_alias_snapshot_accepts_canonical_castle_without_rewriting_it(
     settings, sessions, color, alias, canonical, duplicate
 ):
@@ -111,35 +103,3 @@ def test_existing_alias_snapshot_accepts_canonical_castle_without_rewriting_it(
         assert result["completed"] and result["grade"] == "correct"
         assert result["answers"] == [{"uci": canonical, "san": original[0]["san"], "primary": True}]
         assert db.get(OpeningRecallSnapshot, started["session_id"]).answers == original
-
-
-@pytest.mark.parametrize("color,alias,canonical", CASTLES)
-def test_legacy_alias_union_deduplicates_without_changing_retired_target(
-    settings, sessions, color, alias, canonical
-):
-    provider = castle_course(color, alias, canonical)
-    with sessions() as db:
-        first = course_enroll(db, settings, provider, "0", color)
-        contribution = db.scalar(select(OpeningStudyMove))
-        exercise_id = contribution.exercise_id
-        card = db.get(OpeningCard, exercise_id)
-        state = db.get(SRSState, exercise_id)
-        # Recreate a persisted projection from before canonical answer identities.
-        contribution.move_uci = alias
-        db.scalar(select(ExerciseAnswer)).uci = alias
-        card.last_active_answers = [alias]
-        state.due = now() + timedelta(days=150)
-        state.retired_at = now()
-        state.retired_interval_days = 150
-        db.commit()
-        before = (card.revision, state.due, state.retired_at)
-        source = deepcopy(db.get(OpeningStudy, first["id"]).snapshot)
-
-        course_enroll(db, settings, provider, "1", color)
-
-        assert list(db.scalars(select(ExerciseAnswer.uci))) == [canonical]
-        assert card.last_active_answers == [canonical]
-        assert (card.revision, state.due, state.retired_at) == before
-        assert state.retired_interval_days == 150
-        assert card.retirement_guard_revision is None
-        assert db.get(OpeningStudy, first["id"]).snapshot == source

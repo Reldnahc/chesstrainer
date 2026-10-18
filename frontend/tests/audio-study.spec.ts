@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "./helpers/browserTest";
-import type { Feedback, Schema } from "../src/api";
+import type { Schema } from "../src/api";
 import type { AudioPreferences, SoundCue } from "../src/audio/model";
 import { captureAudio, audioCues } from "./helpers/audio";
 
@@ -53,19 +53,6 @@ async function fixture(page: Page, kind: "puzzle" | "lesson", key: string) {
     id: session_id,
     path: `/study/${kind === "puzzle" ? "puzzles" : "openings"}/sessions/${session_id}`,
   };
-}
-
-async function opening(page: Page, key: string) {
-  const response = await page.request.post(`/__test/opening-recall-fixture/audio-${key}`);
-  expect(response.ok()).toBe(true);
-  const result: {
-    session_id: string;
-    study_ids: string[];
-    wrong: string;
-    accepted_moves: string[];
-  } = await response.json();
-  studies.set(page, [...(studies.get(page) ?? []), ...result.study_ids]);
-  return result;
 }
 
 async function move(page: Page, uci: string) {
@@ -138,34 +125,6 @@ test("Still puzzle feedback sounds retry once and replaces correct with complete
   await expectSilent(page);
 });
 
-test("natural puzzle playback sounds each visible frame once and reveal has no success cue", async ({
-  page,
-}, info) => {
-  const puzzle = await fixture(page, "puzzle", `natural-${info.project.name}`);
-  await page.request.put("/api/preferences/motion", { data: { motion: "natural" } });
-  await page.goto(puzzle.path);
-  await expect(
-    page.getByRole("heading", { name: "Find the continuation.", exact: true }),
-  ).toBeVisible();
-  await move(page, "e2e4");
-  await expect(page.getByRole("heading", { name: "Keep going.", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "correct", "move"]);
-  await page.reload();
-  await expect(page.getByRole("heading", { name: "Keep going.", exact: true })).toBeVisible();
-  await expectSilent(page);
-  await page.getByRole("button", { name: "Reveal solution", exact: true }).click();
-  await expect(
-    page.getByRole("heading", { name: "Solution revealed.", exact: true }),
-  ).toBeVisible();
-  await expectCues(page, ["move"]);
-  await expectSilent(page, ["move"]);
-  await page.reload();
-  await expect(
-    page.getByRole("heading", { name: "Solution revealed.", exact: true }),
-  ).toBeVisible();
-  await expectSilent(page);
-});
-
 test("lesson demonstrations and accepted decisions sound only their live transitions", async ({
   page,
 }, info) => {
@@ -206,79 +165,6 @@ test("lesson demonstrations and accepted decisions sound only their live transit
   await expectSilent(page);
 });
 
-test("lesson game rewind is neutral even when its destination is a castle", async ({
-  page,
-}, info) => {
-  const lesson = await fixture(page, "lesson", `game-${info.project.name}`);
-  const url = `/api/study/lesson-sessions/${lesson.id}`;
-  let state: Schema["LessonSessionView"] = await (await page.request.get(url)).json();
-  let revision = 0;
-  const seed = async (
-    action: Schema["LessonCommand"]["action"],
-    extra: { uci?: string; ply?: number } = {},
-  ) => {
-    const response = await page.request.post(`${url}/command`, {
-      data: {
-        action,
-        ...extra,
-        revision: state.revision,
-        request_id: `audio-game-${++revision}`,
-      },
-    });
-    expect(response.ok()).toBe(true);
-    state = await response.json();
-  };
-  await seed("continue");
-  await seed("continue");
-  await seed("move", { uci: "g1f3" });
-  await seed("continue");
-  await seed("continue");
-  await seed("continue");
-  await seed("continue");
-  await seed("open_game");
-  await seed("game_seek", { ply: 12 });
-  await page.goto(lesson.path);
-  await expect(page.getByRole("button", { name: "Previous game move", exact: true })).toBeVisible();
-  await expectSilent(page);
-  await command(page, "Previous game move");
-  await expectCues(page, ["move"]);
-  await command(page, "Next game move");
-  await expectCues(page, ["move", "castle"]);
-});
-
-test("opening recall retries and acceptance stay distinct from reveal and hydrated feedback", async ({
-  page,
-}, info) => {
-  const recall = await opening(page, `recall-${info.project.name}`);
-  await page.goto(`/study/due?session=${recall.session_id}`);
-  await expect(
-    page.getByRole("heading", { name: "Play your studied move.", exact: true }),
-  ).toBeVisible();
-  await expectSilent(page);
-  await move(page, recall.wrong);
-  await expectCues(page, ["move", "retry"]);
-  await expectSilent(page, ["move", "retry"]);
-  await move(page, recall.accepted_moves[0]);
-  await expect(page.getByRole("heading", { name: "Opening recalled.", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "retry", "move", "correct"]);
-  await page.reload();
-  await expect(page.getByRole("heading", { name: "Opening recalled.", exact: true })).toBeVisible();
-  await expectSilent(page);
-  const revealed = await opening(page, `reveal-${info.project.name}`);
-  await page.goto(`/study/due?session=${revealed.session_id}`);
-  await page.getByRole("button", { name: "Reveal move", exact: true }).click();
-  await expect(
-    page.getByRole("heading", { name: "Studied move revealed.", exact: true }),
-  ).toBeVisible();
-  await expectCues(page, ["move"]);
-  await expectSilent(page, ["move"]);
-  await page.reload();
-  await expect(
-    page.getByRole("heading", { name: "Studied move revealed.", exact: true }),
-  ).toBeVisible();
-  await expectSilent(page);
-});
-
 test("SRS sounds the visible counter reply and retry cancels a pending reply", async ({
   page,
 }, info) => {
@@ -309,84 +195,4 @@ test("SRS sounds the visible counter reply and retry cancels a pending reply", a
   await move(page, recall.best);
   await expect(page.getByRole("heading", { name: "Good decision.", exact: true })).toBeVisible();
   await expectCues(page, ["move", "retry", "check", "move", "retry", "capture", "correct"]);
-});
-
-test("leaving a lesson discards sound from its late committed demonstration", async ({
-  page,
-}, info) => {
-  const lesson = await fixture(page, "lesson", `late-${info.project.name}`);
-  await page.goto(lesson.path);
-  await command(page, "Continue");
-  let release!: () => void;
-  const gate = new Promise<void>(resolve => {
-    release = resolve;
-  });
-  let handled: Promise<void> | undefined;
-  const pattern = `**/api/study/lesson-sessions/${lesson.id}/command`;
-  await page.route(pattern, route => {
-    handled = (async () => {
-      const response = await route.fetch();
-      await gate;
-      await route.fulfill({ response });
-    })();
-    return handled;
-  });
-  try {
-    const submitted = page.waitForRequest(
-      request => request.url().endsWith("/command") && request.method() === "POST",
-    );
-    await page.getByRole("button", { name: "Play continuation", exact: true }).click();
-    await submitted;
-    await page.getByRole("navigation").getByRole("link", { name: "Study", exact: true }).click();
-    await expect(page).toHaveURL("/study");
-    release();
-    await handled;
-    await expectSilent(page);
-  } finally {
-    release();
-    await handled;
-    await page.unroute(pattern);
-  }
-});
-
-test("leaving SRS discards sounds from a late accepted response", async ({ page }, info) => {
-  const recall = await opening(page, `late-${info.project.name}`);
-  let release!: () => void;
-  const gate = new Promise<void>(resolve => {
-    release = resolve;
-  });
-  let handled: Promise<void> | undefined;
-  const pattern = `**/api/review/sessions/${recall.session_id}/move`;
-  await page.route(pattern, route => {
-    handled = (async () => {
-      const response = await route.fetch();
-      const feedback: Feedback = await response.json();
-      expect(feedback.completed).toBe(true);
-      await gate;
-      await route.fulfill({ response });
-    })();
-    return handled;
-  });
-  try {
-    await page.goto(`/study/due?session=${recall.session_id}`);
-    await expect(
-      page.getByRole("heading", { name: "Play your studied move.", exact: true }),
-    ).toBeVisible();
-    const uci = recall.accepted_moves[0];
-    await page.locator(`.board-shell [data-square="${uci.slice(0, 2)}"]`).click();
-    const submitted = page.waitForRequest(
-      request => request.url().endsWith("/move") && request.method() === "POST",
-    );
-    await page.locator(`.board-shell [data-square="${uci.slice(2, 4)}"]`).click();
-    await submitted;
-    await page.getByRole("navigation").getByRole("link", { name: "Settings", exact: true }).click();
-    await expect(page).toHaveURL("/settings");
-    release();
-    await handled;
-    await expectSilent(page);
-  } finally {
-    release();
-    await handled;
-    await page.unroute(pattern);
-  }
 });

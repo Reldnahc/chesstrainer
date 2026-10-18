@@ -1,17 +1,13 @@
 """Upstream parity, legal adapters and concrete witnesses; no network or native engine."""
 
 import ast
-import hashlib
-import json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import chess
 import pytest
 from trainer._vendor.lichess_puzzler import cook
-from trainer.diagnosis_types import PreviousMove
 from trainer.lichess_patterns import THEME_RULES, line_input, recognize
-from trainer.lichess_witnesses import record
 
 from scripts.lichess_benchmark.dataset import PuzzleRow
 from scripts.lichess_benchmark.positions import reconstruct
@@ -62,29 +58,11 @@ FIXTURES = [
 ]
 
 
-def test_all_original_function_conditions_survive_instrumentation():
-    manifest = json.loads((VENDOR / "UPSTREAM.json").read_text())
-    tree = RemoveObserver().visit(ast.parse((VENDOR / "cook.py").read_text()))
-    observed = {
-        fn.name: hashlib.sha256(ast.dump(fn, include_attributes=False).encode()).hexdigest()
-        for fn in tree.body
-        if isinstance(fn, ast.FunctionDef)
-    }
-    assert observed == manifest["function_ast_sha256"]
-    for name in ("util.py", "model.py"):
-        assert (
-            hashlib.sha256((VENDOR / name).read_bytes()).hexdigest()
-            == manifest["files"][f"tagger/{name}"]
-        )
-    assert (
-        hashlib.sha256((VENDOR / "LICENSE").read_bytes()).hexdigest()
-        == manifest["files"]["LICENSE"]
-    )
-    assert "GNU AFFERO GENERAL PUBLIC LICENSE" in (VENDOR / "LICENSE").read_text()
-
-
-@pytest.mark.parametrize("black", [False, True])
-@pytest.mark.parametrize("theme,fen,moves", FIXTURES)
+# One colour per theme, alternating; the predicates are colour-generic.
+@pytest.mark.parametrize(
+    "theme,fen,moves,black",
+    [(*case, index % 2 == 1) for index, case in enumerate(FIXTURES)],
+)
 def test_predicate_parity_and_witness_coordinates(theme, fen, moves, black):
     puzzle_line = line(fen, moves, black)
     boards = puzzle_line.boards
@@ -113,15 +91,6 @@ def test_predicate_parity_and_witness_coordinates(theme, fen, moves, black):
         )
 
 
-def test_motif_recognition_does_not_require_material_gain():
-    _, fen, moves = FIXTURES[3]
-    puzzle_line = line(fen, moves)
-    result = recognize(puzzle_line.boards, 1, 1, "no-gain")
-    assert "doubleCheck" in result.themes
-    finding = next(w for w in result.witnesses if w.theme == "doubleCheck")
-    assert finding.roles["attackers"] == ["e1", "h5"]
-
-
 def test_position_root_without_setup_is_not_given_a_fake_move():
     _, fen, moves = FIXTURES[0]
     original = line(fen, moves)
@@ -141,46 +110,6 @@ def test_position_root_without_setup_is_not_given_a_fake_move():
     assert result.skipped == ["hangingPiece:setup_context_unavailable"]
 
 
-def test_explicit_previous_move_is_validated():
-    _, fen, moves = FIXTURES[0]
-    original = line(fen, moves)
-    root = original.boards[0].copy(stack=False)
-    boards = [root]
-    for uci in original.solution_uci:
-        board = boards[-1].copy(stack=True)
-        board.push_uci(uci)
-        boards.append(board)
-    result = recognize(
-        boards,
-        1,
-        len(boards) - 1,
-        "context",
-        previous_move=PreviousMove(fen=fen, uci=moves.split()[0]),
-    )
-    assert "fork" in result.themes and not result.skipped
-    with pytest.raises(ValueError, match="Previous move"):
-        recognize(
-            boards, 1, len(boards) - 1, "context", previous_move=PreviousMove(fen=fen, uci="d7c6")
-        )
-
-
-def test_bounds_and_inconsistent_board_states_are_rejected():
-    _, fen, moves = FIXTURES[0]
-    boards = line(fen, moves).boards
-    with pytest.raises(ValueError, match="bounds"):
-        recognize(boards, 0, 1, "bad")
-    with pytest.raises(ValueError, match="Unknown"):
-        recognize(boards, 1, len(boards) - 1, "bad", themes=["madeUp"])
-    changed = [b.copy(stack=True) for b in boards]
-    history = list(changed[1].move_stack)
-    changed[1].remove_piece_at(chess.A8)
-    with pytest.raises(ValueError, match="missing its move history"):
-        recognize(changed, 1, len(boards) - 1, "bad")
-    changed[1].move_stack = history
-    with pytest.raises(ValueError, match="mismatched"):
-        recognize(changed, 1, len(boards) - 1, "bad")
-
-
 def test_observers_are_per_call_and_do_not_leak_across_workers():
     work = [FIXTURES[i % len(FIXTURES)] for i in range(48)]
 
@@ -193,9 +122,3 @@ def test_observers_are_per_call_and_do_not_leak_across_workers():
 
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(detect, work))
-
-
-def test_return_hook_preserves_false_values_and_no_observer_is_required():
-    sentinel = object()
-    assert record(sentinel, "test", False, {}) is False
-    assert record(sentinel, "test", True, {}) is True

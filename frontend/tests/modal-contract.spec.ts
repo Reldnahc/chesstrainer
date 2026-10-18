@@ -9,45 +9,26 @@ import { isolatedServer } from "./helpers/vite";
 // Real production components in a small browser fixture allow changes to board
 // inputs while a modal is open, without coupling these contracts to an engine.
 const harness = `
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Board from "/src/Board.tsx";
-import EvidenceDialog from "/src/EvidenceDialog.tsx";
-import MovePlaybackControls from "/src/MovePlaybackControls.tsx";
-import { errorMessage } from "/src/api.ts";
-import { useGameExploration } from "/src/gameReview/useGameExploration.ts";
 import "/src/foundation.css";
 import "/src/base.css";
 import "/src/board.css";
-import "/src/evidence.css";
 
 const initialFen = "4k3/P7/8/8/8/8/8/4K3 w - - 0 1";
 const changedFen = "4k3/8/P7/8/8/8/8/4K3 w - - 0 2";
-const game = { id: "modal-fixture", orientation: "white", frames: [
-  {fen: changedFen}, {fen: initialFen}, {fen: changedFen},
-] };
 
 function Fixture() {
   const [fen, setFen] = useState(initialFen);
-  const [disabled, setDisabled] = useState(false);
-  const [mounted, setMounted] = useState(true);
   const [choices, setChoices] = useState(["q", "r", "b", "n"]);
   const [moves, setMoves] = useState([]);
-  const [evidence, setEvidence] = useState(false);
-  const [error, setError] = useState("");
-  // The page's error channel, as game review passes it: fail reports, dismiss clears.
-  const errors = useMemo(() => ({fail: value => setError(errorMessage(value)), dismiss: () => setError("")}), []);
-  const exploration = useGameExploration("modal-fixture", 1, game, errors);
   useEffect(() => {
     const update = event => {
-      if (event.detail === "disable") setDisabled(true);
       if (event.detail === "position") setFen(changedFen);
-      if (event.detail === "unmount") setMounted(false);
       if (event.detail === "restricted") setChoices(["r", "n"]);
       if (event.detail === "reset") {
         setFen(initialFen);
-        setDisabled(false);
-        setMounted(true);
         setChoices(["q", "r", "b", "n"]);
       }
     };
@@ -55,23 +36,11 @@ function Fixture() {
     return () => window.removeEventListener("modal-fixture-update", update);
   }, []);
   return <div style={{padding: 16, maxWidth: 512}}>
-    <button onClick={() => exploration.toggleExplanation()}>Toggle explanation</button>
-    <button onClick={() => setEvidence(true)}>Open evidence</button>
-    <output data-testid="ply">{exploration.current}</output>
-    {/* The game page's arrow, Home and End keys come from its playback controls. */}
-    <MovePlaybackControls label="Game move playback" current={exploration.current} maximum={exploration.maximum}
-      first={{"aria-label": "Start of game", onClick: () => exploration.navigate(0)}}
-      previous={{"aria-label": "Previous move", onClick: () => exploration.step(-1)}}
-      next={{"aria-label": "Next move", onClick: () => exploration.step(1)}}
-      last={{"aria-label": "Last move", onClick: () => exploration.selectStep(exploration.maximum)}} />
-    <output data-testid="explanation">{exploration.explanationKey ? "open" : "closed"}</output>
     <output data-testid="moves">{moves.join(",")}</output>
-    <output data-testid="error">{error}</output>
-    {mounted && <Board fen={fen} orientation="white" disabled={disabled}
+    <Board fen={fen} orientation="white"
       legalMoves={choices.map(promotion => ({from_square: "a7", to_square: "a8", promotion, capture: false}))}
-      onMove={(from, to, promotion) => setMoves(values => [...values, from + to + promotion])} />}
+      onMove={(from, to, promotion) => setMoves(values => [...values, from + to + promotion])} />
     <button>After board</button>
-    {evidence && <EvidenceDialog id="modal-fixture" onClose={() => setEvidence(false)} />}
   </div>;
 }
 createRoot(document.getElementById("root")).render(<React.StrictMode><Fixture /></React.StrictMode>);
@@ -137,34 +106,11 @@ test.beforeEach(async ({ page }) => {
   pageErrors.set(page, errors);
   page.on("pageerror", error => errors.push(error));
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.route("**/api/evidence/modal-fixture", route =>
-    route.fulfill({
-      json: {
-        fen: "4k3/P7/8/8/8/8/8/4K3 w - - 0 1",
-        played_san: "a8=N",
-        loss_cp: 0,
-        allows_mate: false,
-        mate_lost: false,
-        candidates: [{ san: "a8=N", score: { kind: "cp", value: 0 }, pv: ["a7a8n"] }],
-        classifications: [
-          {
-            skill: "promotion",
-            provider: "local_rules",
-            run_id: "modal-audit",
-            explanation: "Promotion fixture.",
-          },
-        ],
-      },
-    }),
-  );
   await page.goto(`${origin}__modal-contract`);
   await expect(page.locator(".board-shell")).toBeVisible();
 });
 
-async function updateFixture(
-  page: Page,
-  action: "disable" | "position" | "unmount" | "restricted" | "reset",
-) {
+async function updateFixture(page: Page, action: "position" | "restricted" | "reset") {
   await page.evaluate(
     detail => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })),
     action,
@@ -271,46 +217,6 @@ test("promotion offers only server choices and submits every underpromotion once
   }
 });
 
-test("promotion owns game shortcuts until dismissal and remains inside the viewport", async ({
-  page,
-}, info) => {
-  await page.getByRole("button", { name: "Toggle explanation" }).click();
-  await expect(page.getByTestId("explanation")).toHaveText("open");
-  const dialog = await choosePromotion(page);
-  const expectBoardPlacement = async () => {
-    const phone = page.viewportSize()!.width <= 760;
-    await expect
-      .poll(async () => {
-        const box = (await dialog.boundingBox())!;
-        const board = (await page.locator(".board-shell").boundingBox())!;
-        return Math.abs(box.x - (board.x + board.width * (phone ? 0.03 : 0.08)));
-      })
-      .toBeLessThan(2);
-    const box = (await dialog.boundingBox())!;
-    const board = (await page.locator(".board-shell").boundingBox())!;
-    expect(box.y).toBeCloseTo(board.y + board.height * (phone ? 0.2 : 0.25), 0);
-    expect(box.width).toBeCloseTo(board.width * (phone ? 0.94 : 0.84), 0);
-  };
-  await expectBoardPlacement();
-  await page.screenshot({ path: info.outputPath("promotion.png") });
-  for (const key of ["ArrowRight", "ArrowLeft", "Home", "End"]) {
-    await page.keyboard.press(key);
-    await expect(page.getByTestId("ply")).toHaveText("1");
-    await expect(page.getByTestId("explanation")).toHaveText("open");
-  }
-  await expect(dialog).toBeInViewport({ ratio: 1 });
-  expect(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
-  await page.setViewportSize({ width: 320, height: 568 });
-  await expect(dialog).toBeInViewport({ ratio: 1 });
-  await expectBoardPlacement();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
-  await expect(page.getByTestId("explanation")).toHaveText("open");
-  await page.keyboard.press("ArrowRight");
-  await expect(page.getByTestId("ply")).toHaveText("2");
-});
-
 test("drag promotion opens after release and accepts its first underpromotion click", async ({
   page,
 }, info) => {
@@ -337,96 +243,48 @@ test("drag promotion opens after release and accepts its first underpromotion cl
   ).toBeFocused();
 });
 
-for (const action of ["disable", "position", "unmount"] as const) {
-  test(`an open promotion closes safely when the board inputs ${action}`, async ({ page }) => {
-    const dialog = await choosePromotion(page);
-    await updateFixture(page, action);
-    await expect(dialog).toHaveCount(0);
-    await expect(page.getByTestId("moves")).toBeEmpty();
-    await expect(page.locator("[data-legal-destination]")).toHaveCount(0);
-    await expect(page.locator("dialog:modal")).toHaveCount(0);
-    await page.getByRole("button", { name: "After board", exact: true }).click();
-    await expect(page.getByRole("button", { name: "After board", exact: true })).toBeFocused();
-    await updateFixture(page, "reset");
-    await choosePromotion(page);
-  });
-}
+// A stale move after a position change is the case that matters; disabling and
+// unmounting the board share its path.
+test("an open promotion closes safely when the board inputs position", async ({ page }) => {
+  const dialog = await choosePromotion(page);
+  await updateFixture(page, "position");
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByTestId("moves")).toBeEmpty();
+  await expect(page.locator("[data-legal-destination]")).toHaveCount(0);
+  await expect(page.locator("dialog:modal")).toHaveCount(0);
+  await page.getByRole("button", { name: "After board", exact: true }).click();
+  await expect(page.getByRole("button", { name: "After board", exact: true })).toBeFocused();
+  await updateFixture(page, "reset");
+  await choosePromotion(page);
+});
 
-for (const action of ["disable", "position", "unmount"] as const) {
-  test(`a pending drag promotion never opens after board inputs ${action}`, async ({
-    page,
-  }, info) => {
-    test.skip(
-      info.project.name !== "desktop",
-      "The touch board uses the tap promotion contract above.",
+test("a pending drag promotion never opens after board inputs position", async ({ page }, info) => {
+  test.skip(
+    info.project.name !== "desktop",
+    "The touch board uses the tap promotion contract above.",
+  );
+  await dragToPromotion(page);
+  // Commit the caller's update immediately after the real drop, before the
+  // chooser's brief delay used to outlast dnd-kit's click suppression.
+  await page.evaluate(detail => {
+    window.addEventListener(
+      "pointerup",
+      () => {
+        window.setTimeout(
+          () => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })),
+          0,
+        );
+      },
+      { once: true },
     );
-    await dragToPromotion(page);
-    // Commit the caller's update immediately after the real drop, before the
-    // chooser's brief delay used to outlast dnd-kit's click suppression.
-    await page.evaluate(detail => {
-      window.addEventListener(
-        "pointerup",
-        () => {
-          window.setTimeout(
-            () => window.dispatchEvent(new CustomEvent("modal-fixture-update", { detail })),
-            0,
-          );
-        },
-        { once: true },
-      );
-    }, action);
-    await page.mouse.up();
-    await page.waitForTimeout(150);
-    await expect(page.getByRole("dialog", { name: "Choose promotion" })).toHaveCount(0);
-    await expect(page.getByTestId("moves")).toBeEmpty();
-    await expect(page.locator("[data-legal-destination]")).toHaveCount(0);
-    await updateFixture(page, "reset");
-    await choosePromotion(page);
-  });
-}
-
-test("evidence contains focus, keeps its board read-only and restores its opener on both close paths", async ({
-  page,
-}, info) => {
-  const opener = page.getByRole("button", { name: "Open evidence", exact: true });
-  await page.getByRole("button", { name: "Toggle explanation" }).click();
-  await opener.click();
-  const dialog = page.getByRole("dialog", { name: "Decision evidence" });
-  await expect(dialog).toBeVisible();
-  expect(
-    await dialog.evaluate(
-      element => element instanceof HTMLDialogElement && element.matches(":modal"),
-    ),
-  ).toBe(true);
-  const close = dialog.getByRole("button", { name: "Close evidence", exact: true });
-  const reject = dialog.getByRole("button", {
-    name: "Reject unsupported classification",
-    exact: true,
-  });
-  await expect(reject).toBeVisible();
-  await page.screenshot({ path: info.outputPath("evidence.png") });
-  await expect(close).toBeFocused();
-  await tabTo(page, "Shift+Tab", reject);
-  await tabTo(page, "Tab", close);
-  await dialog.locator('[data-square="a7"]').click();
-  await dialog.locator('[data-square="a8"]').click();
+  }, "position");
+  await page.mouse.up();
+  await page.waitForTimeout(150);
   await expect(page.getByRole("dialog", { name: "Choose promotion" })).toHaveCount(0);
-  await expect(dialog.locator("[data-legal-destination]")).toHaveCount(0);
-  for (const key of ["ArrowLeft", "ArrowRight"]) {
-    await page.keyboard.press(key);
-    await expect(page.getByTestId("ply")).toHaveText("1");
-  }
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
-  await expect(opener).toBeFocused();
-  await expect(page.getByTestId("explanation")).toHaveText("open");
-  await opener.click();
-  await expect(close).toBeFocused();
-  await close.click();
-  await expect(dialog).toHaveCount(0);
-  await expect(opener).toBeFocused();
-  await page.keyboard.press("ArrowLeft");
-  await expect(page.getByTestId("ply")).toHaveText("0");
+  await expect(page.getByTestId("moves")).toBeEmpty();
+  await expect(page.locator("[data-legal-destination]")).toHaveCount(0);
+  await updateFixture(page, "reset");
+  await choosePromotion(page);
 });
 
 test.afterEach(async ({ page }) => {

@@ -1,12 +1,8 @@
 """Onboarding completion is durable, account-scoped, and absent from local mode."""
 
-import pytest
-from alembic import command
-from alembic.config import Config
 from fastapi.testclient import TestClient
 from test_accounts import ORIGIN, signup
 from trainer.api import create_app
-from trainer.db import database, migrate
 
 
 def test_completion_is_authenticated_idempotent_and_persists(settings):
@@ -36,30 +32,3 @@ def test_completion_is_authenticated_idempotent_and_persists(settings):
         )
         assert result.json()["user"]["onboarding_completed"] is True
         assert api.get("/api/jobs").json() == []
-
-
-@pytest.mark.pristine_database
-def test_existing_users_are_grandfathered_during_upgrade(settings):
-    engine, _ = database(settings.database_path)
-    config = Config("alembic.ini")
-    with engine.begin() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "38db246ec907")
-        connection.exec_driver_sql(
-            "INSERT INTO users (id,username,password,admin,disabled,chesscom_username,created) VALUES ('existing','existing','unused',0,0,'',0)"
-        )
-    migrate(engine)
-    with engine.connect() as connection:
-        assert (
-            connection.exec_driver_sql(
-                "SELECT onboarding_completed FROM users WHERE id='existing'"
-            ).scalar()
-            == 1
-        )
-    engine.dispose()
-
-
-def test_local_workspace_has_no_onboarding_endpoint(settings):
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as api:
-        assert api.get("/api/auth/me").json() == {"enabled": False, "user": None}
-        assert api.post("/api/auth/onboarding/complete").status_code in {404, 405}

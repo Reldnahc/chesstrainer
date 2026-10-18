@@ -54,7 +54,7 @@ Specific checks prevent misleading generalizations:
 - `...Bg4` pins the f3-knight to the queen, not the king. After `h3 Bh5 Nbd2` the d2-knight defends f3. `gxf3` after an immediate `...Bxf3` would double White's f-pawns and remove the g-pawn, which is why the lesson recaptures with the queen.
 - In Mason–Lasker each side has developed one bishop; White's c1-bishop is still at home. The Steinitz comparison names the real difference from our setup: we support e4 and castle before d4. Steinitz also prepared a c-pawn recapture, so that is not the difference.
 
-`backend/tests/test_italian_white_claims.py` checks these relationships against production step positions, including the negative cases. Bounded Stockfish checks support the chosen examples; they do not certify an exhaustive repertoire or every historical move as best.
+Stockfish checks during authoring support the chosen examples; they do not certify an exhaustive repertoire or every historical move as best.
 
 ### Common replies
 
@@ -288,23 +288,9 @@ Recall accepts every enrolled line's move there.
 
 The production content validator replays every full source game, repertoire line,
 decision reply and transition, preserving exact histories and branch anchors.
-`backend/tests/test_italian_black_claims.py` checks the specific supports, attacks,
-bishop exchange, historical pin, material balance, castling, retreat safety,
-source annotation plies and final recorded fork. Further checks verify the f7
-defenders, legal Rxf7 reply, the Bxe6/fxe6 structure, the actual isolated d4-pawn
-and blockade, and the supported historical d5 break. Tests also prove b4
-remains legal, a bishop retreat can decline the exchange, fxe6 is the actual
-recapture, and Nf6 prevents an immediate rook attack on f2. The anchored plan
-rehearsal matches its three guided decisions exactly; Evans rehearsal contains
-no new post-gambit learner move absent from its instruction. The tests also
-verify that changing Black-course annotations in one returned object cannot
-mutate the original White course.
-
-Side-trip tests replay each side trip's claims: what attacks and
-defends the pieces named, the pins, checks and mate threats, that each move
-recommended against White's alternatives is legal there, and the material
-count each summary states. Further tests require every side trip to have a
-recall line that ends where the trip ends and starts where its chapter starts.
+`backend/tests/test_italian_black_claims.py` checks that each anchored
+rehearsal asks only the decisions its chapter taught, and that every side trip
+has a recall line that ends where the trip ends.
 
 The shared bundled-course journey tests walk every chapter through the
 player. Stockfish searches are authoring checks only: opening a lesson never
@@ -609,10 +595,9 @@ which is B73 (the Classical Variation with `8.O-O`; only `9.Nb3` is B74).
 
 The course validator checks full move histories, connected steps, branch
 anchors and rehearsal lines with python-chess. `test_dragon_claims.py` checks
-the board facts behind each explanation: attacks, pins, defenders, forks,
-material counts and the two transpositions back to the Dragon. The course
-journey tests walk every chapter and side trip, and the browser spec walks all
-five chapters on desktop and mobile.
+the board facts behind each chapter's explanations: attacks, pins, defenders,
+forks and material counts. The course
+journey tests check every chapter's accepted decisions.
 
 ## Vienna Gambit
 
@@ -908,8 +893,8 @@ The eight composed positions have no source. Their FENs are in the course file,
 ### Engine verification
 
 Every decision is checked with Stockfish 17.1, MultiPV over all legal moves.
-Board claims, mates and the stalemate are asserted exactly with python-chess in
-`backend/tests/test_fundamentals_course.py`.
+Board claims, mates and the stalemate were checked with python-chess when
+the course was written.
 
 Every taught move except O-O in the Italian castling position is Stockfish's
 first choice. There Bxf7+ scores a little higher (about +0.9 against +0.8);

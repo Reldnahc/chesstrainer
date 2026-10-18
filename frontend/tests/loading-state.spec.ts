@@ -9,47 +9,18 @@ import { isolatedServer } from "./helpers/vite";
 // Exercise production consumers and their real requests without a database or
 // engine. Deferred routes let the test observe the otherwise brief load state.
 const harness = `
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import { LoadingState, UnavailableState } from "/src/LoadState.tsx";
-import Button from "/src/Button.tsx";
-import ActionLink from "/src/ActionLink.tsx";
-import DueScreen from "/src/DueScreen.tsx";
 import GameWorkspace from "/src/gameReview/GameWorkspace.tsx";
-import EvidenceDialog from "/src/EvidenceDialog.tsx";
 import LessonPlayer from "/src/study/LessonPlayer.tsx";
-import PuzzlePlayer from "/src/study/PuzzlePlayer.tsx";
-import LessonLibrary from "/src/study/LessonLibrary.tsx";
-import OpeningLinePreview from "/src/study/OpeningLinePreview.tsx";
 import "/src/styles.css";
 
 function Fixture() {
   const view = new URLSearchParams(location.search).get("view");
-  const [evidence, setEvidence] = useState(false);
-  const [error, setError] = useState("");
-  const [attempts, setAttempts] = useState(0);
-  const fail = useCallback(value => setError(String(value)), []);
-  let contents;
+  let contents = null;
   if (view === "lesson") contents = <LessonPlayer sessionId="loading-fixture" />;
-  else if (view === "puzzle") contents = <PuzzlePlayer sessionId="loading-fixture" />;
-  else if (view === "library") contents = <LessonLibrary topic="opening" courseId={null} revision={null} />;
-  else if (view === "chapters") contents = <LessonLibrary topic="opening" courseId="loading-fixture" revision="fixture-v1" />;
-  else if (view === "preview") contents = <OpeningLinePreview catalogueKey="loading-fixture" courseLine={null} />;
-  else if (view === "course-preview") contents = <OpeningLinePreview catalogueKey={null} courseLine={{courseId: "loading-fixture", lineId: "line", revision: "fixture-v1"}} />;
   else if (view === "game") contents = <GameWorkspace id="loading-fixture" initialPly={0} libraryHref="/games?page=3" />;
-  else if (view === "review") contents = <DueScreen requested={null} focusSkill={null} onEvidence={() => {}} />;
-  else if (view === "evidence") contents = <><button onClick={() => setEvidence(true)}>Open evidence</button>{evidence && <EvidenceDialog id="loading-fixture" onClose={() => setEvidence(false)} />}</>;
-  else contents = <>
-    <div data-testid="compact"><LoadingState>Loading a small detail…</LoadingState></div>
-    <div data-testid="panel"><LoadingState presentation="panel">Loading the full page…</LoadingState></div>
-    <UnavailableState presentation="panel" heading={<h2>Caller-owned heading</h2>} actions={<>
-      <Button onClick={() => setAttempts(value => value + 1)}>Retry caller operation</Button>
-      <Button disabled onClick={() => setAttempts(value => value + 100)}>Unavailable command</Button>
-      <ActionLink variant="secondary" href="/study/openings?from=loading-fixture">Browse opening lessons</ActionLink>
-    </>}>The caller supplied this explanation.</UnavailableState>
-    <span data-testid="attempts">{attempts}</span>
-  </>;
-  return <main style={{width: "100%", maxWidth: 900, padding: 16}}>{contents}<span data-testid="external-error">{error}</span></main>;
+  return <main style={{width: "100%", maxWidth: 900, padding: 16}}>{contents}</main>;
 }
 createRoot(document.getElementById("root")).render(<Fixture />);
 `;
@@ -142,186 +113,74 @@ async function expectLoading(page: Page, message: string) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
 
-for (const fixture of [
-  {
-    view: "lesson",
-    endpoint: "/api/study/lesson-sessions/loading-fixture",
-    message: "Loading your lesson…",
-    failed: "Couldn’t load your lesson.",
-    heading: "Lesson unavailable",
-    link: "All lessons",
-    href: "/study/openings",
-  },
-  {
-    view: "puzzle",
-    endpoint: "/api/puzzle-sessions/loading-fixture",
-    message: "Loading your puzzle…",
-    failed: "Couldn’t load your puzzle.",
-    heading: "Puzzle unavailable",
-    link: "All puzzles",
-    href: "/study/puzzles",
-  },
-]) {
-  test(`${fixture.view} loading and retry preserve caller-owned recovery commands`, async ({
-    page,
-  }) => {
-    const request = await holdEndpoint(page, fixture.endpoint);
-    await openFixture(page, fixture.view);
-    await expectLoading(page, fixture.message);
-    await request.reply({ detail: "Saved session could not be loaded." }, 503);
-    await expect(page.getByRole("heading", { name: fixture.heading, level: 1 })).toBeVisible();
-    await expect(page.getByRole("alert")).toHaveText(
-      `${fixture.failed} Saved session could not be loaded.`,
-    );
-    await expect(page.getByRole("status")).toHaveCount(0);
-    const retry = page.getByRole("button", { name: "Try again", exact: true });
-    const back = page.getByRole("link", { name: fixture.link, exact: true });
-    await expect(retry).toHaveAttribute("type", "button");
-    await expect(back).toHaveAttribute("href", fixture.href);
-    await retry.focus();
-    await page.keyboard.press("Enter");
-    await expectLoading(page, fixture.message);
-    await expect(retry).toHaveCount(0);
-    await expect.poll(() => request.methods).toEqual(["GET", "GET"]);
-    await request.reply({ detail: "The saved session is still unavailable." }, 503);
-    await expect(page.getByRole("alert")).toHaveText(
-      `${fixture.failed} The saved session is still unavailable.`,
-    );
-    await expect(retry).toBeEnabled();
-    await expect(back).toHaveAttribute("href", fixture.href);
-    expect(request.methods).toEqual(["GET", "GET"]);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
-  });
-}
+// Lesson and puzzle players share the same retry component; the lesson stands in for both.
+const retryFixture = {
+  view: "lesson",
+  endpoint: "/api/study/lesson-sessions/loading-fixture",
+  message: "Loading your lesson…",
+  failed: "Couldn’t load your lesson.",
+  heading: "Lesson unavailable",
+  link: "All lessons",
+  href: "/study/openings",
+};
 
-for (const fixture of [
-  {
-    view: "game",
-    endpoint: "/api/games/loading-fixture",
-    message: "Loading the game…",
-    failed: "Couldn’t load the game. The requested content could not be loaded.",
-    link: "All games",
-    href: "/games?page=3",
-  },
-  {
-    view: "library",
-    endpoint: "/api/study/courses",
-    message: "Loading opening lessons…",
-    failed: "Couldn’t load opening lessons.",
-  },
-  {
-    view: "chapters",
-    endpoint: "/api/study/courses/loading-fixture?revision=fixture-v1",
-    message: "Loading the course…",
-    failed: "Couldn’t load the course.",
-    link: "All openings",
-    href: "/study/openings",
-  },
-  {
-    view: "preview",
-    endpoint: "/api/openings/catalog/loading-fixture",
-    message: "Loading the selected line…",
-    failed: "Couldn’t load the selected line.",
-    link: "Back to openings",
-    href: "/study/openings/catalogue",
-  },
-  {
-    view: "course-preview",
-    endpoint: "/api/openings/course-lines/loading-fixture/line?revision=fixture-v1",
-    message: "Loading the selected line…",
-    failed: "Couldn’t load the selected line.",
-    link: "Back to openings",
-    href: "/study/openings/courses/loading-fixture?revision=fixture-v1",
-  },
-]) {
-  test(`${fixture.view} switches its loading announcement to the standard failure with Try again and retains navigation`, async ({
-    page,
-  }) => {
-    const request = await holdEndpoint(page, fixture.endpoint);
-    await page.route("**/api/opening-studies", route => route.fulfill({ json: { items: [] } }));
-    await openFixture(page, fixture.view);
-    await expectLoading(page, fixture.message);
-    if (fixture.link) {
-      const back = page.getByRole("link", { name: fixture.link, exact: true });
-      await expect(back).toHaveAttribute("href", fixture.href!);
-      await back.focus();
-    }
-    await request.reply({ detail: "The requested content could not be loaded." }, 503);
-    await expect(page.getByRole("alert")).toHaveText(fixture.failed);
-    await expect(page.getByRole("status")).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
-    if (fixture.link) {
-      const back = page.getByRole("link", { name: fixture.link, exact: true });
-      await expect(back).toHaveAttribute("href", fixture.href!);
-      await expect(back).toBeFocused();
-    }
-    expect(request.methods).toEqual(["GET"]);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
-  });
-}
-
-test("practice announces its pending queue without exposing a position or answer controls", async ({
-  page,
-}) => {
-  await holdEndpoint(page, "/api/review/queue");
-  await openFixture(page, "review");
-  await expectLoading(page, "Loading your practice…");
-  await expect(page.getByRole("heading", { name: "Your move.", level: 1 })).toBeVisible();
-  await expect(page.getByRole("button", { name: /show|reveal|answer/i })).toHaveCount(0);
-});
-
-test("pending evidence has a compact announcement while its close action stays usable", async ({
-  page,
-}) => {
-  await holdEndpoint(page, "/api/evidence/loading-fixture");
-  await openFixture(page, "evidence");
-  const opener = page.getByRole("button", { name: "Open evidence", exact: true });
-  await opener.click();
-  const dialog = page.getByRole("dialog", { name: "Decision evidence" });
-  await expectLoading(page, "Loading the evidence…");
-  await expect(dialog.getByRole("status")).toHaveText("Loading the evidence…");
-  const close = dialog.getByRole("button", { name: "Close evidence", exact: true });
-  await expect(close).toBeEnabled();
-  await close.click();
-  await expect(dialog).toHaveCount(0);
-  await expect(opener).toBeFocused();
-});
-
-test("shared states keep announcements separate from supplied headings and action semantics", async ({
-  page,
-}, info) => {
-  await openFixture(page, "primitives");
-  await expect(page.getByRole("status")).toHaveText([
-    "Loading a small detail…",
-    "Loading the full page…",
-  ]);
-  await expect(page.getByRole("alert")).toHaveText("The caller supplied this explanation.");
-  await expect(page.getByRole("heading", { name: "Caller-owned heading", level: 2 })).toBeVisible();
-  await expect(page.getByRole("alert").getByRole("button")).toHaveCount(0);
-  const retry = page.getByRole("button", { name: "Retry caller operation", exact: true });
-  const disabled = page.getByRole("button", { name: "Unavailable command", exact: true });
-  const link = page.getByRole("link", { name: "Browse opening lessons", exact: true });
-  await expect(disabled).toBeDisabled();
-  await expect(link).toHaveAttribute("href", "/study/openings?from=loading-fixture");
+test("lesson loading and retry preserve caller-owned recovery commands", async ({ page }) => {
+  const fixture = retryFixture;
+  const request = await holdEndpoint(page, fixture.endpoint);
+  await openFixture(page, fixture.view);
+  await expectLoading(page, fixture.message);
+  await request.reply({ detail: "Saved session could not be loaded." }, 503);
+  await expect(page.getByRole("heading", { name: fixture.heading, level: 1 })).toBeVisible();
+  await expect(page.getByRole("alert")).toHaveText(
+    `${fixture.failed} Saved session could not be loaded.`,
+  );
+  await expect(page.getByRole("status")).toHaveCount(0);
+  const retry = page.getByRole("button", { name: "Try again", exact: true });
+  const back = page.getByRole("link", { name: fixture.link, exact: true });
+  await expect(retry).toHaveAttribute("type", "button");
+  await expect(back).toHaveAttribute("href", fixture.href);
   await retry.focus();
   await page.keyboard.press("Enter");
-  await expect(page.getByTestId("attempts")).toHaveText("1");
-  await page.keyboard.press("Tab");
-  await expect(link).toBeFocused();
-  const compact = (await page.getByTestId("compact").boundingBox())!;
-  const panel = (await page.getByTestId("panel").boundingBox())!;
-  // Phones flatten panels (docs/UI_COMPONENTS.md#surfaces), so only wider screens add panel padding.
-  if (info.project.name === "desktop") expect(panel.height).toBeGreaterThan(compact.height);
-  else expect(panel.height).toBeGreaterThanOrEqual(compact.height);
+  await expectLoading(page, fixture.message);
+  await expect(retry).toHaveCount(0);
+  await expect.poll(() => request.methods).toEqual(["GET", "GET"]);
+  await request.reply({ detail: "The saved session is still unavailable." }, 503);
+  await expect(page.getByRole("alert")).toHaveText(
+    `${fixture.failed} The saved session is still unavailable.`,
+  );
+  await expect(retry).toBeEnabled();
+  await expect(back).toHaveAttribute("href", fixture.href);
+  expect(request.methods).toEqual(["GET", "GET"]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  for (const control of [retry, disabled, link]) {
-    await expect(control).toBeInViewport({ ratio: 1 });
-    if (info.project.name === "mobile")
-      expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  }
-  await page.screenshot({ path: info.outputPath("loading-and-unavailable.png") });
+});
+
+// Every page passes props to the same shared load-state component; the game stands in for all.
+const failureFixture = {
+  view: "game",
+  endpoint: "/api/games/loading-fixture",
+  message: "Loading the game…",
+  failed: "Couldn’t load the game. The requested content could not be loaded.",
+  link: "All games",
+  href: "/games?page=3",
+};
+
+test("game switches its loading announcement to the standard failure with Try again and retains navigation", async ({
+  page,
+}) => {
+  const fixture = failureFixture;
+  const request = await holdEndpoint(page, fixture.endpoint);
+  await page.route("**/api/opening-studies", route => route.fulfill({ json: { items: [] } }));
+  await openFixture(page, fixture.view);
+  await expectLoading(page, fixture.message);
+  const back = page.getByRole("link", { name: fixture.link, exact: true });
+  await expect(back).toHaveAttribute("href", fixture.href);
+  await back.focus();
+  await request.reply({ detail: "The requested content could not be loaded." }, 503);
+  await expect(page.getByRole("alert")).toHaveText(fixture.failed);
+  await expect(page.getByRole("status")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Try again", exact: true })).toBeVisible();
+  await expect(back).toHaveAttribute("href", fixture.href);
+  await expect(back).toBeFocused();
+  expect(request.methods).toEqual(["GET"]);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

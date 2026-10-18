@@ -136,7 +136,6 @@ or explicit new take for an intentional comparison. Generation is sequential
 and paid requests are not automatically retried after a failure. Normal app
 builds, tests and studio playback never run the authoring command.
 
-Verify the CLI offline with `node --test scripts/record_coach_speech.test.mjs`.
 Auditory quality remains an owner listening decision: decoding, tests and
 measurements cannot choose Walter's personality or establish natural delivery.
 

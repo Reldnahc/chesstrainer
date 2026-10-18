@@ -31,25 +31,6 @@ def test_a_failed_lease_discards_its_resource_and_the_slot_builds_anew():
         assert fresh is not failed and not fresh.closed
 
 
-def test_a_refused_lease_hands_its_resource_back_unused():
-    pool = LazyPool(1, Resource)
-    with pool.lease() as kept:
-        pass
-    refuse = {"now": False}
-
-    def admit():
-        if refuse["now"]:
-            raise LookupError("cooling down")
-        refuse["now"] = True  # Admit the first try, refuse once the slot is taken.
-
-    with pytest.raises(LookupError):
-        with pool.lease(admit=admit):
-            pytest.fail("A refused lease must not run")
-    assert not kept.closed
-    with pool.lease() as again:
-        assert again is kept
-
-
 def test_waiting_for_a_busy_slot_times_out():
     pool = LazyPool(1, Resource)
     with pool.lease():

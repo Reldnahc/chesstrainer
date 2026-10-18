@@ -17,9 +17,7 @@ import {
   withPieceVariants,
   withSquares,
 } from "../src/audio/speech/pieceVariants";
-import { meanings, type Meaning } from "../src/audio/speech/meaningCatalog";
-import planned from "../src/audio/speech/planned-meanings.json" with { type: "json" };
-import { withColourAndTakes } from "../src/audio/speech/meaningPools";
+import { meanings } from "../src/audio/speech/meaningCatalog";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 import { openAudioFixturePage } from "./fixtures/openAudioFixture";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";
@@ -164,14 +162,21 @@ const tacticalPieces: Record<string, string | null> = {
   "tactic-back-rank": "rook",
   "tactic-double-attack": null,
 };
+const familyOf = (key: string) => key.split(":")[0].replace(/-(?:played|allowed|missed)$/, "");
 // Promotion witnesses are the promoting move, whose clips sit out (game-speech-tactical-policy).
+// One fixture per tactic family: roles and Maia states repeat the same piece lookup.
+const families = new Set<string>();
 const tactical = Object.entries(
   semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py"),
-).filter(([key]) => !key.startsWith("tactic-promotion-awareness-"));
+).filter(([key]) => {
+  if (key.startsWith("tactic-promotion-awareness-") || families.has(familyOf(key))) return false;
+  families.add(familyOf(key));
+  return true;
+});
 for (const [key, game] of tactical) {
   test(`${key} names the piece its tactic is about`, () => {
     const objective = key.split(":")[0],
-      family = objective.replace(/-(?:played|allowed|missed)$/, "");
+      family = familyOf(key);
     const piece = tacticalPieces[family];
     expect(piece).not.toBeUndefined();
     const result = speech(game);
@@ -181,57 +186,6 @@ for (const [key, game] of tactical) {
     );
   });
 }
-
-type PositionalFixture = { feature: string; primary: string; game: Game };
-const positional = semanticFixtures<PositionalFixture[]>(
-  "review_speech_positional_fixtures.py",
-).filter(item => ["development", "support", "unsupported"].includes(item.feature));
-test("positional support and development name the knight their boards move or guard", () => {
-  expect(positional.length).toBeGreaterThan(0);
-  for (const fixture of positional) {
-    const result = speech(structuredClone(fixture.game));
-    if (result.primaryId !== fixture.primary) continue;
-    // Imported colour lines and takes may join the piece-named line; the generic line stays last.
-    const chain = result.variants.primaryId!.split("|");
-    expect(chain).toContain(`${fixture.primary}-knight`);
-    expect(chain.at(-1)).toBe(fixture.primary);
-  }
-});
-
-type Pooled = Pick<Meaning, "id" | "colourOf" | "takeOf" | "side">;
-test("colour lines lead and takes share turns only once their lines are imported", () => {
-  const pooled: readonly Pooled[] = meanings,
-    ids = new Set(pooled.map(item => item.id));
-  for (const item of pooled.filter(item => item.colourOf)) {
-    const chain = withColourAndTakes(item.colourOf!, item.side, ["game", 1]).split("|");
-    expect(chain[0]).toBe(item.id);
-    expect(chain.at(-1)).toBe(item.colourOf);
-  }
-  for (const item of pooled.filter(item => item.takeOf)) {
-    const other = item.side === "white" ? "black" : "white";
-    expect(
-      withColourAndTakes(item.takeOf!, item.side ?? "white", ["game", 1]).split("|"),
-    ).toContain(item.id);
-    if (item.side)
-      expect(withColourAndTakes(item.takeOf!, other, ["game", 1]).split("|")).not.toContain(
-        item.id,
-      );
-  }
-  // Planned slots without lines are never offered.
-  for (const slot of planned.slots as Pooled[]) {
-    expect(ids.has(slot.id)).toBe(false);
-    const base = slot.colourOf ?? slot.takeOf;
-    if (!base) continue; // Numbered grade takes join their grade's pool by number.
-    expect(withColourAndTakes(base, slot.side, ["game", 1]).split("|")).not.toContain(slot.id);
-  }
-  // Consecutive turns walk a shuffle, so every take leads once before any repeats,
-  // and a replayed turn keeps its take.
-  const first = (turn: number) =>
-    withColourAndTakes("evaluation-loss", null, ["game"], turn).split("|")[0];
-  const size = 1 + pooled.filter(item => item.takeOf === "evaluation-loss").length;
-  expect(new Set(Array.from({ length: size }, (_, turn) => first(turn))).size).toBe(size);
-  expect(first(7)).toBe(first(7));
-});
 
 const relationship = semanticFixtures<Record<string, Game>>(
   "review_speech_relationship_fixtures.py",

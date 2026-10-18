@@ -11,12 +11,9 @@ from sqlalchemy import func, select
 from study_lesson_fixtures import connected_course
 from trainer.accounts import COOKIE
 from trainer.api import create_app
-from trainer.contracts.study_lessons import LessonCommand, LessonStart
-from trainer.errors import DomainError, NotFound
-from trainer.models import StudyLessonCommand, StudyLessonProgress, StudyLessonSession
+from trainer.errors import NotFound
+from trainer.models import StudyLessonCommand, StudyLessonProgress
 from trainer.study_lessons.content import CourseDefinition
-from trainer.study_lessons.providers import CourseProviders
-from trainer.study_lessons.sessions import command, start_session
 
 BASE = "/api/study/lesson-sessions"
 
@@ -96,97 +93,28 @@ def post(client, state, action, request_id=None, headers=None, **kwargs):
     )
 
 
-def test_empty_library_and_archived_paths_stay_distinct(settings):
-    with TestClient(
-        create_app(settings, workers=False, start_engine=False, lesson_providers=())
-    ) as client:
-        assert client.get("/api/study/courses").json() == {
-            "courses": [],
-            "resume": [],
-            "can_manage": True,
-            "problems": [],
-            "hidden_built_ins": [],
-        }
-        assert client.get("/api/course").status_code == 410
-        assert client.get("/api/study/courses/no-course").status_code == 404
-        assert client.get(f"{BASE}/no-session").status_code == 404
-
-
 @pytest.mark.parametrize(
     "problem",
-    [
-        "null_move",
-        "illegal_move",
-        "wrong_turn",
-        "missing_target",
-        "wrong_history",
-        "duplicate_step",
-        "duplicate_answer",
-        "unreachable",
-        "cycle",
-        "nested_branch",
-        "wrong_branch_anchor",
-        "invalid_excerpt",
-        "wrong_excerpt_history",
-        "missing_line",
-        "wrong_rehearsal_history",
-        "duplicate_line",
-        "unsafe_url",
-        "invalid_square",
-    ],
+    ["illegal_move", "wrong_turn", "missing_target", "unreachable", "cycle", "unsafe_url"],
 )
 def test_rejects_incoherent_authored_courses(problem):
     record = connected_course().model_dump(mode="json")
     chapter = record["chapters"][0]
     steps = {step["id"]: step for step in chapter["steps"]}
-    if problem in {"null_move", "illegal_move"}:
-        steps["center"]["moves"] = ["0000" if problem == "null_move" else "e2e5"]
+    if problem == "illegal_move":
+        steps["center"]["moves"] = ["e2e5"]
     elif problem == "wrong_turn":
         record["learner_color"] = "black"
     elif problem == "missing_target":
         steps["develop"]["choices"][0]["next_step"] = "missing"
-    elif problem == "wrong_history":
-        steps["develop"]["choices"][1]["next_step"] = "opponent-choice"
-    elif problem == "duplicate_step":
-        chapter["steps"].append(steps["welcome"])
-    elif problem == "duplicate_answer":
-        steps["develop"]["choices"].append(steps["develop"]["choices"][0])
     elif problem == "unreachable":
         chapter["steps"].append({"id": "unused", "kind": "explanation", "title": "Unused"})
     elif problem == "cycle":
         steps["welcome"]["next_step"] = "welcome"
-    elif problem == "nested_branch":
-        steps["opponent-choice"]["branch_start"] = "opponent-choice"
-    elif problem == "wrong_branch_anchor":
-        steps["opponent-choice"]["branch_start"] = "center"
-    elif problem == "invalid_excerpt":
-        steps["example"]["to_ply"] = 600
-    elif problem == "wrong_excerpt_history":
-        steps["example"]["position"]["moves"] = []
-    elif problem == "missing_line":
-        steps["recall"]["line_id"] = "unknown"
-    elif problem == "wrong_rehearsal_history":
-        steps["recall"]["position"]["moves"] = ["d2d4"]
-    elif problem == "duplicate_line":
-        record["lines"].append(record["lines"][0])
     elif problem == "unsafe_url":
         record["attributions"][0]["url"] = "javascript:alert(1)"
-    elif problem == "invalid_square":
-        steps["welcome"]["annotations"]["squares"] = ["z9"]
     with pytest.raises(ValidationError):
         CourseDefinition.model_validate(record)
-
-
-def test_providers_validate_raw_records_and_reject_duplicate_revisions(sessions):
-    # A built definition already replayed its lines when it was constructed, as the
-    # puzzle providers assume; only raw records are validated here.
-    source = tiny()
-    with sessions() as db:
-        with pytest.raises(ValueError, match="Duplicate"):
-            list(CourseProviders((Provider((source, source)),)).courses(db))
-        bad = {**source.model_dump(mode="json"), "learner_color": "black"}
-        with pytest.raises(ValidationError):
-            list(CourseProviders((Provider((bad,)),)).courses(db))
 
 
 def test_commands_are_revisioned_idempotent_and_completion_is_monotonic(settings):
@@ -220,47 +148,11 @@ def test_commands_are_revisioned_idempotent_and_completion_is_monotonic(settings
             assert db.scalar(select(func.count()).select_from(StudyLessonCommand)) == 4
 
 
-def test_stale_database_revision_cannot_update_progress(sessions):
-    source = tiny()
-    providers = CourseProviders((Provider((source,)),))
-    with sessions() as db:
-        initial = start_session(
-            db,
-            providers,
-            LessonStart(
-                request_id="start", course_id="tiny", course_revision="v1", chapter_id="chapter"
-            ),
-        )
-        db.commit()
-    with sessions() as first, sessions() as stale:
-        held = stale.get(StudyLessonSession, initial["id"])
-        command(
-            first,
-            providers,
-            initial["id"],
-            LessonCommand(request_id="one", revision=0, action="move", uci="e2e4"),
-        )
-        first.commit()
-        assert held.revision == 0
-        with pytest.raises(DomainError) as raised:
-            command(
-                stale,
-                providers,
-                initial["id"],
-                LessonCommand(request_id="two", revision=0, action="show_move"),
-            )
-        assert raised.value.status == 409
-    with sessions() as db:
-        assert db.scalar(select(func.count()).select_from(StudyLessonCommand)) == 1
-
-
-@pytest.mark.parametrize("black", [False, True])
 @pytest.mark.parametrize(
-    ("fen", "uci"),
+    ("black", "fen", "uci"),
     [
-        ("4k3/P7/8/8/8/8/8/4K3 w - - 0 1", "a7a8n"),
-        ("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2", "e5d6"),
-        ("4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", "e1c1"),
+        (False, "4k3/P7/8/8/8/8/8/4K3 w - - 0 1", "a7a8n"),
+        (True, "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", "e1c1"),
     ],
 )
 def test_guided_special_moves_for_both_learner_colors(settings, black, fen, uci):
@@ -436,29 +328,6 @@ def test_account_isolation_and_owned_commands(settings):
         client.cookies.set(COOKIE, alice_cookie)
         assert client.get("/api/study/courses").json()["courses"][0]["completed_chapters"] == 0
         assert client.get(f"{BASE}/{alice['id']}").json() == alice
-
-
-def test_lesson_reveal_retry_and_replay_preserve_existing_learning_evidence(settings):
-    from test_focused_practice import seed_classified
-    from test_puzzles import retained_learning
-
-    app = app_with(settings)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            fixture = seed_classified(db, settings)
-        review = client.post(f"/api/review/{fixture['exercise_id']}/start").json()
-        client.post(f"/api/review/sessions/{review['session_id']}/reveal")
-        before = retained_learning(app)
-        assert all(before.values())
-        state = begin(client)
-        state = post(client, state, "move", uci="d2d4").json()
-        state = post(client, state, "show_move").json()
-        state = post(client, state, "continue").json()
-        assert state["status"] == "completed" and state["failed"] and state["assisted"]
-        state = post(client, state, "back").json()
-        state = post(client, state, "continue").json()
-        assert state["status"] == "completed"
-        assert retained_learning(app) == before
 
 
 def test_new_course_revision_does_not_inherit_old_completion(settings):

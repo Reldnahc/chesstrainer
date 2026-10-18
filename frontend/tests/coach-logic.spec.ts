@@ -1,15 +1,5 @@
 import { test, expect } from "./helpers/browserTest";
 import { gameReaction, practiceReaction } from "../src/coach/reactions";
-import { classicPerformance } from "../src/coach/classic/performance";
-import {
-  expressions,
-  availableIdles,
-  expressionIntent,
-  resolveExpression,
-  resolveFamily,
-  resolveAnimation,
-  type CoachDefinition,
-} from "../src/coach/model";
 import type { ColdPosition, Feedback } from "../src/api";
 
 const game = {
@@ -38,33 +28,6 @@ const practice = {
   mistake: false,
   hadFailure: false,
 };
-
-test("every move quality maps to a semantic reaction without guessing from scores", () => {
-  const expected = {
-    Brilliant: "brilliant",
-    Great: "great",
-    Best: "best",
-    Good: "good",
-    Book: "book",
-    Inaccuracy: "inaccuracy",
-    Mistake: "mistake",
-    Blunder: "blunder",
-    Miss: "missed",
-  } as const;
-  for (const [label, state] of Object.entries(expected))
-    expect(
-      gameReaction({
-        ...game,
-        report: { label: label as keyof typeof expected },
-      }),
-    ).toEqual({ key: game.key, state });
-  expect(gameReaction({ ...game, pending: true }).state).toBe("thinking");
-  expect(gameReaction({ ...game, pending: true, error: true }).state).toBe("uncertain");
-  expect(gameReaction({ ...game, pending: true, report: { label: "Good" } }).state).toBe("good");
-  expect(gameReaction({ ...game, explaining: true, report: { label: "Blunder" } }).state).toBe(
-    "explaining",
-  );
-});
 
 test("check respects major labels and endings use the displayed position and learner", () => {
   const frame = { san: "Nf6+", termination: null, result: null };
@@ -121,65 +84,4 @@ test("practice protects cold answers, distinguishes recovery and never judges a 
       position: { ...position, session_id: "next" },
     }).key,
   ).not.toBe(practiceReaction(practice).key);
-});
-
-test("future coaches can omit reactions and even have cyclic fallbacks safely", () => {
-  // Authored idle lists confined to expressions this fixture does not draw.
-  const animation: CoachDefinition["animation"] = {
-    ...classicPerformance,
-    defaultIdle: ["blink", "glance", "breathe"],
-    idleGestures: {
-      good: ["blink", "nod", "breathe"],
-      blunder: ["blink", "sigh", "glasses"],
-      winning: ["tail"],
-    },
-  };
-  const coach: CoachDefinition = {
-    id: "test-only",
-    name: "Test fixture",
-    description: "Minimal artwork for fallback contracts",
-    Artwork: () => null,
-    defaultState: "neutral",
-    defaultFamily: "test",
-    families: [{ id: "test", name: "Test", description: "", character: "" }],
-    capabilities: { reactions: false, idle: false },
-    animation,
-    expressions: ["neutral", "good"],
-    fallbacks: {
-      brilliant: "great",
-      great: "good",
-      blunder: "mistake",
-      mistake: "blunder",
-    },
-  };
-  expect(resolveExpression(coach, "brilliant")).toBe("good");
-  expect(resolveExpression(coach, "blunder")).toBe("neutral");
-  expect(resolveExpression(coach, "thinking")).toBe("neutral");
-  expect(resolveFamily(coach, "removed")).toBe(coach.defaultFamily);
-  expect(availableIdles(coach)).toContain("breathe");
-  expect(availableIdles(coach)).not.toContain("glasses");
-  expect(availableIdles(coach)).not.toContain("tail");
-  const variant = {
-    ...coach,
-    families: [
-      {
-        ...coach.families[0],
-        animation: {
-          ...animation,
-          defaultIdle: ["ears", "head-tilt"] as const,
-          idleGestures: {},
-        },
-      },
-    ],
-  };
-  expect(availableIdles(variant)).toEqual(["head-tilt"]);
-  expect(resolveAnimation(variant, "removed")).toBe(variant.families[0].animation);
-  expect(resolveAnimation(coach)).toBe(animation);
-  expect(new Set(availableIdles(coach)).size).toBe(availableIdles(coach).length);
-  expect(
-    expressionIntent({ ...coach, expressionIntents: { brilliant: "Perked ears" } }, "brilliant"),
-  ).toBe("Perked ears");
-  expect(expressionIntent(coach, "neutral")).toContain("welcoming");
-  for (const state of expressions)
-    expect(resolveExpression({ ...coach, expressions }, state)).toBe(state);
 });

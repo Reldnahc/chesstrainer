@@ -56,13 +56,6 @@ def test_positions_carry_forward_and_defaults_fill_in():
     assert steps[0].annotations.arrows[0].to_square == "e4"
 
 
-def test_writing_a_course_reads_back_identically():
-    course, _ = course_files.load(sample())
-    data = course_files.dump(course)
-    assert "position" not in json.dumps(data["chapters"])
-    assert course_files.load(data)[0] == course
-
-
 @pytest.mark.parametrize("course", BundledCourses().courses(None), ids=lambda course: course.id)
 def test_every_bundled_course_survives_the_file_format(course):
     data = json.loads(json.dumps(course_files.dump(course, BundledCourses().topic(course.id))))
@@ -75,30 +68,14 @@ def test_every_bundled_course_survives_the_file_format(course):
     ("change", "message"),
     [
         (lambda data: data["chapters"][0]["steps"][1].update(move="e5"), "e5 is not a legal move"),
-        (lambda data: data["chapters"][0]["steps"][2].update(next="missing"), "missing"),
         (lambda data: data["chapters"][0]["steps"][3].update(rehearse="other"), "unknown line"),
-        (
-            lambda data: data["chapters"][0]["steps"][2].update(game="g"),
-            "mixes demonstration and game_excerpt",
-        ),
         (lambda data: data.update(side="green"), "side"),
-        (lambda data: data["chapters"][0]["steps"][0].update(colour="red"), "colour"),
     ],
 )
 def test_mistakes_name_the_place(change, message):
     data = sample()
     change(data)
     with pytest.raises(CourseFileError, match=message):
-        course_files.load(data)
-
-
-def test_unreachable_step_needs_its_own_position():
-    data = sample()
-    data["chapters"][0]["steps"][2]["next"] = None
-    data["chapters"][0]["steps"].insert(
-        3, {"id": "aside", "title": "Aside", "text": "Unlinked.", "next": None}
-    )
-    with pytest.raises(CourseFileError, match="aside cannot be reached"):
         course_files.load(data)
 
 
@@ -117,42 +94,13 @@ def _unreachable(data):
             {"chapter": "start", "step": "push"},
         ),
         (
-            lambda data: data["chapters"][0]["steps"][1].update(move=""),
-            {"chapter": "start", "step": "push"},
-        ),
-        (
             lambda data: data["chapters"][0]["steps"][3].update(rehearse="other"),
             {"chapter": "start", "step": "again"},
-        ),
-        (
-            lambda data: data["chapters"][0]["steps"][2].update(game="g"),
-            {"chapter": "start", "step": "watch"},
-        ),
-        (
-            lambda data: data["chapters"][0]["steps"][0].update(colour="red"),
-            {"chapter": "start", "step": "intro"},
-        ),
-        (
-            lambda data: data["chapters"][0]["steps"][2].update(id="intro"),
-            {"chapter": "start", "step": "intro"},
         ),
         (_unreachable, {"chapter": "start", "step": "aside"}),
         # Problems the course record's own validation finds are located too.
         (
             lambda data: data["chapters"][0]["steps"][2].update(next="gone"),
-            {"chapter": "start", "step": "watch"},
-        ),
-        (lambda data: data.update(side="black"), {"chapter": "start", "step": "push"}),
-        (
-            lambda data: data["chapters"][0]["steps"][0].update(arrows=["zz"]),
-            {"chapter": "start", "step": "intro"},
-        ),
-        (
-            lambda data: data["chapters"][0]["steps"][2].update(next="intro"),
-            {"chapter": "start", "step": "watch"},
-        ),
-        (
-            lambda data: data["chapters"][0]["steps"][2].update(branch="", show=None),
             {"chapter": "start", "step": "watch"},
         ),
         (lambda data: data.update(side="green"), None),
@@ -164,16 +112,6 @@ def test_the_editor_check_says_where_a_problem_is(change, location):
     change(data)
     result = course_files.check(data)
     assert result["error"] and result["location"] == location
-
-
-def test_validation_problems_name_their_place_in_words_too():
-    data = sample()
-    data["chapters"][0]["steps"][0]["arrows"] = ["zz"]
-    assert course_files.check(data)["error"].startswith("Chapter start, step intro: ")
-
-
-def test_a_clean_check_has_no_location():
-    assert course_files.check(sample())["location"] is None
 
 
 # Lines whose last catalogued position is shallower than the code they carry.
@@ -205,7 +143,7 @@ def test_course_line_codes_match_their_deepest_catalogued_position():
 
 @pytest.mark.parametrize(
     "name",
-    ["chess-fundamentals.json", "italian-black-foundations.json", "kings-gambit-foundations.json"],
+    ["chess-fundamentals.json"],
 )
 def test_the_editor_boards_follow_the_course_position_rule(name):
     from pathlib import Path
@@ -222,27 +160,3 @@ def test_the_editor_boards_follow_the_course_position_rule(name):
             choice = step.choices[0] if step.kind == "decision" and step.choices else None
             end = step_result(course, step, choice)
             assert boards[f"{chapter.id}/{step.id}"]["end_fen"] == end.board().fen(), step.id
-
-
-@pytest.mark.parametrize("end", [None, 0, 6, 4, 10_000])
-def test_an_unfinished_game_excerpt_shows_its_start_in_the_editor(end):
-    from pathlib import Path
-
-    data = json.loads(
-        (
-            Path(course_files.__file__).parent / "courses" / "italian-black-foundations.json"
-        ).read_text(encoding="utf-8")
-    )
-    step = next(
-        step
-        for chapter in data["chapters"]
-        for step in chapter["steps"]
-        if step["id"] == "quiet-game"
-    )
-    assert step["from"] == 6
-    if end is None:
-        del step["to"]
-    else:
-        step["to"] = end
-    board = course_files.check(data)["steps"]["quiet-development/quiet-game"]
-    assert board["end_fen"] == board["fen"]

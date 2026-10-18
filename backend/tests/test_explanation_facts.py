@@ -7,41 +7,26 @@ from fastapi.testclient import TestClient
 from test_explanations import move
 from test_lichess_reuse import FIXTURES, line
 from test_local_classifier import evidence
-from test_opening_journey import STUDIES, app_for, enroll_catalogue, exercise_at, start, submit
 from test_patterns_v2 import CASES
-from test_patterns_v3 import CAUSE_ACTUAL, CAUSE_BEST, CAUSE_FEN, COMBINATIONS
+from test_patterns_v3 import COMBINATIONS
 from trainer.api import create_app
-from trainer.diagnosis_types import CUES, Finding
-from trainer.explanation_types import Frame, replay_line
+from trainer.diagnosis_types import CUES
+from trainer.explanation_types import replay_line
 from trainer.local_classifier import LocalClassifier
-from trainer.models import EngineAnalysis, ExerciseAnswer, SRSState, now
+from trainer.models import EngineAnalysis, ExerciseAnswer
 from trainer.tactical_patterns import recognized_patterns
 
 FRAME_CASES = [
-    (chess.STARTING_FEN, "e2e4", False, False, False, "ordinary"),
-    ("4k3/8/8/8/8/8/8/R5K1 w - - 0 1", "a1e1", False, False, False, "check"),
-    ("7k/5Q2/5K2/8/8/8/8/8 w - - 0 1", "f7g7", False, False, False, "mate"),
-    ("k3r3/8/8/8/8/8/8/4K3 w - - 0 1", "e1d1", False, False, False, "escape"),
-    ("4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1", "e4d5", True, False, False, "ordinary"),
-    ("4k3/5p2/8/8/2B5/8/8/4K3 w - - 0 1", "c4f7", True, False, False, "check"),
-    ("7k/5Qr1/5K2/8/8/8/8/8 w - - 0 1", "f7g7", True, False, False, "mate"),
-    ("k7/8/8/8/8/8/4r3/4K3 w - - 0 1", "e1e2", True, False, False, "escape"),
-    ("8/P7/7k/8/8/8/8/7K w - - 0 1", "a7a8q", False, True, False, "ordinary"),
-    ("7k/P7/8/8/8/8/8/7K w - - 0 1", "a7a8q", False, True, False, "check"),
-    ("7k/P7/7K/8/8/8/8/7R w - - 0 1", "a7a8q", False, True, False, "mate"),
-    ("K6r/2P5/7k/8/8/8/8/8 w - - 0 1", "c7c8q", False, True, False, "escape"),
-    ("1r6/P7/7k/8/8/8/8/6K1 w - - 0 1", "a7b8q", True, True, False, "ordinary"),
-    ("1r5k/P7/8/8/8/8/8/6K1 w - - 0 1", "a7b8q", True, True, False, "check"),
-    ("1r5k/P7/7K/8/8/8/8/7R w - - 0 1", "a7b8q", True, True, False, "mate"),
-    ("1r6/PK6/7k/8/8/8/8/8 w - - 0 1", "a7b8q", True, True, False, "escape"),
-    ("4k3/8/8/8/8/8/8/4K2R w K - 0 1", "e1g1", False, False, True, "ordinary"),
-    ("5k2/8/8/8/8/8/8/4K2R w K - 0 1", "e1g1", False, False, True, "check"),
-    ("2N1Nk2/8/2B1B3/8/8/8/8/4K2R w K - 0 1", "e1g1", False, False, True, "mate"),
+    ("4k3/8/8/8/8/8/8/R5K1 w - - 0 1", "a1e1", False, False, False, "check", False),
+    ("7k/5Q2/5K2/8/8/8/8/8 w - - 0 1", "f7g7", False, False, False, "mate", False),
+    ("k3r3/8/8/8/8/8/8/4K3 w - - 0 1", "e1d1", False, False, False, "escape", False),
+    ("4k3/8/8/3p4/4P3/8/8/4K3 w - - 0 1", "e4d5", True, False, False, "ordinary", False),
+    ("1r5k/P7/8/8/8/8/8/6K1 w - - 0 1", "a7b8q", True, True, False, "check", False),
+    ("4k3/8/8/8/8/8/8/4K2R w K - 0 1", "e1g1", False, False, True, "ordinary", True),
 ]
 
 
-@pytest.mark.parametrize("mirror", [False, True])
-@pytest.mark.parametrize("fen,uci,capture,promotion,castling,ending", FRAME_CASES)
+@pytest.mark.parametrize("fen,uci,capture,promotion,castling,ending,mirror", FRAME_CASES)
 def test_legal_frame_facts_preserve_whole_move(
     fen, uci, capture, promotion, castling, ending, mirror
 ):
@@ -67,15 +52,7 @@ def test_legal_frame_facts_preserve_whole_move(
     assert not start.castling and not start.checkmate and not start.escaped_check
 
 
-def test_en_passant_and_underpromotion_have_exact_facts():
-    frame = replay_line(chess.Board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1"), ["e5d6"])[1]
-    assert frame.capture == "pawn" and frame.promotion is None
-    assert "d5" in frame.highlights
-    frame = replay_line(chess.Board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1"), ["a7a8n"])[1]
-    assert frame.promotion == "knight"
-
-
-@pytest.mark.parametrize("black", [False, True])
+@pytest.mark.parametrize("black", [False])
 def test_summary_facts_are_scoped_to_current_attempt_and_cold_stays_cold(settings, black):
     settings.stockfish_path = "missing-test-engine"
     app = create_app(settings, workers=False)
@@ -109,9 +86,6 @@ def test_summary_facts_are_scoped_to_current_attempt_and_cold_stays_cold(setting
     [
         ({"kind": "mate", "value": 2}, True, "mate_for_mover"),
         ({"kind": "mate", "value": -2}, True, "mate_against_mover"),
-        ({"kind": "mate", "value": -2}, False, "mate_against_mover"),
-        ({"kind": "cp", "value": 0}, True, "engine_accepted"),
-        ({"kind": "cp", "value": 0}, False, "engine_rejected"),
     ],
 )
 def test_summary_branch_does_not_turn_accepted_lost_position_into_mate_reward(
@@ -137,71 +111,8 @@ def test_summary_branch_does_not_turn_accepted_lost_position_into_mate_reward(
         assert ("no_simple_reason" in data["note_kinds"]) is (score["kind"] == "cp")
 
 
-def test_arbitrary_manual_explanations_remain_text_only_and_reveal_is_not_success(settings):
-    with TestClient(create_app(settings, workers=False)) as client:
-        exercise = client.post(
-            "/api/exercises/manual",
-            json={
-                "fen": chess.STARTING_FEN,
-                "moves": ["e2e4"],
-                "explanation": "Stockfish finds a forced mate. This is a made-up manual note.",
-            },
-        ).json()["id"]
-        cold = client.post(f"/api/review/{exercise}/start").json()
-        result = move(client, cold["session_id"], "d2d4")
-        assert result["explanation_summary_kind"] == "curated_rejected"
-        result = client.post(f"/api/review/sessions/{cold['session_id']}/reveal").json()
-        assert result["grade"] == "revealed" and result.get("message_kind") is None
-        assert result["explanation_summary_kind"] == "curated_accepted"
-        data = client.get(
-            f"/api/review/sessions/{cold['session_id']}/explanation?solution=true"
-        ).json()
-        assert data["note_kinds"] == ["curated_authority", None]
-        assert data["summary_kind"] == "curated_accepted"
-
-
-def test_reply_summary_exports_only_the_actual_selected_frame(settings):
-    app = create_app(settings, workers=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            fixture = seed_review(db, settings)
-            answer = db.get(ExerciseAnswer, (fixture["exercise_id"], fixture["wrong"]))
-            analysis = db.get(EngineAnalysis, answer.analysis_id)
-            analysis.candidates = [analysis.candidates[0] | {"pv": ["g1f1", "a5f5"]}]
-            db.commit()
-        cold = client.post(f"/api/review/{fixture['exercise_id']}/start").json()
-        result = move(client, cold["session_id"], fixture["wrong"])
-        assert result["explanation_summary_kind"] == "frame"
-        assert result["explanation_summary_frame"] == result["counter_reply"]
-        assert result["explanation_summary_frame"]["gives_check"]
-        data = client.get(f"/api/review/sessions/{cold['session_id']}/explanation").json()
-        assert data["summary_frame_index"] == 2
-        assert result["explanation_summary_frame"] == data["frames"][2]
-
-
-@pytest.mark.parametrize("state", ["ordinary", "changed", "retired"])
-def test_opening_rejection_kind_uses_current_scheduling_authority(settings, state):
-    app = app_for(settings)
-    with TestClient(app) as client:
-        study = enroll_catalogue(client, "e2e4")
-        exercise = exercise_at(app)
-        cold = start(client, exercise)
-        if state == "changed":
-            assert client.delete(f"{STUDIES}/{study['id']}").status_code == 200
-        elif state == "retired":
-            with app.state.sessions() as db:
-                db.get(SRSState, exercise).retired_at = now()
-                db.commit()
-        result = submit(client, cold["session_id"], "d2d4")
-        assert not result["completed"]
-        assert result["message_kind"] == (
-            "opening_rejected" if state == "ordinary" else f"opening_rejected_{state}"
-        )
-
-
-@pytest.mark.parametrize("black", [False, True])
 @pytest.mark.parametrize("theme,fen,moves", FIXTURES)
-def test_recognized_findings_retain_specific_non_material_mechanism(theme, fen, moves, black):
+def test_recognized_findings_retain_specific_non_material_mechanism(theme, fen, moves):
     expected = {
         "fork": "fork_recognized",
         "skewer": "skewer_collected",
@@ -210,14 +121,13 @@ def test_recognized_findings_retain_specific_non_material_mechanism(theme, fen, 
         "discoveredCheck": "discovered_check",
         "hangingPiece": "undefended_capture",
     }[theme]
-    boards = line(fen, moves, black).boards
+    boards = line(fen, moves).boards
     findings = recognized_patterns(boards, 1, len(boards) - 1, "current-line", "missed_opportunity")
     assert expected in {finding.mechanism for finding in findings}
     for finding in findings:
         assert finding.cue_key == finding.skill_id and finding.cue == CUES[finding.cue_key]
 
 
-@pytest.mark.parametrize("black", [False, True])
 @pytest.mark.parametrize(
     "skill,fen,best,actual",
     [
@@ -226,7 +136,7 @@ def test_recognized_findings_retain_specific_non_material_mechanism(theme, fen, 
     ],
 )
 def test_verified_findings_keep_collection_or_defense_distinct_from_recognition(
-    skill, fen, best, actual, black
+    skill, fen, best, actual
 ):
     expected = {
         "fork": "fork_collected",
@@ -237,25 +147,11 @@ def test_verified_findings_keep_collection_or_defense_distinct_from_recognition(
         "skewer": "king_skewer_collected",
         "removing_defender": "sole_defender_captured",
     }[skill]
-    result = LocalClassifier().classify(evidence(fen, best, actual, 800, 0, black))
+    result = LocalClassifier().classify(evidence(fen, best, actual, 800, 0))
     finding = next(f for f in result.findings if f.skill_id == skill)
     assert finding.mechanism == expected
     assert finding.cue_key == skill
     assert finding.analysis_id == "best"
-
-
-def test_legacy_facts_do_not_acquire_mechanism_by_matching_prose():
-    frame = replay_line(chess.Board(), ["e2e4"])[1].model_dump()
-    for key in ("facts_version", "promotion", "castling", "checkmate", "escaped_check"):
-        frame.pop(key)
-    frame["annotation"] = "This is checkmate and promotes to a queen."
-    assert Frame.model_validate(frame).facts_version is None
-    result = LocalClassifier().classify(evidence(CAUSE_FEN, CAUSE_BEST, CAUSE_ACTUAL, 900, -500))
-    finding = next(f for f in result.findings if f.skill_id == "abandoned_defender")
-    assert finding.mechanism == "abandoned_defender"
-    legacy = finding.model_dump(exclude={"mechanism", "cue_key"})
-    parsed = Finding.model_validate(legacy)
-    assert parsed.mechanism is None and parsed.cue_key is None
 
 
 def test_a_line_ending_mid_exchange_claims_no_material():

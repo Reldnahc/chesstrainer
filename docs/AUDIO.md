@@ -458,7 +458,7 @@ out of scope.
 
 ### Automatic lip-sync comparison (development only)
 
-`audio-tests/lip-sync.spec.ts` keeps the retained **Sound sacrifice** and
+The repository keeps the retained **Sound sacrifice** and
 **Allowed checkmate** comparison tracks (`speech/alignment/`): the first Rhubarb
 generator and the revised script-aligned generator for the same recordings.
 

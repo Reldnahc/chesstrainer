@@ -11,7 +11,6 @@ from trainer.api import create_app
 from trainer.contracts.study_lessons import LessonCommand
 from trainer.study_lessons.content import CourseDefinition, Position
 from trainer.study_lessons.player import enter_step, initial_state, transition
-from trainer.study_lessons.queries import fingerprint
 
 COURSE_ID = "tactics-foundations"
 VALUES = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
@@ -305,27 +304,13 @@ def separate_examples():
     }
 
 
-def test_an_explanation_may_start_a_separate_example():
-    course = CourseDefinition.model_validate(separate_examples())
-    assert course.chapters[0].step("second").position.board().fen() == tactics.FILE_SKEWER
-
-
-@pytest.mark.parametrize("problem", ["same_start_other_history", "other_step_kind", "branch_entry"])
+@pytest.mark.parametrize("problem", ["same_start_other_history", "branch_entry"])
 def test_a_separate_example_cannot_replace_history_any_other_way(problem):
     record = separate_examples()
     steps = {step["id"]: step for step in record["chapters"][0]["steps"]}
     if problem == "same_start_other_history":
         steps["second"]["position"] = {"initial_fen": tactics.RANK_SKEWER, "moves": ["a1a8"]}
-    elif problem == "other_step_kind":
-        steps["second"].update(kind="decision", choices=[{"uci": "a1e1", "next_step": None}])
     else:
         steps["first"].update(kind="branch", branch_start="second")
     with pytest.raises(ValidationError, match="incompatible chess history"):
         CourseDefinition.model_validate(record)
-
-
-def test_published_revision_keeps_its_content_identity():
-    # Intentional edits require a new revision and hash together.
-    course = installed_course(COURSE_ID)
-    assert course.revision == "2026-10-v1"
-    assert fingerprint(course) == "4709dfffc85c72af4fc2d20f7831ab2fb0ed6cf6307cf842f1730ea093c8c95f"

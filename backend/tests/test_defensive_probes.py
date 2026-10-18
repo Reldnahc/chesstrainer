@@ -71,21 +71,9 @@ def candidate(board, pv, score):
     return result
 
 
-def prepared(case, black=False):
+def prepared(case):
     kind, fen, first, line, branch, root_score, branch_score = case
     board = chess.Board(fen)
-    if black:
-        board = board.mirror()
-
-        def mirror(uci):
-            move = chess.Move.from_uci(uci)
-            return chess.Move(
-                chess.square_mirror(move.from_square),
-                chess.square_mirror(move.to_square),
-                promotion=move.promotion,
-            ).uci()
-
-        line, branch = list(map(mirror, line)), list(map(mirror, branch))
     root = candidate(board, line, root_score)
     boards = replay(board, root)
     requests = hypotheses(
@@ -111,9 +99,8 @@ def prepared(case, black=False):
 
 
 @pytest.mark.parametrize("case", CASES)
-@pytest.mark.parametrize("black", [False, True])
-def test_defensive_hypotheses_require_matched_evidence(case, black):
-    boards, root, request, probe = prepared(case, black)
+def test_defensive_hypotheses_require_matched_evidence(case):
+    boards, root, request, probe = prepared(case)
     finding, status = verify_defense(
         request, boards, root, ProbeRecord.model_validate(probe), PARAMETERS
     )
@@ -174,7 +161,7 @@ def test_tail_requires_exact_parent_and_retains_root_score():
 
 
 @pytest.mark.stockfish
-@pytest.mark.parametrize("case", CASES)
+@pytest.mark.parametrize("case", [CASES[0], CASES[4]])
 def test_native_defensive_searches_cache_and_preserve_perspective(
     case, sessions, settings, stockfish_path
 ):

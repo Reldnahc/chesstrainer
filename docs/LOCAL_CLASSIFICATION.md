@@ -243,16 +243,6 @@ It cannot establish:
 
 The next separate layer is blinded human review of stratified positive findings, primarily to estimate precision; [existing annotation tooling](LOCAL_CLASSIFICATION.md#configuration-and-evaluation) preserves reviewer provenance and uncertainty. Preserve this baseline and inspect disagreements before proposing any rule work. The harness does not modify classifier rules. The v4 classifier reuses pinned upstream conditions without tuning them against these failures.
 
-### Tests
-
-```sh
-python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py
-```
-
-Deterministic tests cover theme eligibility/subtypes, setup orientation, legal full replay, both colors, castling/en passant/promotion, shared-detector invocation, initial versus later episodes, seeded independent reservoirs, file fingerprints, denominator arithmetic, corpus reproducibility and malformed/unsupported/failing input.
-
-Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md).
-
 ### Frozen upstream versus application comparison
 
 After a baseline run, compare its exact saved sample without scanning or resampling the dataset:
@@ -270,8 +260,6 @@ A completed report.json must accompany samples.jsonl. The command streams those 
 report.json contains per-theme counts/percentages, separate exact/approximate macro and micro summaries, baseline provenance, all current detector/vendor source hashes and upstream commit. report.md compares the three percentages without claiming precision. comparisons.jsonl retains each baseline/current record and raw upstream themes/witnesses; failures.jsonl contains every incidence missed or skipped by either current path. Unexpected errors fail the report with reproducing context.
 
 Underpromotion is a deliberately visible semantic difference: raw upstream excludes rook/bishop mating underpromotions, whereas Fieldwork's witness projection recognizes any actual nonqueen promotion that passes its admission checks. Discovered-check projection requires a single uncovered check, excluding double check. Neither mapping was widened to flatter results.
-
-test_lichess_comparison.py covers the comparison.
 
 ### Results
 

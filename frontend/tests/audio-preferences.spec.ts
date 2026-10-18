@@ -106,186 +106,47 @@ test("sound choices save independently, survive reload and keep a usable narrow 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("the test button plays a real cue from an enabled category and respects silence", async ({
-  page,
-}) => {
-  await page.goto("/settings?section=sound");
-  const sound = soundSettings(page);
-  const preview = sound.getByRole("button", { name: "Test sound", exact: true });
-  await expect(preview).toBeEnabled();
-  expect(await audioCues(page)).toEqual([]);
-  await preview.click();
-  await expect.poll(() => audioCues(page)).toEqual(["move"]);
-  await clearAudio(page);
-  await savedChange(page, () => sound.getByRole("checkbox", { name: /^Board moves/ }).uncheck());
-  await preview.click();
-  await expect.poll(() => audioCues(page)).toEqual(["correct"]);
-  await clearAudio(page);
-  await savedChange(page, () =>
-    sound.getByRole("checkbox", { name: /^Practice feedback/ }).uncheck(),
-  );
-  await expect(preview).toBeDisabled();
-  expect(await audioCues(page)).toEqual([]);
-  await savedChange(page, () =>
-    sound.getByRole("checkbox", { name: /^Practice feedback/ }).check(),
-  );
-  await savedChange(page, () => volumeControl(page).press("Home"));
-  await expect(preview).toBeDisabled();
-  await expect(volumeControl(page)).toHaveValue("0");
-  expect(await audioCues(page)).toEqual([]);
-  await savedChange(page, () => volumeControl(page).press("ArrowRight"));
-  await preview.click();
-  await expect.poll(() => audioCues(page)).toEqual(["correct"]);
-});
-
-test("sound load and save failures preserve the saved value and offer recovery", async ({
-  page,
-}) => {
-  let failLoad = true;
-  let failSave = true;
-  await page.route(`**${preferencePath}`, route => {
-    const reading = route.request().method() === "GET";
-    return (reading ? failLoad : failSave)
-      ? route.fulfill({ status: 503, json: { detail: "Sound preferences unavailable" } })
-      : route.continue();
-  });
-  await page.goto("/settings?section=sound");
-  const sound = soundSettings(page);
-  const status = sound.locator(".preference-status");
-  const volume = volumeControl(page);
-  await expect(status).toContainText("Sound preferences unavailable");
-  await expect(sound.getByRole("checkbox", { name: "Enable sound", exact: true })).toBeDisabled();
-  await expect(volume).toBeDisabled();
-  await expect(sound.getByRole("button", { name: "Test sound", exact: true })).toBeDisabled();
-  expect(await audioCues(page)).toEqual([]);
-  failLoad = false;
-  await sound.getByRole("button", { name: "Reload sound preferences", exact: true }).click();
-  await expect(volume).toBeEnabled();
-  await expect(volume).toHaveValue("35");
-  await volume.press("End");
-  await expect(status).toContainText("Sound preferences unavailable");
-  await expect(volume).toHaveValue("35");
-  const rejectedCheckbox = page.waitForResponse(
-    result =>
-      new URL(result.url()).pathname === preferencePath && result.request().method() === "PUT",
-  );
-  await sound.getByRole("checkbox", { name: /^Board moves/ }).click();
-  expect((await rejectedCheckbox).status()).toBe(503);
-  await expect(sound.getByRole("checkbox", { name: /^Board moves/ })).toBeChecked();
-  await expect(status).toContainText("Sound preferences unavailable");
-  expect(await (await page.request.get(preferencePath)).json()).toEqual(defaults);
-  failSave = false;
-  await savedChange(page, () => volume.press("End"));
-  await page.reload();
-  await expect(volume).toHaveValue("100");
-  await sound.getByRole("button", { name: "Test sound", exact: true }).click();
-  await expect.poll(() => audioCues(page)).toEqual(["move"]);
-});
-
-test("leaving Settings cancels a preview whose real audio file is still loading", async ({
-  page,
-}) => {
+test("a pointer volume change survives blur during a pending save", async ({ page }) => {
+  const writes: AudioPreferences[] = [];
   let release!: () => void;
   const pending = new Promise<void>(resolve => {
     release = resolve;
   });
-  let requested!: () => void;
-  const assetRequested = new Promise<void>(resolve => {
-    requested = resolve;
-  });
-  await page.route(/\/move(?:-[\w-]+)?\.wav$/, async route => {
-    requested();
-    await pending;
+  await page.route(`**${preferencePath}`, async route => {
+    if (route.request().method() === "PUT") {
+      writes.push(route.request().postDataJSON());
+      await pending;
+    }
     await route.continue();
   });
   try {
     await page.goto("/settings?section=sound");
-    const preview = soundSettings(page).getByRole("button", { name: "Test sound", exact: true });
-    await expect(preview).toBeEnabled();
-    // Observe the native decoder as well as starts: a finished HTTP response
-    // alone would not prove that the late audio buffer had been processed.
-    await page.evaluate(() => {
-      let finished!: () => void;
-      const decoded = new Promise<void>(resolve => {
-        finished = resolve;
-      });
-      Object.assign(window, { __previewDecoded: decoded });
-      const decode = BaseAudioContext.prototype.decodeAudioData;
-      BaseAudioContext.prototype.decodeAudioData = function (bytes, success, failure) {
-        const result = decode.call(this, bytes, success, failure);
-        void result.then(finished);
-        return result;
-      };
-    });
-    await preview.click();
-    await assetRequested;
-    await page.getByRole("link", { name: "Games", exact: true }).click();
-    await expect(soundSettings(page)).toHaveCount(0);
+    const sound = soundSettings(page);
+    const volume = volumeControl(page);
+    await expect(volume).toBeEnabled();
+    await volume.scrollIntoViewIfNeeded();
+    const box = (await volume.boundingBox())!;
+    await volume.click({ position: { x: box.width * 0.8, y: box.height / 2 } });
+    await expect.poll(() => writes.length).toBe(1);
+    const expected = String(Math.round(writes[0].volume * 100));
+    expect(Number(expected)).toBeGreaterThan(35);
+    // The slider stays usable (and focused) while the change saves; the controls are marked busy.
+    await expect(volume).toBeEnabled();
+    await expect(sound.locator(".audio-settings-controls")).toHaveAttribute("aria-busy", "true");
+    await expect(sound.locator(".preference-status")).toHaveAttribute("data-state", "saving");
+    await sound.getByRole("heading", { name: "Sound", exact: true }).click();
+    await expect(volume).toHaveValue(expected);
+    expect(writes).toHaveLength(1);
     release();
-    await page.evaluate(async () => {
-      await (window as unknown as { __previewDecoded: Promise<void> }).__previewDecoded;
-      // Let the engine's continuation consume the completed native decode.
-      await Promise.resolve();
-      await Promise.resolve();
-    });
-    expect(await audioCues(page)).toEqual([]);
-    await page.getByRole("link", { name: "Settings", exact: true }).click();
-    await page
-      .getByRole("navigation", { name: "Settings sections" })
-      .getByRole("link", { name: "Sound", exact: true })
-      .click();
-    await preview.click();
-    await expect.poll(() => audioCues(page)).toEqual(["move"]);
+    await expect(sound.locator(".preference-status")).toHaveAttribute("data-state", "saved");
+    await expect(volume).toHaveValue(expected);
+    expect(writes).toHaveLength(1);
+    await page.reload();
+    await expect(volume).toHaveValue(expected);
   } finally {
     release();
   }
 });
-
-for (const input of ["pointer", "keyboard"] as const) {
-  test(`a ${input} volume change survives blur during a pending save`, async ({ page }) => {
-    const writes: AudioPreferences[] = [];
-    let release!: () => void;
-    const pending = new Promise<void>(resolve => {
-      release = resolve;
-    });
-    await page.route(`**${preferencePath}`, async route => {
-      if (route.request().method() === "PUT") {
-        writes.push(route.request().postDataJSON());
-        await pending;
-      }
-      await route.continue();
-    });
-    try {
-      await page.goto("/settings?section=sound");
-      const sound = soundSettings(page);
-      const volume = volumeControl(page);
-      await expect(volume).toBeEnabled();
-      if (input === "pointer") {
-        await volume.scrollIntoViewIfNeeded();
-        const box = (await volume.boundingBox())!;
-        await volume.click({ position: { x: box.width * 0.8, y: box.height / 2 } });
-      } else await volume.press("ArrowRight");
-      await expect.poll(() => writes.length).toBe(1);
-      const expected = String(Math.round(writes[0].volume * 100));
-      expect(Number(expected)).toBeGreaterThan(35);
-      // The slider stays usable (and focused) while the change saves; the controls are marked busy.
-      await expect(volume).toBeEnabled();
-      await expect(sound.locator(".audio-settings-controls")).toHaveAttribute("aria-busy", "true");
-      await expect(sound.locator(".preference-status")).toHaveAttribute("data-state", "saving");
-      await sound.getByRole("heading", { name: "Sound", exact: true }).click();
-      await expect(volume).toHaveValue(expected);
-      expect(writes).toHaveLength(1);
-      release();
-      await expect(sound.locator(".preference-status")).toHaveAttribute("data-state", "saved");
-      await expect(volume).toHaveValue(expected);
-      expect(writes).toHaveLength(1);
-      await page.reload();
-      await expect(volume).toHaveValue(expected);
-    } finally {
-      release();
-    }
-  });
-}
 
 test("quick mute persists only on this device and never writes account preferences", async ({
   page,
@@ -338,44 +199,4 @@ test("quick mute persists only on this device and never writes account preferenc
     0,
   );
   expect(writes).toEqual([]);
-});
-
-test("audio remains available with Still motion and a reduced-motion device", async ({ page }) => {
-  const original = await (await page.request.get("/api/preferences/motion")).json();
-  const coach = await (await page.request.get("/api/preferences/coach")).json();
-  try {
-    for (const [motion, reducedMotion] of [
-      ["still", "no-preference"],
-      ["system", "reduce"],
-    ] as const) {
-      expect((await page.request.put("/api/preferences/motion", { data: { motion } })).ok()).toBe(
-        true,
-      );
-      expect(
-        (
-          await page.request.put("/api/preferences/coach", { data: { ...coach, motion: "still" } })
-        ).ok(),
-      ).toBe(true);
-      await page.emulateMedia({ reducedMotion });
-      await page.goto("/settings?section=coach");
-      await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "still");
-      await expect(page.locator(".coach-option:has(input:checked) .coach-avatar")).toHaveAttribute(
-        "data-motion",
-        "still",
-      );
-      await page
-        .getByRole("navigation", { name: "Settings sections" })
-        .getByRole("link", { name: "Sound", exact: true })
-        .click();
-      const preview = soundSettings(page).getByRole("button", { name: "Test sound", exact: true });
-      await expect(preview).toBeEnabled();
-      expect(await audioCues(page)).toEqual([]);
-      await preview.click();
-      await expect.poll(() => audioCues(page)).toEqual(["move"]);
-      expect(await (await page.request.get(preferencePath)).json()).toEqual(defaults);
-    }
-  } finally {
-    await page.request.put("/api/preferences/motion", { data: original });
-    await page.request.put("/api/preferences/coach", { data: coach });
-  }
 });

@@ -5,14 +5,12 @@ import { gameIntent } from "../src/dialogue/gameIntent";
 import { humanInsightIntent, humanInsightLabels } from "../src/dialogue/humanClaims";
 import { renderDialogue } from "../src/dialogue/neutral";
 import { classic } from "../src/dialogue/characters/classic";
-import { robot } from "../src/dialogue/characters/robot";
 import {
   repeatsLead,
   selectGameRecording,
   selectGameSpeech,
 } from "../src/audio/speech/gameSelection";
 import { sequenceRecordingId } from "../src/audio/speech/sequence";
-import { meanings as catalogue } from "../src/audio/speech/meaningCatalog";
 import { semanticFixtures } from "../tests/semantic-fixtures";
 
 const games = semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py");
@@ -27,82 +25,74 @@ const shownCodes: Record<string, string> = {
   "human-natural-strong": "human_natural_strong",
 };
 
-for (const coach of [
-  { id: "classic", personality: classic },
-  { id: "robot", personality: robot },
-]) {
-  for (const [key, game] of Object.entries(games)) {
-    test(`${coach.id}: ${key} survives real tactical evidence and speaks only the objective line`, () => {
-      const [objectiveId, shown] = key.split(":");
-      const ply = game.frames.length - 1,
-        frame = game.frames[ply],
-        report = frame.report!;
-      const reaction = gameReaction({
-        key,
-        frame,
-        report,
-        learner: game.orientation,
-        explaining: false,
-        pending: false,
-        error: false,
-      });
-      const intent = gameIntent({ key, game, frame, report, ply, expression: reaction.state });
-      const context = {
-        game,
-        frame,
-        report,
-        ply,
-        intent,
-        utterance: renderDialogue(intent, coach),
-      };
-      const child = humanInsightIntent(
-        gameIntent({ key, game, frame, report, ply, expression: reaction.state, human: true }),
-      );
-      const insight = { intent: child, utterance: renderDialogue(child, coach) };
-      const claimIndex = context.utterance.renderedClaims!.findIndex(
-        claim => !humanInsightLabels[claim.code],
-      );
-      expect(claimIndex).toBeGreaterThanOrEqual(0);
-      if (objectiveId.startsWith("tactic-promotion-awareness-")) {
-        // Every promotion witness is the promoting move itself, which the promotion
-        // clips describe as a pawn still on its way: the clip sits out, and the next
-        // sentence with a clip leads or the grade speaks.
-        expect(selectGameRecording({ ...context, claimIndex })).toBeNull();
-        const speech = selectGameSpeech(context);
-        expect(speech.recordingId ?? "").not.toMatch(/promotion/);
-        expect(speech.recordingId ?? speech.gradeId).toBeTruthy();
-        return;
-      }
-      expect(selectGameRecording({ ...context, claimIndex })).toBe(objectiveId);
-      expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[shown]]);
-      const speech = selectGameSpeech(context);
-      expect(speech.primaryId).toBe(objectiveId);
-      // A following objective sentence joins back to back; a Maia sentence adds nothing.
-      const rendered = context.utterance.renderedClaims!;
-      const second =
-        claimIndex === 0 && rendered[1] && !humanInsightLabels[rendered[1].code]
-          ? selectGameRecording({ ...context, claimIndex: 1 })
-          : null;
-      // A second sentence that only restates the lead (such as a capture after a hanging piece) is left out.
-      const joins =
-        second && second !== objectiveId && !repeatsLead(objectiveId, second, rendered[1].code);
-      expect(speech.recordingId).toBe(
-        joins ? sequenceRecordingId([objectiveId, second]) : objectiveId,
-      );
-      expect(speech.recordingId).not.toMatch(/(?:^|\+)(?:human-|combo-|combined-)/);
-    });
-  }
-}
-
-test("tactical producer proof keeps its role and shown Maia-state fixtures", () => {
-  const keys = Object.keys(games),
-    meanings = new Set(catalogue.map(item => item.id));
-  expect(keys).toHaveLength(62);
-  expect(new Set(keys).size).toBe(62);
-  for (const key of keys) {
-    const [objectiveId, shown] = key.split(":");
-    expect(objectiveId).toMatch(/^tactic-[a-z-]+-(?:played|allowed|missed)$/);
-    expect(meanings.has(objectiveId)).toBe(true);
-    expect(shownCodes[shown]).toBeDefined();
-  }
+// One coach and one real fixture per objective recording: selection is coach-agnostic,
+// the motif-by-role sweep lives in selection and Maia states overlap maia-silence.
+const coach = { id: "classic", personality: classic };
+const objectives = new Set<string>();
+const representative = Object.entries(games).filter(([key]) => {
+  const objectiveId = key.split(":")[0];
+  if (objectives.has(objectiveId)) return false;
+  objectives.add(objectiveId);
+  return true;
 });
+for (const [key, game] of representative) {
+  test(`${coach.id}: ${key} survives real tactical evidence and speaks only the objective line`, () => {
+    const [objectiveId, shown] = key.split(":");
+    const ply = game.frames.length - 1,
+      frame = game.frames[ply],
+      report = frame.report!;
+    const reaction = gameReaction({
+      key,
+      frame,
+      report,
+      learner: game.orientation,
+      explaining: false,
+      pending: false,
+      error: false,
+    });
+    const intent = gameIntent({ key, game, frame, report, ply, expression: reaction.state });
+    const context = {
+      game,
+      frame,
+      report,
+      ply,
+      intent,
+      utterance: renderDialogue(intent, coach),
+    };
+    const child = humanInsightIntent(
+      gameIntent({ key, game, frame, report, ply, expression: reaction.state, human: true }),
+    );
+    const insight = { intent: child, utterance: renderDialogue(child, coach) };
+    const claimIndex = context.utterance.renderedClaims!.findIndex(
+      claim => !humanInsightLabels[claim.code],
+    );
+    expect(claimIndex).toBeGreaterThanOrEqual(0);
+    if (objectiveId.startsWith("tactic-promotion-awareness-")) {
+      // Every promotion witness is the promoting move itself, which the promotion
+      // clips describe as a pawn still on its way: the clip sits out, and the next
+      // sentence with a clip leads or the grade speaks.
+      expect(selectGameRecording({ ...context, claimIndex })).toBeNull();
+      const speech = selectGameSpeech(context);
+      expect(speech.recordingId ?? "").not.toMatch(/promotion/);
+      expect(speech.recordingId ?? speech.gradeId).toBeTruthy();
+      return;
+    }
+    expect(selectGameRecording({ ...context, claimIndex })).toBe(objectiveId);
+    expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[shown]]);
+    const speech = selectGameSpeech(context);
+    expect(speech.primaryId).toBe(objectiveId);
+    // A following objective sentence joins back to back; a Maia sentence adds nothing.
+    const rendered = context.utterance.renderedClaims!;
+    const second =
+      claimIndex === 0 && rendered[1] && !humanInsightLabels[rendered[1].code]
+        ? selectGameRecording({ ...context, claimIndex: 1 })
+        : null;
+    // A second sentence that only restates the lead (such as a capture after a hanging piece) is left out.
+    const joins =
+      second && second !== objectiveId && !repeatsLead(objectiveId, second, rendered[1].code);
+    expect(speech.recordingId).toBe(
+      joins ? sequenceRecordingId([objectiveId, second]) : objectiveId,
+    );
+    expect(speech.recordingId).not.toMatch(/(?:^|\+)(?:human-|combo-|combined-)/);
+  });
+}

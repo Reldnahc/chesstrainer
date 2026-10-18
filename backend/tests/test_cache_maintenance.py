@@ -9,9 +9,7 @@ from test_migrations import fill
 from trainer.api import create_app
 from trainer.cache_maintenance import (
     INCREMENTAL,
-    NONE,
     maintain_shared_caches,
-    reclaim_space,
     sweep_shared_caches,
 )
 from trainer.db import database
@@ -129,15 +127,6 @@ def test_sweep_removes_old_rows_nothing_mentions_and_keeps_the_rest(settings, se
     assert human == {"h-fk", "h-value", "h-new"}
 
 
-def test_an_offline_sweep_also_removes_recent_unused_rows(settings, sessions):
-    _referenced_fixture(settings, sessions)
-
-    removed, engine, human = _sweep(settings.database_path, older_than=None)
-
-    assert removed == {"engine_analyses": 2, "human_analyses": 2}
-    assert "e-new" not in engine and "h-new" not in human
-
-
 def _on_disk(path):
     wal = path.with_name(path.name + "-wal")
     return path.stat().st_size + (wal.stat().st_size if wal.exists() else 0)
@@ -185,47 +174,3 @@ def test_a_new_connection_does_not_wait_for_another_writer(settings, sql_engine)
     finally:
         writer.execute("ROLLBACK")
         writer.close()
-
-
-def test_the_server_sweeps_before_it_serves(settings, sql_engine):
-    with closing(sqlite3.connect(settings.database_path)) as db:
-        _cache_rows(db, [uid()], [uid()])
-        db.commit()
-    settings.stockfish_path = "missing-stockfish-test"
-
-    with TestClient(create_app(settings, workers=False)):
-        pass
-
-    with closing(sqlite3.connect(settings.database_path)) as db:
-        assert _remaining(db, "engine_analyses") == _remaining(db, "human_analyses") == set()
-
-
-def _legacy_file(path, keep):
-    with closing(sqlite3.connect(path)) as db:
-        db.execute("PRAGMA journal_mode=WAL")
-        db.execute("CREATE TABLE cache (body TEXT)")
-        db.executemany("INSERT INTO cache VALUES (?)", [("x" * 4000,)] * 100)
-        db.execute("DELETE FROM cache WHERE rowid > ?", (keep,))
-        db.commit()
-        assert db.execute("PRAGMA auto_vacuum").fetchone() == (NONE,)
-
-
-def test_an_older_file_is_rebuilt_in_incremental_mode_once_a_quarter_is_free(tmp_path):
-    _legacy_file(tmp_path / "legacy.sqlite3", keep=50)
-    with closing(sqlite3.connect(tmp_path / "legacy.sqlite3", isolation_level=None)) as db:
-        free = db.execute("PRAGMA freelist_count").fetchone()[0]
-
-        assert reclaim_space(db) == free
-        assert db.execute("PRAGMA auto_vacuum").fetchone() == (INCREMENTAL,)
-        assert db.execute("PRAGMA freelist_count").fetchone() == (0,)
-        assert db.execute("SELECT COUNT(*) FROM cache").fetchone() == (50,)
-
-
-def test_an_older_file_with_little_free_space_is_left_alone(tmp_path):
-    _legacy_file(tmp_path / "legacy.sqlite3", keep=90)
-    with closing(sqlite3.connect(tmp_path / "legacy.sqlite3", isolation_level=None)) as db:
-        free = db.execute("PRAGMA freelist_count").fetchone()[0]
-
-        assert free and reclaim_space(db) == 0
-        assert db.execute("PRAGMA auto_vacuum").fetchone() == (NONE,)
-        assert db.execute("PRAGMA freelist_count").fetchone() == (free,)

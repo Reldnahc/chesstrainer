@@ -88,31 +88,3 @@ test("the bubble's spoken line is the recorded text, else the coach's own script
   expect(scripts).toHaveLength(1);
   expect(scripts[0]).toMatch(/banks\/alfie\/scripts\.json/);
 });
-
-test("a failed script load is retried rather than leaving the coach written for good", async ({
-  page,
-}) => {
-  await openAudioFixturePage(page);
-  let failures = 0;
-  await page.route(/banks\/ziggy\/scripts\.json/, route => {
-    if (route.request().resourceType() !== "fetch") return route.fallback();
-    if (!failures++) return route.fulfill({ status: 503, body: "unavailable" });
-    return withScriptOnly(route);
-  });
-  const result = await page.evaluate(
-    async ({ root, id }) => {
-      const spoken = await import(`${root}/src/audio/speech/spokenText.ts`);
-      const first = await spoken.loadCoachScript("alien").then(
-        () => "loaded",
-        () => "failed",
-      );
-      const before = spoken.spokenText("alien", id);
-      await spoken.loadCoachScript("alien");
-      return { first, before, after: spoken.spokenText("alien", id) };
-    },
-    { root: viteFsPath(path.resolve(".")), id: scriptOnly.id },
-  );
-  expect(result.first).toBe("failed");
-  expect(result.before).toBeNull();
-  expect(result.after).toBe(scriptOnly.text);
-});

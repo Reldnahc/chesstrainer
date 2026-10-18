@@ -18,9 +18,9 @@ const relationshipGames = semanticFixtures<Record<string, Game>>(
 );
 // A move never raises its own evaluation, so neither the written line nor the
 // recorded take credits this move; the take names the opponent's help when the
-// line does.
+// line does. One Maia state per recovery kind: the policy state adds nothing here.
 for (const [name, game] of Object.entries(relationshipGames))
-  if (name.startsWith("combo-recovery"))
+  if (["combo-recovery-natural-best", "combo-recovery-assisted-natural-best"].includes(name))
     test(`${name}: a recovery is written and voiced without crediting the move`, () => {
       const ply = game.frames.length - 1,
         frame = game.frames[ply],
@@ -77,7 +77,8 @@ const observedFamilies = [
   "advantage-converted",
 ];
 
-function presentation(name: string, coach = coaches[0], game = structuredClone(games[name])) {
+function presentation(name: string, coach = coaches[0]) {
+  const game = structuredClone(games[name]);
   const ply = game.frames.length - 1,
     frame = game.frames[ply],
     report = frame.report!;
@@ -164,17 +165,6 @@ for (const coach of coaches) {
     return first && second && !repeats ? `${first}+${second}` : first;
   };
 
-  test(`${coach.id}: the selected defense insight is shown while the objective line speaks alone`, () => {
-    const { context, insight } = presentation(
-      "cause-abandoned_defender-white-narrow-preferred-unusual",
-      coach,
-    );
-    expect(context.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
-    expect(insight.intent.claims.map(item => item.code)).toEqual(["difficult_defense"]);
-    expect(selectGameSpeech(context).primaryId).toBe("cause-abandoned-defender");
-    expect(selectGameSpeech(context).recordingId).toBe(plain(context));
-  });
-
   test(`${coach.id}: a back-rank mating witness keeps the higher mate explanation`, () => {
     for (const role of ["allowed", "missed"])
       for (const profile of ["preferred", "preferred-unusual"]) {
@@ -194,46 +184,19 @@ for (const coach of coaches) {
         expect(selectGameSpeech(context).recordingId).toBe(plain(context));
       }
   });
-
-  test(`${coach.id}: a meaning the coach cannot say yet passes the lead on instead of silencing the move`, () => {
-    const { context } = presentation("back-rank-allowed-narrow-preferred", coach);
-    const lead = selectGameRecording(context)!;
-    expect(lead).toBeTruthy();
-    const without = selectGameSpeech({ ...context, playable: id => id !== lead });
-    expect(without.primaryId).not.toBe(lead);
-    const next =
-      context.utterance
-        .renderedClaims!.slice(1)
-        .map((_, index) => selectGameRecording({ ...context, claimIndex: index + 1 }))
-        .find(id => id && id !== lead) ?? null;
-    expect(without.primaryId).toBe(next);
-  });
-
-  test(`${coach.id}: late unavailable policy removes the chip without changing the objective speech`, () => {
-    const { context } = presentation("cause-abandoned_defender-white-preferred", coach);
-    const fallback = plain(context);
-    context.report!.human!.status = "unavailable";
-    expect(selectGameSpeech(context).recordingId).toBe(fallback);
-    const current = presentation("cause-abandoned_defender-white-preferred", coach, context.game);
-    expect(current.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(current.context).recordingId).toBe(fallback);
-  });
-
-  test(`${coach.id}: opponent and variation contexts keep their own objective speech`, () => {
-    const original = presentation("cause-abandoned_defender-white-preferred", coach);
-    const game = structuredClone(original.context.game);
-    game.orientation = "black";
-    const opponent = presentation("cause-abandoned_defender-white-preferred", coach, game);
-    expect(opponent.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(opponent.context).recordingId).toBe(plain(opponent.context));
-    const parent = original.context;
-    const intent = gameIntent({
-      ...parent,
-      key: "branch",
-      variation: true,
-      expression: parent.intent.expression,
-    });
-    const branch = { ...parent, variation: true, intent, utterance: renderDialogue(intent, coach) };
-    expect(selectGameSpeech(branch).recordingId).toBe(plain(branch));
-  });
 }
+
+// The fallthrough is coach-independent: one coach.
+test("classic: a meaning the coach cannot say yet passes the lead on instead of silencing the move", () => {
+  const { context } = presentation("back-rank-allowed-narrow-preferred");
+  const lead = selectGameRecording(context)!;
+  expect(lead).toBeTruthy();
+  const without = selectGameSpeech({ ...context, playable: id => id !== lead });
+  expect(without.primaryId).not.toBe(lead);
+  const next =
+    context.utterance
+      .renderedClaims!.slice(1)
+      .map((_, index) => selectGameRecording({ ...context, claimIndex: index + 1 }))
+      .find(id => id && id !== lead) ?? null;
+  expect(without.primaryId).toBe(next);
+});

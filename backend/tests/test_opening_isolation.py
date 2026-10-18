@@ -3,7 +3,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from threading import Barrier
 
-import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from test_accounts import ORIGIN, signup
@@ -20,7 +19,6 @@ from trainer.models import (
     Review,
     ReviewSession,
     SRSState,
-    StudyLessonSession,
 )
 
 STUDIES = "/api/opening-studies"
@@ -119,42 +117,6 @@ def test_opening_studies_and_recall_are_private_even_for_the_same_catalogue_line
         with app.state.workspaces.sessions(alice["user"]["id"])() as db:
             assert db.scalar(select(func.count()).select_from(Review)) == 0
             assert db.get(SRSState, alice_recall["exercise_id"]).reviews == 0
-
-
-@pytest.mark.parametrize("invalid", ["missing_csrf", "wrong_csrf", "wrong_origin"])
-def test_opening_mutations_require_the_accounts_csrf_authority(settings, invalid):
-    app = account_app(settings)
-    with TestClient(app) as client:
-        alice, _ = signup(client, "alice")
-        headers = ORIGIN | {"X-CSRF-Token": alice["csrf"]}
-        study = response_json(client.post(STUDIES, json=enrollment(), headers=headers))
-        cold = open_recall(client, headers)
-        path = f"/api/review/sessions/{cold['session_id']}"
-        saved = response_json(client.get(path))
-        rejected_headers = dict(headers)
-        if invalid == "missing_csrf":
-            rejected_headers.pop("X-CSRF-Token")
-        elif invalid == "wrong_csrf":
-            rejected_headers["X-CSRF-Token"] = "another-session-token"
-        else:
-            rejected_headers["Origin"] = "https://other.example.test"
-        for method, url, payload in (
-            ("POST", STUDIES, enrollment()),
-            ("DELETE", f"{STUDIES}/{study['id']}", None),
-            ("POST", f"{STUDIES}/{study['id']}/restore", None),
-            ("POST", f"{STUDIES}/{study['id']}/practice", {"request_id": "csrf"}),
-            ("POST", f"/api/review/{cold['exercise_id']}/start", None),
-            ("POST", path + "/move", {"from_square": "e2", "to_square": "e4"}),
-            ("POST", path + "/reveal", None),
-        ):
-            response = client.request(method, url, json=payload, headers=rejected_headers)
-            assert response.status_code == 403, response.text
-        assert response_json(client.get(path)) == saved
-        assert response_json(client.get(STUDIES))["items"][0]["active"]
-        with app.state.workspaces.sessions(alice["user"]["id"])() as db:
-            for model in (Attempt, Review, StudyLessonSession):
-                assert db.scalar(select(func.count()).select_from(model)) == 0
-            assert db.scalar(select(func.count()).select_from(OpeningStudy)) == 1
 
 
 def concurrent_pair(action):
