@@ -206,7 +206,7 @@ jobs:
           load: true
           tags: fieldwork:install-check
           cache-from: type=gha,scope=fieldwork
-          cache-to: type=gha,scope=fieldwork,mode=max
+          cache-to: type=gha,scope=fieldwork,mode=min
       - run: python scripts/smoke_install.py --image fieldwork:install-check
 
   gate:

@@ -87,6 +87,9 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install httpx==0.28.1
       - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+        # The runner is discarded after the job, so removing the builder only costs time.
+        with:
+          cleanup: false
       - name: Login to GHCR
         uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
         with:
@@ -103,7 +106,9 @@ jobs:
             org.opencontainers.image.source=https://github.com/Reldnahc/chesstrainer
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha,scope=fieldwork
-          cache-to: type=gha,scope=fieldwork,mode=max
+          # Only the shipped image's layers. The frontend stage's source copy and
+          # build output change on every release and took most of a 90 s upload.
+          cache-to: type=gha,scope=fieldwork,mode=min
       - name: Smoke-test the exact candidate by digest
         env:
           DIGEST: ${{ steps.build.outputs.digest }}
