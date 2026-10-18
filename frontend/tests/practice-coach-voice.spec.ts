@@ -186,6 +186,8 @@ test("Show why has one primary frame and explicit summary and note playback that
   const fixture: { exercise_id: string; wrong: string } = await response.json();
   await page.goto(`/study/due?exercise=${fixture.exercise_id}`);
   await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
+  // Let the cold opener's deadline pass first; a move inside it is the gesture that plays it.
+  await unchanged(page);
   await move(page, fixture.wrong);
   await spoken(page, "explanation-frame-capture-move-check", 1);
   await page.getByRole("button", { name: "Show me why", exact: true }).click();
