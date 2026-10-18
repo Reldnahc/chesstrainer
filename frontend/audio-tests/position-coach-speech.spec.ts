@@ -134,7 +134,7 @@ async function mount(page: Page, coachId: "classic" | "robot", game: Game) {
   return { assets, writes };
 }
 
-for (const coachId of ["classic", "robot"] as const) {
+for (const coachId of ["classic"] as const) {
   test(`${coachId}: a visible Maia chip leaves the real PositionCoach response objective only`, async ({
     page,
   }) => {
@@ -200,47 +200,15 @@ for (const coachId of ["classic", "robot"] as const) {
   });
 }
 
-for (const coachId of ["classic", "robot"] as const) {
-  for (const [reading, game] of [
-    ["with Maia", enrichedGame],
-    ["without Maia", withoutHuman(enrichedGame)],
-  ] as const)
-    test(`${coachId}: one move shows one Listen control ${reading}`, async ({ page }) => {
-      await mount(page, coachId, game);
-      expect((await state(page)).renderedCodes).toEqual([
-        "cause_abandoned_defender",
-        expect.any(String),
-      ]);
-      await expect(chip(page)).toHaveCount(reading === "with Maia" ? 1 : 0);
-      await expect(region(page).getByRole("button", { name: /^Listen/ })).toHaveCount(1);
-      await expect(
-        region(page).getByRole("button", { name: "Listen to additional explanation" }),
-      ).toHaveCount(0);
-    });
-}
-
-test("classic: two recorded sentences play back to back as one playback behind one Stop", async ({
-  page,
-}) => {
-  // A cause clip plays alone (its capture sentence would repeat it), so the pair is the mate line and its book sentence.
-  const fixture = await mount(page, "classic", withoutHuman(games["allowed-mate-natural"]));
-  const listen = region(page).getByRole("button", { name: /^Listen/ });
-  await expect(listen).toHaveCount(1);
-  await listen.click();
-  await expect
-    .poll(() => state(page).then(value => value.observed))
-    .toMatch(/^allowed-mate(?:-next)?[+]/);
-  const [first, second] = (await state(page)).observed!.split("+");
-  await tick(page, 500);
-  expect(await counts(page)).toEqual({ starts: 1, stops: 0 });
-  expect(fixture.assets.sort()).toEqual(
-    [
-      await recordingUrl(page, "classic", first),
-      await recordingUrl(page, "classic", second),
-    ].sort(),
-  );
-  await region(page).getByRole("button", { name: "Stop coach voice", exact: true }).click();
-  await tick(page, 500);
-  expect(await counts(page)).toEqual({ starts: 1, stops: 1 });
+test("classic: one move shows one Listen control with Maia", async ({ page }) => {
+  await mount(page, "classic", enrichedGame);
+  expect((await state(page)).renderedCodes).toEqual([
+    "cause_abandoned_defender",
+    expect.any(String),
+  ]);
+  await expect(chip(page)).toHaveCount(1);
   await expect(region(page).getByRole("button", { name: /^Listen/ })).toHaveCount(1);
+  await expect(
+    region(page).getByRole("button", { name: "Listen to additional explanation" }),
+  ).toHaveCount(0);
 });

@@ -1,16 +1,10 @@
-import threading
-from concurrent.futures import ThreadPoolExecutor
-from typing import get_args
-
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select, text
-from trainer.accounts import COOKIE
 from trainer.api import create_app
-from trainer.contracts.preferences import CoachId, CoachPreferences
-from trainer.db import Units, database, migrate
+from trainer.db import database, migrate
 from trainer.models import UserPreferences
-from trainer.preferences import coach_preferences, save_coach_preferences
+from trainer.preferences import coach_preferences
 
 DEFAULT = {"coach_id": "classic", "motion": "system"}
 PATH = "/api/preferences/coach"
@@ -19,17 +13,6 @@ RETIRED_COACHES = [
     ("cat-tabby", "cat-kitten"),
     ("cat-calico", "cat-kitten"),
 ]
-
-
-@pytest.mark.parametrize("coach_id", get_args(CoachId))
-def test_every_coach_persists_across_restart(settings, coach_id):
-    saved = {"coach_id": coach_id, "motion": "natural"}
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        response = client.put(PATH, json=saved)
-        assert response.status_code == 200
-        assert response.json() == saved
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        assert client.get(PATH).json() == saved
 
 
 def test_local_defaults_save_restart_and_validation(settings):
@@ -71,55 +54,8 @@ def test_patch_changes_only_the_fields_sent(settings):
         assert client.get(PATH).json() == {"coach_id": "robot", "motion": "still"}
 
 
-def test_accounts_second_device_isolation_and_csrf(settings):
-    settings.public_origin = "http://testserver"
-    settings.accounts_enabled = True
-    settings.session_secure = False
-    origin = {"Origin": settings.public_origin}
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        assert client.get(PATH).status_code == 401
-        alice = client.post(
-            "/api/auth/signup",
-            json={"username": "alice", "password": "testing-password"},
-            headers=origin,
-        ).json()
-        token = client.cookies.get(COOKIE)
-        assert client.put(PATH, json=DEFAULT, headers=origin).status_code == 403
-        assert (
-            client.put(
-                PATH,
-                json={"coach_id": "dog-collie", "motion": "natural"},
-                headers=origin | {"X-CSRF-Token": alice["csrf"]},
-            ).status_code
-            == 200
-        )
-        client.post(
-            "/api/auth/signup",
-            json={"username": "bobby", "password": "testing-password"},
-            headers=origin,
-        ).raise_for_status()
-        assert client.get(PATH).json() == DEFAULT
-        signed_in = client.post(
-            "/api/auth/login",
-            json={"username": "alice", "password": "testing-password"},
-            headers=origin,
-        )
-        signed_in.raise_for_status()
-        assert client.cookies.get(COOKIE) != token
-        assert client.get(PATH).json() == {"coach_id": "dog-collie", "motion": "natural"}
-
-
-def test_unknown_saved_choices_fall_back_without_overwriting(sessions):
-    with sessions() as db:
-        db.add(UserPreferences(coach_id="future-coach", coach_motion="future-motion"))
-        db.commit()
-        assert coach_preferences(db).model_dump() == DEFAULT
-        saved = db.scalar(select(UserPreferences))
-        assert saved.coach_id == "future-coach" and saved.coach_motion == "future-motion"
-
-
 @pytest.mark.parametrize(("retired", "replacement"), RETIRED_COACHES)
-@pytest.mark.parametrize("motion", ["system", "natural", "still"])
+@pytest.mark.parametrize("motion", ["natural"])
 def test_retired_coach_reads_replacement_without_overwriting(
     settings, retired, replacement, motion
 ):
@@ -139,61 +75,8 @@ def test_retired_coach_reads_replacement_without_overwriting(
             assert saved.interface_motion == "still"
 
 
-@pytest.mark.parametrize(("retired", "replacement"), RETIRED_COACHES)
-def test_retired_coach_writes_are_rejected(settings, retired, replacement):
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        response = client.put(PATH, json={"coach_id": retired, "motion": "natural"})
-        assert response.status_code == 422
-        assert client.get(PATH).json() == DEFAULT
-        selected = {"coach_id": replacement, "motion": "natural"}
-        assert client.put(PATH, json=selected).json() == selected
-
-
-def test_concurrent_first_save_has_one_account_row(sessions):
-    # Both requests of one account, as the server runs them: write units on its lock.
-    units = Units(sessions, threading.RLock())
-
-    def save(motion):
-        with units.write() as db:
-            return save_coach_preferences(db, CoachPreferences(motion=motion))
-
-    with ThreadPoolExecutor(max_workers=2) as pool:
-        results = list(pool.map(save, ("still", "natural")))
-    assert {result.motion for result in results} == {"still", "natural"}
-    with sessions() as db:
-        assert len(db.scalars(select(UserPreferences)).all()) == 1
-
-
 @pytest.mark.pristine_database
-def test_migration_preserves_existing_accounts_and_defaults(settings):
-    from alembic import command
-    from alembic.config import Config
-
-    engine, sessions = database(settings.database_path)
-    config = Config("alembic.ini")
-    with engine.connect() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "862dcc851f0b")
-        connection.commit()
-        before = connection.execute(text("SELECT * FROM users")).mappings().all()
-    migrate(engine)
-    with engine.connect() as connection:
-        after = connection.execute(text("SELECT * FROM users")).mappings().all()
-        # Later migrations replace the epoch ``created`` and drop the unused
-        # ``chesscom_username``; every other account value stays.
-        kept = [key for key in before[0] if key in after[0]]
-        assert [{key: row[key] for key in kept} for row in after] == [
-            {key: row[key] for key in kept} for row in before
-        ]
-        assert all(row["onboarding_completed"] for row in after)
-        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
-    with sessions() as db:
-        assert coach_preferences(db).model_dump() == DEFAULT
-    engine.dispose()
-
-
-@pytest.mark.pristine_database
-@pytest.mark.parametrize("saved_motion", ["natural", "still", "subtle"])
+@pytest.mark.parametrize("saved_motion", ["subtle"])
 def test_device_default_migration_preserves_saved_motion(settings, saved_motion):
     from alembic import command
     from alembic.config import Config

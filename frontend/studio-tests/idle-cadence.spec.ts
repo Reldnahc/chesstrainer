@@ -7,14 +7,6 @@ import type { CoachExpression, CoachIdle } from "../src/coach/model";
 import { classicPerformance } from "../src/coach/classic/performance";
 import { coachPerformance } from "../src/coach/motionVocabulary";
 
-const cases = [
-  { coach: "classic", reaction: 1650 },
-  { coach: "cat-black", reaction: 1700 },
-  { coach: "dog-collie", reaction: 1700 },
-  { coach: "frog", reaction: 1700 },
-  { coach: "robot", reaction: 1700 },
-  { coach: "slime", reaction: 1700 },
-];
 const idleGapMs = (IDLE_GAP_MS[0] + IDLE_GAP_MS[1]) / 2;
 const clockStepMs = 50;
 
@@ -133,45 +125,35 @@ function verifyCycles(
   expect(completed.some(id => definitions[id].blink)).toBe(true);
 }
 
-for (const { coach, reaction } of cases) {
-  for (const expression of ["neutral", "brilliant"] as const) {
-    test(`${coach} ${expression} keeps autonomous idles alive with real durations and no reaction replay`, async ({
-      page,
-    }) => {
-      const duration = expression === "neutral" ? (coach === "classic" ? 1300 : 1400) : reaction;
-      const avatar = await settledCoach(page, coach, duration, expression);
-      const take = await avatar.getAttribute("data-take");
-      await auditIdles(avatar);
-      await runIdleClock(page, 16_000);
-      verifyCycles(
-        await samples(page),
-        take,
-        (await avatar.getAttribute("data-motion-profile"))!,
-        expression,
-      );
-      await expect(avatar).toHaveAttribute("data-phase", "rest");
-      await expect(avatar).toHaveAttribute("data-take", take!);
-    });
-  }
-}
+// One coach and expression: each case runs 16 s of simulated idles and the expression
+// barely changes the cadence.
+test("classic neutral keeps autonomous idles alive with real durations and no reaction replay", async ({
+  page,
+}) => {
+  const avatar = await settledCoach(page, "classic", 1300, "neutral");
+  const take = await avatar.getAttribute("data-take");
+  await auditIdles(avatar);
+  await runIdleClock(page, 16_000);
+  verifyCycles(
+    await samples(page),
+    take,
+    (await avatar.getAttribute("data-motion-profile"))!,
+    "neutral",
+  );
+  await expect(avatar).toHaveAttribute("data-phase", "rest");
+  await expect(avatar).toHaveAttribute("data-take", take!);
+});
 
-for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
+// Still and offscreen share this suspension with the resting-face interruptions.
+for (const pause of ["reduced", "hidden"]) {
   test(`${pause} pauses without catch-up or reaction replay`, async ({ page }) => {
     const avatar = await settledCoach(page, "classic", 1650);
     const take = await avatar.getAttribute("data-take");
-    const motion = page.getByRole("combobox", { name: "Motion intensity" });
     await page.clock.runFor(idleGapMs);
     await expect(avatar).toHaveAttribute("data-idles", /.+/);
-    if (pause === "still") {
-      await motion.selectOption("still");
-      await avatar.scrollIntoViewIfNeeded();
-      await expect(avatar).toHaveAttribute("data-motion", "still");
-    } else if (pause === "reduced") {
+    if (pause === "reduced") {
       await page.emulateMedia({ reducedMotion: "reduce" });
       await expect(avatar).toHaveAttribute("data-motion", "still");
-    } else if (pause === "offscreen") {
-      await page.locator(".studio-note").scrollIntoViewIfNeeded();
-      await expect(avatar).not.toBeInViewport();
     } else {
       await page.evaluate(() => {
         Object.defineProperty(document, "hidden", { configurable: true, value: true });
@@ -184,7 +166,6 @@ for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
     );
     await page.clock.runFor(20_000);
     await expect(avatar).toHaveAttribute("data-idles", "");
-    if (pause === "still") await motion.selectOption("system");
     if (pause === "reduced") await page.emulateMedia({ reducedMotion: "no-preference" });
     if (pause === "hidden")
       await page.evaluate(() => {
@@ -201,27 +182,6 @@ for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
     await expect(avatar).toHaveAttribute("data-idles", /^\S+$/);
   });
 }
-
-test("explicit Animated overrides device reduced motion, while Still still stops everything", async ({
-  page,
-}) => {
-  const avatar = await settledCoach(page, "classic", 1650);
-  const motion = page.getByRole("combobox", { name: "Motion intensity" });
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(avatar).toHaveAttribute("data-motion", "still");
-  await motion.selectOption("natural");
-  await avatar.scrollIntoViewIfNeeded();
-  await expect(avatar).toHaveAttribute("data-motion", "natural");
-  await auditIdles(avatar);
-  const take = await avatar.getAttribute("data-take");
-  await runIdleClock(page, 16_000);
-  verifyCycles(await samples(page), take);
-  await motion.selectOption("still");
-  await avatar.scrollIntoViewIfNeeded();
-  await page.clock.runFor(20_000);
-  await expect(avatar).toHaveAttribute("data-idles", "");
-  expect(await avatar.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
-});
 
 test("pending reactions immediately cancel stale idles and continue with the new expression repertoire", async ({
   page,

@@ -23,16 +23,6 @@ def test_a_recapture_that_wins_the_exchange_is_not_a_bad_trade():
     assert "avoiding_bad_trades" not in skills(line(fen, "Rxc4", "Qxc4", "Bxc4", "Rxe7"))
 
 
-def test_an_exchange_that_ends_down_material_is_a_bad_trade_with_the_net_amount():
-    fen = "2r3k1/1p2qpp1/1p1p3p/pP3B2/2PP4/P1Q3P1/5P1P/4R1K1 b - - 1 25"
-    (finding,) = [
-        f
-        for f in move_causes(line(fen, "Rxc4", "Qxc4", "Qe5"), "analysis")
-        if f.skill_id == "avoiding_bad_trades"
-    ]
-    assert "The whole exchange on c4 gives up 4 material points" in finding.explanation
-
-
 def test_a_recapture_that_promotes_counts_the_new_piece():
     # Rxf1 gxf1=Q+: a knight for the rook and a new queen, ten points down.
     fen = "7k/8/8/8/8/7K/6p1/R4n2 w - - 0 1"

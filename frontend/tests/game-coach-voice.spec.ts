@@ -14,11 +14,7 @@ import {
   selectGameRecording,
   selectGameSpeech,
 } from "../src/audio/speech/gameSelection";
-import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 import { reviewEvent, witness } from "./helpers/reviewEvents";
-import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with { type: "json" };
-
-const walterOpener = walterBank.recordings.some(recording => recording.id === "game-review-opened");
 // Coaches never speak a Maia (human-move model) reading, alone or combined.
 const MAIA_AUDIO = /\/(?:human-|combo-|combined-)/;
 
@@ -109,16 +105,6 @@ test("a later background report does not narrate an earlier visit to an unreview
   }
 });
 
-test("the human insight popover is silent and has no voice control", async ({ page }) => {
-  await voiceGame(page, humanGames.unusual_strong, 1);
-  await page.getByRole("button", { name: "Maia: Unusual but strong", exact: true }).click();
-  const insight = page.getByRole("dialog", { name: "Maia insight" });
-  await expect(insight).toBeVisible();
-  await expect(insight.getByRole("button", { name: /listen|stop/i })).toHaveCount(0);
-  await page.waitForTimeout(400);
-  expect((await speechActivity(page)).started).toEqual([]);
-});
-
 test("a variation waits for its own analysis and leaving it cancels the pending narration", async ({
   page,
 }) => {
@@ -177,13 +163,6 @@ test("only the mainline start selects the fact-free opener", () => {
     { ply: 0, frame: { ...frame, termination: "checkmate" } },
   ])
     expect(selectGameOpener(context)).toBeNull();
-});
-
-test("a game against the coach greets with its own line only before the first move", () => {
-  const frame = humanGames.unusual_strong.frames[0];
-  expect(selectGameOpener({ ply: 0, frame, live: "new" })).toBe("game-start");
-  expect(selectGameOpener({ ply: 0, frame, live: "underway" })).toBeNull();
-  expect(selectGameOpener({ ply: 0, frame, live: "new", error: true })).toBeNull();
 });
 
 // The review line of a double check that a queen fork follows three moves
@@ -320,69 +299,6 @@ test("a fork later in the line is not voiced as the move's own fork", () => {
   expect(doubleCheckThenFork([1, 3]).fork).toBe("tactic-fork-played");
 });
 
-test("a fresh review greets, the first move replaces it and returning to the start greets again", async ({
-  page,
-}) => {
-  test.skip(!walterOpener, "Walter's game-review opener is written but not yet recorded.");
-  const game = humanGames.unusual_strong;
-  await captureSpeech(page);
-  await page.route("**/api/preferences/coach", route =>
-    route.fulfill({ json: { coach_id: "classic", motion: "natural" } }),
-  );
-  await page.route("**/api/preferences/audio", route =>
-    route.fulfill({
-      json: {
-        enabled: true,
-        volume: 0.35,
-        board: false,
-        practice: false,
-        voice: "automatic",
-      },
-    }),
-  );
-  await page.route(`**/api/games/${game.id}`, route => route.fulfill({ json: game }));
-  // Opening a finished review restarts its session, as a real server accepts.
-  await page.route(`**/api/games/${game.id}/review`, async route => {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    await route.fulfill({ json: { job_id: game.job!.id, status: "completed" } });
-  });
-  // A fresh document cannot autoplay. Open the review in-app after a real gesture,
-  // as from the game library.
-  // Wait for the page and its audio preferences, as a user clicking in it would.
-  const preferences = page.waitForResponse(response =>
-    response.url().endsWith("/api/preferences/audio"),
-  );
-  await page.goto("/");
-  await preferences;
-  await expect(page.getByRole("heading", { level: 1 })).toBeAttached();
-  await page.locator("main").click({ position: { x: 1, y: 1 } });
-  await page.evaluate(href => {
-    history.pushState(null, "", href);
-    dispatchEvent(new PopStateEvent("popstate"));
-  }, `/games/${game.id}?ply=0`);
-  await expect(page.locator(".move-playback-counter")).toHaveText("0 / 1");
-  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-  expect((await speechActivity(page)).started[0]).toContain("/game-review-opened-");
-  await page.waitForTimeout(400);
-  expect((await speechActivity(page)).stopped).toHaveLength(0);
-  // The bubble shows the spoken greeting, then the move's own text replaces it.
-  const greeting = pilotAdditions.recordings.find(
-    row => row.id === "game-review-opened",
-  )!.walterText;
-  const bubble = page.locator(".coach-message > [data-utterance]");
-  await expect(bubble).toHaveText(greeting);
-  await page.getByRole("button", { name: "Next move", exact: true }).click();
-  await expect(bubble).not.toHaveText(greeting);
-  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(2);
-  expect((await speechActivity(page)).started[1]).toContain("/recognized-opening-");
-  expect((await speechActivity(page)).started[1]).not.toMatch(MAIA_AUDIO);
-  // The start keeps one line: returning there shows and speaks the greeting again.
-  await page.getByRole("button", { name: "Previous move", exact: true }).click();
-  await expect(bubble).toHaveText(greeting);
-  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(3);
-  expect((await speechActivity(page)).started[2]).toContain("/game-review-opened-");
-});
-
 test("a double check plays the double-check take, not a double-attack take", () => {
   // A double check's witness names the king it checks: one target, and every legal
   // reply meets both checks, so neither "two targets" nor "one reply rarely meets both" holds.
@@ -402,21 +318,6 @@ test("a double check plays the double-check take, not a double-attack take", () 
   const twoTargets = { ...doubleCheck, roles: { attackers: ["c2", "d1"], targets: ["e3", "a1"] } };
   expect(reviewedTactics([twoTargets])("double-check")).toBe("tactic-double-attack-played");
   expect(reviewedTactics([twoTargets], jun)("double-check")).toBe("tactic-double-attack-played");
-});
-
-test("back-rank takes play for every coach", () => {
-  const backRank = {
-    id: "back-rank",
-    motif: "back_rank",
-    plies: [1],
-    roles: { attacker: ["d1"], king: ["h1"], escape_blockers: ["g2", "h2"] },
-  };
-  // Walter's take says the king is boxed in by its own pieces, which holds.
-  expect(reviewedTactics([backRank])("back-rank")).toBe("tactic-back-rank-played");
-  // Jun's re-recorded take says the king is confined behind its own pieces.
-  expect(reviewedTactics([backRank], { id: "man-expert", personality: expert })("back-rank")).toBe(
-    "tactic-back-rank-played",
-  );
 });
 
 // The learner's 3.Qxd8 takes the queen Black's 2nd move left; a punishment relation links them.

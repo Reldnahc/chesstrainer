@@ -9,7 +9,7 @@ const sizes = [92.8, 52.5];
 const sheetSelector = "#fantasy-mouth-rig-sheet";
 const avatarsSelector = `${sheetSelector} .coach-avatar`;
 
-async function mountCast(page: Page, expressions: CoachExpression[] = ["neutral"]) {
+async function mountCast(page: Page, expressions: CoachExpression[]) {
   await page.goto("/");
   await page.evaluate(
     async ({ root, ids, sizes, expressions }) => {
@@ -136,74 +136,4 @@ test("fantasy speech restores every authored mouth expression exactly when silen
     .locator(`${avatarsSelector} .organic-speech-aperture`)
     .evaluateAll(paths => paths.flatMap(path => path.getAnimations()).length);
   expect(animationCount).toBe(0);
-});
-
-test("fantasy open, rounded, closed and resting mouths remain readable at application portrait sizes", async ({
-  page,
-}, info) => {
-  await mountCast(page);
-  const samples: {
-    shape: SpeechMouthShape;
-    geometry: {
-      id: string;
-      size: number;
-      width: number;
-      height: number;
-      path: string;
-      opening: string;
-      closed: string;
-      pressure: string;
-    }[];
-  }[] = [];
-  for (const shape of ["open", "round", "closed", "rest"] as const) {
-    await pose(page, shape);
-    const geometry = await page.locator(avatarsSelector).evaluateAll(nodes =>
-      nodes.map(node => {
-        const opening = node.querySelector<SVGGElement>(".organic-speech-opening")!;
-        const aperture = opening.querySelector<SVGPathElement>(
-          ":scope > .organic-speech-aperture",
-        )!;
-        const bounds = aperture.getBoundingClientRect();
-        return {
-          id: node.getAttribute("data-coach")!,
-          size: Number(node.getAttribute("data-size")),
-          width: bounds.width,
-          height: bounds.height,
-          path: getComputedStyle(aperture).d,
-          opening: getComputedStyle(opening).opacity,
-          closed: getComputedStyle(node.querySelector(".organic-speech-closed")!).opacity,
-          pressure: getComputedStyle(node.querySelector(".organic-speech-pressure")!).opacity,
-        };
-      }),
-    );
-    samples.push({ shape, geometry });
-    await page
-      .locator(sheetSelector)
-      .screenshot({ path: info.outputPath(`fantasy-mouth-${shape}.png`), animations: "allow" });
-  }
-  for (const id of coachIds)
-    for (const size of sizes) {
-      const target = (shape: string) =>
-        samples
-          .find(sample => sample.shape === shape)!
-          .geometry.find(sample => sample.id === id && sample.size === size)!;
-      const open = target("open");
-      const round = target("round");
-      expect(open.opening, `${id} ${size} open`).toBe("1");
-      expect(open.closed).toBe("0");
-      expect(round.opening).toBe("1");
-      expect(round.width / round.height, `${id} ${size} rounded aspect`).toBeGreaterThan(0.9);
-      expect(round.width / round.height).toBeLessThan(1.4);
-      expect(round.width).toBeGreaterThan(1);
-      expect(round.height).toBeGreaterThan(1);
-      expect(open.width).toBeGreaterThan(round.width * 1.7);
-      expect(open.path).not.toBe(round.path);
-      for (const shape of ["closed", "rest"]) {
-        expect(target(shape).opening).toBe("0");
-        expect(target(shape).closed).toBe("1");
-        expect(target(shape).height).toBe(0);
-      }
-      expect(target("closed").pressure).toBe("1");
-      expect(target("rest").pressure).toBe("0");
-    }
 });

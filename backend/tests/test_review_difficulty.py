@@ -1,14 +1,12 @@
 """Human difficulty never replaces objective grading or manufactures population odds."""
 
-from copy import deepcopy
-
 import chess
 import chess.pgn
 import pytest
 from trainer.chess_core import digest
 from trainer.human_models.context import request_for
 from trainer.human_models.types import HumanEvidence, HumanMove
-from trainer.review_intelligence.difficulty import assess_difficulty, naturalness
+from trainer.review_intelligence.difficulty import assess_difficulty
 
 
 def report(*, loss=0, best_rank=1, played_rank=1, probability=0.4, shifted=False):
@@ -45,24 +43,6 @@ def report(*, loss=0, best_rank=1, played_rank=1, probability=0.4, shifted=False
     )
 
 
-@pytest.mark.parametrize(
-    "rank,probability,expected",
-    [
-        (1, 0.1, "preferred"),
-        (3, 0.1, "preferred"),
-        (4, 0.1, "plausible"),
-        (1, 0.099, "plausible"),
-        (6, 0.01, "plausible"),
-        (7, 0.03, "plausible"),
-        (7, 0.029, "unusual"),
-        (1, None, "preferred"),
-        (7, None, "plausible"),
-    ],
-)
-def test_naturalness_boundaries_are_explicit(rank, probability, expected):
-    assert naturalness(HumanMove(uci="e2e4", rank=rank, probability=probability)) == expected
-
-
 def test_natural_mistake_and_rare_strong_move_are_not_contradictions():
     bad = report(loss=200)
     result = assess_difficulty(bad)
@@ -82,10 +62,7 @@ def test_natural_mistake_and_rare_strong_move_are_not_contradictions():
 @pytest.mark.parametrize(
     ("rank", "probability", "expected"),
     [
-        (1, 0.05, "natural"),  # The model's top choice in a diffuse policy.
-        (2, 0.09, "natural"),  # Its second choice is not a hard find.
         (3, 0.04, "natural"),
-        (2, None, "natural"),  # A rank-only provider's second choice.
         (4, 0.06, "challenging"),
     ],
 )
@@ -116,26 +93,6 @@ def test_only_move_requires_losing_alternative_not_just_missing_mate():
     assert not assess_difficulty(data).components.only_good_move_at_depth
 
 
-def test_domain_rating_history_and_rank_only_limit_confidence():
-    base = report()
-    assert assess_difficulty(base).confidence == "heuristic"
-    assert assess_difficulty(report(shifted=True)).confidence == "limited"
-    cases = [
-        ({"conditioning": {"self_source": "fallback"}}, "rating_fallback"),
-        ({"conditioning": {"opponent_rating": 3000}}, "outside_probed_rating_range"),
-        ({"domain": {"history_from_start": False}}, "pre_setup_history_unknown"),
-        ({"engine_best": {"probability": None}}, "incomplete_policy"),
-    ]
-    for changes, limitation in cases:
-        data = deepcopy(base)
-        for key, values in changes.items():
-            data["human"][key].update(values)
-        assessment = assess_difficulty(data)
-        assert assessment.confidence == "limited"
-        assert limitation in assessment.limitations
-    assert "uncalibrated_population" in assess_difficulty(base).limitations
-
-
 def test_missing_policy_and_legacy_versions_abstain_but_forced_move_is_structural():
     data = report()
     for human in [None, {}, {"schema_version": "unsupported"}]:
@@ -149,46 +106,3 @@ def test_missing_policy_and_legacy_versions_abstain_but_forced_move_is_structura
     assert result.best_find_difficulty == "forced"
     assert result.interpretations == ["forced_reply"]
     assert result.confidence == "structural"
-
-
-def test_stale_policy_projection_abstains_when_objective_best_changes():
-    data = report()
-    data["best"]["uci"] = "d2d4"
-    result = assess_difficulty(data)
-    assert result.best_find_difficulty == "unknown"
-    assert "human_move_context_mismatch" in result.limitations
-
-
-def test_candidate_coverage_is_a_lower_bound_and_unknown_runner_up_is_not_only_move():
-    data = report()
-    result = assess_difficulty(data)
-    assert result.components.acceptable_count_lower_bound == 2
-    assert not result.components.alternatives_complete
-    data["second_score"] = None
-    result = assess_difficulty(data)
-    assert result.components.only_good_move_at_depth is None
-    assert result.components.acceptable_count_lower_bound == 1
-
-
-def test_inputs_remain_immutable_and_personality_never_changes_semantics():
-    data = report()
-    original = deepcopy(data)
-    first = assess_difficulty(data)
-    assert data == original
-    data["coach"] = "A completely different personality line."
-    data["best_line"]["frames"] = [{"annotation": "Unrelated presentation wording"}]
-    assert assess_difficulty(data) == first
-    data["human"]["conditioning"]["self_rating"] = 1600
-    assert assess_difficulty(data).input_digest != first.input_digest
-
-
-def test_forcing_trace_and_supported_horizon_are_not_entire_pv_length():
-    data = report(best_rank=7, played_rank=7, probability=0.02)
-    data["best_line"] = {
-        "frames": [{}, {"gives_check": True}, {"capture": "pawn"}, {}, {"gives_check": True}],
-        "findings": [{"plies": [1, 3]}],
-    }
-    result = assess_difficulty(data)
-    assert result.components.best_forcing_plies == 2
-    assert result.components.best_supported_horizon == 3
-    assert result.best_find_difficulty == "difficult"

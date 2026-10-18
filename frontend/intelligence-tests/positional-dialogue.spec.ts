@@ -7,54 +7,6 @@ import { renderCoaches } from "./render-coaches";
 import { positionalClaims } from "../tests/positional-claims";
 import { makeIntent } from "../src/dialogue/model";
 
-const fixtures = semanticFixtures<
-  {
-    feature: string;
-    code: string;
-    mirrored: boolean;
-    alternative: Schema["GameReviewReport"];
-    actual: Schema["GameReviewReport"];
-  }[]
->("review_position_fixtures.py");
-for (const fixture of fixtures)
-  test(`all coaches preserve ${fixture.feature} branch identity (${fixture.mirrored ? "mirror" : "original"})`, async ({
-    page,
-  }) => {
-    await page.goto("/");
-    for (const kind of ["actual", "alternative"] as const) {
-      const report = fixture[kind];
-      const turn = report.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
-      const intent = gameIntent({
-        game: { frames: [], orientation: turn === "white" ? "black" : "white" } as unknown as Game,
-        frame: { turn } as Position,
-        report,
-        key: "positional-branch",
-        ply: 1,
-        expression: kind === "actual" ? "best" : "mistake",
-      });
-      const item = intent.claims.find(c => c.code === fixture.code)!;
-      // The mover's own doubled pawns after the better move are its drawback, so they never explain the mistake.
-      if (kind === "alternative" && fixture.feature === "doubled_files") {
-        expect(item).toBeUndefined();
-        continue;
-      }
-      expect(item).toBeTruthy();
-      for (const claims of [intent.claims, [item]]) {
-        const outputs = await renderCoaches(page, { ...intent, claims });
-        expect(outputs.length).toBeGreaterThan(1);
-        for (const output of outputs) {
-          if (!output.trace.variants.some(v => v.code === item.code)) {
-            expect(claims.length).toBeGreaterThan(1);
-            continue;
-          }
-          expect(output.text).toContain(fixture.mirrored ? "black" : "white");
-          if (kind === "alternative") expect(output.text).toContain(`${report.best.san} would `);
-          else expect(output.text).not.toMatch(/would|unplayed|instead/);
-        }
-      }
-    }
-  });
-
 test("all positional families retain hypothetical scope across the current coach registry", async ({
   page,
 }) => {

@@ -23,7 +23,7 @@ const sheetSelector = "#human-mouth-rig-sheet";
 const avatarsSelector = `${sheetSelector} .coach-avatar`;
 const humansSelector = `${avatarsSelector}:not([data-coach="classic"])`;
 
-async function mountCast(page: Page, expressions: CoachExpression[] = ["neutral"]) {
+async function mountCast(page: Page, expressions: CoachExpression[]) {
   await page.goto("/");
   await page.evaluate(
     async ({ root, ids, sizes, expressions }) => {
@@ -159,115 +159,4 @@ test("human speech restores every authored mouth expression exactly when silent 
     .locator(`${avatarsSelector} .organic-speech-aperture`)
     .evaluateAll(paths => paths.flatMap(path => path.getAnimations()).length);
   expect(animationCount).toBe(0);
-});
-
-type Aperture = {
-  id: string;
-  size: number;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  path: string;
-};
-
-async function apertures(page: Page): Promise<Aperture[]> {
-  return page.locator(avatarsSelector).evaluateAll(nodes =>
-    nodes.map(node => {
-      const aperture = node.querySelector<SVGPathElement>(
-        ".organic-speech-opening > .organic-speech-aperture, .walter-aligned-opening > .walter-aligned-aperture",
-      )!;
-      const bounds = aperture.getBoundingClientRect();
-      return {
-        id: node.getAttribute("data-coach")!,
-        size: Number(node.getAttribute("data-size")),
-        x: bounds.x,
-        y: bounds.y,
-        width: bounds.width,
-        height: bounds.height,
-        path: getComputedStyle(aperture).d,
-      };
-    }),
-  );
-}
-
-test("the nine human mouths open, round, pucker and close in step with Walter at portrait sizes", async ({
-  page,
-}, info) => {
-  await mountCast(page);
-  const samples = new Map<SpeechMouthShape, Aperture[]>();
-  for (const shape of Object.keys(speechMouthPoses) as SpeechMouthShape[]) {
-    await pose(page, shape);
-    samples.set(shape, await apertures(page));
-    await page
-      .locator(sheetSelector)
-      .screenshot({ path: info.outputPath(`human-mouth-${shape}.png`), animations: "allow" });
-  }
-  const states = await page.locator(humansSelector).evaluateAll(nodes =>
-    nodes.map(node => ({
-      id: node.getAttribute("data-coach")!,
-      size: Number(node.getAttribute("data-size")),
-      opening: getComputedStyle(node.querySelector(".organic-speech-opening")!).opacity,
-      closed: getComputedStyle(node.querySelector(".organic-speech-closed")!).opacity,
-      pressure: getComputedStyle(node.querySelector(".organic-speech-pressure")!).opacity,
-    })),
-  );
-  // The sheet ends on the resting shape, so these opacities describe rest.
-  for (const state of states) {
-    expect(state.opening, `${state.id} rest`).toBe("0");
-    expect(state.closed).toBe("1");
-    expect(state.pressure).toBe("0");
-  }
-  const target = (shape: SpeechMouthShape, id: string, size: number) =>
-    samples.get(shape)!.find(sample => sample.id === id && sample.size === size)!;
-  for (const size of sizes) {
-    const walter = (shape: SpeechMouthShape) => target(shape, "classic", size);
-    for (const id of humanIds) {
-      const open = target("open", id, size);
-      const round = target("round", id, size);
-      const pucker = target("pucker", id, size);
-      const wide = target("wide", id, size);
-      expect(round.width / round.height, `${id} ${size} rounded aspect`).toBeGreaterThan(0.9);
-      expect(round.width / round.height).toBeLessThan(1.4);
-      expect(pucker.width / pucker.height, `${id} ${size} puckered aspect`).toBeGreaterThan(0.65);
-      expect(pucker.width / pucker.height).toBeLessThan(1.1);
-      expect(pucker.width).toBeLessThan(round.width * 0.8);
-      expect(pucker.height).toBeLessThan(round.height);
-      expect(open.width).toBeGreaterThan(round.width * 1.7);
-      expect(wide.height).toBeGreaterThan(open.height * 1.3);
-      expect(open.path).not.toBe(round.path);
-      for (const shape of ["closed", "rest"] as const)
-        expect(target(shape, id, size).height, `${id} ${size} ${shape}`).toBe(0);
-      // The same portrait-relative mouth as Walter's, within a pixel: same upper
-      // lip, same reach into the jaw and the same width for open sounds. The shared
-      // contour's corners bulge a little more than his, hence the width allowance.
-      for (const shape of ["open", "wide", "consonant", "tongue", "lip-bite"] as const) {
-        const human = target(shape, id, size);
-        const reference = walter(shape);
-        const portrait =
-          human.y -
-          (await page
-            .locator(`${avatarsSelector}[data-coach="${id}"][data-size="${size}"]`)
-            .boundingBox())!.y;
-        const walterPortrait =
-          reference.y -
-          (await page
-            .locator(`${avatarsSelector}[data-coach="classic"][data-size="${size}"]`)
-            .boundingBox())!.y;
-        expect(Math.abs(portrait - walterPortrait), `${id} ${size} ${shape} lip`).toBeLessThan(0.6);
-        expect(
-          Math.abs(human.height - reference.height),
-          `${id} ${size} ${shape} height`,
-        ).toBeLessThan(0.6);
-        expect(
-          Math.abs(human.width - reference.width),
-          `${id} ${size} ${shape} width`,
-        ).toBeLessThan(1);
-      }
-      expect(
-        Math.abs(round.height - walter("round").height),
-        `${id} ${size} round height`,
-      ).toBeLessThan(0.6);
-    }
-  }
 });

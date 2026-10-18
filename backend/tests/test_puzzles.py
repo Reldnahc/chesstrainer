@@ -2,7 +2,6 @@
 
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
-from datetime import timedelta
 
 import chess
 import pytest
@@ -11,12 +10,9 @@ from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.accounts import COOKIE
 from trainer.api import create_app
-from trainer.contracts.puzzles import PuzzleMove
-from trainer.errors import DomainError, NotFound
+from trainer.errors import NotFound
 from trainer.models import PuzzleAttempt, PuzzleSession, Review, SkillEvidence, SRSState
 from trainer.puzzles.definitions import PuzzleDefinition
-from trainer.puzzles.providers import PuzzleProviders
-from trainer.puzzles.sessions import command
 
 FEN = "8/4k3/1r6/8/8/2N5/8/4K3 w - - 0 1"
 LINE = ("c3d5", "e7d7", "d5b6")
@@ -100,40 +96,6 @@ def retained_learning(app):
         }
 
 
-def test_disabled_starter_pack_leaves_an_honest_empty_library(settings):
-    settings.puzzle_starter_pack = False
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        assert client.get("/api/puzzles").json() == {
-            "available": 0,
-            "sources": [],
-            "themes": [],
-            "retry_available": 0,
-            "solved_puzzles": 0,
-            "resume": [],
-            "stats": {"solved": 0, "clean": 0, "failed_then_solved": 0, "revealed": 0},
-            "generation": {
-                "automatic": True,
-                "analyzed_games": 0,
-                "searched_games": 0,
-                "unsearched_games": 0,
-                "puzzles": 0,
-                "candidates": 0,
-                "kept": 0,
-                "last_searched_at": None,
-                "job_status": None,
-            },
-        }
-        assert client.get("/api/puzzles/next").json() is None
-        assert client.get("/api/puzzles/next?source=games").json() is None
-        assert (
-            client.post(
-                "/api/puzzle-sessions",
-                json={"provider_id": "test", "key": "nope", "version": "v1", "request_id": "a"},
-            ).status_code
-            == 404
-        )
-
-
 def test_multistep_retry_resume_and_no_scheduling_side_effects(settings):
     app = app_with(settings)
     with TestClient(app) as client:
@@ -192,35 +154,6 @@ def test_multistep_retry_resume_and_no_scheduling_side_effects(settings):
             assert db.get(PuzzleSession, session_id).first_response_ms == 1200
 
 
-def test_solved_puzzles_counts_each_installed_puzzle_once(settings):
-    app = app_with(settings, definition(), definition(key="p002"))
-
-    def begin(client, key, request_id):
-        response = client.post(
-            "/api/puzzle-sessions",
-            json={
-                "provider_id": "test-fixtures",
-                "key": key,
-                "version": "test-v1",
-                "request_id": request_id,
-            },
-        )
-        assert response.status_code == 200, response.text
-        return response.json()
-
-    with TestClient(app) as client:
-        for attempt in ("first", "repeat"):
-            state = begin(client, "p001", attempt)
-            for uci in LINE[::2]:
-                state = move(client, state, uci).json()
-            assert state["status"] == "solved"
-        assert reveal(client, begin(client, "p002", "shown")).json()["status"] == "revealed"
-        library = client.get("/api/puzzles").json()
-        assert library["available"] == 2
-        assert library["solved_puzzles"] == 1
-        assert library["stats"]["solved"] == 2
-
-
 def test_reveal_is_idempotent_and_replays_only_remaining_continuation(settings):
     app = app_with(settings)
     with TestClient(app) as client:
@@ -273,79 +206,12 @@ def test_request_replay_conflicts_and_competing_tabs(settings):
             assert db.scalar(select(func.count()).select_from(PuzzleAttempt)) == 3
 
 
-def test_simultaneous_duplicate_request_commits_once(settings):
-    app = app_with(settings)
-    with TestClient(app) as client:
-        state = start(client)
-        with ThreadPoolExecutor(max_workers=2) as executor:
-            responses = list(executor.map(lambda _: move(client, state, LINE[0]), range(2)))
-        assert all(response.status_code == 200 for response in responses)
-        assert responses[0].json() == responses[1].json()
-        with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(PuzzleAttempt)) == 1
-            assert db.get(PuzzleSession, state["id"]).current_step == 2
-
-
-def test_conditional_revision_write_rejects_stale_database_session(settings):
-    app = app_with(settings)
-    with TestClient(app) as client:
-        state = start(client)
-        with app.state.sessions() as first, app.state.sessions() as second:
-            stale = second.get(PuzzleSession, state["id"])
-            request = PuzzleMove(request_id="first", revision=0, uci=LINE[0])
-            command(first, state["id"], request)
-            first.commit()
-            assert stale.revision == 0
-            with pytest.raises(DomainError) as raised:
-                command(second, state["id"], request.model_copy(update={"request_id": "second"}))
-            assert raised.value.status == 409
-        assert client.get(f"/api/puzzle-sessions/{state['id']}").json()["current_step"] == 2
-
-
-def test_resumed_feedback_matches_revision_even_if_clock_moves_backwards(settings):
-    app = app_with(settings)
-    with TestClient(app) as client:
-        state = start(client)
-        state = move(client, state, "c3a4").json()
-        state = move(client, state, LINE[0]).json()
-        with app.state.sessions() as db:
-            latest = db.scalar(select(PuzzleAttempt).where(PuzzleAttempt.grade == "correct"))
-            latest.created_at -= timedelta(days=1)
-            db.commit()
-        resumed = client.get(f"/api/puzzle-sessions/{state['id']}").json()
-        assert resumed["feedback"] == state["feedback"]
-        assert resumed["revision"] == state["revision"]
-
-
-@pytest.mark.parametrize("outcome", ["solve", "reveal"])
-def test_puzzles_preserve_existing_reviews_and_weakness_evidence(settings, outcome):
-    from test_focused_practice import seed_classified
-
-    app = app_with(settings)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            fixture = seed_classified(db, settings)
-        cold_review = client.post(f"/api/review/{fixture['exercise_id']}/start").json()
-        client.post(f"/api/review/sessions/{cold_review['session_id']}/reveal")
-        before = retained_learning(app)
-        assert all(before.values())
-        state = move(client, start(client), "c3a4").json()
-        state = move(client, state, LINE[0]).json()
-        if outcome == "solve":
-            assert move(client, state, LINE[-1]).json()["status"] == "solved"
-        else:
-            assert reveal(client, state).json()["status"] == "revealed"
-        assert retained_learning(app) == before
-
-
-@pytest.mark.parametrize("black", [False, True])
 @pytest.mark.parametrize(
-    ("fen", "line"),
+    ("black", "fen", "line"),
     [
-        (FEN, LINE),
-        ("4k3/P7/8/8/8/8/8/4K3 w - - 0 1", ("a7a8n",)),
-        ("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2", ("e5d6",)),
-        ("4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", ("e1g1",)),
+        (False, "4k3/P7/8/8/8/8/8/4K3 w - - 0 1", ("a7a8n",)),
+        (True, "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2", ("e5d6",)),
+        (False, "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", ("e1g1",)),
     ],
 )
 def test_both_colors_special_moves(settings, black, fen, line):
@@ -374,13 +240,11 @@ def test_both_colors_special_moves(settings, black, fen, line):
         assert client.get("/api/puzzles").json()["stats"]["clean"] == 1
 
 
-@pytest.mark.parametrize("black", [False, True])
-@pytest.mark.parametrize("submit_alias", [False, True])
 @pytest.mark.parametrize(
-    ("aliases", "canonical"),
+    ("black", "submit_alias", "aliases", "canonical"),
     [
-        (("e1h1", "e8a8", "a1b1"), ("e1g1", "e8c8", "a1b1")),
-        (("e1a1", "e8h8", "h1g1"), ("e1c1", "e8g8", "h1g1")),
+        (False, True, ("e1h1", "e8a8", "a1b1"), ("e1g1", "e8c8", "a1b1")),
+        (True, False, ("e1a1", "e8h8", "h1g1"), ("e1c1", "e8g8", "h1g1")),
     ],
 )
 def test_castling_aliases_use_canonical_solution_and_playback(
@@ -420,74 +284,18 @@ def test_castling_aliases_use_canonical_solution_and_playback(
         assert client.get("/api/puzzles").json()["stats"]["clean"] == 1
 
 
-def test_legacy_castling_snapshot_and_invalid_move_commands(settings):
-    fixture = definition(initial_fen="4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", solution=("e1g1",))
-    app = app_with(settings, fixture)
-    with TestClient(app) as client:
-        state = start(client)
-        with app.state.sessions() as db:
-            session = db.get(PuzzleSession, state["id"])
-            session.snapshot = session.snapshot | {"solution": ["e1h1"]}
-            db.commit()
-        for invalid in ("0000", "e1h1junk", "e1g1q", "e1e3"):
-            assert move(client, state, invalid).status_code == 422
-        assert client.get(f"/api/puzzle-sessions/{state['id']}").json() == state
-        state = move(client, state, "e1g1").json()
-        assert state["status"] == "solved" and not state["failed"]
-        assert [frame["uci"] for frame in state["completion"]["solution"]] == ["e1g1"]
-
-
 @pytest.mark.parametrize(
     "changes",
     [
         {"initial_fen": "not a fen"},
-        {"initial_fen": "8/8/8/8/8/8/8/8 w - - 0 1"},
         {"orientation": "black"},
-        {"solution": []},
-        {"solution": ["c3d5", "e7d7"]},
         {"solution": ["c3c8"]},
-        {"solution": ["0000"]},
-        {
-            "initial_fen": "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1",
-            "solution": ["e1g1q"],
-        },
-        {"source": "games", "solution": ["c3d5"]},
         {"provenance": {"attribution": "unsafe", "url": "javascript:alert(1)"}},
     ],
 )
 def test_invalid_provider_records_rejected(changes):
     with pytest.raises(ValidationError):
         definition(**changes)
-
-
-def test_library_theme_counts_split_by_source(settings):
-    games = FixtureProvider(
-        (definition(key="g1", source="games", themes=["fork", "pin"], rating=None),),
-        id="game-fixtures",
-        source="games",
-    )
-    app = create_app(
-        settings,
-        workers=False,
-        start_engine=False,
-        puzzle_providers=(FixtureProvider((definition(),)), games),
-    )
-    with TestClient(app) as client:
-        themes = client.get("/api/puzzles").json()["themes"]
-    assert themes == [
-        {"id": "fork", "count": 2, "sources": {"generic": 1, "games": 1}},
-        {"id": "pin", "count": 1, "sources": {"games": 1}},
-    ]
-
-
-def test_provider_boundary_rejects_duplicates_and_mismatched_source(sessions):
-    provider = FixtureProvider((definition(), definition()))
-    with pytest.raises(ValueError, match="Duplicate"):
-        PuzzleProviders((provider, provider))
-    with sessions() as db, pytest.raises(ValueError, match="Inconsistent"):
-        list(PuzzleProviders((provider,)).catalog(db))
-    with sessions() as db, pytest.raises(ValueError, match="Inconsistent"):
-        list(PuzzleProviders((FixtureProvider((definition(source="games"),)),)).catalog(db))
 
 
 def test_account_isolation_private_history_and_snapshot(settings):

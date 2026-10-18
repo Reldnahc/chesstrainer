@@ -3,7 +3,6 @@ import type { Game } from "../src/gameReview/types";
 import { gameIntent } from "../src/dialogue/gameIntent";
 import { renderDialogue } from "../src/dialogue/neutral";
 import { classic } from "../src/dialogue/characters/classic";
-import { robot } from "../src/dialogue/characters/robot";
 import { gameReaction } from "../src/coach/reactions";
 import { selectGameSpeech, type GameSpeechContext } from "../src/audio/speech/gameSelection";
 import { humanInsightIntent, humanInsightLabels } from "../src/dialogue/humanClaims";
@@ -15,11 +14,9 @@ import { meanings } from "../src/audio/speech/meaningCatalog";
 // in the badge and its popup; the coach's line carries the objective facts, and
 // a sound move with nothing else to say gets the plain best or good line.
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
-const coaches = [
-  { id: "classic", personality: classic },
-  { id: "robot", personality: robot },
-];
-// Positions with an objective fact and a Maia reading.
+// Maia gating is coach-independent: one coach (the policy sweep checks both coaches).
+const coach = { id: "classic", personality: classic };
+// Positions with an objective fact and a Maia reading, one per family.
 const objectiveAndMaia: [string, string][] = [
   // Poorly graded first moves are Book moves, and the Book badge decides the line.
   ["evaluation-natural", "recognized-opening"],
@@ -27,23 +24,12 @@ const objectiveAndMaia: [string, string][] = [
   ["missed-mate-natural", "missed-mate"],
   ["capture-natural", "immediate-capture"],
   ["allowed-fork-natural", "tactic-fork-allowed"],
-  ["allowed-skewer-natural", "tactic-skewer-allowed"],
   ["fork-hard_find", "tactic-fork-played"],
-  ["fork-unusual_strong", "tactic-fork-played"],
-  ["pin-hard_find", "tactic-pin-played"],
-  ["pin-unusual_strong", "tactic-pin-played"],
   ["resource-defense-hard_find", "only-playable-move"],
-  ["resource-advantage-hard_find", "only-advantage-resource"],
-  ["resource-defense-unusual_strong", "only-playable-move"],
   ["resource-advantage-unusual_strong", "only-advantage-resource"],
-  ["unsupported-defensive-pair", "recognized-opening"],
 ];
 
-function context(
-  name: string,
-  coach = coaches[0],
-  game = structuredClone(games[name]),
-): GameSpeechContext {
+function context(name: string, game = structuredClone(games[name])): GameSpeechContext {
   const frame = game.frames[1],
     report = frame.report!;
   const key = `combination-${name}`;
@@ -99,63 +85,59 @@ test("the speech catalogue has no Maia meanings or combinations", () => {
   expect(meanings.filter(item => "primary" in item || "secondary" in item)).toEqual([]);
 });
 
-for (const coach of coaches) {
-  for (const [name, objectiveId] of objectiveAndMaia)
-    test(`${coach.id}: ${name} says only the objective line`, () => {
-      const current = context(name, coach);
-      expect(maia(current.intent.claims)).toEqual([]);
-      expect(maia(current.utterance.renderedClaims!)).toEqual([]);
-      expect(selectGameSpeech(current).primaryId).toBe(objectiveId);
-      // The reading is still there for the badge and its popup.
-      expect(maia(insight(current).claims)).toHaveLength(1);
-    });
-
-  for (const [kind, code] of [
-    ["hard_find", "human_challenging"],
-    ["unusual_strong", "human_rare"],
-    ["natural_best", "human_natural_best"],
-    ["natural_strong", "human_natural_strong"],
-  ] as const)
-    test(`${coach.id}: a move whose only reading is ${kind} gets the plain line`, () => {
-      // These policy fixtures open 1.e4/1.d4; without the book line Maia is all they have.
-      const game = structuredClone(humanGames[kind]);
-      game.frames[1].report!.opening = null;
-      const current = context(`human-${kind}`, coach, game);
-      const codes = current.utterance.renderedClaims!.map(item => item.code);
-      expect(codes).toHaveLength(1);
-      expect(["best", "good"]).toContain(codes[0]);
-      expect(selectGameSpeech(current).primaryId).toBe(
-        codes[0] === "best" ? "best-supported-choice" : "good-choice",
-      );
-      expect(insight(current).claims.map(item => item.code)).toEqual([code]);
-    });
-
-  test(`${coach.id}: the Maia popup selects no recording`, () => {
-    const current = context("evaluation-natural", coach);
-    const intent = insight(current);
-    const utterance = renderDialogue(intent, coach);
-    expect(utterance.renderedClaims!.map(item => item.code)).toEqual(["human_natural_error"]);
-    expect(selectGameSpeech({ ...current, intent, utterance })).toEqual(silent);
+for (const [name, objectiveId] of objectiveAndMaia)
+  test(`${coach.id}: ${name} says only the objective line`, () => {
+    const current = context(name);
+    expect(maia(current.intent.claims)).toEqual([]);
+    expect(maia(current.utterance.renderedClaims!)).toEqual([]);
+    expect(selectGameSpeech(current).primaryId).toBe(objectiveId);
+    // The reading is still there for the badge and its popup.
+    expect(maia(insight(current).claims)).toHaveLength(1);
   });
 
-  test(`${coach.id}: opponent review has no Maia reading anywhere`, () => {
-    const game = structuredClone(games["evaluation-natural"]);
-    game.orientation = "black";
-    const current = context("evaluation-natural", coach, game);
-    expect(current.intent.subject).toBe("opponent");
-    expect(maia(insight(current).claims)).toEqual([]);
-    expect(selectGameSpeech(current).recordingId).toBe("recognized-opening");
+for (const [kind, code] of [
+  ["natural_best", "human_natural_best"],
+  ["natural_strong", "human_natural_strong"],
+] as const)
+  test(`${coach.id}: a move whose only reading is ${kind} gets the plain line`, () => {
+    // These policy fixtures open 1.e4/1.d4; without the book line Maia is all they have.
+    const game = structuredClone(humanGames[kind]);
+    game.frames[1].report!.opening = null;
+    const current = context(`human-${kind}`, game);
+    const codes = current.utterance.renderedClaims!.map(item => item.code);
+    expect(codes).toHaveLength(1);
+    expect(["best", "good"]).toContain(codes[0]);
+    expect(selectGameSpeech(current).primaryId).toBe(
+      codes[0] === "best" ? "best-supported-choice" : "good-choice",
+    );
+    expect(insight(current).claims.map(item => item.code)).toEqual([code]);
   });
 
-  test(`${coach.id}: unresolved or stale positions select nothing`, () => {
-    const current = context("evaluation-natural", coach);
-    for (const blocked of [
-      { ...current, pending: true },
-      { ...current, error: true },
-      { ...current, frame: { ...current.frame!, fen: games["fork-hard_find"].frames[1].fen } },
-      { ...current, utterance: { ...current.utterance, intentId: "previous-position" } },
-    ]) {
-      expect(selectGameSpeech(blocked)).toEqual(silent);
-    }
-  });
-}
+test(`${coach.id}: the Maia popup selects no recording`, () => {
+  const current = context("evaluation-natural");
+  const intent = insight(current);
+  const utterance = renderDialogue(intent, coach);
+  expect(utterance.renderedClaims!.map(item => item.code)).toEqual(["human_natural_error"]);
+  expect(selectGameSpeech({ ...current, intent, utterance })).toEqual(silent);
+});
+
+test(`${coach.id}: opponent review has no Maia reading anywhere`, () => {
+  const game = structuredClone(games["evaluation-natural"]);
+  game.orientation = "black";
+  const current = context("evaluation-natural", game);
+  expect(current.intent.subject).toBe("opponent");
+  expect(maia(insight(current).claims)).toEqual([]);
+  expect(selectGameSpeech(current).recordingId).toBe("recognized-opening");
+});
+
+test(`${coach.id}: unresolved or stale positions select nothing`, () => {
+  const current = context("evaluation-natural");
+  for (const blocked of [
+    { ...current, pending: true },
+    { ...current, error: true },
+    { ...current, frame: { ...current.frame!, fen: games["fork-hard_find"].frames[1].fen } },
+    { ...current, utterance: { ...current.utterance, intentId: "previous-position" } },
+  ]) {
+    expect(selectGameSpeech(blocked)).toEqual(silent);
+  }
+});

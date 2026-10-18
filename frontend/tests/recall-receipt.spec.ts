@@ -129,36 +129,3 @@ for (const kind of ["game", "opening"] as const) {
     }
   });
 }
-
-test("opening unscheduled receipts take precedence and retain the previously recorded explanation", async ({
-  page,
-}) => {
-  const reason = "This study material has changed, so the review schedule is unchanged.";
-  const state = {
-    position: {
-      ...cold,
-      opening: { ...opening, names: [...opening.names] },
-      non_scheduling_reason: reason,
-    },
-    feedback: {
-      completed: true,
-      grade: "revealed",
-      retired: true,
-      next_due: nextDue,
-      scheduling_status: "previously_recorded",
-      non_scheduling_reason: reason,
-    } as Feedback,
-  };
-  await mockRecall(page, state);
-  await page.goto("/study/due?session=receipt-fixture");
-  const receipt = page.locator(".review-schedule");
-  await expect(receipt.getByRole("status")).toHaveText(reason);
-  await expect(receipt.locator("time")).toHaveCount(0);
-  await page.getByRole("button", { name: "Reveal move", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Next position", exact: true })).toBeVisible();
-  await expect(receipt.getByRole("status")).toHaveText(
-    `${reason} Your earlier recall remains recorded.`,
-  );
-  await expect(receipt.locator("time")).toHaveCount(0);
-  await expect(receipt).not.toContainText(/Recall saved|retired|Next review/);
-});

@@ -6,9 +6,7 @@ from datetime import datetime, timedelta, timezone
 import httpx
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import func, select, update
-from sqlalchemy.orm import Session
-from trainer import presence
+from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.game_analysis import BACKFILL, FRESH, REQUESTED, queue_games, queue_imported
 from trainer.game_providers.chesscom import ChessComClient
@@ -25,9 +23,7 @@ from trainer.models import (
     ImportGame,
     ProviderConnection,
     ProviderImport,
-    User,
 )
-from trainer.presence import active_cutoff
 
 START = datetime(2026, 9, 1, tzinfo=timezone.utc)
 
@@ -173,34 +169,6 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
         runner.providers.retry_at["chesscom"] = time.monotonic() + 60
         poll(runner.workspaces, runner.providers, runner.settings, ["local"])
         assert len(FakeClient.calls) == calls + 1
-
-
-def test_poller_skips_accounts_away_for_a_week_and_welcomes_them_back(settings):
-    app = create_app(settings, workers=False)
-    with TestClient(app) as client:
-        assert client.get("/api/welcome-back").json() == {"away_since": None}
-        with Session(app.state.workspaces.sql_engine) as db:
-            assert db.get(User, "local").last_seen_at is not None
-            db.execute(
-                update(User)
-                .where(User.id == "local")
-                .values(last_seen_at=datetime.now(timezone.utc) - timedelta(days=8))
-            )
-            db.commit()
-        runner = app.state.runner
-        with runner.queue.sessions() as db:
-            active = db.scalars(
-                runner.queue.owners().where(User.last_seen_at >= active_cutoff(settings))
-            ).all()
-        assert active == []
-        presence.forget()
-        away = client.get("/api/welcome-back").json()["away_since"]
-        assert away is not None
-        with runner.queue.sessions() as db:
-            assert db.scalars(
-                runner.queue.owners().where(User.last_seen_at >= active_cutoff(settings))
-            ).all() == ["local"]
-        assert client.post("/api/welcome-back/dismiss").json() == {"away_since": None}
 
 
 @pytest.mark.stockfish

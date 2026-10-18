@@ -66,23 +66,6 @@ def test_cancel_kills_worker_then_next_request_can_restart(settings, tmp_path):
     human.close()
 
 
-def test_missing_runtime_does_not_start_a_native_child(settings, tmp_path, monkeypatch):
-    settings.human_model_path = tmp_path / "present.pt"
-    settings.human_model_path.touch()
-    identity = provenance(settings)
-    identity.inference["torch"] = "unavailable"
-    human = MaiaProvider(settings, identity=identity)
-    monkeypatch.setattr(
-        "trainer.human_models.runtime.Worker", lambda *_: pytest.fail("Started without runtime")
-    )
-    try:
-        assert human.snapshot().status == "unavailable"
-        with pytest.raises(HumanUnavailable, match="runtime_unavailable"):
-            human.predict(request())
-    finally:
-        human.close()
-
-
 def test_crashed_worker_fails_closed_with_cooldown(settings, tmp_path):
     human = provider(settings, tmp_path, "raise SystemExit(1)")
     try:
@@ -94,30 +77,6 @@ def test_crashed_worker_fails_closed_with_cooldown(settings, tmp_path):
         assert not human.workers.live
     finally:
         human.close()
-
-
-def test_one_host_slot_serializes_accounts_and_reuses_worker(settings, tmp_path):
-    human = provider(
-        settings,
-        tmp_path,
-        """import json,sys,time
-config=json.loads(input())
-print('{"ready":true}',flush=True)
-for line in sys.stdin:
-    json.loads(line)
-    time.sleep(.03)
-    print(json.dumps({"policy":{"provenance":config["provenance"],"complete":False,"moves":[{"uci":"e2e4","rank":1}]}}),flush=True)
-""",
-    )
-    try:
-        with ThreadPoolExecutor(max_workers=6) as pool:
-            results = list(pool.map(lambda _: human.predict(request()), range(12)))
-        assert len(human.workers.live) == 1
-        assert all(row.moves[0].probability is None for row in results)
-        assert human.snapshot().status == "ready"
-    finally:
-        human.close()
-    assert all(worker.process.poll() is not None for worker in human.workers.live)
 
 
 @pytest.mark.maia

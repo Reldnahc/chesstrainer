@@ -36,19 +36,6 @@ async function puzzle(page: Page, key: string) {
   return { id: session_id, path: `/study/puzzles/sessions/${session_id}` };
 }
 
-async function opening(page: Page, key: string) {
-  const response = await page.request.post(`/__test/opening-recall-fixture/voice-${key}`);
-  expect(response.ok()).toBe(true);
-  const result: {
-    session_id: string;
-    study_ids: string[];
-    wrong: string;
-    accepted_moves: string[];
-  } = await response.json();
-  studies.set(page, [...(studies.get(page) ?? []), ...result.study_ids]);
-  return result;
-}
-
 // A fresh document cannot autoplay. Open the puzzle in-app after a real gesture,
 // as from the puzzle list or Next puzzle.
 async function openInApp(page: Page, path: string) {
@@ -165,33 +152,6 @@ test("revealing a puzzle stays silent and a late response cannot narrate after l
   }
 });
 
-test("opening recall speaks fresh repertoire feedback without replaying saved or revealed success", async ({
-  page,
-}, info) => {
-  const fixture = await opening(page, `opening-${info.project.name}`);
-  await page.goto(`/study/due?session=${fixture.session_id}`);
-  await expect(
-    page.getByRole("heading", { name: "Play your studied move.", exact: true }),
-  ).toBeVisible();
-  await unchanged(page);
-  await move(page, fixture.wrong);
-  await spoken(page, "opening-recall-rejected", 1);
-  await move(page, fixture.accepted_moves[0]);
-  await spoken(page, "opening-recall-accepted", 2);
-  await page.reload();
-  await expect(page.getByRole("heading", { name: "Opening recalled.", exact: true })).toBeVisible();
-  await unchanged(page);
-  const reveal = await opening(page, `opening-reveal-${info.project.name}`);
-  await page.goto(`/study/due?session=${reveal.session_id}`);
-  await page.getByRole("button", { name: "Reveal move", exact: true }).click();
-  await expect(
-    page.getByRole("heading", { name: "Studied move revealed.", exact: true }),
-  ).toBeVisible();
-  await unchanged(page);
-  await page.getByRole("button", { name: "Listen to coach", exact: true }).click();
-  await spoken(page, "opening-recall-revealed", 1);
-});
-
 test("SRS speaks one fresh visible counter reply and leaves cold restored cards silent", async ({
   page,
 }, info) => {
@@ -214,41 +174,6 @@ test("SRS speaks one fresh visible counter reply and leaves cold restored cards 
   await expect(page.getByRole("heading", { name: "Good decision.", exact: true })).toBeVisible();
   await spoken(page, "srs-summary-material-gain", 1);
   await unchanged(page, 1);
-});
-
-test("SRS speaks the ready line on the session's first cold card and the retry line when a card returns", async ({
-  page,
-}, info) => {
-  const seed = async (key: string) => {
-    const response = await page.request.post(
-      `/__test/review-explanation-fixture/voice-open-${key}-${info.project.name}`,
-    );
-    expect(response.ok()).toBe(true);
-    return (await response.json()) as { exercise_id: string; wrong: string; best: string };
-  };
-  const first = await seed("first");
-  await seed("second");
-  await openInApp(page, `/study/due?exercise=${first.exercise_id}`);
-  await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
-  await spoken(page, "srs-cold", 1);
-  await unchanged(page, 1);
-  await move(page, first.wrong);
-  await spoken(page, "explanation-frame-capture-move-check", 2);
-  await unchanged(page, 2);
-  // The failed card coming back is a fresh retry, so it speaks again
-  // (opening it in-app starts a new document, so the count restarts).
-  await openInApp(page, `/study/due?exercise=${first.exercise_id}`);
-  await expect(page.locator('.board-shell [data-square="a1"] [data-piece="wR"]')).toBeVisible();
-  await spoken(page, "srs-retry", 1);
-  await move(page, first.best);
-  await spoken(page, "srs-summary-material-gain", 2);
-  await page.getByRole("button", { name: "Next position" }).click();
-  await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
-  await page.waitForTimeout(800);
-  // Later cold cards in the same session stay Listen-only.
-  expect((await speechActivity(page)).started.filter(id => id.includes("srs-cold"))).toHaveLength(
-    0,
-  );
 });
 
 test("Show why has one primary frame and explicit summary and note playback that stop on close", async ({

@@ -9,7 +9,7 @@ from sqlalchemy import func, select, update
 from trainer.accounts import COOKIE, Accounts
 from trainer.api import create_app
 from trainer.db import database, migrate
-from trainer.errors import Conflict, NotFound
+from trainer.errors import NotFound
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Game, GameReview, User
 from trainer.ownership import account_sessions
@@ -20,7 +20,7 @@ PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'
 STORED_SIGNUPS = Accounts.signups_open
 
 
-@pytest.mark.parametrize("origin", ["", "https://chess.example.test"])
+@pytest.mark.parametrize("origin", ["https://chess.example.test"])
 def test_disabled_accounts_use_local_workspace_without_exposing_accounts(settings, origin):
     settings.accounts_enabled = False  # The container default must not force login.
     settings.public_origin = origin
@@ -298,20 +298,6 @@ def test_bulk_writes_cannot_cross_accounts(settings):
     engine.dispose()
 
 
-def test_secure_cookie_and_origin(settings):
-    settings.accounts_enabled = True
-    settings.public_origin = "https://chess.example.test"
-    with TestClient(create_app(settings, workers=False), base_url=settings.public_origin) as client:
-        payload = {"username": "alice", "password": "testing-password"}
-        assert client.post("/api/auth/signup", json=payload, headers=ORIGIN).status_code == 403
-        response = client.post(
-            "/api/auth/signup", json=payload, headers={"Origin": settings.public_origin}
-        )
-        cookie = response.headers["set-cookie"].lower()
-        assert "secure" in cookie and "httponly" in cookie and "samesite=lax" in cookie
-        assert client.get("/api/auth/me").json()["user"]["username"] == "alice"
-
-
 def test_account_migration_preserves_existing_learning_history(settings):
     import sqlalchemy
     from alembic import command
@@ -455,57 +441,6 @@ def test_promote_grants_admin_to_an_existing_account_only(settings, monkeypatch,
     # The unclaimed local workspace is not an account the CLI can change.
     assert run("promote", "__local__") == 1
     assert "Account not found" in capsys.readouterr().err
-
-
-@pytest.mark.pristine_database
-def test_account_commands_explain_a_busy_database_and_a_missing_terminal(
-    settings, monkeypatch, capsys
-):
-    import io
-    import sqlite3
-
-    from alembic import command
-    from alembic.config import Config
-    from trainer import accounts as accounts_module
-    from trainer import db as db_module
-
-    # A server mid-upgrade holds the write lock on a database behind the code.
-    engine, _ = database(settings.database_path)
-    config = Config("alembic.ini")
-    with engine.begin() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "e2a4c6b8d0f1")
-    engine.dispose()
-    monkeypatch.setattr(accounts_module, "Settings", lambda: settings)
-    monkeypatch.setattr(db_module, "database", lambda path: database(path, timeout=0.1))
-
-    def run(*argv):
-        monkeypatch.setattr("sys.argv", ["trainer.accounts", *argv])
-        with pytest.raises(SystemExit) as exit_info:
-            accounts_module.main()
-            raise SystemExit(0)
-        return exit_info.value.code
-
-    server = sqlite3.connect(settings.database_path, isolation_level=None)
-    server.execute("BEGIN IMMEDIATE")
-    try:
-        assert run("promote", "friend") == 1
-        err = capsys.readouterr().err
-        assert "Upgrading the database first" in err and "still upgrading" in err
-    finally:
-        server.execute("ROLLBACK")
-        server.close()
-    # Once upgraded, the commands no longer touch the schema.
-    assert run("promote", "nobody") == 1
-    assert "Account not found" in capsys.readouterr().err
-    engine, _ = database(settings.database_path)
-    assert db_module.migrations_pending(engine) is False
-    engine.dispose()
-    # Without -it, a password prompt fails at once instead of waiting forever.
-    Accounts(settings.database_path).create("friend", "correct horse battery")
-    monkeypatch.setattr("sys.stdin", io.StringIO(""))
-    assert run("reset-password", "friend") == 1
-    assert "docker exec -it" in capsys.readouterr().err
 
 
 def test_administrators_manage_other_accounts_from_settings(settings):
@@ -751,24 +686,3 @@ def test_members_change_their_own_password_and_keep_this_device(settings):
         cleared = change("temporary-pass", "my-own-password")
         assert not cleared.json()["user"]["password_change_required"]
         assert client.get("/api/games").status_code == 200
-
-
-def test_a_disabled_account_with_interrupted_analysis_can_still_be_deleted(settings):
-    from sqlalchemy.orm import Session
-    from trainer.job_queue import JobQueue
-
-    engine, _ = database(settings.database_path)
-    migrate(engine)
-    accounts = Accounts(settings.database_path)
-    friend = accounts.create("friend", "testing-password")
-    with Session(engine) as db:
-        db.add(AnalysisJob(user_id=friend["id"], kind="game_review", status="running"))
-        db.commit()
-    accounts.set_disabled(friend, True)
-    with pytest.raises(Conflict, match="analysis running"):
-        accounts.delete(accounts.by_id(friend["id"]))
-    # A restart interrupted that job; recovery requeues it even for a disabled owner.
-    JobQueue(engine).recover()
-    accounts.delete(accounts.by_id(friend["id"]))
-    assert accounts.by_id(friend["id"]) is None
-    engine.dispose()

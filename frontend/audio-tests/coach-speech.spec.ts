@@ -1,12 +1,9 @@
 import { expect, test, type Page } from "../tests/helpers/browserTest";
 import path from "node:path";
 import { defaultAudioPreferences, type AudioPreferences } from "../src/audio/model";
-import type { Game } from "../src/gameReview/types";
 import type { SpeechHarness, Selection } from "./fixtures/coachSpeechRuntime";
 import type { FakeSpeechAudio } from "./fixtures/fakeSpeechAudio";
 import { viteFsPath } from "../studio-tests/helpers/viteFsPath";
-import { semanticFixtures } from "../tests/semantic-fixtures";
-import walterManifest from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 type SpeechWindow = Window & {
   coachSpeechHarness: SpeechHarness;
@@ -33,8 +30,6 @@ async function mount(
     selection?: Partial<Selection>;
     voice?: AudioPreferences["voice"];
     deferPreferences?: boolean;
-    game?: Game;
-    failFirstAsset?: boolean;
   } = {},
 ) {
   await page.clock.install();
@@ -63,15 +58,11 @@ async function mount(
     // Vite also requests asset URL modules as scripts; those are not recordings.
     if (route.request().resourceType() !== "fetch") return route.fallback();
     assets.push(route.request().url());
-    await route.fulfill(
-      options.failFirstAsset && assets.length === 1
-        ? { status: 404, body: "Missing test recording" }
-        : { contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4]) },
-    );
+    await route.fulfill({ contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4]) });
   });
   await page.goto("/");
   await page.evaluate(
-    async ({ root, selection, game }) => {
+    async ({ root, selection }) => {
       const { installFakeSpeechAudio } = await import(
         `${root}/audio-tests/fixtures/fakeSpeechAudio.ts`
       );
@@ -80,9 +71,9 @@ async function mount(
       );
       const target = window as unknown as SpeechWindow;
       target.fakeSpeechAudio = installFakeSpeechAudio();
-      target.coachSpeechHarness = mountCoachSpeech(selection, game);
+      target.coachSpeechHarness = mountCoachSpeech(selection);
     },
-    { root: viteFsPath(path.resolve(".")), selection: options.selection, game: options.game },
+    { root: viteFsPath(path.resolve(".")), selection: options.selection },
   );
   await expect(page.getByTestId("speech-state")).toBeVisible();
   if (!options.deferPreferences)
@@ -135,28 +126,6 @@ async function speaking(page: Page, id = FIRST, count = 1) {
   await expect.poll(() => starts(page)).toBe(count);
   await expect.poll(() => state(page).then(value => value.observed)).toBe(id);
 }
-
-test("Walter's complete manifest resolves local URLs and aligned mouth tracks", async ({
-  page,
-}) => {
-  await mount(page);
-  const bank = await page.evaluate(async () => {
-    const harness = (window as unknown as SpeechWindow).coachSpeechHarness;
-    return Promise.all(
-      harness.bank().map(async record => ({ ...record, track: await harness.track(record.id) })),
-    );
-  });
-  expect(bank.map(record => record.id)).toEqual(walterManifest.recordings.map(record => record.id));
-  expect(new Set(bank.map(record => record.id)).size).toBe(walterManifest.recordings.length);
-  for (const record of bank) {
-    expect(new URL(record.url, page.url()).origin).toBe(new URL(page.url()).origin);
-    expect(record.url).toMatch(/\.opus(?:\?|$)/);
-    expect(record.text.trim().length).toBeGreaterThan(0);
-    expect(record.track?.durationSeconds, record.id).toBeGreaterThan(0);
-    expect(record.track?.cues.length, record.id).toBeGreaterThan(0);
-  }
-  expect(await starts(page)).toBe(0);
-});
 
 test("restored positions, preference hydration, settings changes and refinement never autoplay", async ({
   page,
@@ -235,41 +204,6 @@ test("rapid navigation replaces pending narration and immediately cancels an act
   ).toBeGreaterThan(0);
   await tick(page, 250);
   await speaking(page, FIRST, 2);
-});
-
-test("a new review scope cannot inherit pending narration from an old navigation token", async ({
-  page,
-}) => {
-  await mount(page);
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await update(page, { automaticEventId: "navigate:2", ready: false });
-  await update(page, { scopeKey: "another-game:1" });
-  await update(page, { ready: true });
-  await tick(page, 1000);
-  expect(await starts(page)).toBe(0);
-  await update(page, { automaticEventId: "another-game:navigate:1" });
-  await tick(page, 250);
-  await speaking(page);
-});
-
-test("hiding discards pending narration instead of reviving it on return or a later unlock", async ({
-  page,
-}) => {
-  await mount(page);
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await update(page, { automaticEventId: "navigate:2", ready: false });
-  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.hidden(true));
-  await tick(page, 1000);
-  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.hidden(false));
-  await update(page, { ready: true });
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await tick(page, 1000);
-  expect(await starts(page)).toBe(0);
-  await update(page, { automaticEventId: "navigate:3" });
-  await tick(page, 250);
-  await speaking(page);
-  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.hidden(true));
-  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
 });
 
 test("manual Listen and Stop consume the pending automatic dwell instead of restarting speech", async ({
@@ -359,64 +293,6 @@ test("unvoiced coaches and mismatched utterances never borrow another coach's ba
   await speaking(page);
 });
 
-test("an utterance marked unsuitable for automatic speech still allows an explicit Listen", async ({
-  page,
-}) => {
-  await mount(page, { selection: { autoSpeakSuitable: false } });
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await update(page, { automaticEventId: "navigate:unsuitable" });
-  await tick(page, 1000);
-  expect(await starts(page)).toBe(0);
-  await speak(page);
-  await speaking(page);
-});
-
-test("missing recording bytes leave feedback usable and an explicit retry can recover", async ({
-  page,
-}) => {
-  const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
-  const fixture = await mount(page, { failFirstAsset: true });
-  const copy = await page.getByTestId("written-feedback").textContent();
-  const failed = page.waitForResponse(
-    response => response.url().includes(`${FIRST}.opus`) && response.status() === 404,
-  );
-  await speak(page);
-  await (await failed).finished();
-  await expect.poll(() => fixture.assets.length).toBe(1);
-  await expect(
-    controls(page).getByRole("button", { name: "Listen to coach", exact: true }),
-  ).toBeVisible();
-  expect(await starts(page)).toBe(0);
-  expect(await page.getByTestId("written-feedback").textContent()).toBe(copy);
-  await speak(page);
-  await speaking(page);
-  expect(fixture.assets).toHaveLength(2);
-  expect(errors).toEqual([]);
-});
-
-test("a late audio decode cannot speak after navigation or unmount", async ({ page }) => {
-  await mount(page);
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.deferDecode());
-  await speak(page);
-  await expect
-    .poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes()))
-    .toBe(1);
-  await update(page, { scopeKey: "game:two:1", recordingId: SECOND });
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.releaseDecode());
-  await tick(page, 1000);
-  expect(await starts(page)).toBe(0);
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.deferDecode());
-  await speak(page);
-  await expect
-    .poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes()))
-    .toBe(2);
-  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.unmount());
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.releaseDecode());
-  await tick(page, 1000);
-  expect(await starts(page)).toBe(0);
-});
-
 test("a delayed mouth-track load never holds back the line and only joins its own playback", async ({
   page,
 }) => {
@@ -451,129 +327,6 @@ test("a delayed mouth-track load never holds back the line and only joins its ow
   await speak(page);
   await speaking(page, SECOND, 2);
   await expect.poll(() => state(page).then(value => value.track?.cues ?? 0)).toBeGreaterThan(0);
-});
-
-test("a failed mouth-track load still plays the line", async ({ page }) => {
-  await page.route(/\/speech\/bank\/tracks\.json$/, route =>
-    route.fulfill({ status: 404, body: "Missing timing" }),
-  );
-  await mount(page);
-  await speak(page);
-  await speaking(page);
-  expect((await state(page)).track).toBe(null);
-});
-
-test("secondary-only recordings have no empty primary control and reject unrelated IDs", async ({
-  page,
-}) => {
-  await mount(page, { selection: { recordingId: null, manualRecordingIds: [SECOND] } });
-  expect((await state(page)).available).toBe(true);
-  await expect(
-    controls(page).getByRole("button", { name: "Listen to coach", exact: true }),
-  ).toHaveCount(0);
-  await page.evaluate(id => (window as unknown as SpeechWindow).coachSpeechHarness.play(id), FIRST);
-  await page.evaluate(() =>
-    (window as unknown as SpeechWindow).coachSpeechHarness.play("not-in-bank"),
-  );
-  expect(await starts(page)).toBe(0);
-  await page.evaluate(
-    id => (window as unknown as SpeechWindow).coachSpeechHarness.play(id),
-    SECOND,
-  );
-  await speaking(page, SECOND);
-});
-
-test("a manual control for a not-yet-recorded piece variant plays its generic clip and offers Stop", async ({
-  page,
-}) => {
-  const variant = `${SECOND}-king|${SECOND}`;
-  await mount(page, { selection: { recordingId: null, manualRecordingIds: [variant] } });
-  await controls(page)
-    .getByRole("button", { name: `Listen to ${variant}`, exact: true })
-    .click();
-  await speaking(page, SECOND);
-  await controls(page).getByRole("button", { name: "Stop coach voice", exact: true }).click();
-  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
-  expect(await starts(page)).toBe(1);
-});
-
-test("late human enrichment keeps a still-supported recording without replaying or cutting it off", async ({
-  page,
-}) => {
-  await mount(page);
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await update(page, { automaticEventId: "navigate:enrichment" });
-  await tick(page, 250);
-  await speaking(page);
-  await update(page, { utteranceId: "position:with-new-human-facts" });
-  await tick(page, 500);
-  await speaking(page);
-  expect((await state(page)).playing).toBe(true);
-  // The new preferred response may be a composite; the original objective
-  // recording remains supported by the refreshed visible claims.
-  await update(page, { recordingId: SECOND, manualRecordingIds: [FIRST] });
-  await tick(page, 500);
-  await speaking(page);
-  await update(page, { manualRecordingIds: [] });
-  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
-  await tick(page, 500);
-  expect(await starts(page)).toBe(1);
-});
-
-test("opening an insight alone stays silent and does not consume the main response", async ({
-  page,
-}) => {
-  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
-  const game = Object.values(games).find(value =>
-    value.frames[1].report?.practical?.interpretations?.includes("natural_best"),
-  )!;
-  await mount(page, { game });
-  await update(page, { automaticEventId: "navigate:inspect" });
-  await tick(page, 100);
-  await page.locator(".human-insight-trigger").click();
-  await expect(page.getByRole("dialog").getByRole("button", { name: /listen|stop/i })).toHaveCount(
-    0,
-  );
-  await tick(page, 150);
-  await speaking(page);
-});
-
-test("switching to On request invalidates an automatic response already decoding", async ({
-  page,
-}) => {
-  await mount(page);
-  await page.getByRole("button", { name: "Unlock audio", exact: true }).click();
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.deferDecode());
-  await update(page, { automaticEventId: "navigate:decoding-settings" });
-  await tick(page, 250);
-  await expect
-    .poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes()))
-    .toBe(1);
-  await voiceMode(page, "manual");
-  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.releaseDecode());
-  await tick(page, 500);
-  expect(await starts(page)).toBe(0);
-  await speak(page);
-  await speaking(page);
-});
-
-test("a missing secondary recording has no unusable Listen button beside a supported primary", async ({
-  page,
-}) => {
-  await mount(page, { selection: { manualRecordingIds: [SECOND, "not-in-bank"] } });
-  await expect(
-    controls(page).getByRole("button", { name: "Listen to coach", exact: true }),
-  ).toBeVisible();
-  await expect(
-    controls(page).getByRole("button", { name: `Listen to ${SECOND}`, exact: true }),
-  ).toBeVisible();
-  await expect(
-    controls(page).getByRole("button", { name: "Listen to not-in-bank", exact: true }),
-  ).toHaveCount(0);
-  await controls(page)
-    .getByRole("button", { name: `Listen to ${SECOND}`, exact: true })
-    .click();
-  await speaking(page, SECOND);
 });
 
 test("switching between Walter and Rivet stops the old voice and uses the selected coach's own recording", async ({

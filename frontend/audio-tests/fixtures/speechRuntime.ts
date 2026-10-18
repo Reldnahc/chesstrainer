@@ -5,4 +5,3 @@ export {
   useScopedSpeech,
   useCurrentSpeechPlayback,
 } from "../../src/audio/AudioProvider";
-export { default as AudioSettings } from "../../src/audio/AudioSettings";

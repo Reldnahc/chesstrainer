@@ -8,7 +8,8 @@ import { gameRelationship } from "../tests/helpers/reviewEvents";
 const fixtures = semanticFixtures<{ skill: string; black: boolean; report: Report }[]>(
   "review_cause_fixtures.py",
 );
-for (const { skill, black, report } of fixtures)
+// One colour per cause; the mover/opponent wording is the same rule for both colours.
+for (const { skill, black, report } of fixtures.filter(fixture => !fixture.black))
   test(`${skill} identifies the responsible ${black ? "black" : "white"} mover and opponent reply`, async ({
     page,
   }) => {

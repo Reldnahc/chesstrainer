@@ -1,82 +1,9 @@
-"""Removed lessons: their routes answer 410 and old attempts stay archived."""
+"""Removed lessons: the release migration keeps old cards' scheduling and history."""
 
-import pytest
-from fastapi.testclient import TestClient
 from lesson_fixtures import archived_lesson_rows, seed_lesson
 from sqlalchemy import select
-from trainer.api import create_app
-from trainer.errors import Gone
-from trainer.models import ReviewSession, SRSState
-from trainer.reviews import reveal, submit_move
+from trainer.models import SRSState
 from trainer.scheduling import FSRSScheduler
-
-
-@pytest.mark.parametrize("completed", [False, True])
-def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
-    settings.stockfish_path = "missing-test"
-    app = create_app(settings, workers=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            seed_lesson(db, settings, count=3)
-            exercise_id = db.scalar(select(SRSState.exercise_id))
-            # An attempt saved by the removed lessons.
-            session = ReviewSession(exercise_id=exercise_id, mode="lesson", completed=completed)
-            db.add(session)
-            db.commit()
-            session_id = session.id
-            before = db.get(SRSState, exercise_id).card
-        for method, path in [
-            ("get", "/api/course"),
-            ("get", "/api/course/revisions"),
-            ("post", "/api/course/rebuild"),
-            ("post", "/api/course/units/old/next"),
-            ("post", "/api/course/units/old/extend"),
-            ("post", "/api/lessons/old/complete"),
-            ("post", "/api/lesson-items/old/acknowledge"),
-        ]:
-            assert getattr(client, method)(path).status_code == 410
-        assert client.post(f"/api/review/sessions/{session_id}/reveal").status_code == 410
-        assert (
-            client.post(
-                f"/api/review/sessions/{session_id}/move",
-                json={"from_square": "e1", "to_square": "d1"},
-            ).status_code
-            == 410
-        )
-        with app.state.sessions() as db:
-            assert db.get(ReviewSession, session_id).completed == completed
-            assert db.get(SRSState, exercise_id).card == before
-            # Offline/domain callers cannot bypass the HTTP archive guard either.
-            with pytest.raises(Gone, match="archived"):
-                reveal(db, session_id, FSRSScheduler(settings), settings)
-                db.commit()
-            with pytest.raises(Gone, match="archived"):
-                submit_move(db, session_id, "e1d1", None, FSRSScheduler(settings), settings)
-                db.commit()
-        # An ordinary review of the same position is a separate usable session.
-        position = client.post(f"/api/review/{exercise_id}/start").json()
-        assert position["session_id"] != session_id
-        assert (
-            client.post(f"/api/review/sessions/{position['session_id']}/reveal").status_code == 200
-        )
-
-
-def test_teaching_routes_are_gone_and_old_lesson_cards_review_normally(settings):
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            seed_lesson(db, settings, count=3)
-            exercise_id = db.scalar(select(SRSState.exercise_id))
-        cold = client.post(f"/api/review/{exercise_id}/start").json()
-        response = client.post(f"/api/review/sessions/{cold['session_id']}/reveal")
-        assert response.status_code == 200
-        assert "lesson_result" not in response.json()
-        assert client.get("/api/weaknesses").status_code == 200
-        assert client.post("/api/course/teaching").status_code == 410
-        assert client.get("/api/teaching-runs/old").status_code == 410
-        assert client.post("/api/teaching-runs/old/reject").status_code == 410
-        with app.state.sessions() as db:
-            assert db.get(SRSState, exercise_id).reviews == 1
 
 
 def test_lesson_release_migration_preserves_scheduling_and_history(settings, sessions):
@@ -87,7 +14,6 @@ def test_lesson_release_migration_preserves_scheduling_and_history(settings, ses
     from trainer.db import database
     from trainer.exercises import manual_exercise
     from trainer.models import now
-    from trainer.scheduling import FSRSScheduler
 
     with sessions() as db:
         seed_lesson(db, settings, count=3)

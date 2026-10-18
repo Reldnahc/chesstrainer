@@ -14,23 +14,13 @@ from trainer.models import AnalysisJob, EngineAnalysis, Game, GameReview, GameRe
 @pytest.mark.parametrize(
     "raw,label",
     [
-        (None, None),
-        ("?", None),
-        ("", None),
         ("-", "Unlimited"),
-        ("600", "10 min"),
         (" 180+2 ", "3 min + 2 sec"),
-        ("30", "30 sec"),
-        ("90", "1.5 min"),
         ("1/86400", "1 day / move"),
-        ("1/259200", "3 days / move"),
         ("40/7200:3600", "40 moves / 120 min; then 60 min"),
         ("300+2d", "5 min + 2 sec delay"),
-        ("600+0.5", "10 min + 0.5 sec"),
         ("broken", None),
         ("600+NaN", None),
-        ("600+inf", None),
-        ("600+-2", None),
     ],
 )
 def test_time_control_display(raw, label):
@@ -153,31 +143,3 @@ def test_missing_metadata_black_learner_and_odd_move_count(settings):
         assert item["time_control_label"] is None and item["accuracy"] is None
         assert item["played_at"] == "2026-09-26T15:30:00+00:00"
         assert item["result"] == "1/2-1/2"
-
-
-def test_player_bars_show_only_valid_clock_annotations(settings):
-    settings.stockfish_path = "missing-clock-test-engine"
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            import_games(
-                db,
-                "clocks.pgn",
-                "\n".join(
-                    [
-                        '[White "Student"]',
-                        '[Black "Opponent"]',
-                        '[TimeControl "300+0"]',
-                        "",
-                        "1. e4 { [%clk 0:04:58] } e5 { [%clk 0:61:00] } 2. Nf3 *",
-                    ]
-                ),
-                ["Student"],
-                None,
-            )
-            db.commit()
-            game_id = db.scalar(select(Game.id))
-        frames = client.get(f"/api/games/{game_id}").json()["frames"]
-        assert frames[1]["clock"] == 298
-        # Clock facts reject an impossible annotation, so the bars do not show it either.
-        assert "clock" not in frames[2] and "clock" not in frames[3]

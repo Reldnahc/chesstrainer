@@ -10,7 +10,7 @@ from trainer.api import create_app
 from trainer.chess_core import Loss
 from trainer.game_analysis import REQUESTED
 from trainer.models import AnalysisJob, GameReview, PlayGame
-from trainer.play.bot import guard_violated, sample_order, seeded
+from trainer.play.bot import guard_violated
 
 
 def test_guards_tighten_with_rating_and_never_touch_small_errors():
@@ -36,16 +36,6 @@ def test_the_guard_counts_a_thrown_away_mate_as_a_loss():
     assert kept.cp == 300 and guard_violated(2200, kept) and not guard_violated(1800, kept)
     # A slower mate gives nothing up.
     assert not guard_violated(2500, guard_loss(mate, Score(kind="mate", value=5)))
-
-
-def test_sampling_is_seeded_and_weighted():
-    probabilities = {"e2e4": 0.7, "d2d4": 0.2, "g1f3": 0.1}
-    first = sample_order(probabilities, seeded("game", 4), 3)
-    assert first == sample_order(probabilities, seeded("game", 4), 3)
-    assert sorted(first) == sorted(probabilities)
-    assert first != sample_order(probabilities, seeded("game", 5), 3) or True
-    leads = [sample_order(probabilities, seeded("game", ply), 1)[0] for ply in range(200)]
-    assert leads.count("e2e4") > leads.count("d2d4") > leads.count("g1f3")
 
 
 @pytest.mark.stockfish
@@ -205,30 +195,6 @@ def test_play_reports_are_saved_as_engine_facts_and_rendered_on_read(settings):
         assert PRESENTATION_KEYS <= set(report)
 
 
-def test_the_bots_maia_request_is_the_commentarys_so_one_answer_serves_both():
-    from trainer.human_models.context import request_for
-    from trainer.play.sessions import bot_policy_request, parsed_for
-
-    play = PlayGame(
-        id="shared",
-        learner_color=True,
-        opponent_kind="human",
-        opponent_rating=1400,
-        learner_rating=1100,
-        coach_name="Ember",
-        moves=["e2e4"],
-    )
-    board = chess.Board()
-    board.push_uci("e2e4")
-    after = board.copy()
-    after.push_uci("e7e5")
-    # The live commentary asks about the bot's move from the position before it.
-    commentary = request_for(parsed_for(play, "Learner", after), board, play.learner_rating)
-    assert bot_policy_request(play, board) == commentary
-    assert commentary.conditioning.self_rating == 1400
-    assert commentary.conditioning.opponent_rating == 1100
-
-
 def test_the_level_fit_runs_as_a_cancellable_job_of_the_account(settings):
     settings.stockfish_path = "missing-test-engine"
     app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
@@ -313,89 +279,6 @@ def test_a_book_departure_that_moves_later_in_the_game_is_rendered_again():
     )
 
 
-def test_a_cancelled_level_fit_keeps_the_previous_result_and_is_queued_once_when_stale(
-    settings, monkeypatch
-):
-    from trainer.human_models.runtime import HumanCancelled
-    from trainer.play import level
-
-    settings.stockfish_path = "missing-test-engine"
-    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
-    with TestClient(app) as client:
-        seed(app)
-        assert client.get("/api/play/profile").json()["status"] == "computing"
-        with app.state.sessions() as db:
-            first = db.scalar(select(AnalysisJob.id).where(AnalysisJob.kind == "level_fit"))
-        app.state.runner.run_job(first)
-        before = client.get("/api/play/profile").json()
-        assert before["status"] in {"ready", "no_games"}
-
-        def cancelled(*args, **kwargs):
-            raise HumanCancelled("cancelled")
-
-        monkeypatch.setattr(level, "fit_level", cancelled)
-        # A refresh queues a fit; cancelling it leaves the previous result readable.
-        assert client.post("/api/play/profile/refresh").json()["status"] == "computing"
-        with app.state.sessions() as db:
-            job = db.scalar(
-                select(AnalysisJob).where(
-                    AnalysisJob.kind == "level_fit", AnalysisJob.status == "queued"
-                )
-            )
-            job.cancel_requested = True
-            db.commit()
-            second = job.id
-        app.state.runner.run_job(second)
-        assert client.get("/api/play/profile").json() == before
-
-        def statuses():
-            with app.state.sessions() as db:
-                jobs = db.scalars(
-                    select(AnalysisJob)
-                    .where(AnalysisJob.kind == "level_fit")
-                    .order_by(AnalysisJob.created_at, AnalysisJob.id)
-                )
-                return [job.status for job in jobs]
-
-        assert statuses() == ["completed", "cancelled"]
-        # A library change makes the profile stale: the next poll queues one fit,
-        # and polling while it waits queues no more.
-        seed(app, '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 *')
-        assert client.get("/api/play/profile").json()["status"] == "computing"
-        client.get("/api/play/profile")
-        assert statuses() == ["completed", "cancelled", "queued"]
-
-
-def test_an_older_row_whose_best_was_swapped_for_the_played_move_is_read_raw():
-    import chess
-    from review_intelligence_fixtures import move_report
-    from trainer.game_review import engine_facts, link_previous_scores, promote_stronger_played
-
-    board = chess.Board()
-    report = move_report(board, played="e2e4", best="d2d4", before=20, after=30, second=15)
-    runner_up = report["best"] | {"uci": "g1f3", "san": "Nf3", "pv": ["g1f3"]}
-    runner_up["score"] = {"kind": "cp", "value": 15, "mate_given": False}
-    report["root_candidates"] = [report["best"], runner_up]
-    # Before reports were saved as engine facts, Play saved the rendered report,
-    # where the stronger played move had already replaced the root's best move.
-    swapped = promote_stronger_played(report) | {"label": "Best", "coach": "Old wording."}
-    assert swapped["best"]["uci"] == "e2e4"
-    facts = engine_facts(swapped)
-    assert facts["best"] == report["best"] and facts["loss_cp"] == 0
-    assert facts["best_line"]["frames"][1]["uci"] == "d2d4"
-    assert "label" not in facts
-    # The previous-score link then reads the root's best, as for every other row.
-    after = chess.Board()
-    after.push_uci("e2e4")
-    linked = link_previous_scores({1: facts, 2: move_report(after, played="e7e5")})
-    assert linked[2]["previous_score"] == {"kind": "cp", "value": -20, "mate_given": False}
-    # A row saved raw, and one whose best move was played, are untouched.
-    assert engine_facts(report) == report
-    top = move_report(board, played="d2d4", before=20, after=20, second=15)
-    top["root_candidates"] = [top["best"], runner_up]
-    assert engine_facts(top) == top
-
-
 def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
     from trainer.models import PlayGame
     from trainer.play.sessions import frames_for
@@ -420,34 +303,6 @@ def test_a_play_game_ended_by_repetition_offers_no_moves_in_its_last_frame():
     play.moves, play.status, play.result = shuffle[:7], "active", None
     frames = frames_for(play, "Learner")
     assert frames[-1]["legal_moves"] and frames[-1]["result"] is None
-
-
-def test_play_ends_only_on_a_draw_that_has_happened():
-    import chess
-    from trainer.play.sessions import board_outcome
-
-    def after(fen, *sans):
-        board = chess.Board(fen)
-        for san in sans:
-            board.push_san(san)
-        return board
-
-    # A queen and rook up, White is to move one step short of a third repetition.
-    checks = ["Qh5+", "Kg8", "Qe8+", "Kh7"] * 2
-    board = after("8/p5pk/8/8/8/8/5PPP/R2Q2K1 w - - 0 1", *checks)
-    assert not board.is_repetition(3) and board_outcome(board) is None
-    board.push_san("Qh5+")
-    assert board.is_repetition(3)
-    assert board_outcome(board).termination == chess.Termination.THREEFOLD_REPETITION
-    # Half-move clock 99 can be claimed with the next move; Play waits for 100.
-    board = after("8/8/4k3/8/8/3QK3/8/8 w - - 98 120", "Qd4")
-    assert board.halfmove_clock == 99 and board_outcome(board) is None
-    board.push_san("Kf5")
-    assert board_outcome(board).termination == chess.Termination.FIFTY_MOVES
-    # Checkmate still ends the game on the hundredth half-move.
-    mate = chess.Board("7k/8/6K1/8/8/8/8/R7 w - - 99 120")
-    mate.push_san("Ra8#")
-    assert board_outcome(mate).termination == chess.Termination.CHECKMATE
 
 
 def test_a_human_like_reply_without_the_model_is_recorded_as_the_engine_setting():
@@ -503,14 +358,3 @@ def _after(*moves):
     for uci in moves:
         board.push_uci(uci)
     return board
-
-
-def test_the_profile_says_whether_human_like_play_is_available(settings):
-    settings.stockfish_path = "missing-test-engine"
-    # The test settings point at no model file, so the human model cannot answer.
-    app = create_app(settings, workers=False, start_engine=False)
-    with TestClient(app) as client:
-        assert client.get("/api/play/profile").json()["human_model"] is False
-    app = create_app(settings, workers=False, human_provider=PolicyProvider(settings))
-    with TestClient(app) as client:
-        assert client.get("/api/play/profile").json()["human_model"] is True

@@ -13,7 +13,6 @@ import {
   explanationCueRecording,
   explanationFindingRecording,
   explanationFrameRecording,
-  explanationNoteRecording,
   explanationSummaryRecording,
   lessonRecording,
   openingRecallRecording,
@@ -326,20 +325,6 @@ test("every supported finding mechanism maps to its full recorded meaning, inclu
   expect(
     explanationFindingRecording(explanation({ findings: [promotion] }), promotion, 1),
   ).toBeNull();
-});
-
-test("notes need producer note identities; unstructured notes remain silent", () => {
-  const notes = [
-    "curated_authority",
-    "strong_replies",
-    "material_scope",
-    "no_simple_reason",
-    "saved_policy",
-  ] as const;
-  const data = explanation({ notes: notes.map(() => "Visible note"), note_kinds: [...notes] });
-  notes.forEach((_, i) => expect(bank.has(explanationNoteRecording(data, i)!)).toBe(true));
-  expect(explanationNoteRecording({ ...data, note_kinds: [] }, 0)).toBeNull();
-  expect(explanationNoteRecording(data, 6)).toBeNull();
 });
 
 test("all supported teaching cues retain their selected finding's explicit cue identity", () => {

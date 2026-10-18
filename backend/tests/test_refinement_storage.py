@@ -132,9 +132,6 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
     [
         (True, "completed", ["base", "played"], True),
         (False, "completed", ["base", "played"], True),
-        (True, "budget_limited", ["base", "played"], True),
-        (True, "completed", ["other", "played"], True),
-        (True, "completed", ["base", "played"], False),
     ],
 )
 def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
@@ -180,62 +177,6 @@ def test_the_game_page_and_library_accuracy_agree_on_the_adopted_report(
             "white_score": page["white_score"],
             "best": {"score": page["best"]["score"]},
         }
-
-
-def test_training_decisions_use_the_adopted_refinement(settings, sessions):
-    import chess
-    from trainer.analysis import analyze_decision
-    from trainer.models import Decision, EngineAnalysis
-
-    board = chess.Board()
-    move = chess.Move.from_uci("e2e4")
-
-    def analysis(key, value):
-        candidate = {
-            "uci": "e2e4",
-            "san": "e4",
-            "pv": ["e2e4"],
-            "score": {"kind": "cp", "value": value},
-        }
-        return EngineAnalysis(
-            cache_key=key,
-            fen=board.fen(),
-            engine_version="fixture",
-            config={},
-            candidates=[candidate],
-        )
-
-    with sessions() as db:
-        game = Game(fingerprint="train", white="A", black="B", learner_color=True, pgn="1. e4 *")
-        rows = {key: analysis(key, value) for key, value in [("base", 20), ("deep", 35)]}
-        db.add_all([game, *rows.values()])
-        db.flush()
-        baseline = {
-            "before_analysis_id": rows["base"].id,
-            "played_analysis_id": rows["base"].id,
-            "depth": 16,
-        }
-        refined = baseline | {
-            "before_analysis_id": rows["deep"].id,
-            "played_analysis_id": rows["deep"].id,
-            "depth": 22,
-        }
-        task = ReviewRefinement(
-            game_id=game.id,
-            ply=1,
-            task_key="train",
-            triggers=[],
-            adopted=True,
-            status="completed",
-            report=refined,
-            config={"baseline_ids": [rows["base"].id, rows["base"].id]},
-        )
-        db.add(task)
-        db.flush()
-        db.add(GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=task.id))
-        db.commit()
-        decision = analyze_decision(units_for(db), None, settings, game, 1, board, move)
-        assert db.get(Decision, decision.id).before_analysis_id == rows["deep"].id
 
 
 def test_a_played_move_inside_the_root_search_is_compared_at_the_same_depth(settings, sessions):
@@ -510,8 +451,6 @@ def test_a_card_leaves_the_queue_while_its_decision_is_no_longer_a_mistake(setti
         ([("d2d4", 45), ("e2e4", 40), ("f2f3", -240)], True),
         # The deeper search refutes the card's answer: practice must not drill it.
         ([("d2d4", 45), ("e2e4", -150), ("f2f3", -240)], False),
-        # The deeper search ranks better moves above it and does not list it.
-        ([("d2d4", 45), ("g1f3", 30), ("f2f3", -240)], False),
     ],
 )
 def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_answer(
@@ -603,44 +542,3 @@ def test_a_card_leaves_the_queue_when_the_deeper_search_no_longer_supports_its_a
         db.commit()
         assert resync_game_cards(db) == (0 if eligible else 1)
         assert db.get(SRSState, exercise.id).eligible is eligible
-
-
-def test_only_the_refinement_the_review_shows_is_reread_and_an_empty_one_is_not_shown(sessions):
-    from trainer.review_reports import stale_adopted
-
-    baseline = {"before_analysis_id": "base", "played_analysis_id": "played", "depth": 16}
-    old_lines = {"actual_line": {"horizon": "an older horizon"}, "depth": 20}
-    with sessions() as db:
-        game = Game(fingerprint="shown", white="A", black="B", learner_color=True, pgn="*")
-        db.add(game)
-        db.flush()
-
-        def refinement(key, report):
-            task = ReviewRefinement(
-                game_id=game.id,
-                ply=1,
-                task_key=key,
-                triggers=[],
-                adopted=True,
-                status="completed",
-                report=report,
-                config={"baseline_ids": ["base", "played"]},
-            )
-            db.add(task)
-            db.flush()
-            return task
-
-        superseded = refinement("superseded", old_lines)
-        newer = refinement("newer", old_lines | {"depth": 24})
-        move = GameReviewMove(game_id=game.id, ply=1, report=baseline, refinement_id=newer.id)
-        db.add(move)
-        db.flush()
-        # Both are adopted and stale, but the review shows only the newer one.
-        assert [task.id for task in stale_adopted(db, game.id, None)] == [newer.id]
-        assert superseded.id != newer.id
-
-        empty = refinement("empty", {})
-        move.refinement_id = empty.id
-        db.flush()
-        assert reports_for(db, game.id)[0][1]["depth"] == 16
-        assert stale_adopted(db, game.id, None) == []

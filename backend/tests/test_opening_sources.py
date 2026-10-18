@@ -24,16 +24,6 @@ def test_bundled_catalogue_keeps_named_records_and_legal_complete_lines():
     assert len({tuple(line.moves) for line in french}) == len(french)
 
 
-def test_catalogue_resolution_rejects_other_revisions_and_returns_independent_data():
-    original = catalogue.lines()[0]
-    first = catalogue.get(original.source_key, VERSION)
-    first.moves.append("0000")
-    assert catalogue.get(original.source_key).moves == original.moves
-    with pytest.raises(DomainError) as error:
-        catalogue.get(original.source_key, "future-catalogue")
-    assert error.value.status == 404
-
-
 def test_catalogue_search_pagination_and_detail_count_actual_decisions():
     result = catalogue.search(None, "italian", "c5", 0, 3)
     assert result.total > 3 and len(result.items) == 3
@@ -50,16 +40,6 @@ def test_catalogue_search_pagination_and_detail_count_actual_decisions():
         assert detail.white_positions == row.white_positions
         assert detail.black_positions == row.black_positions
     assert catalogue.search(None, "not-an-opening-fixture").total == 0
-
-
-def test_preview_counts_respect_black_to_move_setup():
-    line = catalogue.get(catalogue.lines()[0].source_key)
-    board = chess.Board()
-    board.push_uci("e2e4")
-    line.initial_fen, line.moves = board.fen(), ["e7e5", "g1f3", "b8c6"]
-    detail = sources.line_view(line)
-    assert detail.white_positions == 1 and detail.black_positions == 2
-    assert detail.frames[0].before_fen == board.fen()
 
 
 def request_for(line, **changes):
@@ -103,19 +83,3 @@ def test_course_line_can_be_independent_of_catalogue_and_keeps_full_setup_histor
         with pytest.raises(DomainError) as error:
             sources.resolve_line(db, providers, request_for(line, source_key="wrong-line"))
         assert error.value.status == 422
-
-
-@pytest.mark.parametrize("line_id", ["example-only", "fixture-game", "quiet-reply"])
-def test_illustrative_games_and_undesignated_lines_cannot_become_repertoire(sessions, line_id):
-    provider = BrowserLessonProvider()
-    provider.install("local", "connected")
-    with sessions() as db, pytest.raises(DomainError) as error:
-        sources.course_line(db, CourseProviders((provider,)), "connected", "fixture-v1", line_id)
-    assert error.value.status in {404, 422}
-
-
-def test_catalogue_enrollment_cannot_smuggle_course_identity():
-    line = catalogue.lines()[0]
-    with pytest.raises(DomainError) as error:
-        sources.resolve_line(None, None, request_for(line, course_id="connected"))
-    assert error.value.status == 422

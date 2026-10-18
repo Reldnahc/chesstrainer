@@ -6,7 +6,6 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
 from types import SimpleNamespace
 
-import chess
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select
@@ -14,11 +13,9 @@ from sqlalchemy.orm import Session
 from test_accounts import PGN, signup
 from trainer.accounts import COOKIE, Accounts, csrf_token
 from trainer.api import create_app
-from trainer.exercises import manual_exercise
 from trainer.imports import import_games
-from trainer.models import AnalysisJob, Game, ProviderImport, SRSState, User, now
+from trainer.models import AnalysisJob, Game, ProviderImport, User, now
 from trainer.ownership import account_sessions
-from trainer.scheduling import FSRSScheduler
 
 
 def hosted(settings):
@@ -63,7 +60,7 @@ def forbidden_engine(*_):
     raise AssertionError("Idle accounts, signup and fetch-only jobs must not construct engines")
 
 
-@pytest.mark.parametrize("count", [0, 250])
+@pytest.mark.parametrize("count", [250])
 def test_idle_accounts_do_not_add_apps_workers_or_retained_scopes(settings, sessions, count):
     hosted(settings)
     identities = seed_accounts(sessions, count)
@@ -186,32 +183,6 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
         assert db.get(AnalysisJob, "local-private").status == "queued"
     assert observed[-1] == ("alice-next", alice)
     assert app.state.workspaces._locks == {}
-
-
-def test_hosted_startup_preserves_disabled_and_local_retirement_state(settings, sessions):
-    hosted(settings)
-    active, disabled = seed_accounts(sessions, 2)
-    with Session(sessions.kw["bind"]) as db:
-        db.get(User, disabled).disabled = True
-        db.commit()
-    exercises = {}
-    for owner in (active, disabled, "local"):
-        with account_sessions(sessions.kw["bind"], owner)() as db:
-            exercise = manual_exercise(
-                db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white"
-            )
-            db.commit()
-            exercises[owner] = exercise.id
-            state = db.get(SRSState, exercise.id)
-            state.reviews = 5
-            state.card = dict(state.card, last_review=now().isoformat())
-            state.due = now() + timedelta(days=settings.retire_after_days + 1)
-            db.commit()
-    with TestClient(create_app(settings, workers=False, engine_factory=forbidden_engine)):
-        pass
-    for owner, exercise_id in exercises.items():
-        with account_sessions(sessions.kw["bind"], owner)() as db:
-            assert (db.get(SRSState, exercise_id).retired_at is not None) == (owner == active)
 
 
 def test_requests_and_jobs_share_engine_budget_without_sharing_account_data(

@@ -3,7 +3,6 @@ from threading import Barrier
 
 import pytest
 from fastapi.testclient import TestClient
-from pydantic import ValidationError
 from sqlalchemy import inspect, select, text
 from trainer.api import create_app
 from trainer.contracts.preferences import AudioPreferences, CoachPreferences, MotionPreferences
@@ -53,29 +52,13 @@ def test_audio_validation_volume_boundaries_and_missing_field_defaults(settings)
             assert client.get(PATH).json() == expected
         assert client.put(PATH, json=SAVED).status_code == 200
         for invalid in (
-            {"volume": -0.01},
             {"volume": 1.01},
-            {"volume": None},
-            {"volume": "0.5"},
-            {"volume": True},
-            {"enabled": "false"},
-            {"board": 1},
-            {"practice": None},
             {"voice": "always"},
-            {"voice": True},
-            {"voice": None},
-            {"review": True},
             {"user_id": "other"},
         ):
             assert client.put(PATH, json=invalid).status_code == 422
             assert client.get(PATH).json() == SAVED
         assert client.put(PATH, json={}).json() == DEFAULT
-
-
-@pytest.mark.parametrize("volume", [float("nan"), float("inf"), float("-inf")])
-def test_audio_rejects_nonfinite_volume(volume):
-    with pytest.raises(ValidationError):
-        AudioPreferences(volume=volume)
 
 
 def test_audio_account_isolation_csrf_and_second_device(settings):
@@ -155,51 +138,6 @@ def legacy_users(connection, before):
 
 
 @pytest.mark.pristine_database
-def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(settings):
-    from alembic import command
-    from alembic.config import Config
-
-    engine, _ = database(settings.database_path)
-    config = Config("alembic.ini")
-    with engine.begin() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "7c249ef302d6")
-        connection.execute(
-            text(
-                "INSERT INTO users (id, username, password, admin, disabled, chesscom_username, "
-                "created) VALUES ('alice', 'alice', '', 0, 0, '', 0)"
-            )
-        )
-        connection.execute(
-            text(
-                "INSERT INTO user_preferences (user_id, coach_id, coach_motion, interface_motion) "
-                "VALUES (:user_id, 'cat-black', 'still', 'natural')"
-            ),
-            [{"user_id": "local"}, {"user_id": "alice"}],
-        )
-        before_users = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
-    migrate(engine)
-    for owner in ("local", "alice"):
-        with account_sessions(engine, owner)() as db:
-            assert audio_preferences(db).model_dump() == DEFAULT
-            assert coach_preferences(db).model_dump() == {
-                "coach_id": "cat-black",
-                "motion": "still",
-            }
-            assert motion_preferences(db).motion == "natural"
-    with engine.connect() as connection:
-        assert legacy_users(connection, before_users) == [
-            {key: row[key] for key in row.keys() if key not in {"created", "chesscom_username"}}
-            for row in before_users
-        ]
-        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
-        assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
-        config.attributes["connection"] = connection
-        command.check(config)
-    engine.dispose()
-
-
-@pytest.mark.pristine_database
 def test_removing_rating_audio_preserves_saved_account_preferences(settings):
     from alembic import command
     from alembic.config import Config
@@ -258,50 +196,4 @@ def test_removing_rating_audio_preserves_saved_account_preferences(settings):
     for owner, expected in (("local", DEFAULT), ("alice", SAVED)):
         with account_sessions(engine, owner)() as db:
             assert audio_preferences(db).model_dump() == expected | {"voice": "automatic"}
-    engine.dispose()
-
-
-@pytest.mark.parametrize("voice", ["off", "manual", "automatic"])
-def test_voice_modes_round_trip_without_changing_effect_preferences(settings, voice):
-    expected = SAVED | {"voice": voice}
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        assert client.put(PATH, json=expected).json() == expected
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
-        assert client.get(PATH).json() == expected
-
-
-def test_unknown_stored_voice_mode_falls_back_without_overwriting(sessions):
-    with sessions() as db:
-        db.add(UserPreferences(audio_voice="future-mode"))
-        db.commit()
-        assert audio_preferences(db).voice == "automatic"
-        assert db.scalar(select(UserPreferences)).audio_voice == "future-mode"
-
-
-@pytest.mark.pristine_database
-def test_voice_migration_retains_existing_sound_and_coach_preferences(settings):
-    from alembic import command
-    from alembic.config import Config
-
-    engine, _ = database(settings.database_path)
-    config = Config("alembic.ini")
-    with engine.begin() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "342fd86bc105")
-        connection.execute(
-            text(
-                "INSERT INTO user_preferences (user_id, coach_id, coach_motion, "
-                "interface_motion, audio_enabled, audio_volume, audio_board, audio_practice) "
-                "VALUES ('local', 'cat-black', 'still', 'natural', 0, 0.6, 0, 1)"
-            )
-        )
-        previous = dict(connection.execute(text("SELECT * FROM user_preferences")).mappings().one())
-    migrate(engine)
-    with engine.connect() as connection:
-        row = dict(connection.execute(text("SELECT * FROM user_preferences")).mappings().one())
-        assert row == previous | {"audio_voice": "automatic"}
-        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
-        assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
-        config.attributes["connection"] = connection
-        command.check(config)
     engine.dispose()

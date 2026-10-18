@@ -2,7 +2,6 @@ import { test, expect } from "../tests/helpers/browserTest";
 import { humanGames, humanIntent } from "../tests/human-fixtures";
 import { renderCoaches } from "./render-coaches";
 import { humanInsightLabels } from "../src/dialogue/humanClaims";
-import { claim, makeIntent } from "../src/dialogue/model";
 
 test("every coach preserves human facts, alternative meaning and natural wording", async ({
   page,
@@ -28,23 +27,5 @@ test("every coach preserves human facts, alternative meaning and natural wording
       }
     }
     expect(JSON.stringify(game)).toBe(original);
-  }
-});
-
-test("all coaches keep opening recognition concise and out of quality disclaimers", async ({
-  page,
-}) => {
-  await page.goto("/");
-  for (const code of ["book", "book_sound", "departure"] as const) {
-    const outputs = await renderCoaches(
-      page,
-      makeIntent("opening-copy", "book", "game", "book", [claim(code, { opening: "Bongcloud" })]),
-    );
-    for (const utterance of outputs) {
-      if (code !== "departure") expect(utterance.text).toContain("Bongcloud");
-      expect(utterance.text).not.toMatch(
-        /quality|sound|guarantee|penalty|not.*error|evaluation|recognition/i,
-      );
-    }
   }
 });

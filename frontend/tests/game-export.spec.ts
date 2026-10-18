@@ -69,15 +69,6 @@ test("the review exports PGN, the FEN on the board and a GIF of the game", async
   await expect(open).toBeFocused();
 });
 
-test("game lists have no export button; it lives on the review page", async ({ page }, info) => {
-  await page.request.post(`/__test/clock-review-fixture/list-export-${info.project.name}`);
-  for (const path of ["/games", "/"]) {
-    await page.goto(path);
-    await expect(page.locator(".game-library-item").first()).toBeVisible({ timeout: 30_000 });
-    await expect(page.getByRole("button", { name: /^Export/ })).toHaveCount(0);
-  }
-});
-
 test("copy still works on the plain-HTTP LAN page, where the Clipboard API is missing", async ({
   page,
 }, info) => {

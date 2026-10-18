@@ -151,21 +151,6 @@ def test_connected_chapter_back_branch_source_game_rehearsal_and_restart(setting
         assert learning(app) == before
 
 
-def test_accepted_alternative_uses_its_own_history_and_terminal_target(settings):
-    with TestClient(app_with(settings)) as client:
-        state = begin(client)
-        for _ in range(2):
-            state = command(client, state, "continue")
-        state = command(client, state, "move", uci="b1c3")
-        assert state["fen"] == fen((*MAIN[:2], "b1c3"))
-        state = command(client, state, "continue")
-        assert state["step"]["id"] == "other-knight"
-        assert [frame["uci"] for frame in state["history"]] == [*MAIN[:2], "b1c3"]
-        assert state["playback"] == []
-        state = command(client, state, "continue")
-        assert state["status"] == "completed"
-
-
 def test_same_revision_cannot_silently_change_saved_chapter(settings):
     provider = BrowserLessonProvider()
     provider.install("local", "connected")

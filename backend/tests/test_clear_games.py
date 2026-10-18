@@ -206,49 +206,6 @@ def test_clear_games_keeps_engine_rows_a_kept_play_report_mentions(settings, ses
         assert db.execute("PRAGMA auto_vacuum").fetchone() == (2,)
 
 
-def test_clearing_games_takes_exactly_what_refers_to_them():
-    # The cascade is read from the models' foreign keys, so a new table that refers
-    # to a game, decision or exercise joins it without a list to update. This list
-    # makes such a change visible in review.
-    from trainer.cascade import cascade, unlinked
-
-    plan = cascade(dict.fromkeys(_script().ROOTS, "1=1"))
-    assert set(plan) == {
-        "analysis_jobs",
-        "classification_analyses",
-        "classification_probes",
-        "classification_runs",
-        "classification_tasks",
-        "decisions",
-        "exercise_answers",
-        "exercise_attempts",
-        "exercise_tags",
-        "exercises",
-        "game_imports",
-        "game_puzzle_searches",
-        "game_puzzles",
-        "game_review_moves",
-        "game_reviews",
-        "games",
-        "import_games",
-        "insight_facts",
-        "opening_cards",
-        "opening_content_changes",
-        "opening_recall_snapshots",
-        "opening_study_moves",
-        "provider_checkpoints",
-        "provider_imports",
-        "review_refinements",
-        "review_sessions",
-        "reviews",
-        "skill_evidence",
-        "srs_states",
-    }
-    assert [(table, column) for table, column, _ in unlinked(plan)] == [
-        ("play_games", "saved_game_id")
-    ]
-
-
 @pytest.mark.pristine_database
 def test_clear_games_refuses_a_database_behind_the_code(settings):
     from test_migrations import upgrade_to

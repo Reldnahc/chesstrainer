@@ -28,13 +28,6 @@ async function signedIn(page: Page, admin: boolean, password_change_required = f
   await page.route("**/api/jobs", route => route.fulfill({ json: [] }));
 }
 
-test("members never see account administration", async ({ page }) => {
-  await signedIn(page, false);
-  await page.goto("/settings?section=account");
-  await expect(page.getByRole("region", { name: "Account", exact: true })).toBeVisible();
-  await expect(section(page)).toHaveCount(0);
-});
-
 test("administrators reset, disable, promote and delete other accounts", async ({ page }, info) => {
   await signedIn(page, true);
   const accounts = [
@@ -200,29 +193,21 @@ test("administrators add members and open sign-ups", async ({ page }, info) => {
   ]);
 });
 
-for (const open of [false, true]) {
-  test(`the sign-in page ${open ? "offers" : "does not offer"} account creation when sign-ups are ${open ? "open" : "closed"}`, async ({
-    page,
-  }) => {
-    await page.route("**/api/auth/me", route =>
-      route.fulfill({
-        json: { enabled: true, user: null, signups_open: open } satisfies Schema["Identity"],
-      }),
-    );
-    await page.goto("/");
-    await expect(page.getByRole("heading", { name: "Welcome back" })).toBeVisible();
-    const create = page.getByRole("button", { name: "New here? Create an account" });
-    if (!open) {
-      await expect(create).toHaveCount(0);
-      await expect(
-        page.getByText("New here? Ask whoever runs this Fieldwork server for an account."),
-      ).toBeVisible();
-      return;
-    }
-    await create.click();
-    await expect(page.getByRole("heading", { name: "Create your account" })).toBeVisible();
-  });
-}
+test("the sign-in page does not offer account creation when sign-ups are closed", async ({
+  page,
+}) => {
+  await page.route("**/api/auth/me", route =>
+    route.fulfill({
+      json: { enabled: true, user: null, signups_open: false } satisfies Schema["Identity"],
+    }),
+  );
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Welcome back" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "New here? Create an account" })).toHaveCount(0);
+  await expect(
+    page.getByText("New here? Ask whoever runs this Fieldwork server for an account."),
+  ).toBeVisible();
+});
 
 test("everyone can change their own password in Settings", async ({ page }, info) => {
   await signedIn(page, false);

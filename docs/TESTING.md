@@ -44,28 +44,22 @@ and course fingerprints; opening tests also preserve scheduling across equivalen
 answer spellings. `test_opening_lifecycle.py` bounds SQL query counts as stale
 unfinished recalls accumulate, while retaining active-session queue precedence.
 
-`test_italian_course.py` walks every bundled course chapter, accepted decision,
-branch, source-game endpoint and rehearsal through the production paths. It
-verifies that completion leaves existing reviews, FSRS and weakness evidence
-untouched, and enrollment remains explicit. `test_italian_native.py` uses native
-Stockfish for a bounded gross-error check of guided decisions, not as the lesson
-grader or a certification of instructional quality. Course changes also require
+`test_italian_course.py` walks the Italian course's chapters, branches,
+source-game endpoints and rehearsal through the production paths, and checks
+every bundled course's accepted decisions with the player. It verifies that
+completion leaves existing reviews, FSRS and weakness evidence untouched, and
+enrollment remains explicit. Course changes also require
 the [authored-content review](STUDY.md#reviewing-authored-course-quality): independent
 source comparison, critical opponent replies and the plans at each line's end.
-`test_italian_white_claims.py`, `test_italian_black_claims.py`,
-`test_kings_gambit_claims.py`, `test_dragon_claims.py` and `test_vienna_claims.py` verify
-concrete teaching claims against legal positions and historical endpoints.
-The Dragon and Vienna claims tests build each taught board with
+`test_dragon_claims.py` and `test_vienna_claims.py` verify concrete teaching
+claims against legal positions. They build each taught board with
 `course_claims.Boards`, which fails if that position never occurs in the course.
-`opening-courses.spec.ts` exercises the Black Italian, King's Gambit, Sicilian Dragon and
-Vienna Gambit courses on desktop and mobile,
+`opening-courses.spec.ts` plays one White chapter (King's Gambit pawn chain)
+and one Black chapter (Italian quiet bishop plan) on desktop and mobile,
 including Black orientation, source-game exploration, rehearsal, reload and
-side-appropriate explicit enrollment. It also plays the post-castling Black plan
-and Falkbeer chapter, including their anchored rehearsals and comparison branches.
-`italian-course.spec.ts` exercises the installed White course on both
-viewports, including central decisions, exact returns, reload and optional enrollment.
-It also checks legal destinations during the first drag after lesson input is
-enabled, with both Natural and Still motion, across consecutive guided moves.
+side-appropriate explicit enrollment. `italian-course.spec.ts` checks legal
+destinations during the first drag after lesson input is enabled, across
+consecutive guided moves.
 
 The account browser suite resumes lessons, puzzle attempts, selected lines and
 the chosen coach on a second device, then confirms another account cannot read
@@ -387,10 +381,6 @@ unsupported rigs, source replacement and unmount cleanup on desktop and mobile.
 Inspect the audio studio at normal portrait sizes as well: automated envelope
 and lifecycle checks do not establish that the speaking face looks convincing.
 
-`lip-sync.spec.ts` compares both real Walter recordings on desktop/mobile. It
-checks cue boundaries and gaps, malformed imports, exact voice/script matching,
-one shared native audio source, correct mouth artwork, natural ending, interruption,
-mode/example changes, motion policy and side-by-side phone layout.
 `scripts/align_coach_speech.py --check` validates both
 generators' committed tracks using only the standard library. Native
 generation is an optional developer step, not a CI or installation requirement.
@@ -466,18 +456,13 @@ retired mappings without rewriting stored rows during reads.
 `studio-tests/idle-repertoire.spec.ts` plays every registered repertoire through
 the seeded coordinator. Seeded coordinator
 traces verify cooldowns, fairness, independent blinking and channel ownership.
-`idle-articulation.spec.ts` inspects actual SVG targets,
-CSS tracks, delays and authored durations. `handedness.spec.ts` checks opposite
+`handedness.spec.ts` checks opposite
 hand/finger orientation and wrist-to-sleeve attachment across the registered
 human, animal, sci-fi, wizard and dragon rigs in Still, reaction and idle poses.
 `idle-cadence.spec.ts` checks repeated
 500–1000ms empty gaps, expression changes, reaction isolation, motion preferences
 and hidden/offscreen pausing with controlled time. `resting-faces.spec.ts` checks
 eye reopening without loss of emotion, stale transitions or artwork remounts.
-`idle-diagnostics.spec.ts` covers observer lifecycle across rerenders.
-`idle-visual.spec.ts` captures signatures at four animation times and both actual
-portrait sizes. `full-cast.spec.ts` exercises the complete expression collection,
-independent replay, same-expression comparisons and the tablet singleton layout.
 Screenshots supplement sustained live viewing; they do not prove smooth timing.
 
 The intelligence suite compares ten shared situations across the full cast,

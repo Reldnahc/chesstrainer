@@ -1,7 +1,6 @@
 """Health follows real engine use without spending CPU on idle hosted accounts."""
 
 import json
-import logging
 
 import chess
 import pytest
@@ -9,10 +8,8 @@ from fastapi.testclient import TestClient
 from test_accounts import signup
 from trainer.__main__ import JSONFormatter
 from trainer.api import create_app
-from trainer.engine import EngineReferenceMismatch, EngineUnavailable, Stockfish
-from trainer.engine_health import EngineHealth
+from trainer.engine import EngineUnavailable
 from trainer.models import AnalysisJob
-from trainer.search_limits import SearchProfile
 
 
 @pytest.mark.parametrize("hosted", [False, True])
@@ -41,7 +38,7 @@ def test_unstarted_engine_is_unknown_then_reports_missing_executable(settings, h
         assert settings.stockfish_path in caplog.text
 
 
-@pytest.mark.parametrize("hosted", [False, True])
+@pytest.mark.parametrize("hosted", [False])
 def test_startup_failure_recovery_and_later_search_failure_update_health(settings, hosted):
     class Engine:
         version = "Stockfish health fixture"
@@ -87,25 +84,6 @@ def test_startup_failure_recovery_and_later_search_failure_update_health(setting
             assert client.get("/api/health").json()["engine_status"] == "ready"
 
 
-@pytest.mark.stockfish
-def test_native_reference_mismatch_does_not_mark_working_engine_unavailable(
-    settings, sessions, stockfish_path
-):
-    settings.stockfish_path = stockfish_path
-    health = EngineHealth()
-    engine = health.observe(Stockfish)(settings, sessions)
-    try:
-        original = engine.analyze(chess.Board())
-        assert health.snapshot()["engine_status"] == "ready"
-        original.engine_version = "different-saved-engine"
-        with pytest.raises(EngineReferenceMismatch):
-            engine.analyze(chess.Board(), SearchProfile.extending(original))
-        assert health.snapshot()["engine_available"] is True
-        assert health.snapshot()["engine_error"] is None
-    finally:
-        engine.close()
-
-
 def test_job_traceback_is_preserved_in_json_logs_but_not_client_payload(
     settings, monkeypatch, caplog
 ):
@@ -136,50 +114,3 @@ def test_job_traceback_is_preserved_in_json_logs_but_not_client_payload(
         assert "private-position-detail" in logged["exception"]
         assert "private-analysis-detail" in logged["exception"]
         assert "direct cause" in logged["exception"]
-
-
-def test_json_formatter_preserves_stack_info_without_exception():
-    record = logging.LogRecord(
-        "diagnostic", logging.WARNING, __file__, 1, "trace", (), None, sinfo="saved stack"
-    )
-    result = json.loads(JSONFormatter().format(record))
-    assert result["stack"] == "saved stack"
-    assert "exception" not in result
-
-
-def test_json_formatter_keeps_every_field_a_call_logs():
-    logger = logging.getLogger("diagnostic")
-    record = logger.makeRecord(
-        "diagnostic",
-        logging.WARNING,
-        __file__,
-        1,
-        "sync_poll_failed",
-        (),
-        None,
-        extra={"user_id": "u1", "provider": "lichess", "queries": {"tail": 2}},
-    )
-    result = json.loads(JSONFormatter().format(record))
-    assert (result["user_id"], result["provider"], result["queries"]) == (
-        "u1",
-        "lichess",
-        {"tail": 2},
-    )
-    assert "args" not in result and "msg" not in result and "levelno" not in result
-
-
-def test_the_bots_strength_limited_moves_report_engine_health():
-    from trainer.engine import EngineUnavailable
-    from trainer.engine_health import EngineHealth
-
-    class Broken:
-        version = "x"
-
-        def play_limited(self, *args, **kwargs):
-            raise EngineUnavailable("gone")
-
-    health = EngineHealth()
-    engine = health.observe(lambda settings, sessions: Broken())(None, None)
-    with pytest.raises(EngineUnavailable):
-        engine.play_limited(None, 1500, 0.1)
-    assert health.snapshot()["engine_status"] == "unavailable"

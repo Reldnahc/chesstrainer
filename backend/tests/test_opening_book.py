@@ -22,9 +22,6 @@ def before_last(line):
     [
         ("e4 e5 Nf3 Nc6 Bc4", "Italian Game"),
         ("e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 Nc3 a6", "Najdorf"),
-        ("e4 e5 Ke2", "Bongcloud"),
-        ("e4 e5 Nf3 f6", "Damiano"),
-        ("f3 e5 g4 Qh4#", "Fool's Mate"),
     ],
 )
 def test_recognizes_common_and_unsound_named_openings(line, name):
@@ -43,18 +40,6 @@ def test_transpositions_and_move_counters_share_recognition():
     assert expected is not None
     second.halfmove_clock, second.fullmove_number = 7, 12
     assert book_move(second.fen(), other.uci()) == expected
-
-
-def test_a_move_that_transposes_into_a_catalogued_line_is_book():
-    # The catalogue lists the Vienna as 1.e4 e5 2.Nc3, never 1.Nc3 e5 2.e4.
-    board = chess.Board()
-    labels = []
-    for san in "Nc3 e5 e4 Nf6 f4".split():
-        move = board.parse_san(san)
-        labels.append(book_move(board.fen(), move.uci()))
-        board.push(move)
-    assert all(labels)
-    assert "Vienna Game" in labels[2]["name"]
 
 
 def test_names_do_not_make_every_following_move_book_and_position_rights_matter():

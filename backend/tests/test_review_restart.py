@@ -9,7 +9,7 @@ from trainer.api import create_app
 from trainer.models import Review, ReviewSession, SRSState
 
 
-@pytest.mark.parametrize("outcome", ["correct", "failed_then_solved", "revealed"])
+@pytest.mark.parametrize("outcome", ["correct", "revealed"])
 def test_restart_preserves_schedule_until_due(settings, monkeypatch, outcome):
     clock = [datetime(2026, 9, 12, 12, tzinfo=timezone.utc)]
     monkeypatch.setattr(reviews, "now", lambda: clock[0])

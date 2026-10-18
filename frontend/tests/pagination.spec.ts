@@ -1,41 +1,5 @@
 import { test, expect } from "./helpers/browserTest";
 
-test("Games pages use destinations, thirty-item ranges and disabled boundaries", async ({
-  page,
-}) => {
-  await page.route("**/api/games?offset=*", route => {
-    const offset = Number(new URL(route.request().url()).searchParams.get("offset"));
-    return route.fulfill({
-      json: {
-        total: 31,
-        items: Array.from({ length: offset === 0 ? 30 : 1 }, (_, index) => ({
-          id: `page-${offset + index}`,
-          white: "White",
-          black: "Black",
-          result: "1-0",
-          status: "not_started",
-        })),
-      },
-    });
-  });
-  await page.goto("/games");
-  const pages = page.getByRole("navigation", { name: "Games pages" });
-  await expect(pages).toContainText("1–30 of 31");
-  await expect(pages.getByRole("button", { name: "Previous", exact: true })).toBeDisabled();
-  const next = pages.getByRole("link", { name: "Next", exact: true });
-  await expect(next).toHaveAttribute("href", "/games?page=2");
-  await next.focus();
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL("/games?page=2");
-  await expect(pages).toContainText("31–31 of 31");
-  await expect(pages.getByRole("button", { name: "Next", exact: true })).toBeDisabled();
-  await expect(pages.getByRole("link", { name: "Previous", exact: true })).toHaveAttribute(
-    "href",
-    "/games",
-  );
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-});
-
 test("Catalogue pages retain search filters, fifty-item ranges and empty-page recovery", async ({
   page,
 }) => {

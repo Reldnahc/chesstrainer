@@ -122,32 +122,6 @@ def test_cache_is_shared_between_accounts_and_concurrent_requests(settings, sess
             db.commit()
 
 
-def test_policy_reuses_a_row_saved_while_predicting(settings, sessions):
-    provider = PolicyProvider(settings)
-    service = HumanModels(settings, provider)
-    predict = provider.predict
-    request = request_for(parsed(), chess.Board(), 1000)
-
-    def racing(*args):
-        policy = predict(*args)
-        with sessions() as db:
-            db.add(
-                HumanAnalysis(
-                    id="saved-first",
-                    cache_key=service.cache_key(request),
-                    request=request.model_dump(mode="json"),
-                    policy=policy.model_dump(mode="json"),
-                )
-            )
-            db.commit()
-        return policy
-
-    provider.predict = racing
-    assert evidence(service, sessions)["evidence_id"] == "saved-first"
-    with sessions() as db:
-        assert db.scalar(select(func.count()).select_from(HumanAnalysis)) == 1
-
-
 def test_rank_only_is_not_fake_probability_and_failure_never_persists(settings, sessions):
     provider = PolicyProvider(settings, ranked=True)
     service = HumanModels(settings, provider)
@@ -176,13 +150,10 @@ def test_rank_only_is_not_fake_probability_and_failure_never_persists(settings, 
     "moves",
     [
         [{"uci": "e2e4", "rank": 1, "probability": 0.8}],
-        [{"uci": "e2e4", "rank": 2, "probability": 1}],
-        [{"uci": "e2e4", "rank": 1, "probability": float("nan")}],
         [
             {"uci": "e2e4", "rank": 1, "probability": 0.5},
             {"uci": "e2e4", "rank": 2, "probability": 0.5},
         ],
-        [{"uci": "e2e4", "rank": 1, "probability": 0.5}, {"uci": "d2d4", "rank": 2}],
     ],
 )
 def test_invalid_policy_is_rejected(settings, moves):

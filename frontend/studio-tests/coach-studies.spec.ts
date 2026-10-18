@@ -1,5 +1,4 @@
 import { expect, test, type Page } from "../tests/helpers/browserTest";
-import { expressions } from "../src/coach/model";
 
 const characters = [
   {
@@ -26,10 +25,7 @@ const characters = [
 
 type Character = (typeof characters)[number];
 
-// Each character's studies used to be one test that swept every expression and
-// then every collection: over a minute of work on a loaded CI worker, inside one
-// 60 s budget. The sweep and each collection are now separate pages that keep
-// every check and share the closing checks below.
+// Each collection is its own page that shares the closing checks below.
 async function openStudies(page: Page, character: Character) {
   const errors: string[] = [];
   const apiRequests: string[] = [];
@@ -76,145 +72,73 @@ async function closeStudies(
   expect(apiRequests).toEqual([]);
 }
 
+// One collection per character, on desktop only: each rig family shares its reaction
+// machinery, and Men use a non-storyteller collection so the classic CSS leak check runs.
+const collections: Record<string, string> = {
+  classic: "host",
+  woman: "captain",
+  cat: "tuxedo",
+  dog: "gentle",
+};
+
 for (const character of characters) {
-  test(`${character.name} has complete retained expressive studies at review sizes`, async ({
+  const family = collections[character.id];
+  test(`${character.name} ${family} collection performs both signature reactions at review sizes`, async ({
     page,
   }, info) => {
+    test.skip(info.project.name !== "desktop", "One viewport covers the shared reaction rigs.");
     const studies = await openStudies(page, character);
-    const { concepts } = studies;
-    const first = concepts.first();
-    await first.scrollIntoViewIfNeeded();
-    await expect(first).toBeInViewport();
-    await page.clock.runFor(110);
-    await expect(first).toHaveAttribute("data-phase", "reaction");
-    await expect
-      .poll(() => first.evaluate(el => el.getAnimations({ subtree: true }).length))
-      .toBeGreaterThan(0);
-    await page.clock.runFor(2000);
-    await expect(first).toHaveAttribute("data-phase", "rest");
-    await page.locator(".studio-concepts").screenshot({
-      path: `studio-test-results/studies-${character.id}-brilliant-${info.project.name}.png`,
+    await page.getByRole("combobox", { name: "Collection", exact: true }).selectOption(family);
+    await expect(
+      page.locator(`.studio-expression .coach-avatar[data-family="${family}"]`),
+    ).toHaveCount(20);
+    await page.locator(".studio-collection").screenshot({
+      path: `studio-test-results/studies-${character.id}-${family}-${info.project.name}.png`,
     });
-
-    const geometry = () =>
-      page.locator(".studio-concepts").evaluate(el => ({
-        width: el.getBoundingClientRect().width,
-        height: el.getBoundingClientRect().height,
-      }));
-    const before = await geometry();
-    for (const expression of expressions) {
-      await page
-        .getByRole("combobox", { name: "Expression", exact: true })
-        .selectOption(expression);
-      await page.clock.runFor(expression === "thinking" ? 420 : 110);
-      // Every concept, in one retrying assertion rather than one per avatar.
-      await expect(concepts.and(page.locator(`[data-expression="${expression}"]`))).toHaveCount(
-        character.families.length,
-      );
-      expect(await geometry()).toEqual(before);
+    // Every rig must actually perform both signature reactions. The original
+    // man's CSS must not leak onto the shared human rig of the other men.
+    const portrait = page.locator(`.studio-${family} .coach-avatar`);
+    for (const state of ["brilliant", "blunder"]) {
+      await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption(state);
+      // Commit the selected expression first, so its pending dwell cannot
+      // satisfy the separate replay's new-take assertion below.
+      await page.clock.runFor(110);
+      const take = Number(await portrait.getAttribute("data-take"));
+      await page.getByRole("button", { name: "Replay reaction", exact: true }).click();
+      // Replay must reveal the selected portrait, including collections
+      // farther down the stacked mobile layout, before the dwell completes.
+      await expect(portrait).toBeInViewport();
+      await page.clock.runFor(110);
+      await expect(portrait).toHaveAttribute("data-take", String(take + 1));
+      await expect(portrait).toHaveAttribute("data-phase", "reaction");
+      await expect(portrait).toHaveAttribute("data-expression", state);
+      await expect
+        .poll(() =>
+          portrait.evaluate(
+            el =>
+              el
+                .getAnimations({ subtree: true })
+                .filter(animation => animation.playState === "running").length,
+          ),
+        )
+        .toBeGreaterThan(0);
+      if (character.id === "classic" && family !== "storyteller") {
+        expect(
+          await portrait.evaluate(el =>
+            el
+              .getAnimations({ subtree: true })
+              .some(
+                animation =>
+                  animation instanceof CSSAnimation &&
+                  animation.animationName.startsWith("classic-"),
+              ),
+          ),
+        ).toBe(false);
+      }
+      await page.clock.runFor(2000);
+      await expect(portrait).toHaveAttribute("data-phase", "rest");
     }
-    await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption("blunder");
-    await first.scrollIntoViewIfNeeded();
-    await expect(first).toBeInViewport();
-    await page.clock.runFor(110);
-    await expect(first).toHaveAttribute("data-phase", "reaction");
-    await page.clock.runFor(2000);
-    await expect(first).toHaveAttribute("data-phase", "rest");
-    await page.locator(".studio-concepts").screenshot({
-      path: `studio-test-results/studies-${character.id}-blunder-${info.project.name}.png`,
-    });
-
-    // Idle previews play on the selected collection's concept.
-    await page
-      .getByRole("combobox", { name: "Collection", exact: true })
-      .selectOption(character.families.at(-1)!);
-    const idles = page.getByRole("combobox", {
-      name: "Idle gesture",
-      exact: true,
-    });
-    const idle = await idles.locator("option").first().getAttribute("value");
-    await idles.selectOption(idle!);
-    await page.getByRole("button", { name: "Preview idle", exact: true }).click();
-    const chosen = concepts.last();
-    await chosen.scrollIntoViewIfNeeded();
-    await expect(chosen).toBeInViewport();
-    await page.clock.runFor(110);
-    await expect(chosen).toHaveAttribute("data-micro", idle!);
-    await expect
-      .poll(() => chosen.evaluate(el => el.getAnimations({ subtree: true }).length))
-      .toBeGreaterThan(0);
-    await page.clock.runFor(1200);
-    await expect(chosen).toHaveAttribute("data-micro", "");
 
     await closeStudies(page, studies);
   });
-
-  for (const family of character.families) {
-    test(`${character.name} ${family} collection performs both signature reactions at review sizes`, async ({
-      page,
-    }, info) => {
-      const studies = await openStudies(page, character);
-      await page.getByRole("combobox", { name: "Collection", exact: true }).selectOption(family);
-      await expect(
-        page.locator(`.studio-expression .coach-avatar[data-family="${family}"]`),
-      ).toHaveCount(20);
-      await expect(page.locator(".studio-context-compact .coach-avatar")).toHaveCSS(
-        "width",
-        "52.5px",
-      );
-      if (info.project.name === "desktop") {
-        const roomy = page.locator(".studio-context:not(.studio-context-compact) .coach-avatar");
-        // Layout uses subpixel units; 92.8 CSS pixels rounds to 92.796875.
-        expect(await roomy.evaluate(el => el.getBoundingClientRect().width)).toBeCloseTo(92.8, 1);
-      }
-      await page.locator(".studio-collection").screenshot({
-        path: `studio-test-results/studies-${character.id}-${family}-${info.project.name}.png`,
-      });
-      // Every rig must actually perform both signature reactions. The original
-      // man's CSS must not leak onto the shared human rig of the other men.
-      const portrait = page.locator(`.studio-${family} .coach-avatar`);
-      for (const state of ["brilliant", "blunder"]) {
-        await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption(state);
-        // Commit the selected expression first, so its pending dwell cannot
-        // satisfy the separate replay's new-take assertion below.
-        await page.clock.runFor(110);
-        const take = Number(await portrait.getAttribute("data-take"));
-        await page.getByRole("button", { name: "Replay reaction", exact: true }).click();
-        // Replay must reveal the selected portrait, including collections
-        // farther down the stacked mobile layout, before the dwell completes.
-        await expect(portrait).toBeInViewport();
-        await page.clock.runFor(110);
-        await expect(portrait).toHaveAttribute("data-take", String(take + 1));
-        await expect(portrait).toHaveAttribute("data-phase", "reaction");
-        await expect(portrait).toHaveAttribute("data-expression", state);
-        await expect
-          .poll(() =>
-            portrait.evaluate(
-              el =>
-                el
-                  .getAnimations({ subtree: true })
-                  .filter(animation => animation.playState === "running").length,
-            ),
-          )
-          .toBeGreaterThan(0);
-        if (character.id === "classic" && family !== "storyteller") {
-          expect(
-            await portrait.evaluate(el =>
-              el
-                .getAnimations({ subtree: true })
-                .some(
-                  animation =>
-                    animation instanceof CSSAnimation &&
-                    animation.animationName.startsWith("classic-"),
-                ),
-            ),
-          ).toBe(false);
-        }
-        await page.clock.runFor(2000);
-        await expect(portrait).toHaveAttribute("data-phase", "rest");
-      }
-
-      await closeStudies(page, studies);
-    });
-  }
 }

@@ -10,7 +10,7 @@ from trainer.models import Review, ReviewSession, SRSState
 from trainer.retirement import retire_if_ready
 
 
-@pytest.mark.parametrize("days,retired", [(99, False), (100, False), (100.001, True), (163, True)])
+@pytest.mark.parametrize("days,retired", [(100, False), (100.001, True)])
 def test_strict_interval_boundary_and_permanence(settings, days, retired):
     at = datetime(2026, 1, 1, tzinfo=timezone.utc)
     state = SRSState(

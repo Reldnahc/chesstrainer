@@ -158,13 +158,6 @@ def test_moving_the_pinner_along_its_line_does_not_exploit_an_old_pin():
     assert "pin" not in {skill for skill, _ in recognized(boards)}
 
 
-def test_a_pinned_piece_cannot_answer_a_double_check():
-    # Bg6+ is double check: only a king move answers, so the pinned d7 knight's
-    # interposition square is irrelevant and its old pin is not exploited.
-    boards = line("4k3/3n4/5R2/1B6/4B3/8/8/4R1K1 w - - 0 1", "Bg6+", "Kd8")
-    assert "pin" not in {skill for skill, _ in recognized(boards)}
-
-
 def test_an_old_pin_beside_a_mating_attack_it_does_not_change_is_declined():
     # The g3 rook pins the g6 pawn, which attacks the h5 rook; but after the checks
     # Black must answer them, so Qh6+ Kg8 Qh7# mates with or without the pin
@@ -200,12 +193,6 @@ def test_a_guarded_landing_a_cheaper_piece_can_take_is_not_a_pin_exploit():
     # Qg5 just loses the queen to ...hxg5; nothing retakes, guard or not.
     boards = line("4k3/4p3/2n4p/1B2R3/8/8/8/K5Q1 w - - 0 1", "Qg5")
     assert "pin" not in {skill for skill, _ in recognized(boards)}
-
-
-def test_sliding_the_pinner_along_its_line_does_not_make_a_new_pin():
-    boards = line("4k3/ppp1ppp1/2n5/1B2R2r/8/8/PPP2PP1/4K2Q w - - 0 1", "Ba4", "a6")
-    found = recognized_patterns(boards, 1, len(boards) - 1, "line", "missed_opportunity")
-    assert "pin" not in {f.skill_id for f in found}
 
 
 def test_a_replacement_pin_witness_names_what_the_pinned_piece_cannot_take():

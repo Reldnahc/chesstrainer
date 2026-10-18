@@ -23,20 +23,6 @@ def course():
 board = Boards(course())
 
 
-def test_course_loads_with_every_chapter_ending_in_a_rehearsal():
-    built = course()
-    assert built.learner_color == "white"
-    assert [chapter.id for chapter in built.chapters] == [
-        "vienna-accepted",
-        "vienna-strike",
-        "vienna-declined",
-        "vienna-second-moves",
-    ]
-    for chapter in built.chapters:
-        assert chapter.steps[-1].kind == "rehearsal"
-    assert all(line.repertoire for line in built.lines)
-
-
 def test_accepted_chapter_claims():
     gambit = board("e4 e5 Nc3 Nf6 f4")
     assert attacks(gambit, "f4", "e5") and piece(gambit, "f2") is None

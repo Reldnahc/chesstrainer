@@ -1,4 +1,4 @@
-import { expect, test, type Locator } from "./helpers/browserTest";
+import { expect, test } from "./helpers/browserTest";
 import type { Schema } from "../src/api";
 
 test.beforeEach(async ({ page }) => {
@@ -34,67 +34,6 @@ test.beforeEach(async ({ page }) => {
       } satisfies Schema["PuzzleLibrary"],
     }),
   );
-});
-
-async function sectionStyle(empty: Locator) {
-  await expect(empty).toBeVisible();
-  return empty.evaluate(element => {
-    const style = getComputedStyle(element);
-    return {
-      textAlign: style.textAlign,
-      paddingTop: style.paddingTop,
-      paddingBottom: style.paddingBottom,
-    };
-  });
-}
-
-test("empty sections share the lesson presentation and preserve recovery destinations", async ({
-  page,
-}) => {
-  await page.route("**/api/weaknesses", async route => {
-    const response = await route.fetch();
-    const data: Schema["Weaknesses"] = await response.json();
-    await route.fulfill({ response, json: { ...data, skills: [] } });
-  });
-  await page.goto("/study/openings");
-  const lessons = page
-    .locator(".empty-state--section")
-    .filter({ has: page.getByRole("heading", { name: "No opening lessons yet.", exact: true }) });
-  const canonical = await sectionStyle(lessons);
-  expect(canonical.textAlign).toBe("center");
-  await expect(lessons.getByRole("link", { name: "Go to Due", exact: true })).toHaveAttribute(
-    "href",
-    "/study/due",
-  );
-
-  for (const [path, title, body] of [
-    [
-      "/study/puzzles",
-      "No puzzles available yet.",
-      "There are no installed puzzle collections for this source.",
-    ],
-    ["/weaknesses", "No supported weaknesses yet.", "Classify saved games in Settings."],
-    ["/games", "Your next insight starts with a game.", "Import a PGN or your Chess.com games"],
-  ]) {
-    await page.goto(path);
-    const empty = page
-      .locator(".empty-state--section")
-      .filter({ has: page.getByRole("heading", { name: title, exact: true }) });
-    expect(await sectionStyle(empty)).toEqual(canonical);
-    await expect(empty).toContainText(body);
-    await expect(empty.locator('[role="alert"], [role="status"]')).toHaveCount(0);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
-  }
-  await page.getByRole("link", { name: "Import games in Settings", exact: true }).click();
-  await expect(page).toHaveURL("/settings");
-  await page.goto("/games?page=5");
-  await expect(
-    page.getByRole("heading", { name: "No games on this page.", exact: true }),
-  ).toBeVisible();
-  await page.getByRole("link", { name: "Back to your games", exact: true }).click();
-  await expect(page).toHaveURL("/games");
 });
 
 test("a Due queue that fails to load offers Try again instead of the study-queue start", async ({

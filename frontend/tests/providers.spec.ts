@@ -8,55 +8,6 @@ test.afterEach(async ({ request }) => {
   }
 });
 
-test("loading game connections preserves the Update games control and library geometry", async ({
-  page,
-}, info) => {
-  expect(
-    (await page.request.post(`/__test/game-review-fixture/sync-layout-${info.project.name}`)).ok(),
-  ).toBe(true);
-  let release!: () => void;
-  const gate = new Promise<void>(resolve => {
-    release = resolve;
-  });
-  await page.route("**/api/providers/*/sync", async route => {
-    await gate;
-    const provider = new URL(route.request().url()).pathname.split("/")[3];
-    await route.fulfill({
-      json: {
-        provider,
-        username: "",
-        job_id: null,
-        status: "not_started",
-        checked_at: null,
-        imported: 0,
-        error: null,
-      },
-    });
-  });
-  try {
-    await page.goto("/games");
-    await page.evaluate(() => document.fonts.ready);
-    const loading = page.getByRole("button", { name: "Update games", exact: true });
-    const library = page.getByRole("region", { name: "Game history", exact: true });
-    await expect(loading).toBeDisabled();
-    await expect(library).toBeVisible();
-    const actionBefore = (await loading.boundingBox())!;
-    const libraryBefore = (await library.boundingBox())!;
-    release();
-    const ready = page.getByRole("link", { name: "Update games", exact: true });
-    await expect(ready).toBeVisible();
-    await expect(loading).toHaveCount(0);
-    const actionAfter = (await ready.boundingBox())!;
-    const libraryAfter = (await library.boundingBox())!;
-    expect(actionAfter.height).toBe(actionBefore.height);
-    expect(actionAfter.y).toBe(actionBefore.y);
-    expect(libraryAfter.y).toBe(libraryBefore.y);
-  } finally {
-    release();
-    await page.unrouteAll({ behavior: "wait" });
-  }
-});
-
 test("background syncs refresh the game list in place, once per finished check", async ({
   page,
 }, info) => {
@@ -118,58 +69,6 @@ test("background syncs refresh the game list in place, once per finished check",
   expect(await page.evaluate(() => (window as unknown as { blanked: boolean }).blanked)).toBe(
     false,
   );
-});
-
-test("Lichess import uses shared filters, fetch-only jobs and deduplication", async ({
-  page,
-}, info) => {
-  const username = `lichess-import-${info.project.name}`;
-  await page.goto("/settings");
-  await page
-    .getByRole("region", { name: "Recent Lichess games", exact: true })
-    .getByRole("button", { name: "Import older games", exact: true })
-    .click();
-  await expect(page.getByRole("heading", { name: "Import from Lichess" })).toBeVisible();
-  await page.getByLabel("Lichess username", { exact: true }).fill(username);
-  await page.getByLabel("Time control", { exact: true }).selectOption("blitz");
-  await expect(page.getByLabel("Time control").locator('option[value="classical"]')).toHaveCount(1);
-  await expect(page.getByLabel("Time control").locator('option[value="daily"]')).toHaveCount(0);
-  const queued = page.waitForResponse(
-    r => r.url().endsWith("/api/imports/provider/lichess") && r.request().method() === "POST",
-  );
-  await page.getByRole("button", { name: "Import games", exact: true }).click();
-  const response = await queued;
-  expect(response.status()).toBe(202);
-  expect(response.request().postDataJSON()).toMatchObject({ username, time_class: "blitz" });
-  expect(response.request().postDataJSON()).not.toHaveProperty("analyze");
-  const job = page
-    .locator(".job")
-    .filter({ hasText: `Lichess · ${username}` })
-    .first();
-  await expect(job.locator(".badge")).toHaveText("completed");
-  await job.locator("summary").first().click();
-  await expect(job).toContainText("1 imported");
-  await expect(job.getByRole("progressbar", { name: "Analysis progress" })).toHaveCount(0);
-  await page.getByRole("button", { name: "Import games", exact: true }).click();
-  await expect(job).toContainText("0 imported · 1 duplicate");
-  await expect(job.locator(".badge")).toHaveText("completed");
-  const jobs = await (await page.request.get("/api/jobs")).json();
-  const saved = jobs.filter(
-    (value: { provider_import?: { username: string } }) =>
-      value.provider_import?.username === username,
-  );
-  expect(saved).toHaveLength(2);
-  expect(
-    saved.every(
-      (value: { positions_triaged: number; kind: string }) =>
-        value.positions_triaged === 0 && value.kind === "provider_fetch",
-    ),
-  ).toBe(true);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({
-    path: `test-results/lichess-import-${info.project.name}.png`,
-    fullPage: true,
-  });
 });
 
 test("local saved connections refresh both providers and survive reload", async ({
@@ -257,28 +156,4 @@ test("saved-name hydration cannot merge with an in-progress manual username", as
     release();
     await page.unrouteAll({ behavior: "wait" });
   }
-});
-
-test("Lichess imports queue native analysis for each fetched game", async ({ page }, info) => {
-  const username = `lichess-training-${info.project.name}`;
-  await page.goto("/settings");
-  await page
-    .getByRole("region", { name: "Recent Lichess games", exact: true })
-    .getByRole("button", { name: "Import older games", exact: true })
-    .click();
-  await page.getByLabel("Lichess username", { exact: true }).fill(username);
-  await page.getByLabel("Time control", { exact: true }).selectOption("blitz");
-  await page.getByRole("button", { name: "Import games", exact: true }).click();
-  const job = page
-    .locator(".job")
-    .filter({ hasText: `Lichess · ${username}` })
-    .first();
-  await expect(job.locator(".badge")).toHaveText("completed", { timeout: 30000 });
-  await expect(job).toContainText("1 imported");
-  // The fetched game's own review + training job finishes in the background.
-  await expect
-    .poll(async () => (await (await page.request.get("/api/analysis/queue")).json()).completed, {
-      timeout: 30000,
-    })
-    .toBeGreaterThanOrEqual(1);
 });

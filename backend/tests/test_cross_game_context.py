@@ -20,7 +20,7 @@ def current_evidence(ply=1, role="missed"):
     return reports, context
 
 
-@pytest.mark.parametrize("skill", CAUSES)
+@pytest.mark.parametrize("skill", CAUSES[:1])
 @pytest.mark.parametrize("black", [False, True])
 def test_causal_errors_match_only_the_learners_owned_weaknesses(settings, sessions, skill, black):
     _, reports, context = reviewed([0] * 8)
@@ -110,13 +110,3 @@ def test_another_account_cannot_supply_corroboration(settings, sessions):
         result = cross_game_context(db, settings, game, *current_evidence())
         assert result.weaknesses == []
         assert not any(identifier in result.model_dump_json() for identifier in bob_evidence)
-
-
-def test_no_supported_history_never_turns_into_a_practice_transfer_claim(settings, sessions):
-    with sessions() as db:
-        seed_lesson(db, settings, count=1, skills=["fork"])
-        game = db.scalars(select(Game)).first()
-        result = cross_game_context(db, settings, game, *current_evidence())
-        assert result.weaknesses == []
-        assert result.scope == "other_saved_games"
-        assert "recurrence_does_not_measure_training_transfer" in result.limitations

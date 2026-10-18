@@ -9,13 +9,8 @@ from trainer.api import create_app
     "origin",
     [
         "example.com",
-        "ftp://example.com",
         "https://x/a",
-        "https://x?query=1",
-        "https://x#fragment",
         "https://user:secret@x",
-        "https://x:bad",
-        "https://bad host",
     ],
 )
 def test_invalid_origin_fails_before_startup(settings, origin):

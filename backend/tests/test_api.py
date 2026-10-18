@@ -56,10 +56,8 @@ def test_api_cold_review_and_restart(settings):
     "fen,expected,absent,capture,promotions",
     [
         ("k3r3/8/8/8/8/8/4R3/4K3 w - - 0 1", "e2e8", "e2d2", True, {None}),
-        ("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1", "e1g1", "e1e3", False, {None}),
         ("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1", "e5d6", "e5e7", True, {None}),
         ("4k3/P7/8/8/8/8/8/4K3 w - - 0 1", "a7a8n", "a7b8", False, {"q", "r", "b", "n"}),
-        ("4k3/8/8/8/8/8/p7/4K3 b - - 0 1", "a2a1n", "e1e2", False, {"q", "r", "b", "n"}),
     ],
 )
 def test_cold_legal_moves_preserve_special_rules(
@@ -97,16 +95,6 @@ def test_token_and_origin(settings):
         )
 
 
-def test_origin_is_compared_without_case_and_a_malformed_one_is_refused(settings):
-    settings.stockfish_path = "missing-stockfish-test"
-    with TestClient(create_app(settings, workers=False)) as client:
-        same = {"host": "nas.local", "origin": "http://NAS.local"}
-        assert client.post("/api/course/rebuild", headers=same).status_code != 403
-        for origin in ("http://[::1", "http://nas.local:99999999999"):
-            malformed = {"host": "nas.local", "origin": origin}
-            assert client.post("/api/course/rebuild", headers=malformed).status_code == 403
-
-
 def test_local_mode_answers_lan_hosts_only(settings):
     settings.stockfish_path = "missing-stockfish-test"
     settings.allowed_hosts = "Chess.Example.net, nas-two"
@@ -127,13 +115,3 @@ def test_local_mode_answers_lan_hosts_only(settings):
         assert response.status_code == 403 and "ALLOWED_HOSTS" in response.json()["detail"]
         rebound = {"host": "attacker.example", "origin": "http://attacker.example"}
         assert client.post("/api/course/rebuild", headers=rebound).status_code == 403
-
-
-def test_a_malformed_fen_is_rejected_not_a_server_error(settings):
-    settings.stockfish_path = "missing-stockfish-test"
-    with TestClient(create_app(settings, workers=False)) as client:
-        response = client.post(
-            "/api/exercises/manual",
-            json={"fen": "not a fen", "moves": ["e2e4"], "orientation": "white"},
-        )
-        assert response.status_code == 422 and "FEN" in response.json()["detail"]

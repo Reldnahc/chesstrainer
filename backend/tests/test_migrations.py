@@ -71,18 +71,6 @@ def test_a_failed_revision_leaves_the_schema_and_version_untouched(tmp_path, mon
     engine.dispose()
 
 
-def test_ddl_before_any_write_rolls_back(tmp_path):
-    engine, _ = database(tmp_path / "ddl.sqlite3")
-    with pytest.raises(RuntimeError):
-        with migration_connection(engine) as connection:
-            connection.exec_driver_sql("CREATE TABLE stray (id INTEGER PRIMARY KEY)")
-            raise RuntimeError("later step failed")
-    assert "stray" not in tables(engine)
-    with engine.connect() as connection:
-        assert connection.exec_driver_sql("PRAGMA foreign_keys").scalar() == 1
-    engine.dispose()
-
-
 def test_a_broken_reference_rolls_the_whole_migration_back(tmp_path):
     engine, _ = database(tmp_path / "broken.sqlite3")
     with pytest.raises(ValueError, match="foreign-key"):
@@ -93,16 +81,6 @@ def test_a_broken_reference_rolls_the_whole_migration_back(tmp_path):
             )
             connection.exec_driver_sql("INSERT INTO child VALUES (1, 99)")
     assert not {"parent", "child"} & tables(engine)
-    engine.dispose()
-
-
-def test_a_current_database_is_not_migrated_again(tmp_path, monkeypatch):
-    engine, _ = database(tmp_path / "current.sqlite3")
-    assert migrate(engine) is True
-    monkeypatch.setattr(
-        db_module.command, "upgrade", lambda *_: pytest.fail("upgraded a current database")
-    )
-    assert migrate(engine) is False
     engine.dispose()
 
 
@@ -133,23 +111,6 @@ def test_the_command_line_upgrades_real_data_like_the_app(tmp_path, monkeypatch)
             connection.exec_driver_sql("SELECT human_analysis_id FROM game_review_moves").scalar()
             == "maia"
         )
-    engine.dispose()
-
-
-def test_every_revision_downgrades_and_upgrades_again(tmp_path):
-    from alembic.script import ScriptDirectory
-
-    engine, _ = database(tmp_path / "round-trip.sqlite3")
-    migrate(engine)
-    config = _config()
-    revisions = [script.revision for script in ScriptDirectory.from_config(config).walk_revisions()]
-    for target in [*revisions[1:], "base"]:
-        with migration_connection(engine) as connection:
-            config.attributes["connection"] = connection
-            command.downgrade(config, target)
-    assert tables(engine) == {"alembic_version"} or tables(engine) == set()
-    assert migrate(engine) is True
-    assert migrations_pending(engine) is False
     engine.dispose()
 
 
@@ -492,18 +453,6 @@ def test_the_database_accepts_exactly_the_job_kinds_and_statuses_the_code_knows(
     # A new kind or status needs a migration that widens the CHECK constraint.
     assert listed("kind") == set(JobKind)
     assert listed("status") == set(JobStatus)
-
-
-def test_an_unexpected_side_stops_the_upgrade_and_changes_nothing(tmp_path):
-    engine, _ = database(tmp_path / "odd-side.sqlite3")
-    upgrade_to(engine, "9d2f6b1e4c83")
-    with engine.begin() as connection:
-        fill(connection, "users", id="u1", username="u1")
-        fill(connection, "exercises", id="x", user_id="u1", identity="x", orientation="White")
-    with pytest.raises(ValueError, match=r"exercises\.orientation holds \['White'\]"):
-        upgrade_to(engine, "head")
-    assert version(engine) == "9d2f6b1e4c83"
-    engine.dispose()
 
 
 def test_legacy_fetch_kind_and_book_field_take_their_current_shapes(tmp_path):

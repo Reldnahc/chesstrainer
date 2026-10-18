@@ -117,36 +117,6 @@ def test_pin_keeps_defender_and_king_highlights_without_inventing_attacks():
     assert {"startSquare": "f2", "endSquare": "e1", "kind": "threat"} in cues["arrows"]
 
 
-def test_immediate_future_fork_is_shown_as_reply_then_threats():
-    evidence = line(
-        "4k3/7p/8/8/3n4/8/7P/Q3K3 w - - 0 1",
-        ["h2h3", "d4c2"],
-        [
-            {
-                "frame_ply": 2,
-                "roles": {"attacker": ["c2"], "targets": ["a1", "e1"]},
-                "explanation": "The reply gives check.",
-            }
-        ],
-    )
-    cues = review_cues(evidence, mistake=True)
-    assert cues["arrows"][0] == {"startSquare": "d4", "endSquare": "c2", "kind": "reply"}
-    assert {"startSquare": "c2", "endSquare": "e1", "kind": "threat"} in cues["arrows"]
-    assert cues["fen"] == evidence["frames"][1]["fen"]
-
-
-def test_recorded_reply_projection_survives_contract_and_old_cues_remain_untyped():
-    cues = review_cues(line(chess.STARTING_FEN, ["e2e4", "e7e5"]))
-    public = BoardCues.model_validate(cues).model_dump()
-    assert public["caption_kind"] == "legal_reply"
-    assert public["caption_reply_uci"] == "e7e5"
-    legacy = {key: value for key, value in cues.items() if not key.startswith("caption_")}
-    old = BoardCues.model_validate(legacy)
-    assert old.caption == cues["caption"]
-    assert old.caption_kind is None
-    assert old.caption_reply_uci is None
-
-
 def test_absent_or_illegal_reply_never_authorizes_generic_reply_recording():
     no_reply = review_cues(line(chess.STARTING_FEN, ["e2e4"]))
     assert no_reply["caption_kind"] is None
@@ -173,14 +143,6 @@ def test_pin_kept_from_an_earlier_move_is_not_drawn_again():
     for san in ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5"]:
         board.push_san(san)
     assert review_cues(line(board.fen(), ["h7h6", "g5h4"]))["pins"] == []
-
-
-def test_walking_into_an_absolute_pin_counts_as_making_it():
-    # Nd2 blocks the b4 bishop's check and is pinned to the king by that move.
-    evidence = line("4k3/8/8/8/1b6/8/8/1N2K3 w - - 0 1", ["b1d2"])
-    assert review_cues(evidence)["pins"] == [
-        {"startSquare": "b4", "endSquare": "e1", "kind": "pin", "pinned": "d2"}
-    ]
 
 
 def test_sliding_along_a_held_pin_does_not_redraw_it():

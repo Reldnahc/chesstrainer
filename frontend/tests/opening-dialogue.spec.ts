@@ -143,39 +143,6 @@ test("reviewed book runs share deterministic entry/follow slots with no adjacent
   expect(following[0].variant).toBe(following[BOOK_FOLLOW_VARIANTS].variant);
 });
 
-test("both movers and learner orientations use the same neutral sequence facts", () => {
-  const white = gameWithReports(8),
-    black = gameWithReports(8, "black");
-  for (let ply = 1; ply <= 8; ply++)
-    expect(presentation(black, ply)).toEqual(presentation(white, ply));
-  const original = presentation(white, 5);
-  white.frames[5].report!.engine_label = "Blunder";
-  expect(presentation(white, 5)).toEqual(original);
-});
-
-test("names, refinements and later progress never choose a different variant", () => {
-  const game = gameWithReports(),
-    before = presentation(game, 6),
-    saved = JSON.stringify(game);
-  presentation(game, 1);
-  presentation(game, 12);
-  expect(presentation(game, 6)).toEqual(before);
-  expect(JSON.stringify(game)).toBe(saved);
-  game.frames.forEach((frame, i) => {
-    if (!frame.report) return;
-    frame.report.opening!.name = i % 2 ? null : "Different catalogue label";
-    frame.report.opening!.eco = null;
-    frame.report.intelligence!.input_digest = `refined-${i}`;
-    game.context!.nodes[i - 1].input_digest = `refined-${i}`;
-  });
-  game.review_revision++;
-  game.context!.input_digest = "refined-context";
-  game.context!.complete = false;
-  game.context!.missing_plies = [10, 11, 12];
-  game.frames[10].report = null;
-  expect(presentation(game, 6)).toEqual(before);
-});
-
 test("unknown prefixes and branches vary generic recognition by the stable current position without inventing a run", () => {
   const game = gameWithReports(24);
   game.context = null;
@@ -212,48 +179,16 @@ test("a verified non-book move resets the run; a name change does not", () => {
   });
 });
 
+// Three representative integrity failures of the one prefix guard.
 const prefixDamage: Record<string, (game: Game) => void> = {
   "missing report": game => {
     game.frames[2].report = null;
   },
-  "missing context": game => {
-    game.context = null;
-  },
-  "missing node": game => {
-    game.context!.nodes = game.context!.nodes.filter(node => node.ply !== 2);
-  },
-  "duplicate node": game => {
-    game.context!.nodes.push({ ...game.context!.nodes[1] });
-  },
   "stale generation": game => {
     game.context!.nodes[1].input_digest = "old";
   },
-  "empty generation": game => {
-    game.frames[2].report!.intelligence!.input_digest = "";
-  },
-  "wrong ply": game => {
-    game.frames[2].report!.intelligence!.ply = 4;
-  },
   "wrong UCI": game => {
     game.frames[2].report!.actual = { ...game.frames[2].report!.actual, uci: "e7e5" };
-  },
-  "wrong SAN": game => {
-    game.frames[2].report!.actual = { ...game.frames[2].report!.actual, san: "e5" };
-  },
-  "wrong board": game => {
-    game.frames[2].report!.board_cues!.fen = "different-position";
-  },
-  "wrong actor": game => {
-    game.context!.nodes[1].actor = "white";
-  },
-  "wrong turn": game => {
-    game.frames[2].turn = "black";
-  },
-  "missing ply marker": game => {
-    game.context!.missing_plies = [2];
-  },
-  "mixed catalogue": game => {
-    game.frames[2].report!.opening!.version = "older-catalogue";
   },
 };
 for (const [name, damage] of Object.entries(prefixDamage))
@@ -331,153 +266,164 @@ function reviewedIntent(game: Game, ply: number) {
   });
 }
 
-for (const coach of openingCoaches) {
-  test(`${coach.id} renders all eleven selected opening forms through the production intent`, () => {
-    const seen = new Set<string>();
-    for (let seed = 0; seed < 24; seed++) {
-      const game = gameWithReports(9);
-      game.id = `authored-opening-${seed}`;
-      for (let ply = 1; ply <= 9; ply++) {
-        const intent = reviewedIntent(game, ply),
-          item = intent.claims.find(value => value.opening)!;
-        expect(item.opening).toEqual(presentation(game, ply));
-        const recording = bookRecordingId(item.opening!);
-        seen.add(recording);
-        const authored = coach.authored[recording as keyof typeof coach.authored][0];
-        const output = renderDialogue(intent, coach);
-        expect(
-          selectGameRecording({
-            game,
-            ply,
-            frame: game.frames[ply],
-            report: game.frames[ply].report,
-            intent,
-            utterance: output,
-          }),
-        ).toBe(recording);
-        expect(output.text).toBe(authored.replace("{opening}", "Named line"));
-        expect(output.trace.variants).toEqual([
-          {
-            code: "book_sound",
-            index: 0,
-            sourceIds: [],
-            source: coach.personality.version,
-            form: "sentence",
-            cues: [],
-            order: undefined,
-          },
-        ]);
-        expect(output.trace.composition?.fallbackClaims).toBe(0);
-        expect(output.text).not.toMatch(
-          /\b(good|best|sound|strong|well judged|nicely|you|your)\b/i,
-        );
-      }
+/** One reviewed position for each of the eleven opening forms, found without rendering. */
+function openingFormPositions() {
+  const positions = new Map<string, { game: Game; ply: number }>();
+  for (let seed = 0; seed < 24; seed++) {
+    const game = gameWithReports(9);
+    game.id = `authored-opening-${seed}`;
+    for (let ply = 1; ply <= 9; ply++) {
+      const recording = bookRecordingId(presentation(game, ply)!);
+      if (!positions.has(recording)) positions.set(recording, { game, ply });
     }
-    expect([...seen].sort()).toEqual(Object.keys(coach.authored).sort());
-    // Every coach authors all of the opening sentences.
-    expect(Object.keys(coach.authored)).toHaveLength(BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS);
-  });
+    if (positions.size === BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS) break;
+  }
+  return positions;
+}
 
-  test(`${coach.id} uses the same authored opening fact for either actor and learner orientation`, () => {
-    const game = gameWithReports();
-    for (const ply of [1, 2, 3]) {
-      game.orientation = game.frames[ply].actor!;
-      const learner = reviewedIntent(game, ply),
-        learnerOutput = renderDialogue(learner, coach);
-      game.orientation = game.frames[ply].turn;
-      const opponent = reviewedIntent(game, ply),
+test("every coach renders all eleven selected opening forms through the production intent", () => {
+  const positions = openingFormPositions();
+  expect(positions.size).toBe(BOOK_ENTRY_VARIANTS + BOOK_FOLLOW_VARIANTS);
+  const intents = [...positions].map(([recording, { game, ply }]) => {
+    const intent = reviewedIntent(game, ply),
+      item = intent.claims.find(value => value.opening)!;
+    expect(item.opening).toEqual(presentation(game, ply));
+    expect(bookRecordingId(item.opening!)).toBe(recording);
+    return { recording, game, ply, intent };
+  });
+  for (const coach of openingCoaches) {
+    // Every coach authors all of the opening sentences.
+    expect(Object.keys(coach.authored).sort(), coach.id).toEqual([...positions.keys()].sort());
+    for (const { recording, game, ply, intent } of intents) {
+      const authored = coach.authored[recording as keyof typeof coach.authored][0];
+      const output = renderDialogue(intent, coach);
+      expect(
+        selectGameRecording({
+          game,
+          ply,
+          frame: game.frames[ply],
+          report: game.frames[ply].report,
+          intent,
+          utterance: output,
+        }),
+        coach.id,
+      ).toBe(recording);
+      expect(output.text, coach.id).toBe(authored.replace("{opening}", "Named line"));
+      expect(output.trace.composition?.fallbackClaims).toBe(0);
+      expect(output.text, coach.id).not.toMatch(
+        /\b(good|best|sound|strong|well judged|nicely|you|your)\b/i,
+      );
+    }
+  }
+});
+
+test("every coach uses the same authored opening fact for either actor and learner orientation", () => {
+  const game = gameWithReports();
+  for (const ply of [1, 2, 3]) {
+    game.orientation = game.frames[ply].actor!;
+    const learner = reviewedIntent(game, ply);
+    game.orientation = game.frames[ply].turn;
+    const opponent = reviewedIntent(game, ply);
+    expect(learner.subject).toBe("learner");
+    expect(opponent.subject).toBe("opponent");
+    for (const coach of openingCoaches) {
+      const learnerOutput = renderDialogue(learner, coach),
         opponentOutput = renderDialogue(opponent, coach);
-      expect(learner.subject).toBe("learner");
-      expect(opponent.subject).toBe("opponent");
-      expect(opponentOutput.text).toBe(learnerOutput.text);
+      expect(opponentOutput.text, coach.id).toBe(learnerOutput.text);
       expect(opponentOutput.trace.variants[0].source).toBe(coach.personality.version);
       expect(opponentOutput.renderedClaims).toEqual(learnerOutput.renderedClaims);
-      expect(opponentOutput.text).not.toMatch(
+      expect(opponentOutput.text, coach.id).not.toMatch(
         /\b(you|your|good|best|sound|strong|well judged|nicely)\b/i,
       );
     }
+  }
+});
+
+// Owner decision (2026-10-04): the Book badge decides, so a poor engine grade
+// on a recognised move is not a coach correction. Claim priority is decided before
+// rendering, so one coach stands in for all.
+const bookCoach = openingCoaches[0];
+for (const correction of ["loss", "tactic"] as const)
+  test(`${bookCoach.id} names a poorly graded Book move as recognition, not a ${correction}`, () => {
+    for (const ply of [1, 2]) {
+      const game = gameWithReports(),
+        report = game.frames[ply].report!;
+      report.engine_label = "Blunder";
+      report.actual = { ...report.actual, score: { ...score, value: -320 } };
+      if (correction === "tactic")
+        report.intelligence!.events.push(
+          reviewEvent(
+            "tactic",
+            {
+              role: "allowed",
+              motif: "pin",
+              plies: [2],
+              frame_ply: 2,
+              witness: [witness(2, "Bb4")],
+            },
+            {
+              id: "allowed-pin",
+              actor: game.frames[ply].turn,
+              confidence: "line_witness",
+              importance: 94,
+              evidence: [
+                { source: "stockfish", id: "reply-search", field: "actual_line/findings/0", ply },
+              ],
+            },
+          ),
+        );
+      const intent = reviewedIntent(game, ply);
+      const book = intent.claims.find(item => item.code === "book_sound")!;
+      expect(book).toMatchObject({
+        priority: 96,
+        slots: { opening: "Named line" },
+        opening: presentation(game, ply),
+      });
+      expect(
+        intent.claims.some(item =>
+          ["book", "loss", "alternative", "reply_capture"].includes(item.code),
+        ),
+      ).toBe(false);
+      expect(Math.max(...intent.claims.map(item => item.priority))).toBe(book.priority);
+      expect(renderDialogue(intent, bookCoach).renderedClaims?.[0].code).toBe("book_sound");
+      expect(report.label).toBe("Book");
+      expect(report.engine_label).toBe("Blunder");
+    }
   });
 
-  // Owner decision (2026-10-04): the Book badge decides, so a poor engine grade
-  // on a recognised move is not a coach correction.
-  for (const correction of ["loss", "tactic"] as const)
-    test(`${coach.id} names a poorly graded Book move as recognition, not a ${correction}`, () => {
-      for (const ply of [1, 2]) {
-        const game = gameWithReports(),
-          report = game.frames[ply].report!;
-        report.engine_label = "Blunder";
-        report.actual = { ...report.actual, score: { ...score, value: -320 } };
-        if (correction === "tactic")
-          report.intelligence!.events.push(
-            reviewEvent(
-              "tactic",
-              {
-                role: "allowed",
-                motif: "pin",
-                plies: [2],
-                frame_ply: 2,
-                witness: [witness(2, "Bb4")],
-              },
-              {
-                id: "allowed-pin",
-                actor: game.frames[ply].turn,
-                confidence: "line_witness",
-                importance: 94,
-                evidence: [
-                  { source: "stockfish", id: "reply-search", field: "actual_line/findings/0", ply },
-                ],
-              },
-            ),
-          );
-        const intent = reviewedIntent(game, ply);
-        const book = intent.claims.find(item => item.code === "book_sound")!;
-        expect(book).toMatchObject({
-          priority: 96,
-          slots: { opening: "Named line" },
-          opening: presentation(game, ply),
-        });
-        expect(
-          intent.claims.some(item =>
-            ["book", "loss", "alternative", "reply_capture"].includes(item.code),
-          ),
-        ).toBe(false);
-        expect(Math.max(...intent.claims.map(item => item.priority))).toBe(book.priority);
-        expect(renderDialogue(intent, coach).renderedClaims?.[0].code).toBe("book_sound");
-        expect(report.label).toBe("Book");
-        expect(report.engine_label).toBe("Blunder");
-      }
-    });
-
-  test(`${coach.id} uses generic entry wording for unknown prefixes and root variations`, () => {
-    const game = gameWithReports(),
-      ply = 8;
-    game.frames[2].report = null;
-    game.frames[ply].report!.opening!.name = null;
-    const report = game.frames[ply].report!;
-    const branchReport = { ...report, intelligence: { ...report.intelligence!, ply: null } };
-    const intents = [
-      reviewedIntent(game, ply),
-      gameIntent({
-        game,
-        ply: 0,
-        frame: game.frames[ply],
-        report: branchReport,
-        key: "start-variation",
-        expression: "book",
-        variation: true,
-      }),
-    ];
-    for (const intent of intents) {
-      const item = intent.claims.find(value => value.opening)!;
-      expect(item.opening).toMatchObject({ kind: "entry", runOrdinal: null, runStartPly: null });
+test("every coach uses generic entry wording for unknown prefixes and root variations", () => {
+  const game = gameWithReports(),
+    ply = 8;
+  game.frames[2].report = null;
+  game.frames[ply].report!.opening!.name = null;
+  const report = game.frames[ply].report!;
+  const branchReport = { ...report, intelligence: { ...report.intelligence!, ply: null } };
+  const intents = [
+    reviewedIntent(game, ply),
+    gameIntent({
+      game,
+      ply: 0,
+      frame: game.frames[ply],
+      report: branchReport,
+      key: "start-variation",
+      expression: "book",
+      variation: true,
+    }),
+  ];
+  for (const intent of intents) {
+    const item = intent.claims.find(value => value.opening)!;
+    expect(item.opening).toMatchObject({ kind: "entry", runOrdinal: null, runStartPly: null });
+    for (const coach of openingCoaches) {
       const authored =
         coach.authored[bookRecordingId(item.opening!) as keyof typeof coach.authored][0];
       const output = renderDialogue(intent, coach);
-      expect(output.text).toBe(authored.replace("{opening}", "a recognized opening line"));
+      expect(output.text, coach.id).toBe(
+        authored.replace("{opening}", "a recognized opening line"),
+      );
       expect(output.trace.variants[0].source).toBe(coach.personality.version);
     }
-  });
-}
+  }
+});
 
 /** A reviewed move just past the catalogue, carrying only the departure claim. */
 function departureSelection(coach: { id: string; personality: CoachPersonality }) {

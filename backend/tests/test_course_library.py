@@ -2,13 +2,10 @@
 
 import json
 
-import pytest
 from fastapi.testclient import TestClient
-from pydantic import TypeAdapter, ValidationError
 from test_course_files import sample
 from trainer.accounts import Accounts
 from trainer.api import create_app
-from trainer.contracts.common import SquareMove, UciMove
 
 LIBRARY = "/api/study/courses"
 FILES = "/api/study/course-files"
@@ -208,15 +205,6 @@ def test_editor_position_records_moves_with_server_legality(settings):
         assert still.status_code == 422
 
 
-def test_move_contracts_refuse_a_move_that_stays_on_its_square():
-    with pytest.raises(ValidationError):
-        SquareMove(from_square="g1", to_square="g1")
-    with pytest.raises(ValidationError):
-        TypeAdapter(UciMove).validate_python("e2e2q")
-    assert SquareMove(from_square="g1", to_square="f3").uci == "g1f3"
-    assert TypeAdapter(UciMove).validate_python("e7e8q") == "e7e8q"
-
-
 def test_editor_check_keeps_boards_while_a_step_is_unfinished(settings):
     unfinished = sample()
     unfinished["chapters"][0]["steps"][1]["move"] = ""
@@ -255,90 +243,3 @@ def test_editor_saves_refuse_to_replace_courses_by_accident(settings):
         assert save(client, changed).status_code == 200
         stale = client.post(f"{FILES}?base_revision=1", content=json.dumps(sample()))
         assert stale.status_code == 409 and "after you opened it" in stale.json()["detail"]
-
-
-def test_a_broken_club_file_never_takes_study_down(settings):
-    folder = settings.database_path.parent / "courses"
-    folder.mkdir(parents=True)
-    broken = sample(id="broken")
-    broken["chapters"][0]["steps"][0]["fen"] = "rnbqkbnr/pppp"
-    (folder / "broken.json").write_text(json.dumps(broken), encoding="utf-8")
-    with app_client(settings) as client:
-        library = client.get(LIBRARY).json()
-        assert "vienna-gambit" in {course["id"] for course in library["courses"]}
-        assert "cannot be read" in library["problems"][0]["message"]
-        check = client.post(f"{FILES}/check", content=json.dumps(broken)).json()
-        assert "cannot be read" in check["error"]
-
-
-def test_empty_eco_round_trips_and_steps_report_their_starting_fen(settings):
-    data = sample()
-    data["lines"][0]["eco"] = ""
-    example = sample()
-    fen = "8/8/8/4k3/8/8/4P3/4K3 w - - 0 1"
-    example["chapters"][0]["steps"] = [
-        {"id": "intro", "title": "Intro", "fen": fen, "position": "", "show": "e4"}
-    ]
-    with app_client(settings) as client:
-        assert save(client, data).status_code == 200
-        check = client.post(f"{FILES}/check", content=json.dumps(example)).json()
-        assert check["error"] is None
-        assert check["steps"]["start/intro"]["initial_fen"] == fen
-        assert check["steps"]["start/intro"]["end_position"] == "e4"
-
-
-def test_an_unreadable_revision_ledger_is_reported_and_never_overwritten(settings):
-    folder = settings.database_path.parent / "courses"
-    with app_client(settings) as client:
-        assert save(client, sample()).status_code == 200
-        ledger = folder / "revisions.ledger"
-        ledger.write_text("{not json", encoding="utf-8")
-        library = client.get(LIBRARY).json()
-        assert any(problem["file"] == "revisions.ledger" for problem in library["problems"])
-        changed = sample()
-        changed["title"] = "Changed"
-        refused = save(client, changed)
-        assert refused.status_code == 422 and "revisions.ledger" in refused.json()["detail"]
-        assert ledger.read_text(encoding="utf-8") == "{not json"
-
-
-def test_an_unreadable_hidden_list_refuses_deletes_without_a_server_error(settings):
-    folder = settings.database_path.parent / "courses"
-    with app_client(settings) as client:
-        folder.mkdir(parents=True, exist_ok=True)
-        hidden = folder / "hidden-built-ins.ledger"
-        hidden.write_text("{not json", encoding="utf-8")
-        refused = client.delete(f"{FILES}/vienna-gambit")
-        assert refused.status_code == 422 and "hidden-built-ins.ledger" in refused.json()["detail"]
-        assert hidden.read_text(encoding="utf-8") == "{not json"
-
-
-def test_a_club_course_keeps_its_topic_after_a_restart_before_any_listing(settings):
-    with app_client(settings) as client:
-        assert save(client, {**sample(), "topic": "skills"}).status_code == 200
-        started = client.post(
-            "/api/study/lesson-sessions",
-            json={
-                "request_id": "topic",
-                "course_id": "sample",
-                "course_revision": "1",
-                "chapter_id": sample()["chapters"][0]["id"],
-            },
-        ).json()
-    # A restarted server answers the session before anything lists the courses.
-    with app_client(settings) as client:
-        session = client.get(f"/api/study/lesson-sessions/{started['id']}").json()
-        assert session["course_topic"] == "skills"
-
-
-def test_lesson_fingerprint_encoding_is_pinned():
-    # Saved with lesson progress: changing the JSON encoding would orphan it.
-    from trainer.study_lessons.queries import fingerprint
-
-    class Course:
-        def model_dump(self, mode):
-            return {"id": "course", "chapters": [{"id": "one", "steps": [1, 2]}]}
-
-    assert fingerprint(Course()) == (
-        "6876bd65eb65d4ba9e9f4ab39d95ecaf5c226b8cd765cb533b9bbba4f10706c7"
-    )

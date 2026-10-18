@@ -732,7 +732,7 @@ different existing application.
 
 ```sh
 npx playwright test dialogue-logic.spec.ts personality.spec.ts walter-dialogue.spec.ts scoped-dialogue.spec.ts opening-dialogue.spec.ts
-npx playwright test --config playwright.intelligence.config.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts walter-dialogue.spec.ts
+npx playwright test --config playwright.intelligence.config.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts
 npm run test:audio -- game-speech-maia-silence.spec.ts voice-registry.spec.ts
 ```
 

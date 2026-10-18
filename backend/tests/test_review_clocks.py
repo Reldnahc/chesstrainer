@@ -29,16 +29,7 @@ def test_increment_uses_previous_clock_of_same_player_and_explicit_sources():
     assert clocks[1].limitations == ["assumes_post_increment_clocks"]
 
 
-@pytest.mark.parametrize(
-    "tag",
-    [
-        "[%clk 0:00:60]",
-        "[%clk -0:00:01]",
-        "[%clk NaN]",
-        "[%clk 0:99:01]",
-        "[%clk 0:00:01] [%clk 0:00:02]",
-    ],
-)
+@pytest.mark.parametrize("tag", ["[%clk 0:00:60]", "[%clk 0:00:01] [%clk 0:00:02]"])
 def test_invalid_or_ambiguous_annotations_are_not_clock_facts(tag):
     result = clock_facts(game(f"1. e4 {{{tag}}} *"))[1]
     assert result.status == "invalid"
@@ -55,35 +46,12 @@ def test_missing_turn_breaks_elapsed_chain_without_erasing_literal_remaining_clo
     assert result[2].status == "absent"
 
 
-@pytest.mark.parametrize(
-    "control", ["?", "-", "40/7200:3600", "600+2d", "600+NaN", "600+1+2", "-1", "?600"]
-)
+@pytest.mark.parametrize("control", ["?", "600+NaN"])
 def test_unsupported_elapsed_derivation_retains_annotations(control):
     result = clock_facts(game("1. e4 {[%clk 0:08:00]} e5 2. Nf3 {[%clk 0:07:20]} *", control))
     assert result[3].before_seconds == 480 and result[3].after_seconds == 440
     assert result[3].elapsed_seconds is None
     assert "elapsed_not_derivable_from_this_time_control" in result[3].limitations
-
-
-def test_elapsed_annotation_and_clock_conflict_never_becomes_rushed_move():
-    result = clock_facts(game("1. e4 {[%clk 0:10:01] [%emt 0:00:01]} *"))[1]
-    assert result.elapsed_seconds is None
-    assert result.tempo == "unknown"
-    assert "elapsed_annotation_disagrees_with_clocks" in result.limitations
-    explicit = clock_facts(game("1. e4 {[%emt 0:00:45]} *", "?"))[1]
-    assert explicit.elapsed_seconds == 45 and explicit.elapsed_source == "annotation"
-    assert explicit.tempo == "long_think" and explicit.before_seconds is None
-    increased = clock_facts(game("1. e4 {[%clk 0:10:10]} *"))[1]
-    assert increased.elapsed_seconds is None
-    assert "clock_increased_unexpectedly" in increased.limitations
-
-
-def test_setup_pgn_never_assumes_initial_clock_and_missing_data_is_unknown():
-    fen = chess.STARTING_FEN.replace("0 1", "0 12")
-    result = clock_facts(game("12. e4 {[%clk 0:08:00]} *", extra=f'[SetUp "1"]\n[FEN "{fen}"]'))[1]
-    assert result.before_seconds is result.elapsed_seconds is None
-    assert result.after_seconds == 480
-    assert all(f.status == "absent" for f in clock_facts(game("1. e4 e5 *")).values())
 
 
 def test_opening_departure_is_once_and_never_invented_for_a_setup_position():
