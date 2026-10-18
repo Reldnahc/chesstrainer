@@ -253,8 +253,8 @@ spread them without dropping expressions.
 The backend check runs as two jobs, each `scripts/pytest_parallel.py --shard k/2 -n 4`:
 a balanced half of the test files per job, as 4 pytest processes over file groups,
 both balanced by `backend/tests/durations.json`. Stale durations only affect
-balance. Lint, formatting, the contract export, migrations and the voice-bank check
-run once, on the second shard. Browser specs that load Python semantic
+balance. The voice-bank check runs once, on the first shard, and lint and
+formatting once, on the second. Browser specs that load Python semantic
 fixtures cache their output under `frontend/node_modules/.cache` by a hash of
 the backend tree, locked requirements and interpreter, so workers and reruns do
 not start Python again. Vite dev servers substitute
