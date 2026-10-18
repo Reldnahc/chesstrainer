@@ -15,8 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FRONTEND = ROOT / "frontend"
 NPX = "npx.cmd" if os.name == "nt" else "npx"
 NPM = "npm.cmd" if os.name == "nt" else "npm"
-# These suites serve the built application; the studios use their own dev servers.
-BUILT_SUITES = {"local", "accounts"}
+BUILT_SUITES = ci_plan.BUILT_SUITES
 # Local runs spread the application suite over the machine's cores the way CI spreads
 # it over matrix shards. Each worker owns an application server and database.
 LOCAL_WORKERS = max(4, (os.cpu_count() or 4) // 2)

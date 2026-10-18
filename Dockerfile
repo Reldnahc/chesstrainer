@@ -23,13 +23,20 @@ COPY requirements.lock requirements-human-cpu.lock ./
 RUN pip install --no-cache-dir --no-deps torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu \
     && pip install --no-cache-dir --constraint requirements.lock \
        --requirement requirements-human-cpu.lock
+# Recordings and their mouth timings are about 410 MB of the 460 MB bundle and keep
+# content-hashed names, so they get a layer of their own above the code: a release
+# that changes no recording reuses it, so CI does not re-upload it and an update
+# does not download it again.
+COPY --from=frontend /app/frontend/dist/assets/*.opus /app/frontend/dist/assets/tracks-*.json \
+     ./frontend/dist/assets/
 COPY pyproject.toml alembic.ini LICENSE NOTICE.md README.md ./
 COPY backend ./backend
 COPY migrations ./migrations
 COPY scripts ./scripts
 COPY --chmod=755 scripts/docker-entrypoint.sh /usr/local/bin/fieldwork-entrypoint
 COPY docs ./docs
-COPY --from=frontend /app/frontend/dist ./frontend/dist
+COPY --from=frontend --exclude=assets/*.opus --exclude=assets/tracks-*.json \
+     /app/frontend/dist ./frontend/dist
 RUN pip install --no-cache-dir --constraint requirements.lock \
        --constraint requirements-human-cpu.lock --editable '.[human]'
 USER 1000:1000

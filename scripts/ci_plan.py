@@ -23,6 +23,9 @@ API_SUITES = {"local", "accounts"}
 # job each. Keep the total at or under GitHub's 20 concurrent jobs.
 SHARDS = {"local": 4, "audio-studio": 2}
 APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
+# These suites serve the built application; the studios run on their own Vite dev
+# servers, so their CI jobs start without waiting for the frontend build.
+BUILT_SUITES = {"local", "accounts"}
 # Intelligence and audio selection regressions execute Python semantic fixtures
 # without starting an API server. Keep this separate from application consumers.
 PYTHON_SUITES = APPLICATION_SUITES | {"audio-studio"}
@@ -294,13 +297,17 @@ def select_checks(paths, full=False):
     if not reasons:
         reason("No changed paths.")
     ordered_suites = [suite for suite in SUITES if suite in suites]
+    built = [suite for suite in ordered_suites if suite in BUILT_SUITES]
+    studios = [suite for suite in ordered_suites if suite not in BUILT_SUITES]
     return {
         "backend": backend,
         "build": build,
         "docker": docker,
-        "browser": bool(ordered_suites),
+        "browser": bool(built),
+        "studio": bool(studios),
         "suites": ordered_suites,
-        "matrix": browser_matrix(ordered_suites),
+        "matrix": browser_matrix(built),
+        "studio_matrix": browser_matrix(studios),
         "reasons": reasons,
     }
 
@@ -356,8 +363,11 @@ def changed_paths(base, head, root=ROOT, *, deleted_only=False, symlinks_only=Fa
 def write_outputs(plan):
     output_path = os.environ.get("GITHUB_OUTPUT")
     if output_path:
-        outputs = {key: plan[key] for key in ("backend", "build", "docker", "browser", "suites")}
+        outputs = {
+            key: plan[key] for key in ("backend", "build", "docker", "browser", "studio", "suites")
+        }
         outputs["browser_matrix"] = plan["matrix"]
+        outputs["studio_matrix"] = plan["studio_matrix"]
         with Path(output_path).open("a", encoding="utf-8") as stream:
             for key, value in outputs.items():
                 stream.write(f"{key}={json.dumps(value, separators=(',', ':'))}\n")
@@ -387,6 +397,7 @@ def check_results(results, skip_docker=False):
         "build": "frontend-build",
         "backend": "backend",
         "browser": "browser",
+        "studio": "studio-browser",
         "docker": "docker-install",
     }
     for output, job in jobs.items():
