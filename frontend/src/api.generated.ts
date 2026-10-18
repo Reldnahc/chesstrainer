@@ -5464,6 +5464,7 @@ export interface components {
             analysis_id: string;
             /** Capture */
             capture: string;
+            line?: components["schemas"]["ReviewLine"] | null;
             score: components["schemas"]["Score"];
         };
         /** SacrificeFacts */

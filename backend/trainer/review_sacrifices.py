@@ -48,21 +48,40 @@ def is_sacrifice_offer(board, move, capture):
     return True
 
 
-def has_sacrifice_support(board, score, line):
+def has_sacrifice_support(board, score, line, plies=frozenset({1})):
     """Require a winning mate or a tactical witness involving the current move."""
     if score.kind == "mate" and score.outcome() == 1:
         return True
     actor = "white" if board.turn else "black"
-    findings = line.get("findings", [])
+    findings = line.get("findings", []) if isinstance(line, dict) else None
     if not isinstance(findings, list):
         return False
     return any(
         isinstance(finding, dict)
         and finding.get("actor") == actor
         and isinstance(finding.get("plies"), list)
-        and any(type(ply) is int and ply == 1 for ply in finding["plies"])
+        and any(type(ply) is int and ply in plies for ply in finding["plies"])
         for finding in findings
     )
+
+
+def has_acceptance_support(board, move, capture, score, line):
+    """A pseudo-sacrifice's witness: the line where the offer is taken, read from
+    the position before the move, punishes the capture with a winning mate or a
+    current-mover tactic that starts with the move or the reply right after the
+    capture. A later, unrelated tactic in that line is no reason for the move.
+    """
+    frames = line.get("frames") if isinstance(line, dict) else None
+    if not isinstance(frames, list) or len(frames) < 3:
+        return False
+    if not all(isinstance(frame, dict) for frame in frames[:3]):
+        return False
+    if frames[0].get("fen") != board.fen() or [f.get("uci") for f in frames[1:3]] != [
+        move.uci(),
+        capture.uci(),
+    ]:
+        return False
+    return has_sacrifice_support(board, score, line, frozenset({1, 3}))
 
 
 def supported_sacrifice(report):
@@ -98,6 +117,9 @@ def supported_sacrifice(report):
     return (
         sound(score)
         and sound(acceptance)
-        and has_sacrifice_support(board, score, line)
+        and (
+            has_sacrifice_support(board, score, line)
+            or has_acceptance_support(board, move, capture, acceptance, sacrifice.get("line"))
+        )
         and is_sacrifice_offer(board, move, capture)
     )

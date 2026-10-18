@@ -119,6 +119,8 @@ class SacrificeEvidence(Contract):
     capture: str
     analysis_id: str
     score: Score
+    # The accepted line and its tactic, saved when only that line supports the offer.
+    line: ReviewLine | None = None
 
 
 class GameReviewReport(GameMoveReport):
