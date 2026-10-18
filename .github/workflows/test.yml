@@ -95,7 +95,8 @@ jobs:
       fail-fast: false
       matrix:
         # Each shard runs a balanced half of the test files over its 4 cores. The
-        # static checks run once, on the last shard, so neither waits for the other.
+        # voice-bank check (about 75 s) runs on the first shard, whose longest group is
+        # one course file, and lint on the second, so the two finish closer together.
         shard: ['1/2', '2/2']
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -112,7 +113,7 @@ jobs:
           ruff check backend scripts migrations
           ruff format --check backend scripts migrations
       - name: Verify the complete recorded voice bank offline
-        if: matrix.shard == '2/2'
+        if: matrix.shard == '1/2'
         run: python -B -S scripts/prepare_coach_voice_bank.py --check
       - name: Run this shard's backend tests in parallel groups
         run: python scripts/pytest_parallel.py --shard "${{ matrix.shard }}" -n 4 -q --durations=10
