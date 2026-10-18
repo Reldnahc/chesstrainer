@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
 // Observe the application's actual decoded recordings and source starts/stops.
 // There is no production test player or narration event emitter.
@@ -62,4 +62,14 @@ export async function speechActivity(page: Page) {
         }
       ).__coachVoiceActivity,
   );
+}
+
+/**
+ * Wait past the automatic-narration deadlines and check that nothing new started.
+ * A page's opener stays silent only until the page is activated, so a test that
+ * clicks before the opener's deadline has passed lets it play.
+ */
+export async function unchanged(page: Page, count = 0) {
+  await page.waitForTimeout(800);
+  expect((await speechActivity(page)).started).toHaveLength(count);
 }

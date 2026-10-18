@@ -8,7 +8,7 @@ import { expert } from "../src/dialogue/characters/expert";
 import { coachPersonalities } from "../src/dialogue/characters";
 import type { DialogueCharacter } from "../src/dialogue/personality";
 
-import { captureSpeech, speechActivity } from "./helpers/speech";
+import { captureSpeech, speechActivity, unchanged } from "./helpers/speech";
 import {
   selectGameOpener,
   selectGameRecording,
@@ -41,6 +41,8 @@ async function voiceGame(page: Page, game: Game, ply: number, voice = "automatic
   await page.goto(`/games/${game.id}?ply=${ply}`);
   await expect(page.locator(".move-playback-counter")).toHaveText(`${ply} / 1`);
   await expect(page.locator(".coach-avatar")).toHaveAttribute("data-coach", "classic");
+  // Loading speaks nothing, and the first click must not land inside an opener's deadline.
+  await unchanged(page);
 }
 
 test("game voice follows deliberate navigation and stays silent on initial load, flip and reload", async ({
