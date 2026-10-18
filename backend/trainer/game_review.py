@@ -27,6 +27,7 @@ from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
 from trainer.review_intelligence.events import describe_move
 from trainer.review_sacrifices import (
+    has_acceptance_support,
     has_sacrifice_support,
     is_sacrifice_offer,
     supported_sacrifice,
@@ -414,22 +415,39 @@ def analyze_move(engine, board, move, previous_score=None, *, parameters=None, m
         and numeric(actual.score) >= HOLDING_CP
         and not already_winning_without_sacrifice
     ):
-        if has_sacrifice_support(board, actual.score, actual_line):
-            captures = [
-                m
-                for m in after.legal_moves
-                if after.is_capture(m) and is_sacrifice_offer(board, move, m)
-            ]
-            for capture in captures[:2]:
-                tested = engine.analyze(after, DEEP, root_moves=[capture.uci()], multipv=1)
-                response = Candidate.model_validate(tested.candidates[0])
-                if numeric(response.score.negate()) >= HOLDING_CP:
-                    sacrifice = {
-                        "capture": capture.uci(),
-                        "analysis_id": tested.id,
-                        "score": response.score.negate().model_dump(),
-                    }
-                    break
+        # The played line's own tactic supports the offer; failing that, a
+        # pseudo-sacrifice is supported by the tactic that punishes accepting it.
+        supported = has_sacrifice_support(board, actual.score, actual_line)
+        captures = [
+            m
+            for m in after.legal_moves
+            if after.is_capture(m) and is_sacrifice_offer(board, move, m)
+        ]
+        for capture in captures[:2]:
+            tested = engine.analyze(after, DEEP, root_moves=[capture.uci()], multipv=1)
+            response = Candidate.model_validate(tested.candidates[0])
+            acceptance = response.score.negate()
+            if numeric(acceptance) < HOLDING_CP:
+                continue
+            sacrifice = {
+                "capture": capture.uci(),
+                "analysis_id": tested.id,
+                "score": acceptance.model_dump(),
+            }
+            if supported:
+                break
+            accepted = Candidate(
+                uci=move.uci(),
+                san=board.san(move),
+                score=acceptance,
+                depth=response.depth,
+                pv=[move.uci(), *response.pv],
+            )
+            line = line_evidence(board, accepted, tested.id, 1, previous_move(board), parameters)
+            if has_acceptance_support(board, move, capture, acceptance, line):
+                sacrifice["line"] = line
+                break
+            sacrifice = None
     missed = missed_opportunity(poor, best_line, actual_line)
     return {
         "version": VERSION,

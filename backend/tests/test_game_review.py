@@ -452,6 +452,27 @@ def test_a_mating_sacrifice_is_brilliant_even_when_already_winning(
         engine.close()
 
 
+@pytest.mark.stockfish
+def test_a_pseudo_sacrifice_is_brilliant_when_accepting_runs_into_a_tactic(
+    settings, sessions, stockfish_path
+):
+    from trainer.engine import Stockfish
+    from trainer.game_review import public_report
+
+    settings.stockfish_path = stockfish_path
+    engine = Stockfish(settings, sessions)
+    try:
+        # Reldnahcs vs SamuelSanches: Bxe4 leaves the bishop to dxe4, which opens
+        # the d-file for O-O-O+ and Rxd8. Black's best reply declines, so only the
+        # accepted line shows the skewer.
+        board = chess.Board("r1bq3r/pp4QB/2nk1p2/3p4/4p3/5N2/PPP2PPP/R3K2R w KQ - 0 18")
+        report = analyze_move(engine, board, chess.Move.from_uci("h7e4"))
+        assert report["sacrifice"]["capture"] == "d5e4", report["root_candidates"]
+        assert public_report(report | {"human": None}, 1500)["label"] == "Brilliant"
+    finally:
+        engine.close()
+
+
 @pytest.mark.parametrize(
     "fen,moves,piece,square",
     [

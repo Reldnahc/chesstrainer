@@ -304,7 +304,11 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   read differently from a saved review. A Play move analysed before the move it answers reads the same search until that
   move's report is saved and linked. A sole legal move is not Great.
 - Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
-  involving the played move, or a winning mate; a non-pawn sacrifice at an
+  involving the played move, or a winning mate (for a pseudo-sacrifice the
+  opponent does best to decline, the accepted line is the witness instead: a
+  winning mate there, or a current-mover finding starting with the move or the
+  reply right after the capture; that line is saved with the offer and
+  revalidated with it); a non-pawn sacrifice at an
   immediate net material cost; and an explicit native
   acceptance test leaving at least -50 cp. The unrestricted played line must also
   retain at least -50 cp, and the strongest alternative must be below +300 cp,

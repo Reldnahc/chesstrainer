@@ -11388,6 +11388,16 @@
             "title": "Capture",
             "type": "string"
           },
+          "line": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewLine"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "score": {
             "$ref": "#/components/schemas/Score"
           }
