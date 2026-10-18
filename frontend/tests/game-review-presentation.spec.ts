@@ -12,10 +12,18 @@ test("player bars show each side's PGN clock at the selected move", async ({ pag
   await expect(black).toHaveText("3:00");
   await expect(white).toHaveAttribute("data-running", "true");
   await expect(black).not.toHaveAttribute("data-running", /./);
-  await page.goto(`/games/${id}?ply=4`);
+  // Step through the game in one page load. Opening the game starts its review,
+  // and reloading mid-analysis would make each check wait on a fresh game load.
+  const next = page.getByRole("button", { name: "Next move", exact: true });
+  const step = async (ply: number) => {
+    for (let at = Number(new URL(page.url()).searchParams.get("ply")); at < ply; at++)
+      await next.click();
+    await expect(page).toHaveURL(new RegExp(`[?&]ply=${ply}(?:&|$)`));
+  };
+  await step(4);
   await expect(white).toHaveText("2:55");
   await expect(black).toHaveText("2:50");
-  await page.goto(`/games/${id}?ply=6`);
+  await step(6);
   await expect(black).toHaveText("0:08.4");
   await expect(white).toHaveText("2:51");
   await expect(black).not.toHaveAttribute("data-running", /./);
