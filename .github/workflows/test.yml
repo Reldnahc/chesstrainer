@@ -41,10 +41,18 @@ jobs:
       docker: ${{ steps.plan.outputs.docker }}
       browser: ${{ steps.plan.outputs.browser }}
       browser_matrix: ${{ steps.plan.outputs.browser_matrix }}
+      studio: ${{ steps.plan.outputs.studio }}
+      studio_matrix: ${{ steps.plan.outputs.studio_matrix }}
     steps:
+      # The planner reads only Git history and its own scripts. A blobless, sparse
+      # clone skips the voice bank, which made a full checkout take 20 to 26 s.
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            scripts
+            frontend/scripts
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'
@@ -78,10 +86,16 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
+      # One uncompressed archive: the bundle is about 18,000 files, almost all
+      # already-compressed recordings, so zipping them file by file only cost time.
+      - name: Archive the built frontend
+        run: tar -cf frontend-dist.tar dist
+        working-directory: frontend
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: frontend-dist
-          path: frontend/dist
+          path: frontend/frontend-dist.tar
+          compression-level: 0
           if-no-files-found: error
           retention-days: 1
 
@@ -131,60 +145,38 @@ jobs:
       matrix: ${{ fromJSON(needs.changes.outputs.browser_matrix) }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
-        if: matrix.python
+      - uses: ./.github/actions/browser-suite
         with:
-          python-version: '3.12'
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+          config: ${{ matrix.config }}
+          project: ${{ matrix.project }}
+          shard: ${{ matrix.shard }}
+          api: ${{ matrix.api }}
+          python: ${{ matrix.python }}
+          dist: 'true'
+          diagnostics: browser-failure-${{ strategy.job-index }}
+
+  # The studios run on their own Vite dev servers and never load the built
+  # frontend, so they start as soon as the plan is known.
+  studio-browser:
+    name: Browser (${{ matrix.suite }}, ${{ matrix.project }}, ${{ matrix.shard }})
+    needs: changes
+    if: needs.changes.outputs.studio == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.changes.outputs.studio_matrix) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: ./.github/actions/browser-suite
         with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-      - name: Install native engine for application integration
-        if: matrix.api
-        uses: ./.github/actions/stockfish
-      - name: Install Python runtime for the app or semantic fixtures
-        if: matrix.python
-        uses: ./.github/actions/python-env
-      - run: npm ci
-        working-directory: frontend
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-        with:
-          name: frontend-dist
-          path: frontend/dist
-      - name: Restore Chromium from cache
-        id: chromium
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-        with:
-          path: ~/.cache/ms-playwright
-          key: chromium-shell-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}
-      - name: Install Chromium
-        if: steps.chromium.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium --only-shell
-        working-directory: frontend
-      - name: Run isolated browser project
-        env:
-          TEST_CONFIG: ${{ matrix.config }}
-          TEST_PROJECT: ${{ matrix.project }}
-          TEST_SHARD: ${{ matrix.shard }}
-          STOCKFISH_PATH: /usr/games/stockfish
-        # Each config reads TEST_SHARD itself: the application suite balances whole
-        # files by recorded duration, the fully parallel suites split tests evenly.
-        run: npx playwright test --config "$TEST_CONFIG" --project "$TEST_PROJECT" --reporter=line
-        working-directory: frontend
-      - name: Preserve failure diagnostics
-        if: failure()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: browser-failure-${{ strategy.job-index }}
-          path: |
-            frontend/test-results
-            frontend/account-test-results
-            frontend/studio-test-results
-            frontend/intelligence-test-results
-            frontend/audio-test-results
-          if-no-files-found: ignore
-          retention-days: 7
+          config: ${{ matrix.config }}
+          project: ${{ matrix.project }}
+          shard: ${{ matrix.shard }}
+          api: ${{ matrix.api }}
+          python: ${{ matrix.python }}
+          dist: 'false'
+          diagnostics: studio-failure-${{ strategy.job-index }}
 
   docker-install:
     name: Docker installation
@@ -212,11 +204,16 @@ jobs:
   gate:
     name: CI
     if: always()
-    needs: [changes, frontend-build, backend, browser, docker-install]
+    needs: [changes, frontend-build, backend, browser, studio-browser, docker-install]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            scripts
+            frontend/scripts
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'

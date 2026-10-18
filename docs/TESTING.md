@@ -239,8 +239,12 @@ use it rather than `--workers`, because the application config starts one server
 per configured worker. Accounts keep one worker. Each suite owns fixed ports, so
 do not run the same suite twice at once, from one checkout or two.
 No test assertions or native-engine search budgets are reduced. The frontend
-build/type checks run once, and the browser jobs download that run's `dist`
-artifact. The coach studio installs neither Python dependencies nor Stockfish;
+build/type checks run once, and the application and account jobs download that
+run's `dist` as one uncompressed tar artifact. The studio jobs (`studio-browser`)
+never load `dist`, so they start as soon as the plan is known; both job kinds share
+`.github/actions/browser-suite`. The plan, release-baseline and gate jobs check out
+only `scripts` and `frontend/scripts` from a blobless clone, skipping the voice
+bank. The coach studio installs neither Python dependencies nor Stockfish;
 intelligence and audio retain Python for semantic fixtures but do not install Stockfish.
 Application/account tests and backend integration tests retain real Stockfish.
 
